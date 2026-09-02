@@ -22,3 +22,6 @@ out/
 
 # Operator workflow state and close snapshots (runtime, per machine)
 data/state/
+
+# Interview prep (personal, never committed)
+prep/
