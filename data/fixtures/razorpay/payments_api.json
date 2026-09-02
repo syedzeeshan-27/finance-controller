@@ -1,0 +1,22 @@
+{
+ "entity": "collection",
+ "count": 4,
+ "items": [
+  {"id": "pay_LxA01aB2cD3eF4", "entity": "payment", "amount": 100000,
+   "currency": "INR", "status": "captured", "order_id": "order_LxOrd01aB2cD3e",
+   "method": "upi", "captured": true, "fee": 2900, "tax": 522,
+   "created_at": 1775044800},
+  {"id": "pay_LxB02bC3dE4fG5", "entity": "payment", "amount": 250050,
+   "currency": "INR", "status": "captured", "order_id": "order_LxOrd02bC3dE4f",
+   "method": "card", "captured": true, "fee": 7252, "tax": 1305,
+   "created_at": 1775048400},
+  {"id": "pay_LxC03cD4eF5gH6", "entity": "payment", "amount": 500000,
+   "currency": "INR", "status": "captured", "order_id": "order_LxOrd03cD4eF5g",
+   "method": "netbanking", "captured": true, "fee": 10000, "tax": 1800,
+   "created_at": 1775130000},
+  {"id": "pay_LxE05eF6gH7iJ8", "entity": "payment", "amount": 75000,
+   "currency": "INR", "status": "failed", "order_id": "order_LxOrd04dE5fG6h",
+   "method": "upi", "captured": false, "fee": 0, "tax": 0,
+   "created_at": 1775052000}
+ ]
+}

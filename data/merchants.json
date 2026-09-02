@@ -1,0 +1,8 @@
+[
+ {"name": "Meridian Craftworks (seed 42)",
+  "data_dir": "data/seeds/42",
+  "gstin": "29AAHCM8815R1ZK"},
+ {"name": "Statement A (real bank data)",
+  "data_dir": "data/real/statement_a/world",
+  "gstin": null}
+]

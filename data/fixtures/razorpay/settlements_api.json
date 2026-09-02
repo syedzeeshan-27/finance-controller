@@ -1,0 +1,26 @@
+{
+ "entity": "collection",
+ "count": 2,
+ "items": [
+  {
+   "id": "setl_MnO5pQ6rS7tU8v",
+   "entity": "settlement",
+   "amount": 338071,
+   "status": "processed",
+   "fees": 10152,
+   "tax": 1827,
+   "utr": "1775092500abx4kq",
+   "created_at": 1775092500
+  },
+  {
+   "id": "setl_NpQ7rS8tU9vW0x",
+   "entity": "settlement",
+   "amount": 473200,
+   "status": "processed",
+   "fees": 10000,
+   "tax": 1800,
+   "utr": "1775178900mze8tw",
+   "created_at": 1775178900
+  }
+ ]
+}

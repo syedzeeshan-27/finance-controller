@@ -1,0 +1,4 @@
+# Webhook fixture bytes are signed (HMAC over the exact file content):
+# never let EOL conversion rewrite them on checkout.
+data/fixtures/razorpay/webhooks/** -text
+data/real/statement_a/statement.xlsx binary

@@ -1,0 +1,101 @@
+{
+ "header_row": 3,
+ "columns": {
+  "date": 0,
+  "narration": 1,
+  "debit": 3,
+  "credit": 4,
+  "balance": 5,
+  "drcr_indicator": 6,
+  "chq_ref": 2
+ },
+ "date_format": "%d-%m-%Y",
+ "periods": [
+  {
+   "opening_row": 4,
+   "closing_row": 43,
+   "transaction_rows": [
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42
+   ]
+  },
+  {
+   "opening_row": 44,
+   "closing_row": 55,
+   "transaction_rows": [
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54
+   ]
+  }
+ ],
+ "noise_rows": [
+  0,
+  1,
+  2,
+  56,
+  57,
+  58,
+  59,
+  60,
+  61,
+  62,
+  63,
+  64
+ ],
+ "reference_recipe": {
+  "kind": "delimited",
+  "delimiter": "/",
+  "index": 1,
+  "token_regex": "^\\d{12}$"
+ },
+ "reversal_pairs": [
+  [
+   35,
+   36
+  ]
+ ]
+}

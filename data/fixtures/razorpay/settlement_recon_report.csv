@@ -1,0 +1,5 @@
+entity_id,type,debit,credit,amount,currency,fee,tax,on_hold,settled,created_at,settled_at,settlement_id,credit_type,description,settlement_utr,order_id,method
+pay_LxA01aB2cD3eF4,payment,0,96578,100000,INR,2900,522,false,true,1775044800,1775092500,setl_MnO5pQ6rS7tU8v,default,UPI order,1775092500abx4kq,order_LxOrd01aB2cD3e,upi
+pay_LxB02bC3dE4fG5,payment,0,241493,250050,INR,7252,1305,false,true,1775048400,1775092500,setl_MnO5pQ6rS7tU8v,default,Card order,1775092500abx4kq,order_LxOrd02bC3dE4f,card
+pay_LxC03cD4eF5gH6,payment,0,488200,500000,INR,10000,1800,false,true,1775130000,1775178900,setl_NpQ7rS8tU9vW0x,default,Netbanking order,1775178900mze8tw,order_LxOrd03cD4eF5g,netbanking
+rfnd_LxD04dE5fG6hI7,refund,15000,0,15000,INR,0,0,false,true,1775133600,1775178900,setl_NpQ7rS8tU9vW0x,default,Refund,1775178900mze8tw,order_LxOrd03cD4eF5g,netbanking

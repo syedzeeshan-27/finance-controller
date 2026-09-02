@@ -1,0 +1,694 @@
+{
+ "seeds": [
+  42,
+  43,
+  44,
+  45,
+  46
+ ],
+ "days": 180,
+ "strategies": {
+  "daily_close": {
+   "per_seed": {
+    "42": {
+     "golden_queue_worthy": 229,
+     "surfaced": 229,
+     "queue_recall": 1.0,
+     "money_at_stake_paise": 596702,
+     "money_surfaced_paise": 596702,
+     "money_recall": 1.0,
+     "queue_items": 194,
+     "gradable_items": 194,
+     "justified_items": 194,
+     "queue_precision": 1.0,
+     "missed": [],
+     "by_severity": {
+      "S1": 27,
+      "S2": 69,
+      "S3": 98
+     },
+     "verify_close_violations": [],
+     "verify_violation_count": 0,
+     "records_processed": 4957,
+     "elapsed_seconds": 0.7254,
+     "throughput_records_per_sec": 6833.68
+    },
+    "43": {
+     "golden_queue_worthy": 257,
+     "surfaced": 257,
+     "queue_recall": 1.0,
+     "money_at_stake_paise": 287716,
+     "money_surfaced_paise": 287716,
+     "money_recall": 1.0,
+     "queue_items": 219,
+     "gradable_items": 219,
+     "justified_items": 219,
+     "queue_precision": 1.0,
+     "missed": [],
+     "by_severity": {
+      "S1": 27,
+      "S2": 91,
+      "S3": 101
+     },
+     "verify_close_violations": [],
+     "verify_violation_count": 0,
+     "records_processed": 4991,
+     "elapsed_seconds": 0.7275,
+     "throughput_records_per_sec": 6860.19
+    },
+    "44": {
+     "golden_queue_worthy": 265,
+     "surfaced": 265,
+     "queue_recall": 1.0,
+     "money_at_stake_paise": 1191980,
+     "money_surfaced_paise": 1191980,
+     "money_recall": 1.0,
+     "queue_items": 213,
+     "gradable_items": 213,
+     "justified_items": 213,
+     "queue_precision": 1.0,
+     "missed": [],
+     "by_severity": {
+      "S1": 29,
+      "S2": 81,
+      "S3": 103
+     },
+     "verify_close_violations": [],
+     "verify_violation_count": 0,
+     "records_processed": 4938,
+     "elapsed_seconds": 0.8562,
+     "throughput_records_per_sec": 5767.59
+    },
+    "45": {
+     "golden_queue_worthy": 255,
+     "surfaced": 255,
+     "queue_recall": 1.0,
+     "money_at_stake_paise": 319943,
+     "money_surfaced_paise": 319943,
+     "money_recall": 1.0,
+     "queue_items": 214,
+     "gradable_items": 214,
+     "justified_items": 214,
+     "queue_precision": 1.0,
+     "missed": [],
+     "by_severity": {
+      "S1": 27,
+      "S2": 82,
+      "S3": 105
+     },
+     "verify_close_violations": [],
+     "verify_violation_count": 0,
+     "records_processed": 5007,
+     "elapsed_seconds": 0.758,
+     "throughput_records_per_sec": 6605.81
+    },
+    "46": {
+     "golden_queue_worthy": 260,
+     "surfaced": 260,
+     "queue_recall": 1.0,
+     "money_at_stake_paise": 324758,
+     "money_surfaced_paise": 324758,
+     "money_recall": 1.0,
+     "queue_items": 218,
+     "gradable_items": 218,
+     "justified_items": 218,
+     "queue_precision": 1.0,
+     "missed": [],
+     "by_severity": {
+      "S1": 29,
+      "S2": 84,
+      "S3": 105
+     },
+     "verify_close_violations": [],
+     "verify_violation_count": 0,
+     "records_processed": 4983,
+     "elapsed_seconds": 0.6277,
+     "throughput_records_per_sec": 7939.0
+    }
+   },
+   "aggregate": {
+    "queue_recall": {
+     "mean": 1.0,
+     "min": 1.0,
+     "max": 1.0
+    },
+    "money_recall": {
+     "mean": 1.0,
+     "min": 1.0,
+     "max": 1.0
+    },
+    "queue_precision": {
+     "mean": 1.0,
+     "min": 1.0,
+     "max": 1.0
+    },
+    "verify_violation_count": {
+     "mean": 0.0,
+     "min": 0,
+     "max": 0
+    },
+    "throughput_records_per_sec": {
+     "mean": 6801.254,
+     "min": 5767.59,
+     "max": 7939.0
+    },
+    "golden_queue_worthy_total": 1266,
+    "surfaced_total": 1266,
+    "money_at_stake_total_paise": 2721099,
+    "money_surfaced_total_paise": 2721099,
+    "verify_violation_total": 0
+   }
+  },
+  "naive_engines": {
+   "per_seed": {
+    "42": {
+     "golden_queue_worthy": 229,
+     "surfaced": 185,
+     "queue_recall": 0.8079,
+     "money_at_stake_paise": 596702,
+     "money_surfaced_paise": 271159,
+     "money_recall": 0.4544,
+     "queue_items": 353,
+     "gradable_items": 353,
+     "justified_items": 159,
+     "queue_precision": 0.4504,
+     "missed": [
+      {
+       "status": "ambiguous_abstain",
+       "record_id": "setl_o4dCZsCXjLGnjy"
+      },
+      {
+       "status": "ambiguous_abstain",
+       "record_id": "setl_cyEfiR4Tv3wN7i"
+      },
+      {
+       "status": "ambiguous_abstain",
+       "record_id": "setl_HVhv55afUoKaPg"
+      },
+      {
+       "status": "ambiguous_abstain",
+       "record_id": "setl_QR5vFV82L23GKi"
+      },
+      {
+       "status": "duplicate_credit",
+       "record_id": "BANK000072"
+      },
+      {
+       "status": "duplicate_credit",
+       "record_id": "BANK000036"
+      },
+      {
+       "status": "duplicate_credit",
+       "record_id": "BANK000048"
+      },
+      {
+       "status": "duplicate_credit",
+       "record_id": "BANK000214"
+      },
+      {
+       "status": "duplicate_credit",
+       "record_id": "BANK000026"
+      },
+      {
+       "status": "duplicate_credit",
+       "record_id": "BANK000524"
+      },
+      {
+       "status": "duplicate_credit",
+       "record_id": "BANK000024"
+      },
+      {
+       "status": "duplicate_credit",
+       "record_id": "BANK000516"
+      },
+      {
+       "status": "duplicate_credit",
+       "record_id": "BANK000255"
+      },
+      {
+       "status": "ambiguous_abstain",
+       "record_id": "BANK000147"
+      },
+      {
+       "status": "ambiguous_abstain",
+       "record_id": "BANK000199"
+      },
+      {
+       "status": "itc_missing_in_2b",
+       "record_id": "BANK000002"
+      },
+      {
+       "status": "itc_amount_mismatch",
+       "record_id": "BANK000044"
+      },
+      {
+       "status": "itc_missing_in_2b",
+       "record_id": "BANK000054"
+      },
+      {
+       "status": "itc_amount_mismatch",
+       "record_id": "BANK000099"
+      },
+      {
+       "status": "itc_amount_mismatch",
+       "record_id": "BANK000143"
+      }
+     ],
+     "stage_verifier_violations": {
+      "leg_a": 0,
+      "tax": 69
+     },
+     "verify_violation_count": 69
+    },
+    "43": {
+     "golden_queue_worthy": 257,
+     "surfaced": 217,
+     "queue_recall": 0.8444,
+     "money_at_stake_paise": 287716,
+     "money_surfaced_paise": 17266,
+     "money_recall": 0.06,
+     "queue_items": 362,
+     "gradable_items": 362,
+     "justified_items": 187,
+     "queue_precision": 0.5166,
+     "missed": [
+      {
+       "status": "ambiguous_abstain",
+       "record_id": "setl_N9XzcWqhy1KoTU"
+      },
+      {
+       "status": "ambiguous_abstain",
+       "record_id": "setl_Rmf0iWPctQa6LX"
+      },
+      {
+       "status": "ambiguous_abstain",
+       "record_id": "setl_bDzAhrVFgi1ZXQ"
+      },
+      {
+       "status": "ambiguous_abstain",
+       "record_id": "setl_d5LaXZyHl0KRZR"
+      },
+      {
+       "status": "duplicate_credit",
+       "record_id": "BANK000245"
+      },
+      {
+       "status": "duplicate_credit",
+       "record_id": "BANK000249"
+      },
+      {
+       "status": "duplicate_credit",
+       "record_id": "BANK000105"
+      },
+      {
+       "status": "duplicate_credit",
+       "record_id": "BANK000089"
+      },
+      {
+       "status": "duplicate_credit",
+       "record_id": "BANK000029"
+      },
+      {
+       "status": "duplicate_credit",
+       "record_id": "BANK000357"
+      },
+      {
+       "status": "duplicate_credit",
+       "record_id": "BANK000310"
+      },
+      {
+       "status": "duplicate_credit",
+       "record_id": "BANK000295"
+      },
+      {
+       "status": "duplicate_credit",
+       "record_id": "BANK000419"
+      },
+      {
+       "status": "ambiguous_abstain",
+       "record_id": "BANK000386"
+      },
+      {
+       "status": "ambiguous_abstain",
+       "record_id": "BANK000401"
+      },
+      {
+       "status": "itc_head_mismatch",
+       "record_id": "BANK000046"
+      },
+      {
+       "status": "itc_missing_in_2b",
+       "record_id": "BANK000111"
+      },
+      {
+       "status": "itc_amount_mismatch",
+       "record_id": "BANK000230"
+      },
+      {
+       "status": "itc_missing_in_2b",
+       "record_id": "BANK000271"
+      },
+      {
+       "status": "itc_amount_mismatch",
+       "record_id": "BANK000299"
+      }
+     ],
+     "stage_verifier_violations": {
+      "leg_a": 0,
+      "tax": 69
+     },
+     "verify_violation_count": 69
+    },
+    "44": {
+     "golden_queue_worthy": 265,
+     "surfaced": 221,
+     "queue_recall": 0.834,
+     "money_at_stake_paise": 1191980,
+     "money_surfaced_paise": 82335,
+     "money_recall": 0.0691,
+     "queue_items": 376,
+     "gradable_items": 376,
+     "justified_items": 178,
+     "queue_precision": 0.4734,
+     "missed": [
+      {
+       "status": "ambiguous_abstain",
+       "record_id": "setl_1X2O1HaeIblRl7"
+      },
+      {
+       "status": "ambiguous_abstain",
+       "record_id": "setl_ptcE2c8OhBmeOm"
+      },
+      {
+       "status": "ambiguous_abstain",
+       "record_id": "setl_6HOZcxIVkSzTGP"
+      },
+      {
+       "status": "ambiguous_abstain",
+       "record_id": "setl_ZndErbJdzcp7Dw"
+      },
+      {
+       "status": "duplicate_credit",
+       "record_id": "BANK000516"
+      },
+      {
+       "status": "duplicate_credit",
+       "record_id": "BANK000442"
+      },
+      {
+       "status": "duplicate_credit",
+       "record_id": "BANK000392"
+      },
+      {
+       "status": "duplicate_credit",
+       "record_id": "BANK000465"
+      },
+      {
+       "status": "duplicate_credit",
+       "record_id": "BANK000347"
+      },
+      {
+       "status": "duplicate_credit",
+       "record_id": "BANK000135"
+      },
+      {
+       "status": "duplicate_credit",
+       "record_id": "BANK000018"
+      },
+      {
+       "status": "duplicate_credit",
+       "record_id": "BANK000321"
+      },
+      {
+       "status": "duplicate_credit",
+       "record_id": "BANK000083"
+      },
+      {
+       "status": "duplicate_credit",
+       "record_id": "BANK000188"
+      },
+      {
+       "status": "ambiguous_abstain",
+       "record_id": "BANK000201"
+      },
+      {
+       "status": "ambiguous_abstain",
+       "record_id": "BANK000433"
+      },
+      {
+       "status": "itc_amount_mismatch",
+       "record_id": "BANK000041"
+      },
+      {
+       "status": "itc_amount_mismatch",
+       "record_id": "BANK000149"
+      },
+      {
+       "status": "itc_amount_mismatch",
+       "record_id": "BANK000195"
+      },
+      {
+       "status": "itc_head_mismatch",
+       "record_id": "BANK000251"
+      }
+     ],
+     "stage_verifier_violations": {
+      "leg_a": 0,
+      "tax": 62
+     },
+     "verify_violation_count": 62
+    },
+    "45": {
+     "golden_queue_worthy": 255,
+     "surfaced": 212,
+     "queue_recall": 0.8314,
+     "money_at_stake_paise": 319943,
+     "money_surfaced_paise": 89599,
+     "money_recall": 0.28,
+     "queue_items": 378,
+     "gradable_items": 378,
+     "justified_items": 180,
+     "queue_precision": 0.4762,
+     "missed": [
+      {
+       "status": "ambiguous_abstain",
+       "record_id": "setl_7tryJ2TiUKF6cl"
+      },
+      {
+       "status": "ambiguous_abstain",
+       "record_id": "setl_KgJ5PVIfUSdViQ"
+      },
+      {
+       "status": "ambiguous_abstain",
+       "record_id": "setl_rmSsUyvBjzfeUU"
+      },
+      {
+       "status": "ambiguous_abstain",
+       "record_id": "setl_OwfZ6hREDOic5z"
+      },
+      {
+       "status": "duplicate_credit",
+       "record_id": "BANK000095"
+      },
+      {
+       "status": "duplicate_credit",
+       "record_id": "BANK000315"
+      },
+      {
+       "status": "duplicate_credit",
+       "record_id": "BANK000285"
+      },
+      {
+       "status": "duplicate_credit",
+       "record_id": "BANK000460"
+      },
+      {
+       "status": "duplicate_credit",
+       "record_id": "BANK000246"
+      },
+      {
+       "status": "duplicate_credit",
+       "record_id": "BANK000056"
+      },
+      {
+       "status": "duplicate_credit",
+       "record_id": "BANK000487"
+      },
+      {
+       "status": "duplicate_credit",
+       "record_id": "BANK000508"
+      },
+      {
+       "status": "duplicate_credit",
+       "record_id": "BANK000100"
+      },
+      {
+       "status": "ambiguous_abstain",
+       "record_id": "BANK000319"
+      },
+      {
+       "status": "ambiguous_abstain",
+       "record_id": "BANK000064"
+      },
+      {
+       "status": "itc_missing_in_2b",
+       "record_id": "BANK000024"
+      },
+      {
+       "status": "itc_amount_mismatch",
+       "record_id": "BANK000026"
+      },
+      {
+       "status": "itc_head_mismatch",
+       "record_id": "BANK000069"
+      },
+      {
+       "status": "itc_amount_mismatch",
+       "record_id": "BANK000198"
+      },
+      {
+       "status": "itc_head_mismatch",
+       "record_id": "BANK000258"
+      }
+     ],
+     "stage_verifier_violations": {
+      "leg_a": 0,
+      "tax": 60
+     },
+     "verify_violation_count": 60
+    },
+    "46": {
+     "golden_queue_worthy": 260,
+     "surfaced": 218,
+     "queue_recall": 0.8385,
+     "money_at_stake_paise": 324758,
+     "money_surfaced_paise": 76079,
+     "money_recall": 0.2343,
+     "queue_items": 378,
+     "gradable_items": 378,
+     "justified_items": 185,
+     "queue_precision": 0.4894,
+     "missed": [
+      {
+       "status": "ambiguous_abstain",
+       "record_id": "setl_W19s4L7Y5Fx2ig"
+      },
+      {
+       "status": "ambiguous_abstain",
+       "record_id": "setl_t15tddqWhRcqmw"
+      },
+      {
+       "status": "ambiguous_abstain",
+       "record_id": "setl_6G5MbyBWGSLoaL"
+      },
+      {
+       "status": "ambiguous_abstain",
+       "record_id": "setl_qBHXLZLhxdD4Gj"
+      },
+      {
+       "status": "duplicate_credit",
+       "record_id": "BANK000391"
+      },
+      {
+       "status": "duplicate_credit",
+       "record_id": "BANK000318"
+      },
+      {
+       "status": "duplicate_credit",
+       "record_id": "BANK000265"
+      },
+      {
+       "status": "duplicate_credit",
+       "record_id": "BANK000368"
+      },
+      {
+       "status": "duplicate_credit",
+       "record_id": "BANK000296"
+      },
+      {
+       "status": "duplicate_credit",
+       "record_id": "BANK000297"
+      },
+      {
+       "status": "duplicate_credit",
+       "record_id": "BANK000473"
+      },
+      {
+       "status": "duplicate_credit",
+       "record_id": "BANK000457"
+      },
+      {
+       "status": "duplicate_credit",
+       "record_id": "BANK000323"
+      },
+      {
+       "status": "duplicate_credit",
+       "record_id": "BANK000386"
+      },
+      {
+       "status": "ambiguous_abstain",
+       "record_id": "BANK000299"
+      },
+      {
+       "status": "ambiguous_abstain",
+       "record_id": "BANK000260"
+      },
+      {
+       "status": "itc_amount_mismatch",
+       "record_id": "BANK000065"
+      },
+      {
+       "status": "itc_head_mismatch",
+       "record_id": "BANK000142"
+      },
+      {
+       "status": "itc_amount_mismatch",
+       "record_id": "BANK000201"
+      },
+      {
+       "status": "itc_amount_mismatch",
+       "record_id": "BANK000335"
+      }
+     ],
+     "stage_verifier_violations": {
+      "leg_a": 0,
+      "tax": 70
+     },
+     "verify_violation_count": 70
+    }
+   },
+   "aggregate": {
+    "queue_recall": {
+     "mean": 0.8312,
+     "min": 0.8079,
+     "max": 0.8444
+    },
+    "money_recall": {
+     "mean": 0.2196,
+     "min": 0.06,
+     "max": 0.4544
+    },
+    "queue_precision": {
+     "mean": 0.4812,
+     "min": 0.4504,
+     "max": 0.5166
+    },
+    "verify_violation_count": {
+     "mean": 66.0,
+     "min": 60,
+     "max": 70
+    },
+    "throughput_records_per_sec": {
+     "mean": null,
+     "min": null,
+     "max": null
+    },
+    "golden_queue_worthy_total": 1266,
+    "surfaced_total": 1053,
+    "money_at_stake_total_paise": 2721099,
+    "money_surfaced_total_paise": 536438,
+    "verify_violation_total": 330
+   }
+  }
+ }
+}

@@ -1,0 +1,230 @@
+record_type,record_id,expected_disposition,counterparty_ids,scenario_tag,expected_discrepancy_paise,notes
+settlement,setl_eaJX1ElpqQvKTV,matched,BANK000007,clean_exact_utr,0,
+settlement,setl_0D7QcT3kWC3yLr,matched,BANK000006,clean_exact_utr,0,
+settlement,setl_PzzFBAStBu7hGu,matched,BANK000018,delayed_settlement,0,
+settlement,setl_fhWQo4Um9MuZJm,matched,BANK000022,delayed_settlement,0,
+settlement,setl_SnClBzlpG4fOCM,matched_with_discrepancy,BANK000016,matched_with_discrepancy,-2950,
+settlement,setl_f19thxprFFRmtn,matched,BANK000014,clean_exact_utr,0,
+settlement,setl_QjRZnyUYkHJoNG,matched,BANK000017,utr_mangled_typo,0,
+settlement,setl_HMcYAO4VYp3Xeo,matched,BANK000020,clean_exact_utr,0,
+settlement,setl_XIfdcDLQk8EPyh,matched_merged,BANK000023,merged_credits,0,
+settlement,setl_7cDJyw1X4e2DeI,matched_merged,BANK000023,merged_credits,0,
+settlement,setl_kewZKQthcYxyI6,exception_missing_bank,,missing_bank_credit,0,settlement processed by PSP but no bank credit ever arrived
+settlement,setl_wYvH3Rg3TtnxHa,matched,BANK000029,utr_truncated,0,
+settlement,setl_rmZRuf2IrjOaoz,matched,BANK000030,clean_exact_utr,0,
+settlement,setl_j8vhr5uiipN1Cp,matched,BANK000036,clean_exact_utr,0,
+settlement,setl_0FBE9u5sltsNRb,matched,BANK000037,clean_exact_utr,0,
+settlement,setl_36QtCtfIMZ5L59,matched,BANK000035,clean_exact_utr,0,
+settlement,setl_utH7TUeG0gEJ1L,matched,BANK000042,utr_absent_amount_unique,0,
+settlement,setl_Dk5U8rfriBjFJ6,matched,BANK000046,utr_mangled_typo,0,
+settlement,setl_DtMhpTeCpqat4j,matched,BANK000049,clean_exact_utr,0,
+settlement,setl_GUsll3DsbB1Rs0,matched,BANK000052,utr_truncated,0,
+settlement,setl_5T86fXM2jkT4SW,matched,BANK000053,clean_exact_utr,0,
+settlement,setl_8pP0jsNW2pzlVX,matched,BANK000057,clean_exact_utr,0,
+settlement,setl_wT4swNh5Fhe3UG,matched,BANK000056,utr_absent_amount_unique,0,
+settlement,setl_4OpHP9sP7QT5bE,exception_missing_bank,,missing_bank_credit,0,settlement processed by PSP but no bank credit ever arrived
+settlement,setl_KLPbndxwBDidoL,matched,BANK000061,utr_truncated,0,
+settlement,setl_xBGj7NdtKtOoK4,ambiguous_abstain,BANK000064,ambiguous_twins,0,"indistinguishable twin settlements; one of them was paid by the single arriving credit, the other was not — requires bank enquiry"
+settlement,setl_W1QZjz3Po0gX4V,ambiguous_abstain,BANK000064,ambiguous_twins,0,"indistinguishable twin settlements; one of them was paid by the single arriving credit, the other was not — requires bank enquiry"
+settlement,setl_i2jJO1ygcvVWvZ,matched,BANK000067,clean_exact_utr,0,
+settlement,setl_ontzoU8WpuFjRt,exception_missing_bank,,missing_bank_credit,0,settlement processed by PSP but no bank credit ever arrived
+settlement,setl_nNwThKhckXgz8u,matched,BANK000070,clean_exact_utr,0,
+settlement,setl_1f23Yen8hgkCov,matched_split,BANK000075;BANK000074,split_settlement,0,
+settlement,setl_9rTwvyzmXXtm8t,matched_with_discrepancy,BANK000076,matched_with_discrepancy,-2950,
+settlement,setl_CcgYmCeGu8h0BR,matched_with_discrepancy,BANK000078,matched_with_discrepancy,-2950,
+settlement,setl_YEBakP0dwN8WK2,matched,BANK000077,clean_exact_utr,0,
+settlement,setl_i8EOtwFwW7b8Be,matched,BANK000082,duplicate_bank_credit,0,
+settlement,setl_4fOocqaMZIsq56,matched,BANK000086,clean_exact_utr,0,
+settlement,setl_zrJfKzzaLI3tky,matched,BANK000090,clean_exact_utr,0,
+settlement,setl_4OPLkcty0yP3sl,matched_split,BANK000094;BANK000095,split_settlement,0,
+settlement,setl_x9ijwcAgRMjZQE,matched,BANK000097,clean_exact_utr,0,
+settlement,setl_2ixuLqPtFyOavH,matched,BANK000099,utr_absent_amount_unique,0,
+settlement,setl_0EvTXMGTYLPm9A,matched,BANK000100,clean_exact_utr,0,
+settlement,setl_Iiz7qUkZpBO86U,matched,BANK000104,utr_truncated,0,
+settlement,setl_qC7NqtX01SMe19,matched,BANK000109,clean_exact_utr,0,
+settlement,setl_IfgnJoxOf8Cf4H,matched_with_discrepancy,BANK000111,matched_with_discrepancy,-49665,
+settlement,setl_wsY0KlmQgrWOI7,matched_split,BANK000113;BANK000114,split_settlement,0,
+settlement,setl_yFwrDVhiy3f9pV,matched,BANK000117,clean_exact_utr,0,
+settlement,setl_e1AYtbDLvu1EEG,matched,BANK000116,clean_exact_utr,0,
+settlement,setl_rBg4shLOpllZl4,matched_with_discrepancy,BANK000121,matched_with_discrepancy,-28742,
+settlement,setl_GvnmnVOVu1xzDl,matched,BANK000119,clean_exact_utr,0,
+settlement,setl_IHxDfqTYA8mSCY,matched,BANK000120,clean_exact_utr,0,
+settlement,setl_cJzpAwRPB7eNu7,matched,BANK000136,delayed_settlement,0,
+settlement,setl_9zFkPplN9yMkFJ,exception_missing_bank,,missing_bank_credit,0,settlement processed by PSP but no bank credit ever arrived
+settlement,setl_j0hINPkbJOPZMm,matched,BANK000125,utr_absent_amount_unique,0,
+settlement,setl_iQSPBi0CTt8zGA,matched,BANK000126,utr_truncated,0,
+settlement,setl_pjBjCtsXlrgYOg,matched,BANK000129,clean_exact_utr,0,
+settlement,setl_Oz2WqDG2eWumM0,matched,BANK000132,duplicate_bank_credit,0,
+settlement,setl_bXkglEtN1VDZc0,matched_split,BANK000135;BANK000138,split_settlement,0,
+settlement,setl_XTSXES6E6pNBwN,matched,BANK000143,clean_exact_utr,0,
+settlement,setl_uq9Ql0HeACZEp5,matched,BANK000144,clean_exact_utr,0,
+settlement,setl_4DCGIBvlxPvyQX,matched,BANK000145,duplicate_bank_credit,0,
+settlement,setl_8NHxZwfT3sxzmG,matched,BANK000149,near_collision,0,
+settlement,setl_w8jDzUTqhPXwVB,matched,BANK000154,near_collision,0,
+settlement,setl_PCpqGCg7BTt1n7,matched,BANK000158,utr_mangled_separators,0,
+settlement,setl_zkGYMq2dt30OrN,matched,BANK000160,clean_exact_utr,0,
+settlement,setl_0Letj9yrokVRIP,matched,BANK000164,clean_exact_utr,0,
+settlement,setl_ThfRnt3B1d0VhM,matched,BANK000169,clean_exact_utr,0,
+settlement,setl_J2PMBkXBpQ0QcT,matched,BANK000168,near_collision,0,
+settlement,setl_71LwpeWkyrPT0d,matched,BANK000170,clean_exact_utr,0,
+settlement,setl_ciyVqcLWrN0Hl8,matched,BANK000174,utr_absent_amount_unique,0,
+settlement,setl_pkUKsD3gdPcVxQ,matched,BANK000178,near_collision,0,
+settlement,setl_haAaQMnAH8n7pq,matched,BANK000195,delayed_settlement,0,
+settlement,setl_FSGyHOANDrzj2U,matched,BANK000182,utr_mangled_separators,0,
+settlement,setl_jnuri38fo7sMjC,matched,BANK000186,clean_exact_utr,0,
+settlement,setl_hVLunKHzRsIHI9,matched_split,BANK000188;BANK000187,split_settlement,0,
+settlement,setl_H3UnuOiQ3c6KS1,matched,BANK000192,duplicate_bank_credit,0,
+settlement,setl_NbJ2qTME2hCE3K,matched,BANK000197,utr_absent_amount_unique,0,
+settlement,setl_16hUKEDHfsQSsm,matched,BANK000196,clean_exact_utr,0,
+settlement,setl_VhZu6f6hBfBhRT,ambiguous_abstain,BANK000203,ambiguous_twins,0,"indistinguishable twin settlements; one of them was paid by the single arriving credit, the other was not — requires bank enquiry"
+settlement,setl_6yPrPteGeQj9DL,ambiguous_abstain,BANK000203,ambiguous_twins,0,"indistinguishable twin settlements; one of them was paid by the single arriving credit, the other was not — requires bank enquiry"
+settlement,setl_qHcqVMuQWx4XE1,matched,BANK000204,clean_exact_utr,0,
+settlement,setl_FczN44pxVM3pX2,matched,BANK000205,utr_truncated,0,
+settlement,setl_u4CgUHArCowcE2,matched,BANK000209,clean_exact_utr,0,
+settlement,setl_qnO6kHYqPI6nl8,matched,BANK000212,clean_exact_utr,0,
+settlement,setl_LXBmnUFBXfpRvE,matched,BANK000216,utr_mangled_typo,0,
+settlement,setl_tAYBt2FClX2ZwW,matched,BANK000217,utr_truncated,0,
+settlement,setl_jYa24Xwphe0kKk,matched,BANK000219,utr_mangled_typo,0,
+settlement,setl_dWbQToZOUi7Noa,exception_missing_bank,,missing_bank_credit,0,settlement processed by PSP but no bank credit ever arrived
+settlement,setl_4DgekV8B8S4QL7,matched_with_discrepancy,BANK000222,matched_with_discrepancy,-2950,
+settlement,setl_FsCFcmzGiiWfGB,matched,BANK000227,utr_truncated,0,
+settlement,setl_hMyIeRaHel90mo,matched,BANK000229,utr_mangled_separators,0,
+settlement,setl_9IfyGWU1TujH72,matched,BANK000230,clean_exact_utr,0,
+settlement,setl_GrTHucmE7oLIlp,matched,BANK000232,clean_exact_utr,0,
+settlement,setl_gU7RuvzFOWt5IV,matched_with_discrepancy,BANK000231,matched_with_discrepancy,-36655,
+settlement,setl_0WHC9wBot0QsSr,matched,BANK000235,clean_exact_utr,0,
+settlement,setl_YnMH0wZDC0CHrv,matched,BANK000237,utr_absent_amount_unique,0,
+settlement,setl_V4RrnQMdLLCfmw,matched,BANK000239,clean_exact_utr,0,
+settlement,setl_kzv3xveqLomx9h,matched,BANK000241,utr_absent_amount_unique,0,
+settlement,setl_R1Txn5yzZueCwN,matched,BANK000243,utr_truncated,0,
+settlement,setl_1jpkSgpmNN3NZH,matched,BANK000247,utr_mangled_separators,0,
+settlement,setl_D4tLAimhY1OQvM,matched,BANK000250,clean_exact_utr,0,
+settlement,setl_Nu1pnrC96XiS4a,matched_merged,BANK000254,merged_credits,0,
+settlement,setl_BSbaZYgI6qQ34M,matched_merged,BANK000254,merged_credits,0,
+settlement,setl_50xLBJWxlxTGaL,exception_missing_bank,,missing_bank_credit,0,settlement processed by PSP but no bank credit ever arrived
+settlement,setl_pvRHq7tiUmlCkj,matched,BANK000257,near_collision,0,
+settlement,setl_nlvFRTtSJmctDW,matched,BANK000261,near_collision,0,
+settlement,setl_FSUSiBrVDTHkay,exception_missing_bank,,missing_bank_credit,0,settlement processed by PSP but no bank credit ever arrived
+settlement,setl_6GfMbyomxhPKty,exception_missing_bank,,missing_bank_credit,0,settlement processed by PSP but no bank credit ever arrived
+settlement,setl_CfKBXkefjeU4aB,matched,BANK000264,clean_exact_utr,0,
+settlement,setl_DNuuVtS7W3FATE,matched,BANK000265,clean_exact_utr,0,
+bank_credit,BANK000129,matched,setl_pjBjCtsXlrgYOg,clean_exact_utr,0,
+bank_credit,BANK000035,matched,setl_36QtCtfIMZ5L59,clean_exact_utr,0,
+bank_credit,BANK000239,matched,setl_V4RrnQMdLLCfmw,clean_exact_utr,0,
+bank_credit,BANK000090,matched,setl_zrJfKzzaLI3tky,clean_exact_utr,0,
+bank_credit,BANK000117,matched,setl_yFwrDVhiy3f9pV,clean_exact_utr,0,
+bank_credit,BANK000235,matched,setl_0WHC9wBot0QsSr,clean_exact_utr,0,
+bank_credit,BANK000067,matched,setl_i2jJO1ygcvVWvZ,clean_exact_utr,0,
+bank_credit,BANK000049,matched,setl_DtMhpTeCpqat4j,clean_exact_utr,0,
+bank_credit,BANK000250,matched,setl_D4tLAimhY1OQvM,clean_exact_utr,0,
+bank_credit,BANK000037,matched,setl_0FBE9u5sltsNRb,clean_exact_utr,0,
+bank_credit,BANK000264,matched,setl_CfKBXkefjeU4aB,clean_exact_utr,0,
+bank_credit,BANK000169,matched,setl_ThfRnt3B1d0VhM,clean_exact_utr,0,
+bank_credit,BANK000164,matched,setl_0Letj9yrokVRIP,clean_exact_utr,0,
+bank_credit,BANK000097,matched,setl_x9ijwcAgRMjZQE,clean_exact_utr,0,
+bank_credit,BANK000212,matched,setl_qnO6kHYqPI6nl8,clean_exact_utr,0,
+bank_credit,BANK000030,matched,setl_rmZRuf2IrjOaoz,clean_exact_utr,0,
+bank_credit,BANK000007,matched,setl_eaJX1ElpqQvKTV,clean_exact_utr,0,
+bank_credit,BANK000077,matched,setl_YEBakP0dwN8WK2,clean_exact_utr,0,
+bank_credit,BANK000265,matched,setl_DNuuVtS7W3FATE,clean_exact_utr,0,
+bank_credit,BANK000196,matched,setl_16hUKEDHfsQSsm,clean_exact_utr,0,
+bank_credit,BANK000100,matched,setl_0EvTXMGTYLPm9A,clean_exact_utr,0,
+bank_credit,BANK000116,matched,setl_e1AYtbDLvu1EEG,clean_exact_utr,0,
+bank_credit,BANK000053,matched,setl_5T86fXM2jkT4SW,clean_exact_utr,0,
+bank_credit,BANK000006,matched,setl_0D7QcT3kWC3yLr,clean_exact_utr,0,
+bank_credit,BANK000057,matched,setl_8pP0jsNW2pzlVX,clean_exact_utr,0,
+bank_credit,BANK000170,matched,setl_71LwpeWkyrPT0d,clean_exact_utr,0,
+bank_credit,BANK000160,matched,setl_zkGYMq2dt30OrN,clean_exact_utr,0,
+bank_credit,BANK000014,matched,setl_f19thxprFFRmtn,clean_exact_utr,0,
+bank_credit,BANK000144,matched,setl_uq9Ql0HeACZEp5,clean_exact_utr,0,
+bank_credit,BANK000186,matched,setl_jnuri38fo7sMjC,clean_exact_utr,0,
+bank_credit,BANK000036,matched,setl_j8vhr5uiipN1Cp,clean_exact_utr,0,
+bank_credit,BANK000070,matched,setl_nNwThKhckXgz8u,clean_exact_utr,0,
+bank_credit,BANK000120,matched,setl_IHxDfqTYA8mSCY,clean_exact_utr,0,
+bank_credit,BANK000230,matched,setl_9IfyGWU1TujH72,clean_exact_utr,0,
+bank_credit,BANK000086,matched,setl_4fOocqaMZIsq56,clean_exact_utr,0,
+bank_credit,BANK000232,matched,setl_GrTHucmE7oLIlp,clean_exact_utr,0,
+bank_credit,BANK000209,matched,setl_u4CgUHArCowcE2,clean_exact_utr,0,
+bank_credit,BANK000143,matched,setl_XTSXES6E6pNBwN,clean_exact_utr,0,
+bank_credit,BANK000204,matched,setl_qHcqVMuQWx4XE1,clean_exact_utr,0,
+bank_credit,BANK000020,matched,setl_HMcYAO4VYp3Xeo,clean_exact_utr,0,
+bank_credit,BANK000119,matched,setl_GvnmnVOVu1xzDl,clean_exact_utr,0,
+bank_credit,BANK000109,matched,setl_qC7NqtX01SMe19,clean_exact_utr,0,
+bank_credit,BANK000126,matched,setl_iQSPBi0CTt8zGA,utr_truncated,0,narration carries only the last 12 chars of the UTR
+bank_credit,BANK000243,matched,setl_R1Txn5yzZueCwN,utr_truncated,0,narration carries only the last 10 chars of the UTR
+bank_credit,BANK000205,matched,setl_FczN44pxVM3pX2,utr_truncated,0,narration carries only the last 12 chars of the UTR
+bank_credit,BANK000061,matched,setl_KLPbndxwBDidoL,utr_truncated,0,narration carries only the last 12 chars of the UTR
+bank_credit,BANK000029,matched,setl_wYvH3Rg3TtnxHa,utr_truncated,0,narration carries only the last 11 chars of the UTR
+bank_credit,BANK000052,matched,setl_GUsll3DsbB1Rs0,utr_truncated,0,narration carries only the last 10 chars of the UTR
+bank_credit,BANK000104,matched,setl_Iiz7qUkZpBO86U,utr_truncated,0,narration carries only the last 10 chars of the UTR
+bank_credit,BANK000217,matched,setl_tAYBt2FClX2ZwW,utr_truncated,0,narration carries only the last 10 chars of the UTR
+bank_credit,BANK000227,matched,setl_FsCFcmzGiiWfGB,utr_truncated,0,narration carries only the last 10 chars of the UTR
+bank_credit,BANK000247,matched,setl_1jpkSgpmNN3NZH,utr_mangled_separators,0,UTR broken up by separators in the narration
+bank_credit,BANK000182,matched,setl_FSGyHOANDrzj2U,utr_mangled_separators,0,UTR broken up by separators in the narration
+bank_credit,BANK000229,matched,setl_hMyIeRaHel90mo,utr_mangled_separators,0,UTR broken up by separators in the narration
+bank_credit,BANK000158,matched,setl_PCpqGCg7BTt1n7,utr_mangled_separators,0,UTR broken up by separators in the narration
+bank_credit,BANK000017,matched,setl_QjRZnyUYkHJoNG,utr_mangled_typo,0,one digit of the UTR corrupted in the narration
+bank_credit,BANK000219,matched,setl_jYa24Xwphe0kKk,utr_mangled_typo,0,one digit of the UTR corrupted in the narration
+bank_credit,BANK000216,matched,setl_LXBmnUFBXfpRvE,utr_mangled_typo,0,one digit of the UTR corrupted in the narration
+bank_credit,BANK000046,matched,setl_Dk5U8rfriBjFJ6,utr_mangled_typo,0,one digit of the UTR corrupted in the narration
+bank_credit,BANK000174,matched,setl_ciyVqcLWrN0Hl8,utr_absent_amount_unique,0,no UTR anywhere; amount is provably unique in the window
+bank_credit,BANK000237,matched,setl_YnMH0wZDC0CHrv,utr_absent_amount_unique,0,no UTR anywhere; amount is provably unique in the window
+bank_credit,BANK000125,matched,setl_j0hINPkbJOPZMm,utr_absent_amount_unique,0,no UTR anywhere; amount is provably unique in the window
+bank_credit,BANK000056,matched,setl_wT4swNh5Fhe3UG,utr_absent_amount_unique,0,no UTR anywhere; amount is provably unique in the window
+bank_credit,BANK000099,matched,setl_2ixuLqPtFyOavH,utr_absent_amount_unique,0,no UTR anywhere; amount is provably unique in the window
+bank_credit,BANK000197,matched,setl_NbJ2qTME2hCE3K,utr_absent_amount_unique,0,no UTR anywhere; amount is provably unique in the window
+bank_credit,BANK000042,matched,setl_utH7TUeG0gEJ1L,utr_absent_amount_unique,0,no UTR anywhere; amount is provably unique in the window
+bank_credit,BANK000241,matched,setl_kzv3xveqLomx9h,utr_absent_amount_unique,0,no UTR anywhere; amount is provably unique in the window
+bank_credit,BANK000132,matched,setl_Oz2WqDG2eWumM0,duplicate_bank_credit,0,original credit
+bank_credit,BANK000137,duplicate_credit,setl_Oz2WqDG2eWumM0,duplicate_bank_credit,0,bank posted the same settlement twice
+bank_credit,BANK000145,matched,setl_4DCGIBvlxPvyQX,duplicate_bank_credit,0,original credit
+bank_credit,BANK000150,duplicate_credit,setl_4DCGIBvlxPvyQX,duplicate_bank_credit,0,bank posted the same settlement twice
+bank_credit,BANK000082,matched,setl_i8EOtwFwW7b8Be,duplicate_bank_credit,0,original credit
+bank_credit,BANK000085,duplicate_credit,setl_i8EOtwFwW7b8Be,duplicate_bank_credit,0,bank posted the same settlement twice
+bank_credit,BANK000192,matched,setl_H3UnuOiQ3c6KS1,duplicate_bank_credit,0,original credit
+bank_credit,BANK000198,duplicate_credit,setl_H3UnuOiQ3c6KS1,duplicate_bank_credit,0,bank posted the same settlement twice
+bank_credit,BANK000113,matched_split,setl_wsY0KlmQgrWOI7,split_settlement,0,part 1/2 of a split settlement
+bank_credit,BANK000114,matched_split,setl_wsY0KlmQgrWOI7,split_settlement,0,part 2/2 of a split settlement
+bank_credit,BANK000188,matched_split,setl_hVLunKHzRsIHI9,split_settlement,0,part 1/2 of a split settlement
+bank_credit,BANK000187,matched_split,setl_hVLunKHzRsIHI9,split_settlement,0,part 2/2 of a split settlement
+bank_credit,BANK000075,matched_split,setl_1f23Yen8hgkCov,split_settlement,0,part 1/2 of a split settlement
+bank_credit,BANK000074,matched_split,setl_1f23Yen8hgkCov,split_settlement,0,part 2/2 of a split settlement
+bank_credit,BANK000094,matched_split,setl_4OPLkcty0yP3sl,split_settlement,0,part 1/2 of a split settlement
+bank_credit,BANK000095,matched_split,setl_4OPLkcty0yP3sl,split_settlement,0,part 2/2 of a split settlement
+bank_credit,BANK000135,matched_split,setl_bXkglEtN1VDZc0,split_settlement,0,part 1/2 of a split settlement
+bank_credit,BANK000138,matched_split,setl_bXkglEtN1VDZc0,split_settlement,0,part 2/2 of a split settlement
+bank_credit,BANK000016,matched_with_discrepancy,setl_SnClBzlpG4fOCM,matched_with_discrepancy,-2950,bank NEFT/RTGS charge deducted at credit
+bank_credit,BANK000121,matched_with_discrepancy,setl_rBg4shLOpllZl4,matched_with_discrepancy,-28742,1% marketplace TDS-style deduction at credit
+bank_credit,BANK000222,matched_with_discrepancy,setl_4DgekV8B8S4QL7,matched_with_discrepancy,-2950,bank NEFT/RTGS charge deducted at credit
+bank_credit,BANK000111,matched_with_discrepancy,setl_IfgnJoxOf8Cf4H,matched_with_discrepancy,-49665,1% marketplace TDS-style deduction at credit
+bank_credit,BANK000076,matched_with_discrepancy,setl_9rTwvyzmXXtm8t,matched_with_discrepancy,-2950,bank NEFT/RTGS charge deducted at credit
+bank_credit,BANK000231,matched_with_discrepancy,setl_gU7RuvzFOWt5IV,matched_with_discrepancy,-36655,1% marketplace TDS-style deduction at credit
+bank_credit,BANK000078,matched_with_discrepancy,setl_CcgYmCeGu8h0BR,matched_with_discrepancy,-2950,bank NEFT/RTGS charge deducted at credit
+bank_credit,BANK000018,matched,setl_PzzFBAStBu7hGu,delayed_settlement,0,"credit landed T+5..T+7, well outside the usual window"
+bank_credit,BANK000195,matched,setl_haAaQMnAH8n7pq,delayed_settlement,0,"credit landed T+5..T+7, well outside the usual window"
+bank_credit,BANK000136,matched,setl_cJzpAwRPB7eNu7,delayed_settlement,0,"credit landed T+5..T+7, well outside the usual window"
+bank_credit,BANK000022,matched,setl_fhWQo4Um9MuZJm,delayed_settlement,0,"credit landed T+5..T+7, well outside the usual window"
+bank_credit,BANK000064,ambiguous_abstain,setl_xBGj7NdtKtOoK4;setl_W1QZjz3Po0gX4V,ambiguous_twins,0,two settlements share this exact amount and window; no observable evidence distinguishes them
+bank_credit,BANK000203,ambiguous_abstain,setl_VhZu6f6hBfBhRT;setl_6yPrPteGeQj9DL,ambiguous_twins,0,two settlements share this exact amount and window; no observable evidence distinguishes them
+bank_credit,BANK000257,matched,setl_pvRHq7tiUmlCkj,near_collision,0,near-collision partner with clean UTR
+bank_credit,BANK000261,matched,setl_nlvFRTtSJmctDW,near_collision,0,near-collision partner without UTR; exact-paise amount equality is the only safe evidence
+bank_credit,BANK000168,matched,setl_J2PMBkXBpQ0QcT,near_collision,0,near-collision partner with clean UTR
+bank_credit,BANK000178,matched,setl_pkUKsD3gdPcVxQ,near_collision,0,near-collision partner without UTR; exact-paise amount equality is the only safe evidence
+bank_credit,BANK000149,matched,setl_8NHxZwfT3sxzmG,near_collision,0,near-collision partner with clean UTR
+bank_credit,BANK000154,matched,setl_w8jDzUTqhPXwVB,near_collision,0,near-collision partner without UTR; exact-paise amount equality is the only safe evidence
+bank_credit,BANK000023,matched_merged,setl_XIfdcDLQk8EPyh;setl_7cDJyw1X4e2DeI,merged_credits,0,consolidated credit covering two settlements; narration carries only the first UTR
+bank_credit,BANK000254,matched_merged,setl_Nu1pnrC96XiS4a;setl_BSbaZYgI6qQ34M,merged_credits,0,consolidated credit covering two settlements; narration carries only the first UTR
+bank_credit,BANK000139,exception_missing_settlement,,orphan_bank_credit,0,razorpay-shaped credit whose UTR matches no settlement; amount deliberately close to a real settlement
+bank_credit,BANK000041,exception_missing_settlement,,orphan_bank_credit,0,razorpay-shaped credit whose UTR matches no settlement; amount deliberately close to a real settlement
+bank_credit,BANK000238,exception_missing_settlement,,orphan_bank_credit,0,razorpay-shaped credit whose UTR matches no settlement; amount deliberately close to a real settlement
+bank_credit,BANK000096,exception_missing_settlement,,orphan_bank_credit,0,razorpay-shaped credit whose UTR matches no settlement; amount deliberately close to a real settlement
+bank_credit,BANK000122,exception_missing_settlement,,orphan_bank_credit,0,razorpay-shaped credit whose UTR matches no settlement; amount deliberately close to a real settlement
+bank_credit,BANK000098,non_settlement_credit,,noise_credit,0,unrelated inflow; must not be claimed by reconciliation
+bank_credit,BANK000108,non_settlement_credit,,noise_credit,0,unrelated inflow; must not be claimed by reconciliation
+bank_credit,BANK000118,non_settlement_credit,,noise_credit,0,unrelated inflow; must not be claimed by reconciliation
+bank_credit,BANK000089,non_settlement_credit,,noise_credit,0,unrelated inflow; must not be claimed by reconciliation
+bank_credit,BANK000015,non_settlement_credit,,noise_credit,0,unrelated inflow; must not be claimed by reconciliation
+bank_credit,BANK000155,non_settlement_credit,,noise_credit,0,unrelated inflow; must not be claimed by reconciliation
+bank_credit,BANK000060,non_settlement_credit,,noise_credit,0,unrelated inflow; must not be claimed by reconciliation
+bank_credit,BANK000084,non_settlement_credit,,noise_credit,0,unrelated inflow; must not be claimed by reconciliation
+bank_credit,BANK000159,non_settlement_credit,,noise_credit,0,unrelated inflow; must not be claimed by reconciliation

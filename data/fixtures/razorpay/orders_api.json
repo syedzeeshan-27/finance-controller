@@ -1,0 +1,18 @@
+{
+ "entity": "collection",
+ "count": 4,
+ "items": [
+  {"id": "order_LxOrd01aB2cD3e", "entity": "order", "amount": 100000,
+   "amount_paid": 100000, "currency": "INR", "receipt": "RCPT-2026-0001",
+   "status": "paid", "created_at": 1775040000},
+  {"id": "order_LxOrd02bC3dE4f", "entity": "order", "amount": 250050,
+   "amount_paid": 250050, "currency": "INR", "receipt": "RCPT-2026-0002",
+   "status": "paid", "created_at": 1775041000},
+  {"id": "order_LxOrd03cD4eF5g", "entity": "order", "amount": 500000,
+   "amount_paid": 500000, "currency": "INR", "receipt": "RCPT-2026-0003",
+   "status": "paid", "created_at": 1775126400},
+  {"id": "order_LxOrd04dE5fG6h", "entity": "order", "amount": 75000,
+   "amount_paid": 0, "currency": "INR", "receipt": "RCPT-2026-0004",
+   "status": "attempted", "created_at": 1775050000}
+ ]
+}

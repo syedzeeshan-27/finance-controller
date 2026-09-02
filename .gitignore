@@ -1,0 +1,21 @@
+.env
+__pycache__/
+*.pyc
+.venv/
+venv/
+.cache/
+.DS_Store
+
+# Ignore only regenerable binaries and logs
+data/*.npy
+data/*.log
+
+# Generated worlds: commit the canonical seed-42 world for reviewers, ignore the rest
+data/seeds/*
+!data/seeds/42/
+
+# Runtime engine outputs (regenerable); committed evidence lives in reports/
+out/
+
+# Operator workflow state and close snapshots (runtime, per machine)
+data/state/
