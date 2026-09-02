@@ -334,7 +334,7 @@
               }
             }
           ],
-          "elapsed_seconds": 0.001
+          "elapsed_seconds": 0.003
         },
         "44": {
           "origins": 7,
@@ -489,7 +489,7 @@
               }
             }
           ],
-          "elapsed_seconds": 0.001
+          "elapsed_seconds": 0.004
         },
         "45": {
           "origins": 7,
@@ -954,7 +954,7 @@
               }
             }
           ],
-          "elapsed_seconds": 0.001
+          "elapsed_seconds": 0.002
         },
         "48": {
           "origins": 7,
@@ -1109,7 +1109,7 @@
               }
             }
           ],
-          "elapsed_seconds": 0.001
+          "elapsed_seconds": 0.003
         },
         "49": {
           "origins": 7,
@@ -1574,7 +1574,7 @@
               }
             }
           ],
-          "elapsed_seconds": 0.001
+          "elapsed_seconds": 0.002
         }
       },
       "aggregate": {
@@ -1791,7 +1791,7 @@
               }
             }
           ],
-          "elapsed_seconds": 0.012
+          "elapsed_seconds": 0.018
         },
         "43": {
           "origins": 7,
@@ -1946,7 +1946,7 @@
               }
             }
           ],
-          "elapsed_seconds": 0.014
+          "elapsed_seconds": 0.026
         },
         "44": {
           "origins": 7,
@@ -2101,7 +2101,7 @@
               }
             }
           ],
-          "elapsed_seconds": 0.017
+          "elapsed_seconds": 0.044
         },
         "45": {
           "origins": 7,
@@ -2256,7 +2256,7 @@
               }
             }
           ],
-          "elapsed_seconds": 0.013
+          "elapsed_seconds": 0.017
         },
         "46": {
           "origins": 7,
@@ -2411,7 +2411,7 @@
               }
             }
           ],
-          "elapsed_seconds": 0.012
+          "elapsed_seconds": 0.016
         },
         "47": {
           "origins": 7,
@@ -2566,7 +2566,7 @@
               }
             }
           ],
-          "elapsed_seconds": 0.012
+          "elapsed_seconds": 0.018
         },
         "48": {
           "origins": 7,
@@ -2721,7 +2721,7 @@
               }
             }
           ],
-          "elapsed_seconds": 0.012
+          "elapsed_seconds": 0.03
         },
         "49": {
           "origins": 7,
@@ -2876,7 +2876,7 @@
               }
             }
           ],
-          "elapsed_seconds": 0.012
+          "elapsed_seconds": 0.018
         },
         "50": {
           "origins": 7,
@@ -3031,7 +3031,7 @@
               }
             }
           ],
-          "elapsed_seconds": 0.015
+          "elapsed_seconds": 0.018
         },
         "51": {
           "origins": 7,
@@ -3186,7 +3186,7 @@
               }
             }
           ],
-          "elapsed_seconds": 0.018
+          "elapsed_seconds": 0.021
         }
       },
       "aggregate": {
@@ -3403,7 +3403,7 @@
               }
             }
           ],
-          "elapsed_seconds": 0.013
+          "elapsed_seconds": 0.019
         },
         "43": {
           "origins": 7,
@@ -3558,7 +3558,7 @@
               }
             }
           ],
-          "elapsed_seconds": 0.015
+          "elapsed_seconds": 0.027
         },
         "44": {
           "origins": 7,
@@ -3713,7 +3713,7 @@
               }
             }
           ],
-          "elapsed_seconds": 0.018
+          "elapsed_seconds": 0.039
         },
         "45": {
           "origins": 7,
@@ -3868,7 +3868,7 @@
               }
             }
           ],
-          "elapsed_seconds": 0.011
+          "elapsed_seconds": 0.017
         },
         "46": {
           "origins": 7,
@@ -4023,7 +4023,7 @@
               }
             }
           ],
-          "elapsed_seconds": 0.012
+          "elapsed_seconds": 0.015
         },
         "47": {
           "origins": 7,
@@ -4178,7 +4178,7 @@
               }
             }
           ],
-          "elapsed_seconds": 0.015
+          "elapsed_seconds": 0.016
         },
         "48": {
           "origins": 7,
@@ -4333,7 +4333,7 @@
               }
             }
           ],
-          "elapsed_seconds": 0.012
+          "elapsed_seconds": 0.018
         },
         "49": {
           "origins": 7,
@@ -4488,7 +4488,7 @@
               }
             }
           ],
-          "elapsed_seconds": 0.012
+          "elapsed_seconds": 0.02
         },
         "50": {
           "origins": 7,
@@ -4643,7 +4643,7 @@
               }
             }
           ],
-          "elapsed_seconds": 0.014
+          "elapsed_seconds": 0.018
         },
         "51": {
           "origins": 7,
@@ -4866,24 +4866,24 @@
           "origins": 7,
           "opening_mean_paise": 450211104,
           "wape": 0.4584,
-          "bias": 0.0451,
-          "balance_mae_paise": 6953115,
-          "balance_mae_pct": 0.0149,
+          "bias": 0.0429,
+          "balance_mae_paise": 6893084,
+          "balance_mae_pct": 0.0147,
           "balance_mae_by_h_paise": [
             1666595,
             2682796,
             2552861,
             3128831,
-            5842095,
-            6425879,
-            8097202,
-            8907307,
-            9009340,
-            8290470,
-            8181799,
-            10509370,
-            9329369,
-            12719703
+            5799952,
+            6383736,
+            8055060,
+            8865164,
+            8899197,
+            8180327,
+            8071656,
+            10399227,
+            9219226,
+            12598560
           ],
           "coverage80": 0.7245,
           "min_balance_err_paise": 2318536,
@@ -4912,12 +4912,12 @@
             {
               "cutoff": "2025-07-16",
               "opening_paise": 373087754,
-              "wape": 0.5605,
+              "wape": 0.5541,
               "pred_min_paise": 376772098,
               "true_min_paise": 376899311,
-              "pred_last_paise": 436818417,
+              "pred_last_paise": 436523417,
               "true_last_paise": 418223698,
-              "signed_last_err_paise": 18594719,
+              "signed_last_err_paise": 18299719,
               "alerts": {
                 "2L": "correct_negative",
                 "3L": "correct_negative",
@@ -4957,12 +4957,12 @@
             {
               "cutoff": "2025-08-12",
               "opening_paise": 443064397,
-              "wape": 0.5533,
+              "wape": 0.561,
               "pred_min_paise": 444757437,
               "true_min_paise": 444195695,
-              "pred_last_paise": 511204678,
+              "pred_last_paise": 510728678,
               "true_last_paise": 504955032,
-              "signed_last_err_paise": 6249646,
+              "signed_last_err_paise": 5773646,
               "alerts": {
                 "2L": "correct_negative",
                 "3L": "correct_negative",
@@ -5002,12 +5002,12 @@
             {
               "cutoff": "2025-09-08",
               "opening_paise": 538615276,
-              "wape": 0.5152,
+              "wape": 0.514,
               "pred_min_paise": 542512855,
               "true_min_paise": 537868404,
-              "pred_last_paise": 612143132,
+              "pred_last_paise": 612066132,
               "true_last_paise": 596748393,
-              "signed_last_err_paise": 15394739,
+              "signed_last_err_paise": 15317739,
               "alerts": {
                 "2L": "correct_negative",
                 "3L": "correct_negative",
@@ -5015,30 +5015,30 @@
               }
             }
           ],
-          "elapsed_seconds": 1.21
+          "elapsed_seconds": 2.61
         },
         "43": {
           "origins": 7,
           "opening_mean_paise": 440360732,
-          "wape": 0.9055,
-          "bias": 0.0215,
-          "balance_mae_paise": 7944271,
-          "balance_mae_pct": 0.0184,
+          "wape": 0.902,
+          "bias": 0.0216,
+          "balance_mae_paise": 7914241,
+          "balance_mae_pct": 0.0183,
           "balance_mae_by_h_paise": [
             2187881,
             8535685,
             3556683,
             3485092,
-            6029639,
-            7745651,
-            14053103,
-            8547811,
-            7078494,
-            8132577,
-            12127816,
-            8617663,
-            11388773,
-            9732938
+            5931496,
+            7647509,
+            13954960,
+            8449668,
+            7078137,
+            8132219,
+            12127459,
+            8617306,
+            11388416,
+            9706867
           ],
           "coverage80": 0.898,
           "min_balance_err_paise": 4558343,
@@ -5067,12 +5067,12 @@
             {
               "cutoff": "2025-07-16",
               "opening_paise": 375566726,
-              "wape": 0.5486,
+              "wape": 0.5368,
               "pred_min_paise": 384865269,
               "true_min_paise": 385126340,
-              "pred_last_paise": 445778838,
+              "pred_last_paise": 445091838,
               "true_last_paise": 433387397,
-              "signed_last_err_paise": 12391441,
+              "signed_last_err_paise": 11704441,
               "alerts": {
                 "2L": "correct_negative",
                 "3L": "correct_negative",
@@ -5112,12 +5112,12 @@
             {
               "cutoff": "2025-08-12",
               "opening_paise": 435992534,
-              "wape": 0.6747,
+              "wape": 0.6597,
               "pred_min_paise": 437750044,
               "true_min_paise": 437626657,
-              "pred_last_paise": 485024549,
+              "pred_last_paise": 485709049,
               "true_last_paise": 477996597,
-              "signed_last_err_paise": 7027952,
+              "signed_last_err_paise": 7712452,
               "alerts": {
                 "2L": "correct_negative",
                 "3L": "correct_negative",
@@ -5157,12 +5157,12 @@
             {
               "cutoff": "2025-09-08",
               "opening_paise": 504382518,
-              "wape": 0.6417,
+              "wape": 0.6439,
               "pred_min_paise": 508127655,
               "true_min_paise": 510099170,
-              "pred_last_paise": 583142075,
+              "pred_last_paise": 582962075,
               "true_last_paise": 578057010,
-              "signed_last_err_paise": 5085065,
+              "signed_last_err_paise": 4905065,
               "alerts": {
                 "2L": "correct_negative",
                 "3L": "correct_negative",
@@ -5170,30 +5170,30 @@
               }
             }
           ],
-          "elapsed_seconds": 1.262
+          "elapsed_seconds": 3.069
         },
         "44": {
           "origins": 7,
           "opening_mean_paise": 454300831,
-          "wape": 0.6132,
-          "bias": 0.0352,
-          "balance_mae_paise": 7887232,
-          "balance_mae_pct": 0.0172,
+          "wape": 0.6147,
+          "bias": 0.0334,
+          "balance_mae_paise": 7851171,
+          "balance_mae_pct": 0.0171,
           "balance_mae_by_h_paise": [
             1309132,
             7316964,
             3264262,
             3476023,
-            4898493,
-            7408446,
-            8248067,
-            10411620,
-            8375222,
-            9742291,
-            14865805,
-            8788518,
-            10559198,
-            11757211
+            4884779,
+            7394731,
+            8234353,
+            10301906,
+            8457508,
+            9632577,
+            14756091,
+            8706233,
+            10476913,
+            11704925
           ],
           "coverage80": 0.8776,
           "min_balance_err_paise": 1268425,
@@ -5222,12 +5222,12 @@
             {
               "cutoff": "2025-07-16",
               "opening_paise": 372435323,
-              "wape": 0.2645,
+              "wape": 0.2632,
               "pred_min_paise": 378816435,
               "true_min_paise": 378935077,
-              "pred_last_paise": 443556234,
+              "pred_last_paise": 443460234,
               "true_last_paise": 445808053,
-              "signed_last_err_paise": -2251819,
+              "signed_last_err_paise": -2347819,
               "alerts": {
                 "2L": "correct_negative",
                 "3L": "correct_negative",
@@ -5267,12 +5267,12 @@
             {
               "cutoff": "2025-08-12",
               "opening_paise": 446766238,
-              "wape": 0.5812,
+              "wape": 0.5901,
               "pred_min_paise": 451505039,
               "true_min_paise": 450890844,
-              "pred_last_paise": 512425073,
+              "pred_last_paise": 511753073,
               "true_last_paise": 510638004,
-              "signed_last_err_paise": 1787069,
+              "signed_last_err_paise": 1115069,
               "alerts": {
                 "2L": "correct_negative",
                 "3L": "correct_negative",
@@ -5312,12 +5312,12 @@
             {
               "cutoff": "2025-09-08",
               "opening_paise": 526953210,
-              "wape": 0.3856,
+              "wape": 0.3882,
               "pred_min_paise": 527772853,
               "true_min_paise": 527650539,
-              "pred_last_paise": 593487210,
+              "pred_last_paise": 593277210,
               "true_last_paise": 605834547,
-              "signed_last_err_paise": -12347337,
+              "signed_last_err_paise": -12557337,
               "alerts": {
                 "2L": "correct_negative",
                 "3L": "correct_negative",
@@ -5325,30 +5325,30 @@
               }
             }
           ],
-          "elapsed_seconds": 1.388
+          "elapsed_seconds": 3.209
         },
         "45": {
           "origins": 7,
           "opening_mean_paise": 410320964,
-          "wape": 0.5656,
-          "bias": -0.0111,
-          "balance_mae_paise": 5625143,
-          "balance_mae_pct": 0.0137,
+          "wape": 0.5593,
+          "bias": -0.013,
+          "balance_mae_paise": 5374143,
+          "balance_mae_pct": 0.013,
           "balance_mae_by_h_paise": [
             1805127,
             3790122,
             3411055,
             4677998,
-            5021387,
-            3686228,
-            11546632,
-            6423285,
-            6308667,
-            5152392,
-            5143927,
-            6320972,
-            6886427,
-            8577797
+            4802245,
+            3467085,
+            11327489,
+            5995428,
+            5880810,
+            4724535,
+            4716070,
+            5939258,
+            6504713,
+            8196083
           ],
           "coverage80": 0.8878,
           "min_balance_err_paise": 4550394,
@@ -5377,12 +5377,12 @@
             {
               "cutoff": "2025-07-16",
               "opening_paise": 349691616,
-              "wape": 0.6748,
+              "wape": 0.6421,
               "pred_min_paise": 353243939,
               "true_min_paise": 353077906,
-              "pred_last_paise": 405159756,
+              "pred_last_paise": 403625756,
               "true_last_paise": 395820887,
-              "signed_last_err_paise": 9338869,
+              "signed_last_err_paise": 7804869,
               "alerts": {
                 "2L": "correct_negative",
                 "3L": "correct_negative",
@@ -5422,12 +5422,12 @@
             {
               "cutoff": "2025-08-12",
               "opening_paise": 398611506,
-              "wape": 0.4086,
+              "wape": 0.3938,
               "pred_min_paise": 399618440,
               "true_min_paise": 399055352,
-              "pred_last_paise": 454276842,
+              "pred_last_paise": 455737842,
               "true_last_paise": 458546031,
-              "signed_last_err_paise": -4269189,
+              "signed_last_err_paise": -2808189,
               "alerts": {
                 "2L": "correct_negative",
                 "3L": "correct_negative",
@@ -5467,12 +5467,12 @@
             {
               "cutoff": "2025-09-08",
               "opening_paise": 464945621,
-              "wape": 0.4067,
+              "wape": 0.4106,
               "pred_min_paise": 470512361,
               "true_min_paise": 473178509,
-              "pred_last_paise": 530140311,
+              "pred_last_paise": 529817311,
               "true_last_paise": 547120899,
-              "signed_last_err_paise": -16980588,
+              "signed_last_err_paise": -17303588,
               "alerts": {
                 "2L": "correct_negative",
                 "3L": "correct_negative",
@@ -5480,32 +5480,32 @@
               }
             }
           ],
-          "elapsed_seconds": 1.388
+          "elapsed_seconds": 2.141
         },
         "46": {
           "origins": 7,
           "opening_mean_paise": 441059782,
-          "wape": 0.413,
-          "bias": 0.0515,
-          "balance_mae_paise": 7522375,
-          "balance_mae_pct": 0.0181,
+          "wape": 0.409,
+          "bias": 0.047,
+          "balance_mae_paise": 7336146,
+          "balance_mae_pct": 0.0175,
           "balance_mae_by_h_paise": [
             1421142,
             3261506,
             4494957,
             5388933,
-            5963492,
-            6796031,
-            7879675,
-            7404594,
-            8180038,
-            9370247,
-            9128388,
-            10474077,
-            12153407,
-            13396770
+            6255576,
+            6464031,
+            7547675,
+            7072594,
+            7848038,
+            9038247,
+            8796388,
+            10171649,
+            11850978,
+            13094342
           ],
-          "coverage80": 0.7347,
+          "coverage80": 0.7449,
           "min_balance_err_paise": 3254653,
           "min_date_within_2d_rate": 1,
           "crossings": {
@@ -5532,12 +5532,12 @@
             {
               "cutoff": "2025-07-16",
               "opening_paise": 357093567,
-              "wape": 0.6757,
+              "wape": 0.6517,
               "pred_min_paise": 359213882,
               "true_min_paise": 363373734,
-              "pred_last_paise": 449969530,
+              "pred_last_paise": 447645530,
               "true_last_paise": 417538685,
-              "signed_last_err_paise": 32430845,
+              "signed_last_err_paise": 30106845,
               "alerts": {
                 "2L": "correct_negative",
                 "3L": "correct_negative",
@@ -5622,12 +5622,12 @@
             {
               "cutoff": "2025-09-08",
               "opening_paise": 515066492,
-              "wape": 0.3928,
+              "wape": 0.3892,
               "pred_min_paise": 519151190,
               "true_min_paise": 518808972,
-              "pred_last_paise": 586980102,
+              "pred_last_paise": 587187102,
               "true_last_paise": 571924200,
-              "signed_last_err_paise": 15055902,
+              "signed_last_err_paise": 15262902,
               "alerts": {
                 "2L": "correct_negative",
                 "3L": "correct_negative",
@@ -5635,30 +5635,30 @@
               }
             }
           ],
-          "elapsed_seconds": 1.132
+          "elapsed_seconds": 1.756
         },
         "47": {
           "origins": 7,
           "opening_mean_paise": 470146213,
-          "wape": 0.863,
-          "bias": 0.0079,
-          "balance_mae_paise": 7851013,
-          "balance_mae_pct": 0.0163,
+          "wape": 0.8661,
+          "bias": 0.0049,
+          "balance_mae_paise": 7890299,
+          "balance_mae_pct": 0.0164,
           "balance_mae_by_h_paise": [
             1915068,
             9515318,
             3216246,
             2759571,
-            5210313,
-            5253781,
-            11399615,
-            7752781,
-            8522581,
-            9662125,
-            13084829,
-            10212642,
-            10770105,
-            10639212
+            5256885,
+            5300353,
+            11446186,
+            7827781,
+            8597581,
+            9737125,
+            13159829,
+            10287642,
+            10845105,
+            10599498
           ],
           "coverage80": 0.7653,
           "min_balance_err_paise": 2569622,
@@ -5687,12 +5687,12 @@
             {
               "cutoff": "2025-07-16",
               "opening_paise": 384565365,
-              "wape": 0.5908,
+              "wape": 0.5957,
               "pred_min_paise": 390209919,
               "true_min_paise": 390038311,
-              "pred_last_paise": 440180464,
+              "pred_last_paise": 439854464,
               "true_last_paise": 448686579,
-              "signed_last_err_paise": -8506115,
+              "signed_last_err_paise": -8832115,
               "alerts": {
                 "2L": "correct_negative",
                 "3L": "correct_negative",
@@ -5732,12 +5732,12 @@
             {
               "cutoff": "2025-08-12",
               "opening_paise": 454759317,
-              "wape": 0.4858,
+              "wape": 0.4884,
               "pred_min_paise": 457913327,
               "true_min_paise": 457694284,
-              "pred_last_paise": 518156088,
+              "pred_last_paise": 517957088,
               "true_last_paise": 533400014,
-              "signed_last_err_paise": -15243926,
+              "signed_last_err_paise": -15442926,
               "alerts": {
                 "2L": "correct_negative",
                 "3L": "correct_negative",
@@ -5777,12 +5777,12 @@
             {
               "cutoff": "2025-09-08",
               "opening_paise": 554934571,
-              "wape": 0.6893,
+              "wape": 0.7032,
               "pred_min_paise": 556090966,
               "true_min_paise": 555541579,
-              "pred_last_paise": 632213528,
+              "pred_last_paise": 631410528,
               "true_last_paise": 612072803,
-              "signed_last_err_paise": 20140725,
+              "signed_last_err_paise": 19337725,
               "alerts": {
                 "2L": "correct_negative",
                 "3L": "correct_negative",
@@ -5790,30 +5790,30 @@
               }
             }
           ],
-          "elapsed_seconds": 1.33
+          "elapsed_seconds": 2.354
         },
         "48": {
           "origins": 7,
           "opening_mean_paise": 399358459,
-          "wape": 0.4672,
-          "bias": -0.0415,
-          "balance_mae_paise": 10964897,
+          "wape": 0.4692,
+          "bias": -0.0453,
+          "balance_mae_paise": 10959019,
           "balance_mae_pct": 0.0294,
           "balance_mae_by_h_paise": [
             2129496,
             2846450,
             6821403,
             8940342,
-            10553900,
-            12383456,
-            10138406,
-            10363644,
-            12050777,
-            11770462,
-            13450988,
-            15779041,
-            17036503,
-            19243698
+            10489900,
+            12319456,
+            10074406,
+            10384644,
+            12071777,
+            11791462,
+            13471988,
+            15787612,
+            17045074,
+            19252270
           ],
           "coverage80": 0.5306,
           "min_balance_err_paise": 3732677,
@@ -5842,12 +5842,12 @@
             {
               "cutoff": "2025-07-16",
               "opening_paise": 305830217,
-              "wape": 0.5311,
+              "wape": 0.5247,
               "pred_min_paise": 307057597,
               "true_min_paise": 306737838,
-              "pred_last_paise": 361902058,
+              "pred_last_paise": 361454058,
               "true_last_paise": 370937418,
-              "signed_last_err_paise": -9035360,
+              "signed_last_err_paise": -9483360,
               "alerts": {
                 "2L": "correct_negative",
                 "3L": "correct_negative",
@@ -5887,12 +5887,12 @@
             {
               "cutoff": "2025-08-12",
               "opening_paise": 392656457,
-              "wape": 0.3776,
+              "wape": 0.3848,
               "pred_min_paise": 398066072,
               "true_min_paise": 401790230,
-              "pred_last_paise": 470511876,
+              "pred_last_paise": 469916876,
               "true_last_paise": 474311702,
-              "signed_last_err_paise": -3799826,
+              "signed_last_err_paise": -4394826,
               "alerts": {
                 "2L": "correct_negative",
                 "3L": "correct_negative",
@@ -5932,12 +5932,12 @@
             {
               "cutoff": "2025-09-08",
               "opening_paise": 483491523,
-              "wape": 0.6206,
+              "wape": 0.6336,
               "pred_min_paise": 487648697,
               "true_min_paise": 486277562,
-              "pred_last_paise": 563861814,
+              "pred_last_paise": 562878814,
               "true_last_paise": 559211401,
-              "signed_last_err_paise": 4650413,
+              "signed_last_err_paise": 3667413,
               "alerts": {
                 "2L": "correct_negative",
                 "3L": "correct_negative",
@@ -5945,32 +5945,32 @@
               }
             }
           ],
-          "elapsed_seconds": 1.188
+          "elapsed_seconds": 2.154
         },
         "49": {
           "origins": 7,
           "opening_mean_paise": 525046049,
-          "wape": 0.4394,
-          "bias": 0.0133,
-          "balance_mae_paise": 5793975,
-          "balance_mae_pct": 0.0113,
+          "wape": 0.4345,
+          "bias": 0.0088,
+          "balance_mae_paise": 5707043,
+          "balance_mae_pct": 0.0111,
           "balance_mae_by_h_paise": [
             1705779,
             2947705,
             4650404,
             5385366,
-            6497070,
-            5429477,
-            4657410,
-            5864225,
-            6253663,
-            5752740,
-            6428486,
-            7430623,
-            8721929,
-            9390781
+            6364999,
+            5297405,
+            4525338,
+            5662336,
+            6242578,
+            5995026,
+            6392946,
+            7290623,
+            8259491,
+            9178606
           ],
-          "coverage80": 0.8265,
+          "coverage80": 0.8673,
           "min_balance_err_paise": 2827199,
           "min_date_within_2d_rate": 1,
           "crossings": {
@@ -5997,12 +5997,12 @@
             {
               "cutoff": "2025-07-16",
               "opening_paise": 431882272,
-              "wape": 0.574,
+              "wape": 0.562,
               "pred_min_paise": 438342576,
               "true_min_paise": 438748217,
-              "pred_last_paise": 498702775,
+              "pred_last_paise": 499627275,
               "true_last_paise": 508975297,
-              "signed_last_err_paise": -10272522,
+              "signed_last_err_paise": -9348022,
               "alerts": {
                 "2L": "correct_negative",
                 "3L": "correct_negative",
@@ -6042,12 +6042,12 @@
             {
               "cutoff": "2025-08-12",
               "opening_paise": 523075386,
-              "wape": 0.3918,
+              "wape": 0.3724,
               "pred_min_paise": 527737006,
               "true_min_paise": 527625018,
-              "pred_last_paise": 579882360,
+              "pred_last_paise": 577261860,
               "true_last_paise": 578417749,
-              "signed_last_err_paise": 1464611,
+              "signed_last_err_paise": -1155889,
               "alerts": {
                 "2L": "correct_negative",
                 "3L": "correct_negative",
@@ -6087,12 +6087,12 @@
             {
               "cutoff": "2025-09-08",
               "opening_paise": 590180165,
-              "wape": 0.3956,
+              "wape": 0.3927,
               "pred_min_paise": 592598831,
               "true_min_paise": 599817717,
-              "pred_last_paise": 665464371,
+              "pred_last_paise": 665716371,
               "true_last_paise": 676302602,
-              "signed_last_err_paise": -10838231,
+              "signed_last_err_paise": -10586231,
               "alerts": {
                 "2L": "correct_negative",
                 "3L": "correct_negative",
@@ -6100,32 +6100,32 @@
               }
             }
           ],
-          "elapsed_seconds": 1.408
+          "elapsed_seconds": 2.612
         },
         "50": {
           "origins": 7,
           "opening_mean_paise": 467238247,
-          "wape": 0.6724,
-          "bias": 0.1114,
-          "balance_mae_paise": 8581192,
+          "wape": 0.671,
+          "bias": 0.1089,
+          "balance_mae_paise": 8589886,
           "balance_mae_pct": 0.0177,
           "balance_mae_by_h_paise": [
             931375,
             7888405,
             1765593,
             2096624,
-            3065405,
-            4497377,
-            6942236,
-            9104403,
-            12476112,
-            12666397,
-            11524018,
-            14592851,
-            15538441,
-            17047460
+            3082691,
+            4480091,
+            6924951,
+            9140117,
+            12511826,
+            12702111,
+            11559732,
+            14628566,
+            15574155,
+            16972174
           ],
-          "coverage80": 0.7755,
+          "coverage80": 0.7653,
           "min_balance_err_paise": 1785021,
           "min_date_within_2d_rate": 1,
           "crossings": {
@@ -6152,12 +6152,12 @@
             {
               "cutoff": "2025-07-16",
               "opening_paise": 374372682,
-              "wape": 0.4087,
+              "wape": 0.4109,
               "pred_min_paise": 378987015,
               "true_min_paise": 379176748,
-              "pred_last_paise": 426774178,
+              "pred_last_paise": 426895178,
               "true_last_paise": 428298177,
-              "signed_last_err_paise": -1523999,
+              "signed_last_err_paise": -1402999,
               "alerts": {
                 "2L": "correct_negative",
                 "3L": "correct_negative",
@@ -6197,12 +6197,12 @@
             {
               "cutoff": "2025-08-12",
               "opening_paise": 460526266,
-              "wape": 0.3532,
+              "wape": 0.3574,
               "pred_min_paise": 464734218,
               "true_min_paise": 464356850,
-              "pred_last_paise": 538856311,
+              "pred_last_paise": 538485311,
               "true_last_paise": 548245727,
-              "signed_last_err_paise": -9389416,
+              "signed_last_err_paise": -9760416,
               "alerts": {
                 "2L": "correct_negative",
                 "3L": "correct_negative",
@@ -6242,12 +6242,12 @@
             {
               "cutoff": "2025-09-08",
               "opening_paise": 539535809,
-              "wape": 0.8006,
+              "wape": 0.7849,
               "pred_min_paise": 540491311,
               "true_min_paise": 540396646,
-              "pred_last_paise": 607728420,
+              "pred_last_paise": 606951420,
               "true_last_paise": 576335376,
-              "signed_last_err_paise": 31393044,
+              "signed_last_err_paise": 30616044,
               "alerts": {
                 "2L": "correct_negative",
                 "3L": "correct_negative",
@@ -6255,30 +6255,30 @@
               }
             }
           ],
-          "elapsed_seconds": 1.23
+          "elapsed_seconds": 2.941
         },
         "51": {
           "origins": 7,
           "opening_mean_paise": 490823083,
-          "wape": 0.5166,
-          "bias": -0.0407,
-          "balance_mae_paise": 8084844,
-          "balance_mae_pct": 0.0175,
+          "wape": 0.5163,
+          "bias": -0.0448,
+          "balance_mae_paise": 7938625,
+          "balance_mae_pct": 0.0172,
           "balance_mae_by_h_paise": [
             1173862,
             2378876,
             4504331,
             5114229,
-            6204994,
-            7919808,
-            14576702,
-            9125974,
-            9825675,
-            8621016,
-            10376763,
-            11379787,
-            9741609,
-            12244201
+            6043136,
+            7757951,
+            14414845,
+            8973403,
+            9654532,
+            8449873,
+            10224191,
+            11081287,
+            9443109,
+            11927130
           ],
           "coverage80": 0.9694,
           "min_balance_err_paise": 3176338,
@@ -6307,12 +6307,12 @@
             {
               "cutoff": "2025-07-16",
               "opening_paise": 387414166,
-              "wape": 0.4754,
+              "wape": 0.4881,
               "pred_min_paise": 391811478,
               "true_min_paise": 391606400,
-              "pred_last_paise": 464709192,
+              "pred_last_paise": 463576192,
               "true_last_paise": 452075598,
-              "signed_last_err_paise": 12633594,
+              "signed_last_err_paise": 11500594,
               "alerts": {
                 "2L": "correct_negative",
                 "3L": "correct_negative",
@@ -6352,12 +6352,12 @@
             {
               "cutoff": "2025-08-12",
               "opening_paise": 486672597,
-              "wape": 0.3454,
+              "wape": 0.3445,
               "pred_min_paise": 489620256,
               "true_min_paise": 489285354,
-              "pred_last_paise": 559495664,
+              "pred_last_paise": 559560664,
               "true_last_paise": 561558172,
-              "signed_last_err_paise": -2062508,
+              "signed_last_err_paise": -1997508,
               "alerts": {
                 "2L": "correct_negative",
                 "3L": "correct_negative",
@@ -6397,12 +6397,12 @@
             {
               "cutoff": "2025-09-08",
               "opening_paise": 595707793,
-              "wape": 0.7188,
+              "wape": 0.7052,
               "pred_min_paise": 602264650,
               "true_min_paise": 608891046,
-              "pred_last_paise": 672693475,
+              "pred_last_paise": 671671975,
               "true_last_paise": 661673208,
-              "signed_last_err_paise": 11020267,
+              "signed_last_err_paise": 9998767,
               "alerts": {
                 "2L": "correct_negative",
                 "3L": "correct_negative",
@@ -6410,32 +6410,32 @@
               }
             }
           ],
-          "elapsed_seconds": 1.299
+          "elapsed_seconds": 2.714
         }
       },
       "aggregate": {
         "wape": {
-          "mean": 0.5914,
-          "min": 0.413,
-          "max": 0.9055
+          "mean": 0.59,
+          "min": 0.409,
+          "max": 0.902
         },
         "bias": {
-          "mean": 0.0193,
-          "min": -0.0415,
-          "max": 0.1114
+          "mean": 0.0164,
+          "min": -0.0453,
+          "max": 0.1089
         },
         "balance_mae_paise": {
-          "mean": 7720805.7,
-          "min": 5625143,
-          "max": 10964897
+          "mean": 7645365.7,
+          "min": 5374143,
+          "max": 10959019
         },
         "balance_mae_pct": {
-          "mean": 0.0175,
-          "min": 0.0113,
+          "mean": 0.0172,
+          "min": 0.0111,
           "max": 0.0294
         },
         "coverage80": {
-          "mean": 0.799,
+          "mean": 0.8031,
           "min": 0.5306,
           "max": 0.9694
         },
@@ -6482,24 +6482,24 @@
           "origins": 7,
           "opening_mean_paise": 450211104,
           "wape": 0.4809,
-          "bias": 0.0587,
-          "balance_mae_paise": 7425495,
-          "balance_mae_pct": 0.0162,
+          "bias": 0.0565,
+          "balance_mae_paise": 7365465,
+          "balance_mae_pct": 0.016,
           "balance_mae_by_h_paise": [
             3148958,
             3086976,
             3454955,
             4180442,
-            6676935,
-            7260719,
-            8859479,
-            9046041,
-            9185997,
-            7887207,
-            8270001,
-            9952085,
-            9574666,
-            13372479
+            6634793,
+            7218576,
+            8817337,
+            9003898,
+            9075854,
+            7777064,
+            8159858,
+            9841942,
+            9464523,
+            13251337
           ],
           "coverage80": 0.8061,
           "min_balance_err_paise": 3975451,
@@ -6528,12 +6528,12 @@
             {
               "cutoff": "2025-07-16",
               "opening_paise": 373087754,
-              "wape": 0.5963,
+              "wape": 0.5899,
               "pred_min_paise": 375558636,
               "true_min_paise": 376899311,
-              "pred_last_paise": 436744252,
+              "pred_last_paise": 436449252,
               "true_last_paise": 418223698,
-              "signed_last_err_paise": 18520554,
+              "signed_last_err_paise": 18225554,
               "alerts": {
                 "2L": "correct_negative",
                 "3L": "correct_negative",
@@ -6573,12 +6573,12 @@
             {
               "cutoff": "2025-08-12",
               "opening_paise": 443064397,
-              "wape": 0.6354,
+              "wape": 0.6431,
               "pred_min_paise": 449484867,
               "true_min_paise": 444195695,
-              "pred_last_paise": 514482117,
+              "pred_last_paise": 514006117,
               "true_last_paise": 504955032,
-              "signed_last_err_paise": 9527085,
+              "signed_last_err_paise": 9051085,
               "alerts": {
                 "2L": "correct_negative",
                 "3L": "correct_negative",
@@ -6618,12 +6618,12 @@
             {
               "cutoff": "2025-09-08",
               "opening_paise": 538615276,
-              "wape": 0.4906,
+              "wape": 0.4894,
               "pred_min_paise": 541062518,
               "true_min_paise": 537868404,
-              "pred_last_paise": 609923854,
+              "pred_last_paise": 609846854,
               "true_last_paise": 596748393,
-              "signed_last_err_paise": 13175461,
+              "signed_last_err_paise": 13098461,
               "alerts": {
                 "2L": "correct_negative",
                 "3L": "correct_negative",
@@ -6631,30 +6631,30 @@
               }
             }
           ],
-          "elapsed_seconds": 1.343
+          "elapsed_seconds": 2.428
         },
         "43": {
           "origins": 7,
           "opening_mean_paise": 440360732,
-          "wape": 0.9156,
-          "bias": 0.0166,
-          "balance_mae_paise": 7804744,
-          "balance_mae_pct": 0.0178,
+          "wape": 0.9121,
+          "bias": 0.0168,
+          "balance_mae_paise": 7774713,
+          "balance_mae_pct": 0.0177,
           "balance_mae_by_h_paise": [
             2272450,
             7193269,
             2776828,
             3941409,
-            4804056,
-            6468551,
-            12776002,
-            7270710,
-            7420971,
-            8987189,
-            11230472,
-            10079375,
-            12850485,
-            11194650
+            4705913,
+            6370408,
+            12677859,
+            7172567,
+            7420614,
+            8986832,
+            11230115,
+            10079018,
+            12850128,
+            11168579
           ],
           "coverage80": 0.9184,
           "min_balance_err_paise": 4419215,
@@ -6683,12 +6683,12 @@
             {
               "cutoff": "2025-07-16",
               "opening_paise": 375566726,
-              "wape": 0.6534,
+              "wape": 0.6416,
               "pred_min_paise": 380131762,
               "true_min_paise": 385126340,
-              "pred_last_paise": 442411096,
+              "pred_last_paise": 441724096,
               "true_last_paise": 433387397,
-              "signed_last_err_paise": 9023699,
+              "signed_last_err_paise": 8336699,
               "alerts": {
                 "2L": "correct_negative",
                 "3L": "correct_negative",
@@ -6728,12 +6728,12 @@
             {
               "cutoff": "2025-08-12",
               "opening_paise": 435992534,
-              "wape": 0.7409,
+              "wape": 0.7259,
               "pred_min_paise": 439899251,
               "true_min_paise": 437626657,
-              "pred_last_paise": 486307742,
+              "pred_last_paise": 486992242,
               "true_last_paise": 477996597,
-              "signed_last_err_paise": 8311145,
+              "signed_last_err_paise": 8995645,
               "alerts": {
                 "2L": "correct_negative",
                 "3L": "correct_negative",
@@ -6773,12 +6773,12 @@
             {
               "cutoff": "2025-09-08",
               "opening_paise": 504382518,
-              "wape": 0.6611,
+              "wape": 0.6633,
               "pred_min_paise": 507264284,
               "true_min_paise": 510099170,
-              "pred_last_paise": 582988612,
+              "pred_last_paise": 582808612,
               "true_last_paise": 578057010,
-              "signed_last_err_paise": 4931602,
+              "signed_last_err_paise": 4751602,
               "alerts": {
                 "2L": "correct_negative",
                 "3L": "correct_negative",
@@ -6786,30 +6786,30 @@
               }
             }
           ],
-          "elapsed_seconds": 1.219
+          "elapsed_seconds": 2.288
         },
         "44": {
           "origins": 7,
           "opening_mean_paise": 454300831,
-          "wape": 0.6373,
-          "bias": 0.0148,
-          "balance_mae_paise": 8400802,
+          "wape": 0.6388,
+          "bias": 0.013,
+          "balance_mae_paise": 8364741,
           "balance_mae_pct": 0.0179,
           "balance_mae_by_h_paise": [
             2308956,
             8921967,
             4200234,
             5408049,
-            5293216,
-            7578837,
-            8684952,
-            10470762,
-            8724811,
-            9801433,
-            14214451,
-            9363694,
-            10720932,
-            11918944
+            5279502,
+            7565123,
+            8671237,
+            10361048,
+            8807096,
+            9691719,
+            14104737,
+            9281408,
+            10638646,
+            11866658
           ],
           "coverage80": 0.8469,
           "min_balance_err_paise": 3312947,
@@ -6838,12 +6838,12 @@
             {
               "cutoff": "2025-07-16",
               "opening_paise": 372435323,
-              "wape": 0.2858,
+              "wape": 0.2845,
               "pred_min_paise": 376614071,
               "true_min_paise": 378935077,
-              "pred_last_paise": 440710429,
+              "pred_last_paise": 440614429,
               "true_last_paise": 445808053,
-              "signed_last_err_paise": -5097624,
+              "signed_last_err_paise": -5193624,
               "alerts": {
                 "2L": "correct_negative",
                 "3L": "correct_negative",
@@ -6883,12 +6883,12 @@
             {
               "cutoff": "2025-08-12",
               "opening_paise": 446766238,
-              "wape": 0.5792,
+              "wape": 0.5882,
               "pred_min_paise": 451912402,
               "true_min_paise": 450890844,
-              "pred_last_paise": 511408510,
+              "pred_last_paise": 510736510,
               "true_last_paise": 510638004,
-              "signed_last_err_paise": 770506,
+              "signed_last_err_paise": 98506,
               "alerts": {
                 "2L": "correct_negative",
                 "3L": "correct_negative",
@@ -6928,12 +6928,12 @@
             {
               "cutoff": "2025-09-08",
               "opening_paise": 526953210,
-              "wape": 0.4254,
+              "wape": 0.4281,
               "pred_min_paise": 530201413,
               "true_min_paise": 527650539,
-              "pred_last_paise": 596751362,
+              "pred_last_paise": 596541362,
               "true_last_paise": 605834547,
-              "signed_last_err_paise": -9083185,
+              "signed_last_err_paise": -9293185,
               "alerts": {
                 "2L": "correct_negative",
                 "3L": "correct_negative",
@@ -6941,32 +6941,32 @@
               }
             }
           ],
-          "elapsed_seconds": 1.29
+          "elapsed_seconds": 2.702
         },
         "45": {
           "origins": 7,
           "opening_mean_paise": 410320964,
-          "wape": 0.5621,
-          "bias": -0.0187,
-          "balance_mae_paise": 5312252,
-          "balance_mae_pct": 0.0133,
+          "wape": 0.5559,
+          "bias": -0.0206,
+          "balance_mae_paise": 5061252,
+          "balance_mae_pct": 0.0127,
           "balance_mae_by_h_paise": [
             2098850,
             2866147,
             2860805,
             3977377,
-            3819562,
-            2711513,
-            11435915,
-            6312568,
-            6313136,
-            5262803,
-            5259814,
-            6210256,
-            6775710,
-            8467081
+            3600419,
+            2492370,
+            11216772,
+            5884711,
+            5885279,
+            4834946,
+            4831957,
+            5828541,
+            6393996,
+            8085366
           ],
-          "coverage80": 0.8571,
+          "coverage80": 0.8776,
           "min_balance_err_paise": 4408958,
           "min_date_within_2d_rate": 0.8571,
           "crossings": {
@@ -6993,12 +6993,12 @@
             {
               "cutoff": "2025-07-16",
               "opening_paise": 349691616,
-              "wape": 0.6239,
+              "wape": 0.5912,
               "pred_min_paise": 353379980,
               "true_min_paise": 353077906,
-              "pred_last_paise": 407814494,
+              "pred_last_paise": 406280494,
               "true_last_paise": 395820887,
-              "signed_last_err_paise": 11993607,
+              "signed_last_err_paise": 10459607,
               "alerts": {
                 "2L": "correct_negative",
                 "3L": "correct_negative",
@@ -7038,12 +7038,12 @@
             {
               "cutoff": "2025-08-12",
               "opening_paise": 398611506,
-              "wape": 0.4817,
+              "wape": 0.467,
               "pred_min_paise": 402216885,
               "true_min_paise": 399055352,
-              "pred_last_paise": 454922402,
+              "pred_last_paise": 456383402,
               "true_last_paise": 458546031,
-              "signed_last_err_paise": -3623629,
+              "signed_last_err_paise": -2162629,
               "alerts": {
                 "2L": "correct_negative",
                 "3L": "correct_negative",
@@ -7083,12 +7083,12 @@
             {
               "cutoff": "2025-09-08",
               "opening_paise": 464945621,
-              "wape": 0.4316,
+              "wape": 0.4355,
               "pred_min_paise": 468285177,
               "true_min_paise": 473178509,
-              "pred_last_paise": 528094577,
+              "pred_last_paise": 527771577,
               "true_last_paise": 547120899,
-              "signed_last_err_paise": -19026322,
+              "signed_last_err_paise": -19349322,
               "alerts": {
                 "2L": "correct_negative",
                 "3L": "correct_negative",
@@ -7096,32 +7096,32 @@
               }
             }
           ],
-          "elapsed_seconds": 1.121
+          "elapsed_seconds": 3.537
         },
         "46": {
           "origins": 7,
           "opening_mean_paise": 441059782,
-          "wape": 0.4049,
-          "bias": 0.0485,
-          "balance_mae_paise": 6851230,
-          "balance_mae_pct": 0.0161,
+          "wape": 0.4009,
+          "bias": 0.044,
+          "balance_mae_paise": 6689746,
+          "balance_mae_pct": 0.0157,
           "balance_mae_by_h_paise": [
             1008010,
             2419314,
             4168047,
             5131640,
-            5763137,
-            6012074,
-            7142108,
-            7054896,
-            7392552,
-            8675229,
-            8340902,
-            9167055,
-            11199450,
-            12442814
+            6095137,
+            5986581,
+            6810108,
+            6722896,
+            7060552,
+            8343229,
+            8008902,
+            8864627,
+            10897022,
+            12140385
           ],
-          "coverage80": 0.7857,
+          "coverage80": 0.7959,
           "min_balance_err_paise": 1571694,
           "min_date_within_2d_rate": 1,
           "crossings": {
@@ -7148,12 +7148,12 @@
             {
               "cutoff": "2025-07-16",
               "opening_paise": 357093567,
-              "wape": 0.694,
+              "wape": 0.67,
               "pred_min_paise": 361928167,
               "true_min_paise": 363373734,
-              "pred_last_paise": 447774865,
+              "pred_last_paise": 445450865,
               "true_last_paise": 417538685,
-              "signed_last_err_paise": 30236180,
+              "signed_last_err_paise": 27912180,
               "alerts": {
                 "2L": "correct_negative",
                 "3L": "correct_negative",
@@ -7238,12 +7238,12 @@
             {
               "cutoff": "2025-09-08",
               "opening_paise": 515066492,
-              "wape": 0.3859,
+              "wape": 0.3823,
               "pred_min_paise": 518908642,
               "true_min_paise": 518808972,
-              "pred_last_paise": 586578964,
+              "pred_last_paise": 586785964,
               "true_last_paise": 571924200,
-              "signed_last_err_paise": 14654764,
+              "signed_last_err_paise": 14861764,
               "alerts": {
                 "2L": "correct_negative",
                 "3L": "correct_negative",
@@ -7251,30 +7251,30 @@
               }
             }
           ],
-          "elapsed_seconds": 1.129
+          "elapsed_seconds": 1.862
         },
         "47": {
           "origins": 7,
           "opening_mean_paise": 470146213,
-          "wape": 0.8977,
-          "bias": 0.0348,
-          "balance_mae_paise": 9089166,
-          "balance_mae_pct": 0.0187,
+          "wape": 0.9007,
+          "bias": 0.0317,
+          "balance_mae_paise": 9128452,
+          "balance_mae_pct": 0.0188,
           "balance_mae_by_h_paise": [
             2216766,
             10903477,
             4183417,
             4995408,
-            6066212,
-            6109681,
-            12651235,
-            7556154,
-            9297362,
-            11875309,
-            14548189,
-            11518583,
-            12497119,
-            12829415
+            6112784,
+            6156252,
+            12697807,
+            7631154,
+            9372362,
+            11950309,
+            14623189,
+            11593583,
+            12572119,
+            12789701
           ],
           "coverage80": 0.7551,
           "min_balance_err_paise": 3113632,
@@ -7303,12 +7303,12 @@
             {
               "cutoff": "2025-07-16",
               "opening_paise": 384565365,
-              "wape": 0.6362,
+              "wape": 0.6411,
               "pred_min_paise": 388832877,
               "true_min_paise": 390038311,
-              "pred_last_paise": 436824195,
+              "pred_last_paise": 436498195,
               "true_last_paise": 448686579,
-              "signed_last_err_paise": -11862384,
+              "signed_last_err_paise": -12188384,
               "alerts": {
                 "2L": "correct_negative",
                 "3L": "correct_negative",
@@ -7348,12 +7348,12 @@
             {
               "cutoff": "2025-08-12",
               "opening_paise": 454759317,
-              "wape": 0.4979,
+              "wape": 0.5004,
               "pred_min_paise": 458828593,
               "true_min_paise": 457694284,
-              "pred_last_paise": 519104369,
+              "pred_last_paise": 518905369,
               "true_last_paise": 533400014,
-              "signed_last_err_paise": -14295645,
+              "signed_last_err_paise": -14494645,
               "alerts": {
                 "2L": "correct_negative",
                 "3L": "correct_negative",
@@ -7393,12 +7393,12 @@
             {
               "cutoff": "2025-09-08",
               "opening_paise": 554934571,
-              "wape": 0.7699,
+              "wape": 0.7838,
               "pred_min_paise": 559506995,
               "true_min_paise": 555541579,
-              "pred_last_paise": 636852975,
+              "pred_last_paise": 636049975,
               "true_last_paise": 612072803,
-              "signed_last_err_paise": 24780172,
+              "signed_last_err_paise": 23977172,
               "alerts": {
                 "2L": "correct_negative",
                 "3L": "correct_negative",
@@ -7406,32 +7406,32 @@
               }
             }
           ],
-          "elapsed_seconds": 1.245
+          "elapsed_seconds": 2.164
         },
         "48": {
           "origins": 7,
           "opening_mean_paise": 399358459,
-          "wape": 0.4923,
-          "bias": -0.0477,
-          "balance_mae_paise": 11340358,
-          "balance_mae_pct": 0.0301,
+          "wape": 0.4942,
+          "bias": -0.0515,
+          "balance_mae_paise": 11361909,
+          "balance_mae_pct": 0.0302,
           "balance_mae_by_h_paise": [
             2811994,
             4629184,
             7493243,
             9569968,
-            10280125,
-            10947812,
-            9378422,
-            9896146,
-            11755038,
-            12085740,
-            13917773,
-            17092487,
-            18349948,
-            20557144
+            10216125,
+            10883812,
+            9314422,
+            9917146,
+            11904038,
+            12234740,
+            14066773,
+            17101058,
+            18358520,
+            20565716
           ],
-          "coverage80": 0.5816,
+          "coverage80": 0.5714,
           "min_balance_err_paise": 4163440,
           "min_date_within_2d_rate": 1,
           "crossings": {
@@ -7458,12 +7458,12 @@
             {
               "cutoff": "2025-07-16",
               "opening_paise": 305830217,
-              "wape": 0.6377,
+              "wape": 0.6313,
               "pred_min_paise": 307988133,
               "true_min_paise": 306737838,
-              "pred_last_paise": 356346785,
+              "pred_last_paise": 355898785,
               "true_last_paise": 370937418,
-              "signed_last_err_paise": -14590633,
+              "signed_last_err_paise": -15038633,
               "alerts": {
                 "2L": "correct_negative",
                 "3L": "correct_negative",
@@ -7503,12 +7503,12 @@
             {
               "cutoff": "2025-08-12",
               "opening_paise": 392656457,
-              "wape": 0.3959,
+              "wape": 0.4032,
               "pred_min_paise": 396939604,
               "true_min_paise": 401790230,
-              "pred_last_paise": 468680619,
+              "pred_last_paise": 468085619,
               "true_last_paise": 474311702,
-              "signed_last_err_paise": -5631083,
+              "signed_last_err_paise": -6226083,
               "alerts": {
                 "2L": "correct_negative",
                 "3L": "correct_negative",
@@ -7548,12 +7548,12 @@
             {
               "cutoff": "2025-09-08",
               "opening_paise": 483491523,
-              "wape": 0.6255,
+              "wape": 0.6385,
               "pred_min_paise": 486808342,
               "true_min_paise": 486277562,
-              "pred_last_paise": 564539843,
+              "pred_last_paise": 563556843,
               "true_last_paise": 559211401,
-              "signed_last_err_paise": 5328442,
+              "signed_last_err_paise": 4345442,
               "alerts": {
                 "2L": "correct_negative",
                 "3L": "correct_negative",
@@ -7561,32 +7561,32 @@
               }
             }
           ],
-          "elapsed_seconds": 1.185
+          "elapsed_seconds": 2.127
         },
         "49": {
           "origins": 7,
           "opening_mean_paise": 525046049,
-          "wape": 0.4734,
-          "bias": 0.0518,
-          "balance_mae_paise": 7270238,
-          "balance_mae_pct": 0.0144,
+          "wape": 0.4685,
+          "bias": 0.0473,
+          "balance_mae_paise": 6989990,
+          "balance_mae_pct": 0.0138,
           "balance_mae_by_h_paise": [
             2848869,
             3251447,
             4983709,
             6290154,
-            7552598,
-            7822953,
-            5946189,
-            6793735,
-            6691555,
-            7960806,
-            8869093,
-            9802463,
-            11138376,
-            11831388
+            7420527,
+            7690882,
+            5814118,
+            6287306,
+            6185127,
+            7580127,
+            8362665,
+            9260034,
+            10595947,
+            11288960
           ],
-          "coverage80": 0.8673,
+          "coverage80": 0.8776,
           "min_balance_err_paise": 3584424,
           "min_date_within_2d_rate": 1,
           "crossings": {
@@ -7613,12 +7613,12 @@
             {
               "cutoff": "2025-07-16",
               "opening_paise": 431882272,
-              "wape": 0.5792,
+              "wape": 0.5672,
               "pred_min_paise": 437552199,
               "true_min_paise": 438748217,
-              "pred_last_paise": 500351448,
+              "pred_last_paise": 501275948,
               "true_last_paise": 508975297,
-              "signed_last_err_paise": -8623849,
+              "signed_last_err_paise": -7699349,
               "alerts": {
                 "2L": "correct_negative",
                 "3L": "correct_negative",
@@ -7658,12 +7658,12 @@
             {
               "cutoff": "2025-08-12",
               "opening_paise": 523075386,
-              "wape": 0.4448,
+              "wape": 0.4254,
               "pred_min_paise": 527621664,
               "true_min_paise": 527625018,
-              "pred_last_paise": 582876632,
+              "pred_last_paise": 580256132,
               "true_last_paise": 578417749,
-              "signed_last_err_paise": 4458883,
+              "signed_last_err_paise": 1838383,
               "alerts": {
                 "2L": "correct_negative",
                 "3L": "correct_negative",
@@ -7703,12 +7703,12 @@
             {
               "cutoff": "2025-09-08",
               "opening_paise": 590180165,
-              "wape": 0.411,
+              "wape": 0.408,
               "pred_min_paise": 594084518,
               "true_min_paise": 599817717,
-              "pred_last_paise": 669760365,
+              "pred_last_paise": 670012365,
               "true_last_paise": 676302602,
-              "signed_last_err_paise": -6542237,
+              "signed_last_err_paise": -6290237,
               "alerts": {
                 "2L": "correct_negative",
                 "3L": "correct_negative",
@@ -7716,30 +7716,30 @@
               }
             }
           ],
-          "elapsed_seconds": 1.271
+          "elapsed_seconds": 2.065
         },
         "50": {
           "origins": 7,
           "opening_mean_paise": 467238247,
-          "wape": 0.6932,
-          "bias": 0.1093,
-          "balance_mae_paise": 9328568,
-          "balance_mae_pct": 0.0194,
+          "wape": 0.6919,
+          "bias": 0.1067,
+          "balance_mae_paise": 9334793,
+          "balance_mae_pct": 0.0195,
           "balance_mae_by_h_paise": [
             1996206,
             8009584,
             2717863,
             2611020,
-            3683277,
-            5553693,
-            8209932,
-            9845712,
-            13217421,
-            13407706,
-            11944867,
-            15334160,
-            16279750,
-            17788769
+            3665991,
+            5536408,
+            8192646,
+            9881426,
+            13253135,
+            13443420,
+            11980581,
+            15369874,
+            16315464,
+            17713483
           ],
           "coverage80": 0.7959,
           "min_balance_err_paise": 2565787,
@@ -7768,12 +7768,12 @@
             {
               "cutoff": "2025-07-16",
               "opening_paise": 374372682,
-              "wape": 0.4414,
+              "wape": 0.4436,
               "pred_min_paise": 377658459,
               "true_min_paise": 379176748,
-              "pred_last_paise": 423726902,
+              "pred_last_paise": 423847902,
               "true_last_paise": 428298177,
-              "signed_last_err_paise": -4571275,
+              "signed_last_err_paise": -4450275,
               "alerts": {
                 "2L": "correct_negative",
                 "3L": "correct_negative",
@@ -7813,12 +7813,12 @@
             {
               "cutoff": "2025-08-12",
               "opening_paise": 460526266,
-              "wape": 0.3685,
+              "wape": 0.3726,
               "pred_min_paise": 466140920,
               "true_min_paise": 464356850,
-              "pred_last_paise": 540293022,
+              "pred_last_paise": 539922022,
               "true_last_paise": 548245727,
-              "signed_last_err_paise": -7952705,
+              "signed_last_err_paise": -8323705,
               "alerts": {
                 "2L": "correct_negative",
                 "3L": "correct_negative",
@@ -7858,12 +7858,12 @@
             {
               "cutoff": "2025-09-08",
               "opening_paise": 539535809,
-              "wape": 0.8674,
+              "wape": 0.8517,
               "pred_min_paise": 542656917,
               "true_min_paise": 540396646,
-              "pred_last_paise": 608761785,
+              "pred_last_paise": 607984785,
               "true_last_paise": 576335376,
-              "signed_last_err_paise": 32426409,
+              "signed_last_err_paise": 31649409,
               "alerts": {
                 "2L": "correct_negative",
                 "3L": "correct_negative",
@@ -7871,30 +7871,30 @@
               }
             }
           ],
-          "elapsed_seconds": 1.308
+          "elapsed_seconds": 2.757
         },
         "51": {
           "origins": 7,
           "opening_mean_paise": 490823083,
-          "wape": 0.5479,
-          "bias": -0.0474,
-          "balance_mae_paise": 9356161,
-          "balance_mae_pct": 0.0204,
+          "wape": 0.5477,
+          "bias": -0.0515,
+          "balance_mae_paise": 9212595,
+          "balance_mae_pct": 0.0201,
           "balance_mae_by_h_paise": [
             2710260,
             4341365,
             6584936,
             5706331,
-            6594049,
-            8926959,
-            16095946,
-            10645218,
-            10625969,
-            9856009,
-            11896006,
-            12696375,
-            11058197,
-            13248642
+            6432191,
+            8765102,
+            15934089,
+            10492647,
+            10473397,
+            9703438,
+            11743435,
+            12397875,
+            10759697,
+            12931570
           ],
           "coverage80": 0.9388,
           "min_balance_err_paise": 5185830,
@@ -7923,12 +7923,12 @@
             {
               "cutoff": "2025-07-16",
               "opening_paise": 387414166,
-              "wape": 0.4917,
+              "wape": 0.5044,
               "pred_min_paise": 392312568,
               "true_min_paise": 391606400,
-              "pred_last_paise": 465853190,
+              "pred_last_paise": 464720190,
               "true_last_paise": 452075598,
-              "signed_last_err_paise": 13777592,
+              "signed_last_err_paise": 12644592,
               "alerts": {
                 "2L": "correct_negative",
                 "3L": "correct_negative",
@@ -7968,12 +7968,12 @@
             {
               "cutoff": "2025-08-12",
               "opening_paise": 486672597,
-              "wape": 0.3906,
+              "wape": 0.3898,
               "pred_min_paise": 491906805,
               "true_min_paise": 489285354,
-              "pred_last_paise": 560588183,
+              "pred_last_paise": 560653183,
               "true_last_paise": 561558172,
-              "signed_last_err_paise": -969989,
+              "signed_last_err_paise": -904989,
               "alerts": {
                 "2L": "correct_negative",
                 "3L": "correct_negative",
@@ -8013,12 +8013,12 @@
             {
               "cutoff": "2025-09-08",
               "opening_paise": 595707793,
-              "wape": 0.767,
+              "wape": 0.7534,
               "pred_min_paise": 600097751,
               "true_min_paise": 608891046,
-              "pred_last_paise": 671984183,
+              "pred_last_paise": 670962683,
               "true_last_paise": 661673208,
-              "signed_last_err_paise": 10310975,
+              "signed_last_err_paise": 9289475,
               "alerts": {
                 "2L": "correct_negative",
                 "3L": "correct_negative",
@@ -8026,33 +8026,33 @@
               }
             }
           ],
-          "elapsed_seconds": 1.358
+          "elapsed_seconds": 3.003
         }
       },
       "aggregate": {
         "wape": {
-          "mean": 0.6105,
-          "min": 0.4049,
-          "max": 0.9156
+          "mean": 0.6092,
+          "min": 0.4009,
+          "max": 0.9121
         },
         "bias": {
-          "mean": 0.0221,
-          "min": -0.0477,
-          "max": 0.1093
+          "mean": 0.0192,
+          "min": -0.0515,
+          "max": 0.1067
         },
         "balance_mae_paise": {
-          "mean": 8217901.4,
-          "min": 5312252,
-          "max": 11340358
+          "mean": 8128365.6,
+          "min": 5061252,
+          "max": 11361909
         },
         "balance_mae_pct": {
-          "mean": 0.0184,
-          "min": 0.0133,
-          "max": 0.0301
+          "mean": 0.0182,
+          "min": 0.0127,
+          "max": 0.0302
         },
         "coverage80": {
-          "mean": 0.8153,
-          "min": 0.5816,
+          "mean": 0.8184,
+          "min": 0.5714,
           "max": 0.9388
         },
         "min_balance_err_paise": {
@@ -8247,7 +8247,7 @@
               }
             }
           ],
-          "elapsed_seconds": 1.146
+          "elapsed_seconds": 2.102
         },
         "43": {
           "origins": 7,
@@ -8402,7 +8402,7 @@
               }
             }
           ],
-          "elapsed_seconds": 1.183
+          "elapsed_seconds": 1.654
         },
         "44": {
           "origins": 7,
@@ -8557,7 +8557,7 @@
               }
             }
           ],
-          "elapsed_seconds": 1.249
+          "elapsed_seconds": 1.666
         },
         "45": {
           "origins": 7,
@@ -8712,7 +8712,7 @@
               }
             }
           ],
-          "elapsed_seconds": 1.08
+          "elapsed_seconds": 2.21
         },
         "46": {
           "origins": 7,
@@ -8867,7 +8867,7 @@
               }
             }
           ],
-          "elapsed_seconds": 1.134
+          "elapsed_seconds": 1.622
         },
         "47": {
           "origins": 7,
@@ -9022,7 +9022,7 @@
               }
             }
           ],
-          "elapsed_seconds": 1.124
+          "elapsed_seconds": 1.669
         },
         "48": {
           "origins": 7,
@@ -9177,7 +9177,7 @@
               }
             }
           ],
-          "elapsed_seconds": 1.201
+          "elapsed_seconds": 1.673
         },
         "49": {
           "origins": 7,
@@ -9332,7 +9332,7 @@
               }
             }
           ],
-          "elapsed_seconds": 1.211
+          "elapsed_seconds": 1.725
         },
         "50": {
           "origins": 7,
@@ -9487,7 +9487,7 @@
               }
             }
           ],
-          "elapsed_seconds": 1.217
+          "elapsed_seconds": 2.139
         },
         "51": {
           "origins": 7,
@@ -9642,7 +9642,7 @@
               }
             }
           ],
-          "elapsed_seconds": 1.318
+          "elapsed_seconds": 2.003
         }
       },
       "aggregate": {
@@ -9726,7 +9726,7 @@
         "detected": 10,
         "period_ok": 10,
         "anchor_ok": 10,
-        "amount_ok": 6
+        "amount_ok": 10
       },
       {
         "key": "insurance",

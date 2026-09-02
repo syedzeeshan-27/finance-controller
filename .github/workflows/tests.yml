@@ -1,0 +1,21 @@
+name: tests
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  pytest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Install (pinned) + editable package
+        run: pip install -r requirements.txt -r requirements-dev.txt -e .
+      # Fully offline: tests/conftest.py forces APP_USE_MOCK=1, the committed
+      # agent transcripts replay without a key, no network is ever opened.
+      - name: Test suite
+        run: python -m pytest -q

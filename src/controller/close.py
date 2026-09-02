@@ -248,8 +248,21 @@ def daily_close(data_dir: str, horizon: int = 14,
 
     # --- summaries ------------------------------------------------------------
     matched = [d for d in a_dicts if d["status"] in RS.MATCHED_FAMILY]
+    # The brief's own metric, stated as one honest ratio: of the records this
+    # loop is about (bank debits and unrelated inflows excluded), how many
+    # were auto-reconciled and how many still need a human.
+    in_scope = [d for d in a_dicts
+                if d["status"] not in (RS.OUT_OF_SCOPE, RS.NON_SETTLEMENT_CREDIT)]
+    unresolved = [d for d in in_scope if d["status"] not in RS.MATCHED_FAMILY]
     recon_summary = {
         "decisions": len(a_dicts),
+        "in_scope": len(in_scope),
+        "matched": len(matched),
+        "match_rate": (round(len(matched) / len(in_scope), 4)
+                       if in_scope else None),
+        "unresolved": len(unresolved),
+        "unresolved_by_status": dict(sorted(
+            Counter(d["status"] for d in unresolved).items())),
         "matched_amount_paise": sum(d["received_paise"] or 0 for d in matched),
         "needs_review": sum(1 for d in matched
                             if d["confidence"] == RS.CONF_NEEDS_REVIEW),
@@ -378,8 +391,16 @@ def render_markdown(close: DailyClose) -> str:
 
     r = c.recon_summary
     b = c.leg_b_summary
+    rate = ("n/a — no settlement-side records in this world"
+            if r["match_rate"] is None else f"{r['match_rate']:.1%}")
     lines += [
         "", "## Three loops, one pass", "",
+        f"- **Match rate**: {r['matched']} of {r['in_scope']} in-scope records "
+        f"auto-reconciled ({rate}); {r['unresolved']} could not be resolved "
+        "automatically → queue"
+        + (" (" + ", ".join(f"{k} {n}" for k, n in
+                            r["unresolved_by_status"].items()) + ")"
+           if r["unresolved_by_status"] else ""),
         f"- **Settlements ↔ bank**: {r['decisions']} decisions, "
         f"{_inr(r['matched_amount_paise'])} matched"
         + (f", {r['needs_review']} matched with unexplained residual"
@@ -436,7 +457,9 @@ def _merchants_rollup(registry_path: str, horizon: int) -> None:
         merchants = json.load(f)
     worst = 0
     for m in merchants:
-        close = daily_close(m["data_dir"], horizon=horizon)
+        # each merchant's own working-capital floor (null = no cash alerts)
+        close = daily_close(m["data_dir"], horizon=horizon,
+                            threshold_paise=m.get("low_cash_threshold_paise"))
         sev = close.counts["by_severity"]
         panel = close.verify_panel
         violations = panel["leg_a"] + (panel["tax"] or 0) + panel["forecast"]

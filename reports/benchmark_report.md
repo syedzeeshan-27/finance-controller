@@ -1,6 +1,6 @@
 # Reconciliation Benchmark Report
 
-Seeds: [42, 43, 44, 45, 46] | leg A grading unit: one golden row per settlement and per bank credit | LLM mode: mock(deterministic templates)
+Seeds: [42, 43, 44, 45, 46] | leg A grading unit: one golden row per settlement and per bank credit | LLM mode: claude-sonnet-5
 
 Per-seed world (seed 42): 915 payments, 109 settlements, 265 bank statement rows (120 credits / 145 debits), 915 orders. Scenario mix is recorded in each world's `golden_manifest.json`.
 
@@ -8,8 +8,8 @@ Per-seed world (seed 42): 915 payments, 109 settlements, 265 bank statement rows
 
 | strategy | precision | recall | F1 | false-match rate | disposition accuracy | correct abstentions | auto-resolved | records/sec | invariant violations |
 |---|---|---|---|---|---|---|---|---|---|
-| naive | 97.5% (96.9%-97.8%) | 79.2% (77.3%-80.8%) | 87.4% (86.2%-88.2%) | 2.5% (2.2%-3.1%) | 74.1% (72.1%-75.8%) | 0/30 | 70.5% (68.3%-72.9%) | 5,384 (4,691-5,900) | 0 |
-| recon_engine | 100.0% (100.0%-100.0%) | 100.0% (100.0%-100.0%) | 100.0% (100.0%-100.0%) | 0.0% (0.0%-0.0%) | 100.0% (100.0%-100.0%) | 30/30 | 90.4% (90.0%-90.7%) | 22,002 (16,457-27,046) | 0 |
+| naive | 97.5% (96.9%-97.8%) | 79.2% (77.3%-80.8%) | 87.4% (86.2%-88.2%) | 2.5% (2.2%-3.1%) | 74.1% (72.1%-75.8%) | 0/30 | 70.5% (68.3%-72.9%) | 4,755 (2,564-6,327) | 0 |
+| recon_engine | 100.0% (100.0%-100.0%) | 100.0% (100.0%-100.0%) | 100.0% (100.0%-100.0%) | 0.0% (0.0%-0.0%) | 100.0% (100.0%-100.0%) | 30/30 | 90.4% (90.0%-90.7%) | 36,679 (35,466-38,557) | 0 |
 
 ## Leg A per-scenario disposition accuracy (seed 42)
 
@@ -33,7 +33,7 @@ Per-seed world (seed 42): 915 payments, 109 settlements, 265 bank statement rows
 
 ## Leg B: payment <-> order book
 
-Disposition accuracy: 100.0% (100.0%-100.0%) | throughput: 23,832 (22,383-24,780) records/sec
+Disposition accuracy: 100.0% (100.0%-100.0%) | throughput: 22,298 (10,014-27,304) records/sec
 
 | leg B exception class (seed 42) | correct | total |
 |---|---|---|
@@ -48,3 +48,4 @@ Disposition accuracy: 100.0% (100.0%-100.0%) | throughput: 23,832 (22,383-24,780
 - The matching decisions themselves are fully deterministic; the LLM (when configured) only rephrases display-only explanations.
 - A wrong match counts as both a false positive and a missed match.
 - Timing covers CSV parse + matching, excludes grading/report writing.
+- Baseline `naive` = amount within Rs 1, value date within 3 days of the expected settlement date, greedy best-gap, one settlement per credit, no references/UTRs - the first script anyone writes. It shares the engine's parsers, so parsing is never the differentiator.

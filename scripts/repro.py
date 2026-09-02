@@ -83,6 +83,21 @@ def step_9_ingest() -> None:
         "out/rzp_webhooks", "--secret", "rzp_demo_webhook_secret")
 
 
+def step_10_investigate() -> None:
+    # Offline: replays the committed LIVE investigator recording (request
+    # hashes checked) on a fresh copy of the seed-42 world, so the advisory
+    # note lands in that copy's workflow state and data/state/42 stays yours.
+    import shutil
+    world = os.path.join(ROOT, "out", "investigate_world")
+    shutil.rmtree(world, ignore_errors=True)
+    shutil.rmtree(os.path.join(ROOT, "data", "state", "out_investigate_world"),
+                  ignore_errors=True)
+    shutil.copytree(os.path.join(ROOT, "data", "seeds", "42"), world)
+    run("agent.investigate", "out/investigate_world", "6a547f24b524",
+        "--replay",
+        "data/agent_transcripts/investigate/seed42_6a547f24b524.jsonl")
+
+
 STEPS: list[tuple[int, str, object]] = [
     (1, "install dependencies", step_1_install),
     (2, "test suite", step_2_tests),
@@ -100,6 +115,8 @@ STEPS: list[tuple[int, str, object]] = [
         "validator + real-data report", step_8_real_intake),
     (9, "Razorpay ingestion: official-schema fixtures + signed webhook "
         "inbox (offline)", step_9_ingest),
+    (10, "investigator agent: recorded replay on one queue item (offline, "
+         "request-hash checked)", step_10_investigate),
 ]
 
 

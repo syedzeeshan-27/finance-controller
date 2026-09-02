@@ -64,7 +64,7 @@ generation speed, is the bottleneck* — is the spec:
 | `src/recon/explain.py` | display-only explanations (deterministic templates, LLM optional) |
 | `src/forecast/slicing.py` | the leakage wall: the only file reader, strict cutoff filters |
 | `src/forecast/pipeline.py` | layer a: known in-flight inflows via the recon engine |
-| `src/forecast/recurring.py` | layer b: obligation detection (template keys + periodicity gates) |
+| `src/forecast/recurring.py` | layer b: obligation detection (template keys + periodicity gates); GST amount from the books rule, not history |
 | `src/forecast/residual.py` | layer c: weekday trimmed means + clamped trend |
 | `src/forecast/bands.py` | self-calibrating empirical 80% bands (internal re-runs) |
 | `src/forecast/backtest.py` | rolling-origin harness, metrics, ablations, reports |
@@ -100,7 +100,7 @@ generation speed, is the bottleneck* — is the spec:
 | `src/ingest/pull.py` | payments/orders ingestion: fixtures by default, test-mode API with `--live` |
 | `src/ingest/webhook_inbox.py` | signed webhook events (HMAC verified), idempotent consumption |
 | `src/app.py` | Streamlit dashboard: daily close with an actionable queue, overview, matches, exceptions, journey, forecast, tax, benchmark |
-| `scripts/repro.py` | the 9-step single-source repro (`repro.ps1` / `repro.sh` are wrappers) |
+| `scripts/repro.py` | the 10-step single-source repro (`repro.ps1` / `repro.sh` are wrappers) |
 
 Engine pass order (later passes see only records earlier passes left unclaimed):
 
@@ -133,9 +133,14 @@ identical parsing and grading:
 | `naive` (amount ±₹1, 3-day window) | 97.5% | 79.2% | 87.4% | 74.1% | 0/30 | 0 |
 | `recon_engine` (this project) | **100.0%** | **100.0%** | **100.0%** | **100.0%** | **30/30** | **0** |
 
-Mean over 5 seeds; throughput ≈ 41,000 records/sec for the engine (~7ms per
-batch). Leg B (payment ↔ order book): 100% disposition accuracy over ~1,665
-golden rows/seed.
+Mean over 5 seeds. Throughput, as measured in the reports and noisy run to
+run (Intel Core i5-1334U laptop, Windows 11, Python 3.13, single process):
+the engine alone parses and matches a 374-record batch in 10–20 ms —
+22,000–35,000 records/s across runs (`reports/benchmark_report.md` holds the
+current one); one full daily close over all six input files (4,957 rows,
+three loops plus the verifiers) runs at 5,000–7,000 records/s
+(`reports/close_audit.md`). Leg B (payment ↔ order book): 100% disposition
+accuracy over ~1,665 golden rows/seed.
 
 Where the baseline actually fails (seed 42, disposition accuracy per scenario):
 
@@ -165,18 +170,18 @@ disk.
 | zero_net | 100.0% | ₹2,76,037 (6.3%) | — | ₹1,06,909 | 0/21/0 |
 | trailing_mean_28 | 83.3% | ₹1,83,033 (4.0%) | — | ₹1,05,498 | 0/21/0 |
 | naive_weekday | 113.2% | ₹2,44,263 (5.3%) | — | ₹1,68,959 | 0/21/21 |
-| **forecaster** | **59.1%** | **₹77,208 (1.8%)** | **79.9%** | **₹30,041** | **17/4/2** |
-| forecaster (no pipeline layer) | 61.1% | ₹82,179 (1.8%) | 81.5% | ₹36,301 | 17/4/3 |
+| **forecaster** | **59.0%** | **₹76,454 (1.7%)** | **80.3%** | **₹30,041** | **17/4/2** |
+| forecaster (no pipeline layer) | 60.9% | ₹81,284 (1.8%) | 81.8% | ₹36,301 | 17/4/3 |
 | forecaster (no recurring layer) | 67.6% | ₹1,63,767 (3.5%) | 75.3% | ₹87,281 | 0/21/0 |
 
 What the table says, honestly — two readings on purpose. **Absolute terms
 first:** WAPE is measured on the daily net flow, a series that is spiky by
 construction (settlement batches, the 1st-of-month obligation cluster, noise
 debits), so 59% daily error is *not* a day-by-day promise — the number a cash
-planner acts on is the balance path, which sits within ₹77,208 of the truth on
-average (1.8% of a ~₹45L opening balance; ₹1,24,750 by day 14), and the 14-day
+planner acts on is the balance path, which sits within ₹76,454 of the truth on
+average (1.7% of a ~₹45L opening balance; ₹1,23,230 by day 14), and the 14-day
 low, within ₹30,041 and dated within two days 96% of the time. The **80% band
-covers 79.9%** of outcomes on average (self-calibrated from the forecaster's
+covers 80.3%** of outcomes on average (self-calibrated from the forecaster's
 own historical errors — measured, not asserted) but ranges from 53% to 97% per
 world: honest on average, not per merchant. **Alerts:** across 70 origins ×
 three depths there were 21 true drops; the forecaster caught 17 with 2 false
@@ -189,11 +194,16 @@ listed per origin in the report. The ablations price each layer:
 recurring-obligation detection is worth ~₹87k of balance MAE and all 17 hits;
 the pipeline layer's value concentrates where it should — day-1 error (₹16.2k
 vs ₹23.4k without it) and alert precision. Recurring detection found **70/70**
-scheduled obligations across the 10 worlds with the right period and anchor,
-and the amount within ±10% for 66/70 — the four misses are all the GST
-obligation, whose amount tracks the prior month's gross and so varies month to
-month — with **0 false positives**, graded against the generator's minted
-`golden_obligations.csv`.
+scheduled obligations across the 10 worlds with the right period, anchor and
+amount (±10%), with **0 false positives**, graded against the generator's
+minted `golden_obligations.csv`. One honest footnote on the amount column:
+GST is the one obligation whose level tracks sales, and extrapolating its
+history had it right on only 6/10 worlds; the recurring layer now computes it
+from the merchant's own captured payments with the compliance loop's published
+rule (3% of the previous month's gross — "known money first", the same
+simplification the tax stage grades against), so its 10/10 is the rule being
+right, not the forecaster being clever. The six other keys were 10/10 either
+way.
 
 The forecaster is three deterministic layers, each separable in the output:
 
@@ -201,6 +211,7 @@ The forecaster is three deterministic layers, each separable in the output:
    credit (settlement mechanics, reusing the Stage 1 engine), not a statistic.
    Overdue settlements go to an attention list, never silently into the path.
 2. **Recurring obligations** — payroll/rent/GST/TDS/subscriptions detected
+   (GST's next amount computed from the books rule rather than extrapolated)
    from narration-template periodicity with explicit gates; rejected keys fall
    through to statistics instead of being guessed.
 3. **Weekday statistics** — trimmed means with a clamped trend ratio, only for
@@ -320,12 +331,22 @@ the real statement — three API calls in which the agent peeked at the grid,
 submitted a mapping the validator **rejected**, and resubmitted a repaired
 one that passed the balance-chain proof, producing a world byte-identical to
 the committed canonical statement. Repro step 8 and
-`test_intake_replay_reproduces_committed_world` replay it with no key. The investigator agent (`src/agent/investigate.py`) gets read-only
-tools over a precomputed close (the queue item, every decision mentioning a
-record, the statement around a date, the cash headline) and its only output is
-an advisory note appended to the item's workflow trail as
-`agent:investigator` — a test pins that the close itself is byte-identical
-before and after.
+`test_intake_replay_reproduces_committed_world` replay it with no key.
+
+The investigator agent (`src/agent/investigate.py`) gets read-only tools over
+a precomputed close (the queue item, every decision mentioning a record, the
+statement around a date, the cash headline) and its only output is an
+advisory note appended to the item's workflow trail as `agent:investigator` —
+a test pins that the close itself is byte-identical before and after. It is
+evidenced the same way as intake: one real recorded run is committed
+(`data/agent_transcripts/investigate/seed42_6a547f24b524.jsonl` — three API
+calls, 8,302 input + 747 output tokens, about $0.04) in which the agent pulled
+the S1 item, searched every decision mentioning its records and the statement
+window around the due date, and drafted the note an operator would want: the
+₹62,630.19 settlement genuinely never landed, the orphan credit in the same
+window is not its counterpart, escalate to the PSP with the UTR. Repro step
+10 and `test_committed_investigator_recording_replays_offline` replay it with
+no key, request hashes checked.
 
 Razorpay-side real formats are covered by schema-faithful adapters
 (`src/ingest/`) over the official settlement entity, per-transaction
@@ -426,7 +447,7 @@ panel is itself a violation.
 4. **A leak canary.** If the naive matcher ever scores near the engine, the
    world got too easy — that check is visible in every report.
 5. **Determinism end to end.** `python -m recon.generate --seed 42
-   --verify-determinism` hash-compares two runs (at 90 and 180 days); 317
+   --verify-determinism` hash-compares two runs (at 90 and 180 days); 323
    pytest tests pin the parsers, generator invariants, every engine pass, the
    graders' math, the forecaster's layers, the leakage wall, the tax rules and
    world, the head-split agreement suite, the close's one-pass and triage
@@ -461,6 +482,16 @@ engine, and e-invoice/IRN and true multi-GSTIN merchants stay out of scope —
 the merchant registry is per-entity worlds, not one entity with many
 registrations.
 
+Known engineering debt, stated rather than hidden: `src/recon/generate.py` is
+1,800 lines (the world generator grew a stage at a time and its two largest
+functions, `_mint_gstr2b` and `_build_bank_credits`, would split cleanly by
+scenario); `src/app.py` is an 800-line module-level Streamlit script rather
+than composed views; four rupee formatters and five three-line CSV readers
+exist where two would do (the verifiers' copies are deliberate — independent
+parsers are the point — the rest is drift); and `reports/daily_close_42d180.json`
+embeds every decision, 1.9 MB of committed evidence. None of it changes a
+number; all of it is what a second week would tidy.
+
 ## Repository layout
 
 - `data/seeds/42/` — the committed canonical world (other seeds regenerate on
@@ -473,8 +504,8 @@ registrations.
   `close --merchants` rollup)
 - `data/state/` (gitignored) — operator workflow state and close snapshots
 - `reports/` — committed benchmark artifacts every claim above is pasted from
-- `scripts/repro.py` — the 9-step repro; `repro.ps1` / `repro.sh` wrappers
-- `tests/` — 317 tests (see the trust list above)
+- `scripts/repro.py` — the 10-step repro; `repro.ps1` / `repro.sh` wrappers
+- `tests/` — 323 tests (see the trust list above)
 
 ### Roadmap
 

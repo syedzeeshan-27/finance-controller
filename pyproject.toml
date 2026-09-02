@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "finance-controller"
+version = "0.1.0"
+description = "AI Finance Controller (Razorpay Buildathon Track 04): one daily close - settlement reconciliation, 14-day cash forecast, Indian tax matching - folded into one honest, actionable exception queue"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+license-files = ["LICENSE"]
+# Exact pins = the environment every committed number was produced in
+# (requirements.txt mirrors this list for plain `pip install -r`).
+dependencies = [
+    "pandas==3.0.1",
+    "streamlit==1.62.0",
+    "altair==6.2.2",
+    "python-dotenv==1.2.2",
+    "anthropic==1.2.0",
+    "openpyxl==3.1.5",
+]
+
+[project.optional-dependencies]
+dev = ["pytest==9.1.1"]
+
+# src/ layout: `pip install -e .` makes `python -m controller.close ...` work
+# from any shell without PYTHONPATH tricks. model.py sits at the src/ root.
+[tool.setuptools]
+package-dir = {"" = "src"}
+py-modules = ["model"]
+
+[tool.setuptools.packages.find]
+where = ["src"]

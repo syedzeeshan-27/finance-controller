@@ -4,6 +4,11 @@ Deterministic detection of scheduled outflows (payroll, rent, GST, ...) from
 narration-template keys and gap analysis — no ML, every accepted key passes
 explicit periodicity, anchor-consistency and amount-stability gates, so a
 rejected key falls through to the statistical layer instead of being guessed.
+
+Amounts follow "known money first": where the books determine the next
+instance (GST = the compliance loop's published 3%-of-prior-month-gross rule)
+it is computed from the merchant's own captured payments; every other key is
+projected from its own history.
 """
 
 from __future__ import annotations
@@ -13,8 +18,9 @@ import statistics
 from dataclasses import dataclass, field
 from datetime import date, timedelta
 
-from recon.normalize import parse_bank_date, roll_off_sunday
+from recon.normalize import parse_bank_date, parse_iso_date, roll_off_sunday
 from forecast.schemas import ForecastInput
+from tax import rules as TX     # cycle-free: tax.rules imports only recon.normalize
 
 _DIGITS = re.compile(r"\d{4,}")
 
@@ -46,9 +52,12 @@ class Detected:
     amount_class: str               # fixed | stable | variable
     occurrences: list[tuple[date, int]] = field(default_factory=list)
     txn_ids: list[str] = field(default_factory=list)
+    rule_amount_paise: int | None = None   # next amount the books determine
 
     @property
     def projected_amount(self) -> int:
+        if self.rule_amount_paise is not None:
+            return self.rule_amount_paise
         last3 = [a for _, a in self.occurrences[-3:]]
         if len(last3) == 3:
             d1, d2 = last3[1] - last3[0], last3[2] - last3[1]
@@ -86,6 +95,44 @@ def _gap_class(gaps: list[int]) -> str | None:
             if all(abs(g - med) <= tol for g in gaps):
                 return period
     return None
+
+
+# Known money first. GST is the one obligation whose level tracks sales
+# rather than a contract, so extrapolating its history guesses where the
+# compliance loop's published rule (3% of the previous month's captured
+# gross, tax/rules.py) simply computes. Same recogniser as tax/books.py.
+_GST_KEY_MARK = "GST PAYMENT-CBIC"
+
+
+def _books_rule_amount(key: str, last_date: date,
+                       inp: ForecastInput) -> int | None:
+    """The next GST instance from the merchant's own captured payments, using
+    the compliance loop's month convention (month 0 of the data = the first
+    30 days' gross). None when the basis month has no captured payments —
+    the caller then falls back to history."""
+    if _GST_KEY_MARK not in key:
+        return None
+    captured = [(parse_iso_date(p["created_at"]), p["amount_paise"])
+                for p in inp.payments if p["status"] == "captured"]
+    if not captured:
+        return None
+    start = min(d for d, _ in captured)
+    if inp.first_statement_date is not None:
+        start = min(start, inp.first_statement_date)
+
+    def month_index(d: date) -> int:
+        return (d.year - start.year) * 12 + (d.month - start.month)
+
+    ny, nm = last_date.year, last_date.month + 1        # next instance
+    ny, nm = ny + (nm - 1) // 12, (nm - 1) % 12 + 1
+    basis = month_index(date(ny, nm, 1)) - 1            # previous month
+    if basis < 0:
+        return None
+    if basis == 0:
+        gross = sum(a for d, a in captured if (d - start).days < 30)
+    else:
+        gross = sum(a for d, a in captured if month_index(d) == basis)
+    return TX.gst_liability(gross) if gross > 0 else None
 
 
 def detect(inp: ForecastInput) -> list[Detected]:
@@ -135,7 +182,8 @@ def detect(inp: ForecastInput) -> list[Detected]:
         detected.append(Detected(
             key=key, period=period, anchor=anchor, amount_class=amount_class,
             occurrences=[(d, a) for d, a, _ in occ],
-            txn_ids=[t for _, _, t in occ]))
+            txn_ids=[t for _, _, t in occ],
+            rule_amount_paise=_books_rule_amount(key, dates[-1], inp)))
     return detected
 
 
@@ -149,13 +197,15 @@ def project(detected: list[Detected], cutoff: date, horizon: int) -> list[dict]:
     end = cutoff + timedelta(days=horizon)
     out: list[dict] = []
     for det in detected:
+        # "rule" = amount computed from the books, not extrapolated
+        basis = "rule" if det.rule_amount_paise is not None else det.amount_class
         if det.period == "weekly":
             d = cutoff + timedelta(days=1)
             while d <= end:
                 if d.weekday() == det.anchor:
                     out.append({"key": det.key, "due_date": d.isoformat(),
                                 "amount_paise": det.projected_amount,
-                                "basis": det.amount_class, "period": det.period})
+                                "basis": basis, "period": det.period})
                 d += timedelta(days=1)
             continue
         step_months = 1 if det.period == "monthly" else 3
@@ -168,5 +218,5 @@ def project(detected: list[Detected], cutoff: date, horizon: int) -> list[dict]:
             if cutoff < due <= end:
                 out.append({"key": det.key, "due_date": due.isoformat(),
                             "amount_paise": det.projected_amount,
-                            "basis": det.amount_class, "period": det.period})
+                            "basis": basis, "period": det.period})
     return sorted(out, key=lambda o: (o["due_date"], o["key"]))

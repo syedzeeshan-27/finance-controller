@@ -277,6 +277,19 @@ def verify_close(data_dir: str, close) -> list[str]:
                          if d["status"] in _LEG_A_MATCHED)
     if close["recon_summary"]["matched_amount_paise"] != matched_amount:
         v.append("recon summary matched amount differs from decisions")
+    # the published match rate, recomputed with re-typed status names
+    n_in_scope = sum(1 for d in close["decisions_a"]
+                     if d["status"] not in ("out_of_scope",
+                                            "non_settlement_credit"))
+    n_matched = sum(1 for d in close["decisions_a"]
+                    if d["status"] in _LEG_A_MATCHED)
+    rs = close["recon_summary"]
+    if ((rs.get("in_scope"), rs.get("matched"), rs.get("unresolved"))
+            != (n_in_scope, n_matched, n_in_scope - n_matched)):
+        v.append("recon summary match-rate counts differ from decisions")
+    want_rate = round(n_matched / n_in_scope, 4) if n_in_scope else None
+    if rs.get("match_rate") != want_rate:
+        v.append("recon summary match rate differs from decisions")
     b_status = Counter(d["status"] for d in close["decisions_b"])
     if close["leg_b_summary"]["by_status"] != dict(sorted(b_status.items())):
         v.append("leg B summary status counts differ from decisions")

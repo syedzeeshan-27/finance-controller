@@ -1,14 +1,19 @@
 """Investigator agent: advisory notes only, the close is untouched."""
 
+import json
 import os
 
 import pytest
 
 from agent.investigate import run_investigation
+from agent.provider import ReplayTransport
 from controller import queue_state as QS
 from controller.close import daily_close
 
 _WORLD = os.path.join("data", "seeds", "42")
+_TRANSCRIPT = os.path.join("data", "agent_transcripts", "investigate",
+                           "seed42_6a547f24b524.jsonl")
+_ITEM = "6a547f24b524"          # S1: settlement never hit the bank
 
 
 @pytest.fixture
@@ -66,3 +71,27 @@ def test_investigator_refuses_unknown_item(state_root):
     transport = ScriptedTransport([])
     with pytest.raises(SystemExit, match="no queue item"):
         run_investigation(_WORLD, "nope00000000", transport)
+
+
+def _recorded_note(path):
+    with open(path, encoding="utf-8") as f:
+        last = [json.loads(line) for line in f][-1]
+    return "".join(c["text"] for c in last["response"]["content"]
+                   if c.get("type") == "text").strip()
+
+
+def test_committed_investigator_recording_replays_offline(state_root):
+    """No API key, no network: the committed LIVE recording replays against
+    the committed world (every request hash re-checked by ReplayTransport),
+    reproduces the recorded note, and leaves the close byte-identical."""
+    before = daily_close(_WORLD).to_dict()
+    note = run_investigation(_WORLD, _ITEM, ReplayTransport(_TRANSCRIPT))
+    assert note == _recorded_note(_TRANSCRIPT)
+    assert "62,630.19" in note                   # the settlement that never landed
+    assert daily_close(_WORLD).to_dict() == before
+
+    view = QS.overlay(before["queue"], QS.load_state(_WORLD))
+    mine = next(v for v in view if v["item_id"] == _ITEM)
+    assert mine["last_note"] == note
+    assert mine["actions"][-1]["by"] == "agent:investigator"
+    assert mine["workflow"] == "open"

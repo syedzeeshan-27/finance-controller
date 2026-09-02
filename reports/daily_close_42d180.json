@@ -9,6 +9,16 @@
  },
  "recon_summary": {
   "decisions": 545,
+  "in_scope": 238,
+  "matched": 202,
+  "match_rate": 0.8487,
+  "unresolved": 36,
+  "unresolved_by_status": {
+   "ambiguous_abstain": 6,
+   "duplicate_credit": 9,
+   "exception_missing_bank": 16,
+   "exception_missing_settlement": 5
+  },
   "matched_amount_paise": 837902987,
   "needs_review": 0,
   "by_status": {
@@ -156,7 +166,7 @@
     "variable_outflows": 0,
     "net": 83132,
     "balance": 605603356,
-    "lo80": 597453841,
+    "lo80": 597530841,
     "hi80": 624419599
    },
    {
@@ -168,7 +178,7 @@
     "variable_outflows": 380437,
     "net": 11068135,
     "balance": 616671491,
-    "lo80": 608521976,
+    "lo80": 608598976,
     "hi80": 635487734
    },
    {
@@ -180,7 +190,7 @@
     "variable_outflows": 428728,
     "net": -1623489,
     "balance": 615048002,
-    "lo80": 606898487,
+    "lo80": 606975487,
     "hi80": 633864245
    },
    {
@@ -192,7 +202,7 @@
     "variable_outflows": 508597,
     "net": 4413255,
     "balance": 619461257,
-    "lo80": 611311742,
+    "lo80": 611388742,
     "hi80": 663609247
    },
    {
@@ -204,7 +214,7 @@
     "variable_outflows": 411002,
     "net": 4911024,
     "balance": 624372281,
-    "lo80": 616222766,
+    "lo80": 616299766,
     "hi80": 668520271
    },
    {
@@ -216,7 +226,7 @@
     "variable_outflows": 371171,
     "net": 4543592,
     "balance": 628915873,
-    "lo80": 620766358,
+    "lo80": 620843358,
     "hi80": 673063863
    },
    {
@@ -252,7 +262,7 @@
     "variable_outflows": 380437,
     "net": 12725585,
     "balance": 646328528,
-    "lo80": 630933789,
+    "lo80": 631010789,
     "hi80": 690476518
    }
   ],

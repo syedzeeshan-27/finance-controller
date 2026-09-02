@@ -10,6 +10,7 @@ from forecast.forecaster import forecast
 from forecast.pipeline import known_inflows, run_recon
 from forecast.recurring import Detected, detect, project, template_key
 from forecast.schemas import ForecastInput
+from tax import rules as TX
 
 CUTOFF = date(2025, 7, 15)
 
@@ -151,6 +152,54 @@ class TestRecurringDetection:
         # June has 30 days; 2025-06-30 is a Monday -> due 30 June
         assert out == [{"key": "K", "due_date": "2025-06-30", "amount_paise": 100,
                         "basis": "fixed", "period": "monthly"}]
+
+
+class TestBooksRule:
+    """Known money first: the GST obligation's next amount comes from the
+    merchant's own captured payments (the compliance loop's rule), not from
+    extrapolating history."""
+
+    def _gst_rows(self):
+        return [bank_row(f"G{i}", date(2025, m, 20), debit=amt,
+                         narration=f"GST PAYMENT-CBIC-{40000 + i}",
+                         balance=5_000_000)
+                for i, (m, amt) in enumerate([(4, 41_000), (5, 44_000),
+                                              (6, 39_000)])]
+
+    def test_gst_next_amount_comes_from_captured_gross(self):
+        payments = [{"payment_id": f"pay_{i}", "status": "captured",
+                     "created_at": f"2025-06-{d:02d}T10:00:00",
+                     "amount_paise": a}
+                    for i, (d, a) in enumerate([(3, 400_000), (17, 350_000),
+                                                (28, 250_000)])]
+        payments.append({"payment_id": "pay_failed", "status": "failed",
+                         "created_at": "2025-06-09T10:00:00",
+                         "amount_paise": 999_999})      # never counts
+        det = detect(inp_with(bank_rows=self._gst_rows(), payments=payments))
+        assert len(det) == 1
+        assert det[0].rule_amount_paise == TX.gst_liability(1_000_000) == 30_000
+        assert det[0].projected_amount == 30_000
+        out = project(det, CUTOFF, 14)
+        # 2025-07-20 is a Sunday -> due Monday the 21st
+        assert out == [{"key": det[0].key, "due_date": "2025-07-21",
+                        "amount_paise": 30_000, "basis": "rule",
+                        "period": "monthly"}]
+
+    def test_without_payments_history_is_used(self):
+        det = detect(inp_with(bank_rows=self._gst_rows()))
+        assert len(det) == 1 and det[0].rule_amount_paise is None
+        assert det[0].projected_amount == 41_000      # median of the last 3
+        assert project(det, CUTOFF, 14)[0]["basis"] == "stable"
+
+    def test_rule_applies_only_to_gst_keys(self):
+        rows = [bank_row(f"R{i}", date(2025, m, 5), debit=5_500_000,
+                         narration=f"NEFT DR-URBAN LADDER RENT-{70000 + i}")
+                for i, m in enumerate([4, 5, 6])]
+        payments = [{"payment_id": "p", "status": "captured",
+                     "created_at": "2025-06-10T10:00:00",
+                     "amount_paise": 1_000_000}]
+        det = detect(inp_with(bank_rows=rows, payments=payments))
+        assert len(det) == 1 and det[0].rule_amount_paise is None
 
 
 class TestResidual:

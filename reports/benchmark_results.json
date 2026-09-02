@@ -725,8 +725,8 @@
             }
           },
           "records_processed": 374,
-          "elapsed_seconds": 0.0797,
-          "throughput_records_per_sec": 4690.8,
+          "elapsed_seconds": 0.0621,
+          "throughput_records_per_sec": 6023.6,
           "verify_violations": [],
           "verify_violation_count": 0
         },
@@ -849,8 +849,8 @@
             }
           },
           "records_processed": 365,
-          "elapsed_seconds": 0.0709,
-          "throughput_records_per_sec": 5148.5,
+          "elapsed_seconds": 0.0588,
+          "throughput_records_per_sec": 6210.7,
           "verify_violations": [],
           "verify_violation_count": 0
         },
@@ -973,8 +973,8 @@
             }
           },
           "records_processed": 384,
-          "elapsed_seconds": 0.0651,
-          "throughput_records_per_sec": 5899.9,
+          "elapsed_seconds": 0.1498,
+          "throughput_records_per_sec": 2563.7,
           "verify_violations": [],
           "verify_violation_count": 0
         },
@@ -1097,8 +1097,8 @@
             }
           },
           "records_processed": 388,
-          "elapsed_seconds": 0.0692,
-          "throughput_records_per_sec": 5605.1,
+          "elapsed_seconds": 0.1464,
+          "throughput_records_per_sec": 2650.2,
           "verify_violations": [],
           "verify_violation_count": 0
         },
@@ -1221,8 +1221,8 @@
             }
           },
           "records_processed": 407,
-          "elapsed_seconds": 0.073,
-          "throughput_records_per_sec": 5575.8,
+          "elapsed_seconds": 0.0643,
+          "throughput_records_per_sec": 6327.0,
           "verify_violations": [],
           "verify_violation_count": 0
         }
@@ -3094,9 +3094,9 @@
           "max": 0.7286
         },
         "throughput_records_per_sec": {
-          "mean": 5384.02,
-          "min": 4690.8,
-          "max": 5899.9
+          "mean": 4755.04,
+          "min": 2563.7,
+          "max": 6327.0
         }
       }
     },
@@ -3221,8 +3221,8 @@
             }
           },
           "records_processed": 374,
-          "elapsed_seconds": 0.0188,
-          "throughput_records_per_sec": 19845.7,
+          "elapsed_seconds": 0.0097,
+          "throughput_records_per_sec": 38557.1,
           "verify_violations": [],
           "verify_violation_count": 0
         },
@@ -3345,8 +3345,8 @@
             }
           },
           "records_processed": 365,
-          "elapsed_seconds": 0.015,
-          "throughput_records_per_sec": 24399.4,
+          "elapsed_seconds": 0.0101,
+          "throughput_records_per_sec": 36115.4,
           "verify_violations": [],
           "verify_violation_count": 0
         },
@@ -3469,8 +3469,8 @@
             }
           },
           "records_processed": 384,
-          "elapsed_seconds": 0.0233,
-          "throughput_records_per_sec": 16456.8,
+          "elapsed_seconds": 0.0106,
+          "throughput_records_per_sec": 36088.9,
           "verify_violations": [],
           "verify_violation_count": 0
         },
@@ -3593,8 +3593,8 @@
             }
           },
           "records_processed": 388,
-          "elapsed_seconds": 0.0143,
-          "throughput_records_per_sec": 27046.4,
+          "elapsed_seconds": 0.0104,
+          "throughput_records_per_sec": 37166.5,
           "verify_violations": [],
           "verify_violation_count": 0
         },
@@ -3717,8 +3717,8 @@
             }
           },
           "records_processed": 407,
-          "elapsed_seconds": 0.0183,
-          "throughput_records_per_sec": 22261.0,
+          "elapsed_seconds": 0.0115,
+          "throughput_records_per_sec": 35465.9,
           "verify_violations": [],
           "verify_violation_count": 0
         }
@@ -5590,9 +5590,9 @@
           "max": 0.9071
         },
         "throughput_records_per_sec": {
-          "mean": 22001.86,
-          "min": 16456.8,
-          "max": 27046.4
+          "mean": 36678.76,
+          "min": 35465.9,
+          "max": 38557.1
         }
       }
     }
@@ -5667,8 +5667,8 @@
           }
         },
         "records_processed": 1830,
-        "elapsed_seconds": 0.0739,
-        "throughput_records_per_sec": 24780.0
+        "elapsed_seconds": 0.0734,
+        "throughput_records_per_sec": 24938.2
       },
       "43": {
         "golden_rows": 1896,
@@ -5738,8 +5738,8 @@
           }
         },
         "records_processed": 1896,
-        "elapsed_seconds": 0.0815,
-        "throughput_records_per_sec": 23274.7
+        "elapsed_seconds": 0.0694,
+        "throughput_records_per_sec": 27303.9
       },
       "44": {
         "golden_rows": 1876,
@@ -5809,8 +5809,8 @@
           }
         },
         "records_processed": 1876,
-        "elapsed_seconds": 0.0838,
-        "throughput_records_per_sec": 22383.3
+        "elapsed_seconds": 0.0793,
+        "throughput_records_per_sec": 23653.4
       },
       "45": {
         "golden_rows": 1895,
@@ -5880,8 +5880,8 @@
           }
         },
         "records_processed": 1895,
-        "elapsed_seconds": 0.0785,
-        "throughput_records_per_sec": 24150.8
+        "elapsed_seconds": 0.0741,
+        "throughput_records_per_sec": 25583.0
       },
       "46": {
         "golden_rows": 1876,
@@ -5951,8 +5951,8 @@
           }
         },
         "records_processed": 1876,
-        "elapsed_seconds": 0.0763,
-        "throughput_records_per_sec": 24573.6
+        "elapsed_seconds": 0.1873,
+        "throughput_records_per_sec": 10013.6
       }
     },
     "aggregate": {
@@ -5962,17 +5962,18 @@
         "max": 1.0
       },
       "throughput_records_per_sec": {
-        "mean": 23832.48,
-        "min": 22383.3,
-        "max": 24780.0
+        "mean": 22298.42,
+        "min": 10013.6,
+        "max": 27303.9
       }
     }
   },
-  "llm_mode": "mock(deterministic templates)",
+  "llm_mode": "claude-sonnet-5",
   "notes": [
     "Ground truth is generated deterministically at data-generation time; no LLM grades anything anywhere in this benchmark.",
     "The matching decisions themselves are fully deterministic; the LLM (when configured) only rephrases display-only explanations.",
     "A wrong match counts as both a false positive and a missed match.",
-    "Timing covers CSV parse + matching, excludes grading/report writing."
+    "Timing covers CSV parse + matching, excludes grading/report writing.",
+    "Baseline `naive` = amount within Rs 1, value date within 3 days of the expected settlement date, greedy best-gap, one settlement per credit, no references/UTRs - the first script anyone writes. It shares the engine's parsers, so parsing is never the differentiator."
   ]
 }

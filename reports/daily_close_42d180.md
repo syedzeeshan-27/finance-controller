@@ -221,6 +221,7 @@
 
 ## Three loops, one pass
 
+- **Match rate**: 202 of 238 in-scope records auto-reconciled (84.9%); 36 could not be resolved automatically → queue (ambiguous_abstain 6, duplicate_credit 9, exception_missing_bank 16, exception_missing_settlement 5)
 - **Settlements ↔ bank**: 545 decisions, ₹83,79,029.87 matched
   - ambiguous_abstain: 6
   - duplicate_credit: 9

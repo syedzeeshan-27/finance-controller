@@ -298,6 +298,10 @@ def run_benchmark(seeds: list[int], strategies: list[str] | None = None,
             "(when configured) only rephrases display-only explanations.",
             "A wrong match counts as both a false positive and a missed match.",
             "Timing covers CSV parse + matching, excludes grading/report writing.",
+            "Baseline `naive` = amount within Rs 1, value date within 3 days of "
+            "the expected settlement date, greedy best-gap, one settlement per "
+            "credit, no references/UTRs - the first script anyone writes. It "
+            "shares the engine's parsers, so parsing is never the differentiator.",
         ],
     }
 

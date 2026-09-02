@@ -23,6 +23,7 @@ import hashlib
 import hmac
 import json
 import os
+import sys
 
 from recon import schemas as S
 
@@ -56,10 +57,18 @@ def _merge(path: str, columns: list[str], key: str,
 
 
 def consume_inbox(inbox_dir: str, out_dir: str,
-                  secret: str | None = None) -> dict:
+                  secret: str | None = None, *,
+                  allow_unsigned: bool = False) -> dict:
+    """Fail closed: without a secret nothing is consumed unless the caller
+    explicitly accepts unsigned events (offline fixtures they trust); with a
+    secret, an event lacking its `.sig` sidecar is skipped, never trusted."""
+    if secret is None and not allow_unsigned:
+        raise SystemExit("refusing to consume unsigned webhook events: pass "
+                         "--secret (or set RAZORPAY_WEBHOOK_SECRET), or "
+                         "--allow-unsigned for offline fixtures you trust")
     payment_entities: list[dict] = []
     order_entities: list[dict] = []
-    consumed = skipped = 0
+    consumed = skipped = unverified_skipped = 0
     for name in sorted(os.listdir(inbox_dir)):
         if not name.endswith(".json"):
             continue
@@ -67,7 +76,12 @@ def consume_inbox(inbox_dir: str, out_dir: str,
         with open(path, "rb") as f:
             body = f.read()
         sig_path = path[:-5] + ".sig"
-        if secret is not None and os.path.exists(sig_path):
+        if secret is not None:
+            if not os.path.exists(sig_path):
+                print(f"WARNING: {name}: no .sig sidecar - skipped, not "
+                      "consumed", file=sys.stderr)
+                unverified_skipped += 1
+                continue
             with open(sig_path, encoding="utf-8") as f:
                 verify_signature(body, f.read(), secret)
         event = json.loads(body.decode("utf-8"))
@@ -90,6 +104,7 @@ def consume_inbox(inbox_dir: str, out_dir: str,
                    S.ORDER_BOOK_COLUMNS, "order_id",
                    orders_from_entities(order_entities))
     return {"consumed": consumed, "skipped": skipped,
+            "unverified_skipped": unverified_skipped,
             "payments_total": n_pay, "orders_total": n_ord}
 
 
@@ -103,11 +118,16 @@ def main() -> None:
         "RAZORPAY_WEBHOOK_SECRET"),
         help="webhook secret for X-Razorpay-Signature verification "
              "(default: RAZORPAY_WEBHOOK_SECRET env)")
+    ap.add_argument("--allow-unsigned", action="store_true",
+                    help="consume events without signature checks — "
+                         "offline fixtures you trust only")
     args = ap.parse_args()
-    stats = consume_inbox(args.inbox_dir, args.out_dir, args.secret)
+    stats = consume_inbox(args.inbox_dir, args.out_dir, args.secret,
+                          allow_unsigned=args.allow_unsigned)
     print(f"consumed {stats['consumed']} event(s), skipped "
-          f"{stats['skipped']} -> {stats['payments_total']} payment(s), "
-          f"{stats['orders_total']} order(s) in {args.out_dir}")
+          f"{stats['skipped']}, unverified-skipped "
+          f"{stats['unverified_skipped']} -> {stats['payments_total']} "
+          f"payment(s), {stats['orders_total']} order(s) in {args.out_dir}")
 
 
 if __name__ == "__main__":

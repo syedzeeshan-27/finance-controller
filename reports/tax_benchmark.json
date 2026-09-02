@@ -150,8 +150,8 @@
       "obligation_shortfall_detected_paise": 0
      },
      "records_processed": 518,
-     "elapsed_seconds": 0.0022,
-     "throughput_records_per_sec": 231208.71,
+     "elapsed_seconds": 0.0019,
+     "throughput_records_per_sec": 276591.19,
      "verify_violations": [
       "decision 0 claims credit on ineligible spend BANK000014 (MAKEMYTRIP)",
       "decision 1 claims credit on ineligible spend BANK000079 (MAKEMYTRIP)",
@@ -321,8 +321,8 @@
       "obligation_shortfall_detected_paise": 0
      },
      "records_processed": 462,
-     "elapsed_seconds": 0.0021,
-     "throughput_records_per_sec": 220820.18,
+     "elapsed_seconds": 0.0034,
+     "throughput_records_per_sec": 135436.2,
      "verify_violations": [
       "decision 0 claims credit on ineligible spend BANK000064 (MAKEMYTRIP)",
       "decision 1 claims credit on ineligible spend BANK000068 (MAKEMYTRIP)",
@@ -492,8 +492,8 @@
       "obligation_shortfall_detected_paise": 0
      },
      "records_processed": 461,
-     "elapsed_seconds": 0.0032,
-     "throughput_records_per_sec": 143479.61,
+     "elapsed_seconds": 0.0027,
+     "throughput_records_per_sec": 173667.37,
      "verify_violations": [
       "decision 0 claims credit on ineligible spend BANK000057 (MAKEMYTRIP)",
       "decision 1 claims credit on ineligible spend BANK000023 (MAKEMYTRIP)",
@@ -664,7 +664,7 @@
      },
      "records_processed": 478,
      "elapsed_seconds": 0.0032,
-     "throughput_records_per_sec": 148134.38,
+     "throughput_records_per_sec": 148594.87,
      "verify_violations": [
       "decision 0 claims credit on ineligible spend BANK000078 (MAKEMYTRIP)",
       "decision 1 claims credit on ineligible spend BANK000073 (MAKEMYTRIP)",
@@ -834,8 +834,8 @@
       "obligation_shortfall_detected_paise": 0
      },
      "records_processed": 499,
-     "elapsed_seconds": 0.002,
-     "throughput_records_per_sec": 248394.64,
+     "elapsed_seconds": 0.0037,
+     "throughput_records_per_sec": 136249.45,
      "verify_violations": [
       "decision 0 claims credit on ineligible spend BANK000030 (MAKEMYTRIP)",
       "decision 1 claims credit on ineligible spend BANK000059 (MAKEMYTRIP)",
@@ -893,9 +893,9 @@
      "max": 70
     },
     "throughput_records_per_sec": {
-     "mean": 198407.504,
-     "min": 143479.61,
-     "max": 248394.64
+     "mean": 174107.816,
+     "min": 135436.2,
+     "max": 276591.19
     },
     "golden_rows_total": 2418,
     "money_totals": {
@@ -1066,8 +1066,8 @@
       "obligation_shortfall_detected_paise": 177000
      },
      "records_processed": 518,
-     "elapsed_seconds": 0.0018,
-     "throughput_records_per_sec": 293501.08,
+     "elapsed_seconds": 0.002,
+     "throughput_records_per_sec": 254795.88,
      "verify_violations": [],
      "verify_violation_count": 0
     },
@@ -1211,8 +1211,8 @@
       "obligation_shortfall_detected_paise": 181000
      },
      "records_processed": 462,
-     "elapsed_seconds": 0.0021,
-     "throughput_records_per_sec": 224141.27,
+     "elapsed_seconds": 0.0014,
+     "throughput_records_per_sec": 336710.13,
      "verify_violations": [],
      "verify_violation_count": 0
     },
@@ -1356,8 +1356,8 @@
       "obligation_shortfall_detected_paise": 179000
      },
      "records_processed": 461,
-     "elapsed_seconds": 0.0026,
-     "throughput_records_per_sec": 179328.59,
+     "elapsed_seconds": 0.0015,
+     "throughput_records_per_sec": 308836.37,
      "verify_violations": [],
      "verify_violation_count": 0
     },
@@ -1501,8 +1501,8 @@
       "obligation_shortfall_detected_paise": 179000
      },
      "records_processed": 478,
-     "elapsed_seconds": 0.0017,
-     "throughput_records_per_sec": 286244.68,
+     "elapsed_seconds": 0.0026,
+     "throughput_records_per_sec": 183577.85,
      "verify_violations": [],
      "verify_violation_count": 0
     },
@@ -1647,7 +1647,7 @@
      },
      "records_processed": 499,
      "elapsed_seconds": 0.0016,
-     "throughput_records_per_sec": 318646.22,
+     "throughput_records_per_sec": 308901.83,
      "verify_violations": [],
      "verify_violation_count": 0
     }
@@ -1679,9 +1679,9 @@
      "max": 0
     },
     "throughput_records_per_sec": {
-     "mean": 260372.368,
-     "min": 179328.59,
-     "max": 318646.22
+     "mean": 278564.412,
+     "min": 183577.85,
+     "max": 336710.13
     },
     "golden_rows_total": 2418,
     "money_totals": {

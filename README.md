@@ -24,15 +24,25 @@ only ever believed after deterministic arithmetic proves its work.
 ## Run it
 
 ```
-pip install -r requirements.txt -r requirements-dev.txt
+pip install -r requirements.txt -r requirements-dev.txt -e .
 streamlit run src/app.py
 ```
 
 That's the whole app — the dashboard opens at **http://localhost:8501**
 (daily close, actionable exception queue, forecasts, tax, benchmarks).
-No API key, no network, no database needed.
+No API key, no network, no database needed. Python 3.11+; the pins are the
+exact environment every committed number was produced in, and `-e .`
+installs the `src/` packages so every `python -m …` command below works from
+any shell.
 
-To reproduce every number in this repo from a clean checkout (317 tests,
+![The Daily Close tab: cash, forecast low, ITC, the severity-ranked exception queue and the verifier banner](docs/daily_close.png)
+
+*The Daily Close on the committed seed-42 world — the screen a finance
+operator opens every morning: cash, the forecast low, tax credit claimable,
+and the exception queue worst-first, with the independent verifiers' verdict
+on this exact output.*
+
+To reproduce every number in this repo from a clean checkout (323 tests,
 determinism proofs, all benchmarks, the real-statement run — fully offline):
 
 ```
@@ -53,15 +63,25 @@ prove is spelled out in [Limitations](#limitations--what-this-does-not-prove-and
 | stage | this project | naive baseline |
 |---|---|---|
 | Reconciliation (precision / recall / disposition) | **100% / 100% / 100%**, 30/30 correct abstentions | 97.5% / 79.2% / 74.1%, 0/30 |
-| Cash forecast (balance-path error / 80%-band coverage / cash-drop alerts) | **₹77,208 = 1.8% of opening balance / 79.9% / 17 of 21 true drops caught, 2 false alarms** — daily-flow WAPE 59.1% | trailing-mean ₹1,83,033 = 4.0% / — / 0 of 21 caught |
+| Cash forecast (balance-path error / 80%-band coverage / cash-drop alerts) | **₹76,454 = 1.7% of opening balance / 80.3% / 17 of 21 true drops caught, 2 false alarms** — daily-flow WAPE 59.0% | trailing-mean ₹1,83,033 = 4.0% / — / 0 of 21 caught |
 | Tax matching (disposition / ₹ claimed falsely) | **100% / ₹0** | 51.3% / ₹1,65,084 |
 | Unified close (queue recall / precision / verifier violations) | **1266/1266 / 100% / 0** | 83.1% / 48.1% / 330 |
 | Real bank statement (65 messy rows) | **balance chain proven to the paisa; engine claimed nothing (0 forced matches)** — an intake + abstention proof, not a matching-accuracy result | — |
 
+The brief asks for a match rate and the exceptions that could not be resolved.
+On the committed 180-day world the daily close reports exactly that, and an
+independent verifier recomputes it from the embedded decisions: **202 of 238
+in-scope records auto-reconciled (84.9%); 36 could not be resolved
+automatically → queue** (ambiguous 6, duplicate credits 9, settlements never
+banked 16, credits with no settlement 5 — `reports/daily_close_42d180.md`).
+
 100% here means *verified behaviour on deterministic constructions* — read
 [ARCHITECTURE.md](ARCHITECTURE.md#read-the-engines-100-honestly) for the honest
 framing, and [Limitations](#limitations--what-this-does-not-prove-and-why) below
-for what was never measured at all.
+for what was never measured at all. The naive baseline is the first script
+anyone writes — amount within ₹1, value date within 3 days, greedy, no
+references — and it shares the engine's parsers, so parsing is never the
+differentiator (the definition is printed in `reports/benchmark_report.md`).
 
 ## What makes it different
 
@@ -74,6 +94,10 @@ for what was never measured at all.
   row-by-row to the paisa. A real recorded run is committed — including one
   rejected-then-repaired proposal — and replays offline with no API key,
   request-hash-checked (`data/agent_transcripts/intake/statement_a.jsonl`).
+  The investigator agent is evidenced the same way: one recorded run drafting
+  a note on a real S1 item (a ₹62,630 settlement that never reached the bank)
+  is committed and replays in the test suite and repro step 10 — the close it
+  read is byte-identical before and after, by assertion.
 - **Everything is independently verified.** Four verifiers share no code with
   the engines, re-read the raw files with their own parsers, and fail the run
   on any violation — including a close that misreports its own trust panel.
@@ -92,8 +116,12 @@ python -m agent.intake data/real/statement_a/statement.xlsx --out out/w --mappin
 
 Optional: put an `ANTHROPIC_API_KEY` in `.env` (template provided) to enable
 **live** agent runs — `agent.intake --record` maps a brand-new bank export and
-records the transcript; `agent.investigate` drafts advisory notes on queue
-items. Decisions are unaffected in every mode, by test.
+records the transcript; `agent.investigate --record` drafts an advisory note
+on a queue item. Both have one real recording committed under
+`data/agent_transcripts/` (the investigator's: 3 calls, ~$0.04, on the S1
+item `6a547f24b524` of seed 42), and both replay offline with request hashes
+checked — repro steps 8 and 10. Decisions are unaffected in every mode, by
+test.
 
 ## Limitations — what this does not prove (and why)
 
@@ -137,20 +165,29 @@ on purpose; a reader should meet it first.
   `gstr2b.csv` and `form26as.csv` are therefore generated by the same world
   generator, and the tax engine's 100% is against that generated truth.
 - **Forecast accuracy, in absolute terms.** The daily point forecast is not
-  day-precise: 59.1% WAPE on daily net flow, a series that is spiky by
+  day-precise: 59.0% WAPE on daily net flow, a series that is spiky by
   construction. What a cash planner can use is the balance path — within
-  ₹77,208 of the truth on average (1.8% of a ~₹45L opening balance; ₹1,24,750
+  ₹76,454 of the truth on average (1.7% of a ~₹45L opening balance; ₹1,23,230
   by day 14) — the 14-day low (within ₹30,041, dated within two days 96% of
-  the time), the self-calibrated 80% band (79.9% coverage on average, but
+  the time), the self-calibrated 80% band (80.3% coverage on average, but
   53–97% per world) and the cash-drop alerts: 17 of 21 true drops caught with
   2 false alarms across 70 held-out fortnights × three depths (₹2L 10/1/2 ·
   ₹3L 7/1/0 · ₹4L 0/2/0 hits/misses/false alarms). That is a small sample by
   nature, and most true drops are the same calendar fortnight — the one
   holding the 1st-of-month payroll + rent cluster — across worlds, so they are
   less independent than the count suggests. Every event is listed per origin
-  in `reports/forecast_backtest.md`.
-- **Scale.** ~8k records/s is measured on generated worlds of a few thousand
-  records on a laptop, not on production volumes.
+  in `reports/forecast_backtest.md`. One more thing by construction: the GST
+  obligation's amount is computed from the books rule the compliance loop
+  publishes (3% of the prior month's gross), so its 10/10 amount accuracy in
+  the detection table is the rule being right, not a forecast being clever.
+- **Scale.** Throughput is measured, but on small generated worlds and one
+  laptop, and it is noisy run to run: the reconciliation engine alone parses
+  and matches a 374-record batch in 10–20 ms — 22,000–35,000 records/s across
+  runs (`reports/benchmark_report.md` holds the current one) — and one full
+  daily close over all six input files (4,957 rows, three loops plus the
+  verifiers) runs at 5,000–7,000 records/s (`reports/close_audit.md`). Intel
+  Core i5-1334U, Windows 11, Python 3.13, single process. Production volumes
+  were never tested.
 
 ## Where everything lives
 
@@ -159,5 +196,6 @@ on purpose; a reader should meet it first.
 | [ARCHITECTURE.md](ARCHITECTURE.md) | full design doc: every module with its path, engine pass order, stage-by-stage results, the agent layer, honest scope |
 | [reports/](reports/) | committed benchmark evidence (regenerate with `python scripts/repro.py`) |
 | [src/](src/) | `recon/` · `forecast/` · `tax/` · `controller/` · `agent/` · `ingest/` · `app.py` |
-| [tests/](tests/) | 317 tests — parsers to verifiers to agent-quarantine canaries |
-| [data/](data/) | committed world (`seeds/42`), real statement (`real/statement_a`), official-schema Razorpay fixtures (`fixtures/razorpay`), merchant registry |
+| [tests/](tests/) | 323 tests — parsers to verifiers to agent-quarantine canaries; [CI](.github/workflows/tests.yml) runs the whole offline suite on every push |
+| [LICENSE](LICENSE) | MIT |
+| [data/](data/) | committed world (`seeds/42`), real statement (`real/statement_a`), official-schema Razorpay fixtures (`fixtures/razorpay`), merchant registry (with each merchant's low-cash floor), recorded agent transcripts (`agent_transcripts/`) |

@@ -7,6 +7,6 @@ Seeds [42, 43, 44, 45, 46] on 180-day worlds. Every golden record whose expected
 | daily_close | 1266/1266 (100.0%) | 100.0% | 100.0% | Rs 27,210, surfaced Rs 27,210 | 0 |
 | naive_engines | 1053/1266 (83.1%) | 22.0% | 48.1% | Rs 27,210, surfaced Rs 5,364 | 330 |
 
-One full daily close (all three loops, one pass, verifiers included) processes ~6,801 records/second.
+One full daily close (all three loops, one pass, verifiers included) processes ~4,811 records/second.
 
 The queue never sees the golden files (package canary test); the synthetics excluded from precision are `needs_review` — a confidence overlay on matched decisions — and the threshold-breach item, which exists only relative to a user-chosen threshold.

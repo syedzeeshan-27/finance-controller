@@ -43,6 +43,21 @@ def inr(paise: int | None) -> str:
     return f"{sign}₹{rupee_str_from_paise(abs(paise), indian_grouping=True)}"
 
 
+def inr_whole(paise: int | None) -> str:
+    """Whole rupees for headline metrics, which truncate at laptop width;
+    the paise-exact value goes in the metric's help text."""
+    if paise is None:
+        return "—"
+    return inr(int(round(paise / 100)) * 100).rsplit(".", 1)[0]
+
+
+# Working-capital floor for cash-crunch alerts: per merchant in
+# data/merchants.json (`low_cash_threshold_paise`, null = no floor, e.g. a
+# personal account); generated seed worlds default to Rs 10 lakh.
+DEFAULT_THRESHOLD_PAISE = 100_000_000
+_THRESHOLDS: dict[str, int | None] = {}
+
+
 def available_seeds() -> list[str]:
     if not os.path.isdir(SEEDS_DIR):
         return []
@@ -62,10 +77,13 @@ def available_worlds() -> list[tuple[str, str]]:
                 d = os.path.join(ROOT, *m["data_dir"].split("/"))
                 if os.path.isfile(os.path.join(d, "settlements.csv")):
                     options.append((m["name"], d))
+                    _THRESHOLDS[d] = m.get("low_cash_threshold_paise",
+                                           DEFAULT_THRESHOLD_PAISE)
     for s in available_seeds():
         d = os.path.join(SEEDS_DIR, s)
         if all(d != existing for _, existing in options):
             options.append((f"world {s}", d))
+            _THRESHOLDS.setdefault(d, DEFAULT_THRESHOLD_PAISE)
     return options
 
 
@@ -107,7 +125,14 @@ if not worlds:
 world_label = st.sidebar.selectbox("Merchant / world",
                                    [label for label, _ in worlds], index=0)
 data_dir = dict(worlds)[world_label]
-st.sidebar.caption(f"Engine: deterministic multi-pass · Explanations: {llm_mode()}")
+# Honest label: the dashboard never calls a model. attach_explanations()
+# defaults to deterministic templates and nothing here passes use_llm=True;
+# a configured key only enables live agent runs from the CLI.
+_key_present = llm_mode() not in ("unavailable", "mock(deterministic templates)")
+st.sidebar.caption(
+    "Engine: deterministic multi-pass · Explanations: deterministic templates"
+    + (" (API key found; LLM rephrasing stays off in the dashboard)"
+       if _key_present else ""))
 
 world = run_reconciliation(data_dir, _dir_stamp(data_dir))
 A: list[S.Decision] = world["decisions_a"]
@@ -174,31 +199,46 @@ def run_close(data_dir: str, stamp: float, horizon: int,
 
 
 with tab_close:
-    thr_l = st.number_input("Low-cash alert threshold (Rs lakh)",
-                            min_value=1.0, max_value=100.0, value=10.0,
-                            step=0.5, key="close_threshold")
-    close = run_close(data_dir, _dir_stamp(data_dir), 14,
-                      int(thr_l * 10_000_000))
+    # per-merchant default; the widget key includes the world so switching
+    # merchants picks up that merchant's floor instead of a stale value
+    _default_thr = _THRESHOLDS.get(data_dir, DEFAULT_THRESHOLD_PAISE)
+    thr_l = st.number_input("Low-cash alert threshold (Rs lakh; 0 = off)",
+                            min_value=0.0, max_value=100.0,
+                            value=(_default_thr or 0) / 10_000_000,
+                            step=0.5, key=f"close_threshold::{data_dir}")
+    threshold_paise = int(thr_l * 10_000_000) or None
+    if threshold_paise is None:
+        st.caption("No low-cash floor configured for this merchant — "
+                   "cash-crunch alerts are off. Set `low_cash_threshold_paise` "
+                   "in `data/merchants.json` to enable them.")
+    close = run_close(data_dir, _dir_stamp(data_dir), 14, threshold_paise)
     # workflow overlay lives OUTSIDE the cache: the close stays a pure
     # function of the world; operator state is read fresh on every rerun
     queue = QS.overlay(close["queue"], QS.load_state(data_dir))
     sev = close["counts"]["by_severity"]
     panel = close["verify_panel"]
 
-    k1, k2, k3, k4, k5 = st.columns(5)
-    k1.metric("Cash in bank", inr(close["cash"]["balance_paise"]),
-              help=f"close date {close['close_date']} · "
+    cash_paise = close["cash"]["balance_paise"]
+    min_bal = close["forecast"]["min_balance"]
+    at_risk = sum(i["money_at_risk_paise"] for i in queue)
+    itc_now = (close["tax_summary"]["itc_claimable_now_paise"]
+               if close["tax_summary"] else None)
+    k1, k2, k3 = st.columns(3)
+    k1.metric("Cash in bank", inr_whole(cash_paise),
+              help=f"{inr(cash_paise)} · close date {close['close_date']} · "
                    f"{close['cash']['statement_rows']} statement rows")
-    k2.metric(f"Min balance ({close['forecast']['min_balance']['date']})",
-              inr(close["forecast"]["min_balance"]["paise"]))
+    k2.metric(f"Min balance ({min_bal['date']})", inr_whole(min_bal["paise"]),
+              help=f"{inr(min_bal['paise'])} · lowest point of the 14-day "
+                   "forecast path")
     k3.metric("ITC claimable now",
-              inr(close["tax_summary"]["itc_claimable_now_paise"])
-              if close["tax_summary"] else "n/a")
+              inr_whole(itc_now) if itc_now is not None else "n/a",
+              help=inr(itc_now) if itc_now is not None else
+                   "no tax data in this world")
+    k4, k5 = st.columns(2)
     k4.metric("Exception queue",
               f"{sev['S1']} S1 · {sev['S2']} S2 · {sev['S3']} S3",
               help="S1 act today · S2 chase externally · S3 review")
-    k5.metric("₹ at risk in queue",
-              inr(sum(i["money_at_risk_paise"] for i in queue)))
+    k5.metric("₹ at risk in queue", inr_whole(at_risk), help=inr(at_risk))
 
     tax_v = "n/a" if panel["tax"] is None else panel["tax"]
     ok = (panel["leg_a"] == 0 and panel["forecast"] == 0
@@ -240,7 +280,7 @@ with tab_close:
         "overdue": (f"{i['days_overdue']}d" if i["days_overdue"] is not None
                     else ""),
     } for i in shown])
-    st.dataframe(qdf, use_container_width=True, height=380)
+    st.dataframe(qdf, width="stretch", height=380)
 
     st.subheader("Inspect")
     pick = st.selectbox(
@@ -293,13 +333,13 @@ with tab_close:
                                   format="YYYY-MM-DD")
             b1, b2, b3, b4 = st.columns(4)
             do_resolve = b1.form_submit_button("✅ Resolve",
-                                               use_container_width=True)
+                                               width="stretch")
             do_assign = b2.form_submit_button("👤 Assign",
-                                              use_container_width=True)
+                                              width="stretch")
             do_snooze = b3.form_submit_button("💤 Snooze",
-                                              use_container_width=True)
+                                              width="stretch")
             do_note = b4.form_submit_button("📝 Note only",
-                                            use_container_width=True)
+                                            width="stretch")
             action = ("resolve" if do_resolve else "assign" if do_assign
                       else "snooze" if do_snooze else "note" if do_note
                       else None)
@@ -328,28 +368,41 @@ with tab_overview:
     exception_paise = sum((d.expected_paise or d.received_paise or 0)
                           for d in exceptions
                           if d.status not in (S.OUT_OF_SCOPE, S.NON_SETTLEMENT_CREDIT))
-    c1, c2, c3, c4, c5 = st.columns(5)
+    # The brief's own metric: of the records this loop is about (bank debits
+    # and unrelated inflows excluded), how many were auto-reconciled.
+    in_scope = [d for d in A
+                if d.status not in (S.OUT_OF_SCOPE, S.NON_SETTLEMENT_CREDIT)]
+    for_review = [d for d in exceptions
+                  if d.status not in (S.OUT_OF_SCOPE, S.NON_SETTLEMENT_CREDIT)]
+    c1, c2, c3 = st.columns(3)
     c1.metric("Settlements", len(world["settlements"]))
     c2.metric("Auto-reconciled", f"{len(matches)} decisions",
               help="matched / split / merged / matched-with-discrepancy")
-    c3.metric("₹ reconciled", inr(reconciled_paise))
-    c4.metric("Exceptions for review",
-              len([d for d in exceptions
-                   if d.status not in (S.OUT_OF_SCOPE, S.NON_SETTLEMENT_CREDIT)]),
+    c3.metric("Match rate",
+              f"{len(matches) / len(in_scope):.1%}" if in_scope else "n/a",
+              help=f"{len(matches)} of {len(in_scope)} in-scope records "
+                   "auto-reconciled (bank debits and unrelated inflows are "
+                   "excluded); everything else goes to a human — the same "
+                   "line the close report prints")
+    c4, c5, c6 = st.columns(3)
+    c4.metric("₹ reconciled", inr_whole(reconciled_paise),
+              help=inr(reconciled_paise))
+    c5.metric("Exceptions for review", len(for_review),
               help="missing credits/settlements, duplicates, ambiguous cases")
-    c5.metric("₹ in exceptions", inr(exception_paise))
+    c6.metric("₹ in exceptions", inr_whole(exception_paise),
+              help=inr(exception_paise))
 
     st.divider()
     left, right = st.columns(2)
     with left:
         st.subheader("Decisions by status")
         counts = pd.Series([d.status for d in A]).value_counts()
-        st.dataframe(counts.rename("count"), use_container_width=True)
+        st.dataframe(counts.rename("count"), width="stretch")
     with right:
         st.subheader("Match confidence")
         if _has("settlements"):
             conf = pd.Series([d.confidence for d in matches]).value_counts()
-            st.dataframe(conf.rename("count"), use_container_width=True)
+            st.dataframe(conf.rename("count"), width="stretch")
             st.caption(
                 "`exact` = verbatim UTR + exact paise · `high` = damaged UTR "
                 "or decomposed discrepancy, corroborated by exact amounts · "
@@ -380,7 +433,7 @@ with tab_matches:
         tiers = st.multiselect("Confidence filter", list(S.CONFIDENCE_TIERS),
                                default=list(S.CONFIDENCE_TIERS))
         shown = [d for d in matches if d.confidence in tiers]
-        st.dataframe(_decision_table(shown), use_container_width=True,
+        st.dataframe(_decision_table(shown), width="stretch",
                      height=420)
         st.subheader("Inspect a decision")
         pick = st.selectbox(
@@ -456,7 +509,7 @@ with tab_journey:
                      + (" with a broken link" if broken_only else ""))
         st.caption("order → payment → settlement → bank credit; `first_break` "
                    "names the first stage where the money trail stops.")
-        st.dataframe(view, use_container_width=True, height=480)
+        st.dataframe(view, width="stretch", height=480)
 
 
 # --- Forecast -----------------------------------------------------------------
@@ -550,7 +603,7 @@ with tab_forecast:
             rule = alt.Chart(thr_df).mark_rule(strokeDash=[2, 2],
                                                color="#d62728").encode(y="y:Q")
             st.altair_chart((band + line_f + line_a + rule).properties(height=340),
-                            use_container_width=True)
+                            width="stretch")
             st.caption("Blue: forecast balance path. Shaded: self-calibrated 80% "
                        "band. Dashed grey: what actually happened (held-out future "
                        "- the forecaster never saw it). Red: alert threshold.")
@@ -590,7 +643,7 @@ with tab_forecast:
                     odf = pd.DataFrame(result["obligations"])
                     odf["amount"] = odf["amount_paise"].map(inr)
                     st.dataframe(odf[["due_date", "key", "amount", "basis"]],
-                                 use_container_width=True, height=260)
+                                 width="stretch", height=260)
                 else:
                     st.caption("none in the horizon")
                 st.subheader("Known in-flight money")
@@ -598,7 +651,7 @@ with tab_forecast:
                     idf = pd.DataFrame(result["in_flight"])
                     idf["amount"] = idf["amount_paise"].map(inr)
                     st.dataframe(idf[["expected_date", "kind", "id", "amount"]],
-                                 use_container_width=True, height=220)
+                                 width="stretch", height=220)
                 else:
                     st.caption("nothing pending")
             with right:
@@ -707,7 +760,7 @@ with tab_tax:
             picked = st.multiselect("Status filter", statuses,
                                     default=interesting or statuses)
             shown = [d for d in itc if d["status"] in picked]
-            st.dataframe(tax_table(shown), use_container_width=True,
+            st.dataframe(tax_table(shown), width="stretch",
                          height=340)
             st.subheader("Inspect")
             pick = st.selectbox(
@@ -731,14 +784,14 @@ with tab_tax:
                        "every 1% marketplace-TDS deduction the reconciliation "
                        "engine decomposed at credit, matched against what the "
                        "deductor actually filed.")
-            st.dataframe(tax_table(tds), use_container_width=True, height=260)
+            st.dataframe(tax_table(tds), width="stretch", height=260)
 
         with sub_obl:
             st.caption("GST liability = 3% of previous month's gross captured "
                        "(floored to ₹10); TDS deposit = 10% of the previous "
                        "month's actual payroll debit. Both recomputed from "
                        "first principles and compared with the statement.")
-            st.dataframe(tax_table(obl), use_container_width=True, height=440)
+            st.dataframe(tax_table(obl), width="stretch", height=440)
 
 
 # --- Benchmark ----------------------------------------------------------------
@@ -780,7 +833,7 @@ with tab_benchmark:
                 "invariant violations": vio,
             })
         st.subheader("Leg A: strategy comparison (mean across seeds)")
-        st.dataframe(pd.DataFrame(rows), use_container_width=True)
+        st.dataframe(pd.DataFrame(rows), width="stretch")
 
         st.subheader("Per-scenario disposition accuracy (first seed)")
         strategies = list(results["strategies"])
@@ -793,7 +846,7 @@ with tab_benchmark:
                 sc = results["strategies"][name]["per_seed"][first_seed]["per_scenario"].get(tag)
                 row[name] = f"{sc['accuracy']:.0%}" if sc else "—"
             scenario_rows.append(row)
-        st.dataframe(pd.DataFrame(scenario_rows), use_container_width=True, height=560)
+        st.dataframe(pd.DataFrame(scenario_rows), width="stretch", height=560)
 
         lb = results["leg_b"]["aggregate"]["disposition_accuracy"]
         st.subheader("Leg B: payment ↔ order book")

@@ -73,6 +73,24 @@ def test_tampered_inbox_file_is_refused(tmp_path):
         consume_inbox(str(inbox), str(tmp_path / "out"), secret=_SECRET)
 
 
+def test_inbox_fails_closed_without_a_secret(tmp_path):
+    inbox = os.path.join(_FIXTURES, "webhooks")
+    with pytest.raises(SystemExit, match="unsigned"):
+        consume_inbox(inbox, str(tmp_path / "out"))
+    # explicit opt-in for offline fixtures is the only unsigned path
+    stats = consume_inbox(inbox, str(tmp_path / "out2"), allow_unsigned=True)
+    assert stats["consumed"] == 3 and stats["unverified_skipped"] == 0
+
+
+def test_event_without_signature_sidecar_is_skipped_not_trusted(tmp_path):
+    inbox = tmp_path / "inbox"
+    shutil.copytree(os.path.join(_FIXTURES, "webhooks"), inbox)
+    (inbox / "001_payment_captured.sig").unlink()
+    stats = consume_inbox(str(inbox), str(tmp_path / "out"), secret=_SECRET)
+    assert stats["unverified_skipped"] == 1
+    assert stats["consumed"] == 2               # the unsigned one never lands
+
+
 def test_fixture_mode_never_opens_the_network(tmp_path, monkeypatch):
     import urllib.request
 
