@@ -251,18 +251,54 @@ with tab_close:
     for w in close["warnings"]:
         st.caption(f"⚠️ {w}")
 
+    # One "All" chip is the default; the individual options stay available
+    # to narrow. "All" (or an empty pick) means everything, so the table can
+    # never end up blank by accident.
+    ALL = "All"
+    ALL_OPEN = "All open"
+    sources = sorted(close["counts"]["by_source"])
+    open_states = [w for w in QS.WORKFLOWS if w != "resolved"]
+
+    def _exclusive_all(key: str, specials: tuple[str, ...]) -> None:
+        """Keep the special 'All'-style entries and specific picks mutually
+        exclusive: choosing a specific option drops the special, choosing a
+        special drops everything else, and clearing the box falls back to
+        the first special (the default view)."""
+        picks = list(st.session_state[key])
+        prev = st.session_state.get(f"{key}::prev", [specials[0]])
+        chosen = [p for p in picks if p in specials]
+        if not picks:
+            picks = [specials[0]]
+        elif chosen and len(picks) > 1:
+            fresh = [p for p in chosen if p not in prev]
+            picks = ([fresh[-1]] if fresh
+                     else [p for p in picks if p not in specials])
+        st.session_state[key] = picks
+        st.session_state[f"{key}::prev"] = picks
+
     fcol, scol, wcol = st.columns(3)
-    sev_pick = fcol.multiselect("Severity", ["S1", "S2", "S3"],
-                                default=["S1", "S2", "S3"])
-    src_pick = scol.multiselect(
-        "Source", sorted(close["counts"]["by_source"]),
-        default=sorted(close["counts"]["by_source"]))
-    wf_pick = wcol.multiselect(
-        "Workflow", list(QS.WORKFLOWS),
-        default=[w for w in QS.WORKFLOWS if w != "resolved"])
+    k_sev, k_src, k_wf = (f"flt_sev::{data_dir}", f"flt_src::{data_dir}",
+                          f"flt_wf::{data_dir}")
+    sev_pick = fcol.multiselect("Severity", [ALL, "S1", "S2", "S3"],
+                                default=[ALL], key=k_sev,
+                                on_change=_exclusive_all, args=(k_sev, (ALL,)),
+                                help="All = every severity; pick S1/S2/S3 "
+                                     "to narrow")
+    src_pick = scol.multiselect("Source", [ALL] + sources, default=[ALL],
+                                key=k_src, on_change=_exclusive_all,
+                                args=(k_src, (ALL,)), help="All = every source")
+    wf_pick = wcol.multiselect("Workflow", [ALL_OPEN] + list(QS.WORKFLOWS),
+                               default=[ALL_OPEN], key=k_wf,
+                               on_change=_exclusive_all,
+                               args=(k_wf, (ALL_OPEN,)),
+                               help="All open = everything except resolved; "
+                                    "pick 'resolved' to see closed items")
+    sev = ["S1", "S2", "S3"] if (ALL in sev_pick or not sev_pick) else sev_pick
+    src = sources if (ALL in src_pick or not src_pick) else src_pick
+    wf = open_states if (ALL_OPEN in wf_pick or not wf_pick) else wf_pick
     shown = [i for i in queue
-             if f"S{i['severity']}" in sev_pick and i["source"] in src_pick
-             and i["workflow"] in wf_pick]
+             if f"S{i['severity']}" in sev and i["source"] in src
+             and i["workflow"] in wf]
 
     n_resolved = sum(1 for i in queue if i["workflow"] == "resolved")
     st.subheader(f"{len(shown)} queue items — worst first"
@@ -757,9 +793,24 @@ with tab_tax:
             interesting = [s for s in statuses
                            if s not in (TS.ITC_MATCHED, TS.NO_ITC_APPLICABLE,
                                         TS.BLOCKED_CREDIT_NO_ITC)]
-            picked = st.multiselect("Status filter", statuses,
-                                    default=interesting or statuses)
-            shown = [d for d in itc if d["status"] in picked]
+            # One chip by default ("Needs attention" = the statuses worth a
+            # look); "All" shows every status; specifics narrow. Same
+            # mutual-exclusion helper as the Daily Close filters.
+            NEEDS = "Needs attention"
+            k_itc = f"flt_itc::{data_dir}"
+            picked = st.multiselect(
+                "Status filter", [NEEDS, ALL] + statuses, default=[NEEDS],
+                key=k_itc, on_change=_exclusive_all, args=(k_itc, (NEEDS, ALL)),
+                help="Needs attention = everything except matched, "
+                     "no-ITC-applicable and blocked-by-rule lines; "
+                     "All = every status; pick statuses to narrow")
+            if ALL in picked:
+                sel = statuses
+            elif NEEDS in picked or not picked:
+                sel = interesting or statuses
+            else:
+                sel = picked
+            shown = [d for d in itc if d["status"] in sel]
             st.dataframe(tax_table(shown), width="stretch",
                          height=340)
             st.subheader("Inspect")

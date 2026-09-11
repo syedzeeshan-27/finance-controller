@@ -4,3 +4,8 @@ port = 8501
 
 [browser]
 gatherUsageStats = false
+
+[theme]
+# Calm steel blue instead of Streamlit's default red: filter chips, active
+# tab, focus rings and buttons all inherit it.
+primaryColor = "#4A6FA5"

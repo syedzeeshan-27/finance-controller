@@ -23,6 +23,7 @@ Everything the [README](README.md) summarises, in depth. All numbers come from c
 ## Words used in this document
 
 - **Settlement.** Razorpay collects a batch of captured payments, deducts its fee and tax, and pays the net amount to the merchant's bank account. One settlement carries one UTR.
+- **T+N.** The settlement schedule: money captured on day T reaches the bank N business days later (Razorpay settles on a T+2 cycle by default).
 - **UTR.** Unique Transaction Reference: the bank transfer reference that travels with the money. It is the only legitimate key joining a settlement to a bank credit.
 - **Settlement-to-bank matching.** Proving each settlement landed in the bank as a credit. This is the hard half of reconciliation. (In the code this is called "leg A".)
 - **Payment-to-order matching.** Proving each captured payment belongs to an order and each order was paid. Simpler, because payments carry an order id. (In the code, "leg B".)
@@ -30,10 +31,15 @@ Everything the [README](README.md) summarises, in depth. All numbers come from c
 - **Paise.** One hundredth of a rupee. Every amount in memory is an integer number of paise.
 - **Golden file.** The answer key the generator writes at the moment it builds each record. Engines never read it; only graders do.
 - **Seed.** The number that fixes the random generator so a world regenerates identically.
+- **World.** One synthetic merchant: the six input files plus their answer keys, built by the generator for a given seed and length. "Seed 42" and "42d180" name worlds.
+- **Committed.** Checked into the repo, so a reviewer sees the exact bytes the numbers came from (the seed-42 world, the reports, the agent transcripts).
 - **GSTR-2B.** The monthly statement the GST portal produces for a business, listing the input tax credit available based on what its vendors filed.
 - **ITC.** Input tax credit: GST paid on purchases that can be set off against GST collected on sales.
 - **Form 26AS.** The income-tax statement showing tax deducted at source (TDS) against a taxpayer, as filed by whoever deducted it.
 - **WAPE.** Weighted absolute percentage error: total absolute error divided by total absolute actual.
+- **Rolling origin.** A backtest that forecasts from several past cutoffs in turn and scores each against what actually happened after it, rather than from a single point.
+- **Held-out fortnight.** A 14-day window after a forecast cutoff whose actual bank rows the forecaster never saw, used to score it. The backtest has 70 of them.
+- **Ablation.** Re-running the forecaster with one layer switched off, to measure what that layer is worth. The backtest reports these rows.
 - **Verifier.** A module that shares no code with an engine, re-reads the raw files with its own parsers, and checks the engine's claims.
 
 ## Design principles
@@ -43,7 +49,7 @@ The track brief quotes the 2026 builder consensus: verification capacity, not ge
 - **Deterministic core.** Matching and every rupee of arithmetic is plain Python over integer paise. No floats, no tolerances, no LLM anywhere near a decision. A match rests on reference evidence (the UTR) or exact-paise amount equality. Never on "close enough".
 - **Abstention is a first-class verdict.** When two candidates cannot be told apart on observable evidence, the engine refuses to guess and shows a reviewer both with reasons. The benchmark rewards this and grades a guess as a false match.
 - **Independent verification.** Each stage has a verifier that shares no code with its engine. Any violation fails the whole run.
-- **The agent proposes, arithmetic decides.** The AI layer (Claude, through the Anthropic SDK, in a hand-written tool loop) never touches a match. The intake agent proposes a bank statement's structure and a validator proves it to the paisa or rejects it. The investigator agent drafts advisory notes on queue items that are already final. No decision module imports the agent package (checked by test), and engine decisions are pinned identical with the agent layer present or absent. Every agent run records a transcript with per-request hashes, and replay re-runs it offline and fails loudly if anything drifted. The whole reproduction runs with no API key.
+- **The agent proposes, arithmetic decides.** This is the direct consequence of the bottleneck thesis: because verification is what is scarce, the AI is quarantined and its output has to be proved, never trusted. The AI layer (Claude, through the Anthropic SDK, in a hand-written tool loop) never touches a match. The intake agent proposes a bank statement's structure and a validator proves it to the paisa or rejects it. The investigator agent drafts advisory notes on queue items that are already final. No decision module imports the agent package (checked by test), and engine decisions are pinned identical with the agent layer present or absent. Every agent run records a transcript with per-request hashes, and replay re-runs it offline and fails loudly if anything drifted. The whole reproduction runs with no API key.
 
 ## The data
 
@@ -219,9 +225,11 @@ From `reports/tax_benchmark.md`, generated by `python -m tax.benchmark --seeds 4
 
 The money view is the point. Across five worlds the engine claims ₹5,45,661 of input credit, every paisa backed by a GSTR-2B line the vendor actually filed, and claims ₹0 falsely. The naive matcher claims ₹1,65,084 it must not: Section 17(5)-blocked food and travel credits, unknown invoices filed against the merchant, cross-vendor amount coincidences. The engine surfaces all ₹15,437 of credit at risk (vendor never filed), all ₹1,875 of TDS missing from 26AS, and all ₹8,810 of short-paid liability. Naive finds a third, all, and none of those, and scores zero on every defect scenario that matters: blocked 0 of 588, wrong head 0 of 20, filed late 0 of 36, short, late and unverifiable obligations 0 of 15.
 
-Trust notes, as in Stage 1: ground truth is minted at generation time (`golden_tax.csv`) with defects injected under quotas; a behavioural test pins the engine's decisions byte-identical with the answer keys deleted or corrupted on disk; and the verifier hard-fails the benchmark on any violation. The naive baseline's 330 violations (double claims, ineligible claims) are the proof the checks have teeth.
+Ground truth is `golden_tax.csv`, with defects injected under quotas; the naive baseline's 330 verifier violations (double claims, ineligible claims) are the proof the checks have teeth. The general trust mechanics (minted truth, the blindness test, verifier teeth) are in [Why the benchmark can be trusted](#why-the-benchmark-can-be-trusted).
 
 ## The agent layer and the real bank statement
+
+The AI is a deliberate, narrow choice, not a wrapper around the whole product. It is pointed at the two jobs a deterministic rule cannot do well (reading an unfamiliar bank export, and writing an operator a readable note) and nowhere near a money decision. In both places the pattern is the same: the agent proposes, arithmetic or a human disposes, and the run is recorded so it can be replayed and audited offline.
 
 ### Intake: the agent finds the structure, arithmetic proves it
 
@@ -250,7 +258,7 @@ The dashboard degrades gracefully on bank-only worlds: Daily Close, Overview and
 - `razorpay_files.py`: the settlement entity and settlement report to canonical CSVs.
 - `webhook_inbox.py`: verifies `X-Razorpay-Signature` (HMAC-SHA256 of the raw body with the webhook secret, constant-time comparison) and consumes idempotently by entity id, so redeliveries update rather than duplicate. The committed inbox deliberately contains a redelivery.
 
-The platform limitation: test mode yields no successful settlements. Razorpay documents that no real money moves in test mode and that settling is a live-mode function, and hands-on, test-mode settlement entries only ever showed "failed". So settlement-side ingestion is fixtures-first, and `ingest.pull --live` is unverified against a production account.
+The platform limitation (test mode yields no successful settlements) is explained once in the [README](README.md#what-is-real-and-what-is-synthetic). The consequence here: settlement-side ingestion is fixtures-first, and `ingest.pull --live` is unverified against a production account.
 
 ## The daily close and the queue
 
@@ -299,7 +307,9 @@ From `reports/close_audit.md`, generated by `python -m controller.audit --seeds 
 
 ## Reading the 100% honestly
 
-The engines, and the close audit that inherits from them, score perfectly because the benchmark's scenarios are deterministic constructions and each engine exploits exactly the evidence its scenarios leave behind, including abstaining on the cases constructed to be undecidable. That is the designed behaviour, verified independently. It is not a claim that real bank or GST data would reconcile at 100%. What matters: nothing is force-matched, every decision is evidenced, the failure modes the baselines exhibit are covered, and the whole loop reproduces from a clean checkout. What was never measured at all (real Razorpay settlement data, real GST and TDS data, production volumes) is listed in the README under [What is real and what is synthetic](README.md#what-is-real-and-what-is-synthetic).
+The number that carries weight is the gap, not the 100%. On the same worlds, through the same parsers and the same grader, the first script anyone writes gets 79.2% recall on reconciliation and 51.3% correct labels on tax, forces every one of the 30 ambiguous cases, and claims ₹1,65,084 of input credit it is not entitled to. This engine refuses all 30 and claims ₹0 falsely. That contrast is the evidence a reviewer should weigh.
+
+The 100% itself means one thing: the engine saturates our synthetic test set, including the cases built to be undecidable, where the correct move is to abstain. It is designed behaviour, verified independently by code that shares nothing with the engines. It is not a claim that real bank or GST data would reconcile at 100%; real-world accuracy was never measured, and what was never measured at all (real Razorpay settlement data, real GST and TDS data, production volumes) is listed in the README under [What is real and what is synthetic](README.md#what-is-real-and-what-is-synthetic).
 
 What 100% does not cover: scenario types the generator does not produce (fraud, currency conversion, multiple payment providers interleaved, narration dialects beyond the real fixture and the templates). On the tax side, GSTR-1 is a version-one B2C summary (invoice-level B2B sections need buyer GSTINs the world does not model), the 3%-of-gross liability is a documented simplification of output GST net of input credit, the CGST/SGST split is published arithmetic applied on the books side rather than a per-return filing engine, and e-invoicing and multi-GSTIN merchants are out of scope.
 
