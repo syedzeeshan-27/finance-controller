@@ -1,0 +1,69 @@
+{
+ "amendments": [
+  {
+   "at": "2026-09-24T14:16:38Z",
+   "files": [
+    "eval_resolve.py"
+   ],
+   "previous": {
+    "eval_resolve.py": "28f61aa51f9a23a524f57486e9cc0e1881532da304f9f682a0da8e0c1b788c1c"
+   },
+   "reason": "Provider switched from the Gemini free tier to Claude Sonnet 5 (user decision, 2026-09-24, before any held-out run). eval_resolve.py now pins part-2 settings from the dev transcripts instead of Gemini environment variables, words the cost note by provider, and gained this amendment step. No metric, category, grading or item-selection logic changed."
+  },
+  {
+   "after_part2": true,
+   "at": "2026-09-25T12:16:01Z",
+   "files": [
+    "eval_resolve.py"
+   ],
+   "heldout_aggregate_sha256": "14823d84ccd69544af7a612412f0a73e556f9b92f4d5c29ca76e34ec6a3d8f52",
+   "previous": {
+    "eval_resolve.py": "b2bfe82cba2de14945d186a452544035533f0e3f9a659f5a83931ca59d6b5b76"
+   },
+   "reason": "Report-only fixes found while reading the held-out report, after the single held-out run: (1) the '10 worst failures' list counted accepted, correct proposals as missed matches (a missing condition); it now lists agent errors first, then queue items whose rows are still left for a human, with the reason; (2) the cost cell said '$0 billed, free tier' for every provider, and Anthropic runs now say 'billed'; (3) dev reports said 'held-out case rows'. No metric, category, grading, item-selection, prompt or verifier logic changed, and no item was re-run."
+  }
+ ],
+ "hashes": {
+  "engine.py": "aeff9cbb869c70e1a712a8cb91f98687bb964b93854c08297e31aac0e05405fc",
+  "eval_resolve.py": "70258412b26a46171c3f4897c34558a044a1f31a66471e3923c8c63739033d69",
+  "holdout.py": "a1791aa42ca459a6bb95f074617ca1353bb48df02c6f7be8d56ad7ab6b41ad69",
+  "prompt": "24e1e556cdfd79de2cf1b53d8824bd8faac2375f564ae14727167271bee6d3a6",
+  "resolve.py": "c39ef41e66acffc4080a1dc4c5412e9caadd45efa233f18e264ef69d17acd6f5",
+  "resolve_verifier.py": "75a52a0552d93c440ba94bb0ff3dbdd7e40e006c3673e2a767b61dd200f60202",
+  "solver.py": "99d061bdc7af2c13334aa72f096b4f798ea8546093f5fc9461bf32f322803994"
+ },
+ "part1": {
+  "dev_seeds": [
+   1000,
+   1006
+  ],
+  "heldout_seeds": [
+   1001,
+   1002,
+   1003,
+   1004,
+   1005
+  ],
+  "keys": [
+   "resolve_verifier.py",
+   "solver.py",
+   "eval_resolve.py",
+   "holdout.py",
+   "engine.py"
+  ],
+  "pinned_at": "2026-09-24T13:38:37Z"
+ },
+ "part2": {
+  "keys": [
+   "prompt",
+   "resolve.py",
+   "settings"
+  ],
+  "pinned_at": "2026-09-25T12:06:20Z"
+ },
+ "settings": {
+  "fc_mode": "auto",
+  "model": "claude-sonnet-5",
+  "thinking_level": "medium"
+ }
+}

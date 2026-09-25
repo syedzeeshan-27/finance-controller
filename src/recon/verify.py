@@ -38,7 +38,8 @@ _TIER_EVIDENCE = {
     "exact": {"utr_exact"},
     "high": {"utr_fuzzy", "decomposed_discrepancy", "sum_exact_parts",
              "merge_residual_exact"},
-    "medium": {"amount_exact_unique", "amount_within_rs1_and_3_days"},
+    "medium": {"amount_exact_unique", "amount_within_rs1_and_3_days",
+               "amount_exact_first_come"},
     "needs_review": set(),   # any non-empty evidence
 }
 

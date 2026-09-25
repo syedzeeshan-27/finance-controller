@@ -1,0 +1,468 @@
+{
+ "items": [
+  {
+   "api_calls": 0,
+   "cost_usd": 0.0,
+   "error": "",
+   "item_id": "credit:BANK000032",
+   "latency_s": 0.0,
+   "outcome": "prefilter_skip",
+   "proposal": null,
+   "transcript": ""
+  },
+  {
+   "api_calls": 1,
+   "cost_usd": 0.008388,
+   "error": "",
+   "item_id": "credit:BANK000034",
+   "latency_s": 10.807,
+   "outcome": "submitted",
+   "proposal": {
+    "bank_row_ids": [
+     "BANK000034"
+    ],
+    "deduction_evidence": "TDS 194O 228.26",
+    "deduction_paise": 22826,
+    "reason": "UTR YESB104324517493 exactly matches settlement setl_ftM1GBvL0jfZAW; net 4150261 minus TDS 228.26 (22826 paise) stated in narration equals credit amount 4127435 exactly, with value date 1 day after settlement creation.",
+    "settlement_ids": [
+     "setl_ftM1GBvL0jfZAW"
+    ],
+    "verdict": "match"
+   },
+   "transcript": "data/agent_transcripts/resolve/1000/credit__BANK000034.jsonl"
+  },
+  {
+   "api_calls": 0,
+   "cost_usd": 0.0,
+   "error": "",
+   "item_id": "credit:BANK000035",
+   "latency_s": 0.0,
+   "outcome": "prefilter_skip",
+   "proposal": null,
+   "transcript": ""
+  },
+  {
+   "api_calls": 1,
+   "cost_usd": 0.01054,
+   "error": "",
+   "item_id": "credit:BANK000038",
+   "latency_s": 7.739,
+   "outcome": "submitted",
+   "proposal": {
+    "bank_row_ids": [
+     "BANK000038"
+    ],
+    "deduction_evidence": "",
+    "deduction_paise": 0,
+    "reason": "Credit BANK000038 (7,839,153 paise) is a bulk payout; its UTR matches setl_nh5uuBtxUbf1OM, and the remaining amount exactly equals the sum of the other two open settlements (setl_jRwrf0EHRSNuFz + setl_zIHVTb4YXjZYHN = 733833+4628813=5,362,646, matching the residual), with all created dates within 0-10 days of the credit's value date.",
+    "settlement_ids": [
+     "setl_nh5uuBtxUbf1OM",
+     "setl_jRwrf0EHRSNuFz",
+     "setl_zIHVTb4YXjZYHN"
+    ],
+    "verdict": "match"
+   },
+   "transcript": "data/agent_transcripts/resolve/1000/credit__BANK000038.jsonl"
+  },
+  {
+   "api_calls": 1,
+   "cost_usd": 0.011938,
+   "error": "",
+   "item_id": "credit:BANK000058",
+   "latency_s": 8.597,
+   "outcome": "submitted",
+   "proposal": {
+    "bank_row_ids": [
+     "BANK000058"
+    ],
+    "deduction_evidence": "LESS CHGS 295.74",
+    "deduction_paise": 29574,
+    "reason": "Credit amount 1,241,611 plus the stated deduction of 295.74 (29574 paise) equals exactly the net of setl_6brjnM9mejU1f6 (1,271,185 paise), a Pinecone Toys settlement created 2025-04-21 with credit value date 2025-04-22 (1-day gap). No other open settlement or credit shares this amount, so despite the generic/non-matching NEFT reference, the amount and deduction uniquely identify this settlement.",
+    "settlement_ids": [
+     "setl_6brjnM9mejU1f6"
+    ],
+    "verdict": "match"
+   },
+   "transcript": "data/agent_transcripts/resolve/1000/credit__BANK000058.jsonl"
+  },
+  {
+   "api_calls": 1,
+   "cost_usd": 0.007784,
+   "error": "",
+   "item_id": "credit:BANK000059",
+   "latency_s": 5.108,
+   "outcome": "submitted",
+   "proposal": {
+    "bank_row_ids": [
+     "BANK000059"
+    ],
+    "deduction_evidence": "LESS BANK CHGS 23.60",
+    "deduction_paise": 2360,
+    "reason": "UTR HDFC339405320252 matches settlement setl_zy8XGrRrBJKqvz exactly; net 3080347 minus stated bank charge 23.60 (2360 paise) equals credited 3077987, and value date is within 10 days of settlement creation.",
+    "settlement_ids": [
+     "setl_zy8XGrRrBJKqvz"
+    ],
+    "verdict": "match"
+   },
+   "transcript": "data/agent_transcripts/resolve/1000/credit__BANK000059.jsonl"
+  },
+  {
+   "api_calls": 0,
+   "cost_usd": 0.0,
+   "error": "",
+   "item_id": "credit:BANK000061",
+   "latency_s": 0.0,
+   "outcome": "prefilter_skip",
+   "proposal": null,
+   "transcript": ""
+  },
+  {
+   "api_calls": 0,
+   "cost_usd": 0.0,
+   "error": "",
+   "item_id": "credit:BANK000062",
+   "latency_s": 0.0,
+   "outcome": "prefilter_skip",
+   "proposal": null,
+   "transcript": ""
+  },
+  {
+   "api_calls": 1,
+   "cost_usd": 0.00823,
+   "error": "",
+   "item_id": "credit:BANK000083",
+   "latency_s": 5.107,
+   "outcome": "submitted",
+   "proposal": {
+    "bank_row_ids": [
+     "BANK000083"
+    ],
+    "deduction_evidence": "5419.43",
+    "deduction_paise": 541943,
+    "reason": "Credit's UTR (ICIC218595316565) exactly matches the settlement's UTR, and net 3647726 minus the stated chargeback recovery deduction of 5419.43 (541943 paise) equals the credit amount 3105783 exactly; value date is 1 day after settlement creation.",
+    "settlement_ids": [
+     "setl_Yajpsb9MxHYLTq"
+    ],
+    "verdict": "match"
+   },
+   "transcript": "data/agent_transcripts/resolve/1000/credit__BANK000083.jsonl"
+  },
+  {
+   "api_calls": 0,
+   "cost_usd": 0.0,
+   "error": "",
+   "item_id": "credit:BANK000095",
+   "latency_s": 0.0,
+   "outcome": "prefilter_skip",
+   "proposal": null,
+   "transcript": ""
+  },
+  {
+   "api_calls": 0,
+   "cost_usd": 0.0,
+   "error": "",
+   "item_id": "credit:BANK000096",
+   "latency_s": 0.0,
+   "outcome": "prefilter_skip",
+   "proposal": null,
+   "transcript": ""
+  },
+  {
+   "api_calls": 1,
+   "cost_usd": 0.031206,
+   "error": "",
+   "item_id": "credit:BANK000098",
+   "latency_s": 33.795,
+   "outcome": "submitted",
+   "proposal": {
+    "bank_row_ids": [
+     "BANK000098"
+    ],
+    "deduction_evidence": "",
+    "deduction_paise": 0,
+    "reason": "No single open settlement or combination of 2-6 open settlements (created within 10 days of 2025-05-05) sums exactly to 8,825,866 paise, and the narration gives no UTR or settlement reference to tie it to any specific settlement; the engine's rejected candidates also don't reconcile. This is a genuine missing-settlement exception, not a match.",
+    "settlement_ids": [],
+    "verdict": "exception"
+   },
+   "transcript": "data/agent_transcripts/resolve/1000/credit__BANK000098.jsonl"
+  },
+  {
+   "api_calls": 1,
+   "cost_usd": 0.008614,
+   "error": "",
+   "item_id": "credit:BANK000103",
+   "latency_s": 4.93,
+   "outcome": "submitted",
+   "proposal": {
+    "bank_row_ids": [
+     "BANK000103"
+    ],
+    "deduction_evidence": "LESS REFUND 1951.25",
+    "deduction_paise": 195125,
+    "reason": "UTR YESB200886800485 exactly matches setl_aB1yjEXygXabEP; net 3273922 minus stated refund deduction of 1951.25 (195125 paise) equals credit amount 3078797 exactly, and value date is within 10 days of settlement creation.",
+    "settlement_ids": [
+     "setl_aB1yjEXygXabEP"
+    ],
+    "verdict": "match"
+   },
+   "transcript": "data/agent_transcripts/resolve/1000/credit__BANK000103.jsonl"
+  },
+  {
+   "api_calls": 0,
+   "cost_usd": 0.0,
+   "error": "",
+   "item_id": "credit:BANK000105",
+   "latency_s": 0.0,
+   "outcome": "prefilter_skip",
+   "proposal": null,
+   "transcript": ""
+  },
+  {
+   "api_calls": 0,
+   "cost_usd": 0.0,
+   "error": "",
+   "item_id": "credit:BANK000115",
+   "latency_s": 0.0,
+   "outcome": "prefilter_skip",
+   "proposal": null,
+   "transcript": ""
+  },
+  {
+   "api_calls": 0,
+   "cost_usd": 0.0,
+   "error": "",
+   "item_id": "credit:BANK000143",
+   "latency_s": 0.0,
+   "outcome": "prefilter_skip",
+   "proposal": null,
+   "transcript": ""
+  },
+  {
+   "api_calls": 0,
+   "cost_usd": 0.0,
+   "error": "",
+   "item_id": "credit:BANK000149",
+   "latency_s": 0.0,
+   "outcome": "prefilter_skip",
+   "proposal": null,
+   "transcript": ""
+  },
+  {
+   "api_calls": 1,
+   "cost_usd": 0.006458,
+   "error": "",
+   "item_id": "credit:BANK000159",
+   "latency_s": 4.556,
+   "outcome": "submitted",
+   "proposal": {
+    "bank_row_ids": [
+     "BANK000159"
+    ],
+    "deduction_evidence": "",
+    "deduction_paise": 0,
+    "reason": "Credit BANK000159 exactly matches net_paise of setl_yk1C5lsvTMkiqF and its narration explicitly names that settlement id, distinguishing it from the other same-amount settlement (setl_C7XwgvL29G3b1a) which has no such identifying evidence; value date is within window.",
+    "settlement_ids": [
+     "setl_yk1C5lsvTMkiqF"
+    ],
+    "verdict": "match"
+   },
+   "transcript": "data/agent_transcripts/resolve/1000/credit__BANK000159.jsonl"
+  },
+  {
+   "api_calls": 0,
+   "cost_usd": 0.0,
+   "error": "",
+   "item_id": "settlement:setl_jRwrf0EHRSNuFz",
+   "latency_s": 0.0,
+   "outcome": "dedupe_skip",
+   "proposal": null,
+   "transcript": ""
+  },
+  {
+   "api_calls": 0,
+   "cost_usd": 0.0,
+   "error": "",
+   "item_id": "settlement:setl_zIHVTb4YXjZYHN",
+   "latency_s": 0.0,
+   "outcome": "dedupe_skip",
+   "proposal": null,
+   "transcript": ""
+  },
+  {
+   "api_calls": 0,
+   "cost_usd": 0.0,
+   "error": "",
+   "item_id": "settlement:setl_BxEPdzHPlj3qy7",
+   "latency_s": 0.0,
+   "outcome": "prefilter_skip",
+   "proposal": null,
+   "transcript": ""
+  },
+  {
+   "api_calls": 0,
+   "cost_usd": 0.0,
+   "error": "",
+   "item_id": "settlement:setl_E2yvffBsZ1MqIS",
+   "latency_s": 0.0,
+   "outcome": "prefilter_skip",
+   "proposal": null,
+   "transcript": ""
+  },
+  {
+   "api_calls": 0,
+   "cost_usd": 0.0,
+   "error": "",
+   "item_id": "settlement:setl_6brjnM9mejU1f6",
+   "latency_s": 0.0,
+   "outcome": "dedupe_skip",
+   "proposal": null,
+   "transcript": ""
+  },
+  {
+   "api_calls": 0,
+   "cost_usd": 0.0,
+   "error": "",
+   "item_id": "settlement:setl_u32U85Tu0mV29T",
+   "latency_s": 0.0,
+   "outcome": "prefilter_skip",
+   "proposal": null,
+   "transcript": ""
+  },
+  {
+   "api_calls": 0,
+   "cost_usd": 0.0,
+   "error": "",
+   "item_id": "settlement:setl_wAaIUvgFjzamff",
+   "latency_s": 0.0,
+   "outcome": "prefilter_skip",
+   "proposal": null,
+   "transcript": ""
+  },
+  {
+   "api_calls": 1,
+   "cost_usd": 0.017038,
+   "error": "",
+   "item_id": "settlement:setl_Id0X5C5kI3DfQ4",
+   "latency_s": 15.84,
+   "outcome": "submitted",
+   "proposal": {
+    "bank_row_ids": [
+     "BANK000098"
+    ],
+    "deduction_evidence": "",
+    "deduction_paise": 0,
+    "reason": "The consolidated NEFT credit BANK000098 (8,825,866 paise) exactly equals the sum of four open settlements (setl_Id0X5C5kI3DfQ4 + setl_EZ361Lp2IfykVZ + setl_dmwZoexRYWEy42 + setl_OkiTE35N7ShP4W = 2571336+2840410+2453932+960188 = 8825866), all created 2025-05-03/04 with the credit value date 2025-05-05, matching the 'CONSOLIDATED SETL' narration for multiple merchants.",
+    "settlement_ids": [
+     "setl_Id0X5C5kI3DfQ4",
+     "setl_EZ361Lp2IfykVZ",
+     "setl_dmwZoexRYWEy42",
+     "setl_OkiTE35N7ShP4W"
+    ],
+    "verdict": "match"
+   },
+   "transcript": "data/agent_transcripts/resolve/1000/settlement__setl_Id0X5C5kI3DfQ4.jsonl"
+  },
+  {
+   "api_calls": 0,
+   "cost_usd": 0.0,
+   "error": "",
+   "item_id": "settlement:setl_OkiTE35N7ShP4W",
+   "latency_s": 0.0,
+   "outcome": "dedupe_skip",
+   "proposal": null,
+   "transcript": ""
+  },
+  {
+   "api_calls": 0,
+   "cost_usd": 0.0,
+   "error": "",
+   "item_id": "settlement:setl_EZ361Lp2IfykVZ",
+   "latency_s": 0.0,
+   "outcome": "dedupe_skip",
+   "proposal": null,
+   "transcript": ""
+  },
+  {
+   "api_calls": 0,
+   "cost_usd": 0.0,
+   "error": "",
+   "item_id": "settlement:setl_dmwZoexRYWEy42",
+   "latency_s": 0.0,
+   "outcome": "dedupe_skip",
+   "proposal": null,
+   "transcript": ""
+  },
+  {
+   "api_calls": 0,
+   "cost_usd": 0.0,
+   "error": "",
+   "item_id": "settlement:setl_6SCzmCAnF1eywV",
+   "latency_s": 0.0,
+   "outcome": "prefilter_skip",
+   "proposal": null,
+   "transcript": ""
+  },
+  {
+   "api_calls": 0,
+   "cost_usd": 0.0,
+   "error": "",
+   "item_id": "settlement:setl_hJ1BMUi1GVKL8P",
+   "latency_s": 0.0,
+   "outcome": "prefilter_skip",
+   "proposal": null,
+   "transcript": ""
+  },
+  {
+   "api_calls": 0,
+   "cost_usd": 0.0,
+   "error": "",
+   "item_id": "settlement:setl_eSAylMcGa1vnUq",
+   "latency_s": 0.0,
+   "outcome": "prefilter_skip",
+   "proposal": null,
+   "transcript": ""
+  },
+  {
+   "api_calls": 0,
+   "cost_usd": 0.0,
+   "error": "",
+   "item_id": "settlement:setl_tVmRHBlTneTepC",
+   "latency_s": 0.0,
+   "outcome": "prefilter_skip",
+   "proposal": null,
+   "transcript": ""
+  },
+  {
+   "api_calls": 0,
+   "cost_usd": 0.0,
+   "error": "",
+   "item_id": "settlement:setl_9f95obnPTFSuJx",
+   "latency_s": 0.0,
+   "outcome": "prefilter_skip",
+   "proposal": null,
+   "transcript": ""
+  },
+  {
+   "api_calls": 0,
+   "cost_usd": 0.0,
+   "error": "",
+   "item_id": "settlement:setl_C7XwgvL29G3b1a",
+   "latency_s": 0.0,
+   "outcome": "prefilter_skip",
+   "proposal": null,
+   "transcript": ""
+  },
+  {
+   "api_calls": 0,
+   "cost_usd": 0.0,
+   "error": "",
+   "item_id": "settlement:setl_yk1C5lsvTMkiqF",
+   "latency_s": 0.0,
+   "outcome": "dedupe_skip",
+   "proposal": null,
+   "transcript": ""
+  }
+ ],
+ "prompt_sha256": "24e1e556cdfd79de2cf1b53d8824bd8faac2375f564ae14727167271bee6d3a6",
+ "world": "1000"
+}

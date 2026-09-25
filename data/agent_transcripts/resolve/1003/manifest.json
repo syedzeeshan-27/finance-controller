@@ -1,0 +1,458 @@
+{
+ "items": [
+  {
+   "api_calls": 1,
+   "cost_usd": 0.008476,
+   "error": "",
+   "item_id": "credit:BANK000009",
+   "latency_s": 6.822,
+   "outcome": "submitted",
+   "proposal": {
+    "bank_row_ids": [
+     "BANK000009"
+    ],
+    "deduction_evidence": "RS.3,483.16",
+    "deduction_paise": 348316,
+    "reason": "UTR ICIC619000687603 exactly matches settlement setl_neCkX1H1SAi93i; net 2288476 minus the stated dispute debit adjustment of Rs.3,483.16 (348316 paise) equals the credited 1940160 paise exactly, and the credit's value date (Apr 5) is within 10 days of the settlement's created date (Apr 4).",
+    "settlement_ids": [
+     "setl_neCkX1H1SAi93i"
+    ],
+    "verdict": "match"
+   },
+   "transcript": "data/agent_transcripts/resolve/1003/credit__BANK000009.jsonl"
+  },
+  {
+   "api_calls": 0,
+   "cost_usd": 0.0,
+   "error": "",
+   "item_id": "credit:BANK000020",
+   "latency_s": 0.0,
+   "outcome": "prefilter_skip",
+   "proposal": null,
+   "transcript": ""
+  },
+  {
+   "api_calls": 1,
+   "cost_usd": 0.009698,
+   "error": "",
+   "item_id": "credit:BANK000026",
+   "latency_s": 6.99,
+   "outcome": "submitted",
+   "proposal": {
+    "bank_row_ids": [
+     "BANK000026"
+    ],
+    "deduction_evidence": "RS.3,016.00",
+    "deduction_paise": 301600,
+    "reason": "UTR HDFC017034301751 uniquely matches setl_kYki8CpssZqhQl; net 1361353 minus stated deduction 301600 (RS.3,016.00) equals credit amount 1059753 exactly, with credit date 1 day after settlement creation.",
+    "settlement_ids": [
+     "setl_kYki8CpssZqhQl"
+    ],
+    "verdict": "match"
+   },
+   "transcript": "data/agent_transcripts/resolve/1003/credit__BANK000026.jsonl"
+  },
+  {
+   "api_calls": 1,
+   "cost_usd": 0.020166,
+   "error": "",
+   "item_id": "credit:BANK000033",
+   "latency_s": 16.829,
+   "outcome": "submitted",
+   "proposal": {
+    "bank_row_ids": [
+     "BANK000033"
+    ],
+    "deduction_evidence": "",
+    "deduction_paise": 0,
+    "reason": "The four open settlements (6538469+207009+6105042+122243 = 12972763 paise) sum exactly to the clubbed credit BANK000033, all created within 0-10 days before its value date, and no other combination of open settlements matches this total.",
+    "settlement_ids": [
+     "setl_4YX6o8Laqun79E",
+     "setl_wBTQA0EGtUWlVM",
+     "setl_p4kjDzqrXgFhlI",
+     "setl_T4Bq9wzOBxP13F"
+    ],
+    "verdict": "match"
+   },
+   "transcript": "data/agent_transcripts/resolve/1003/credit__BANK000033.jsonl"
+  },
+  {
+   "api_calls": 1,
+   "cost_usd": 0.01273,
+   "error": "",
+   "item_id": "credit:BANK000036",
+   "latency_s": 11.054,
+   "outcome": "submitted",
+   "proposal": {
+    "bank_row_ids": [
+     "BANK000036"
+    ],
+    "deduction_evidence": "INR 359.69",
+    "deduction_paise": 35969,
+    "reason": "Settlement net 4087404 minus the stated withholding tax deduction of INR 359.69 (35969 paise) equals the credit amount 4051435 exactly; value date (2025-04-15) is 1 day after settlement creation (2025-04-14), and no other open settlement/credit fits this deduction.",
+    "settlement_ids": [
+     "setl_FaTeNtVcxIf70L"
+    ],
+    "verdict": "match"
+   },
+   "transcript": "data/agent_transcripts/resolve/1003/credit__BANK000036.jsonl"
+  },
+  {
+   "api_calls": 1,
+   "cost_usd": 0.01123,
+   "error": "",
+   "item_id": "credit:BANK000042",
+   "latency_s": 6.915,
+   "outcome": "submitted",
+   "proposal": {
+    "bank_row_ids": [
+     "BANK000042"
+    ],
+    "deduction_evidence": "HANDLING FEE INR 58.85 DEDUCTED",
+    "deduction_paise": 5885,
+    "reason": "Settlement net 934451 minus the stated handling fee of INR 58.85 (5885 paise) equals the credit amount 928566 exactly; value date (17 Apr) is within 0-10 days of settlement created date (16 Apr), and no other open settlement of matching amount exists, so despite the mismatched UTR this is the unique fit.",
+    "settlement_ids": [
+     "setl_tdFtdxmqlmvm2B"
+    ],
+    "verdict": "match"
+   },
+   "transcript": "data/agent_transcripts/resolve/1003/credit__BANK000042.jsonl"
+  },
+  {
+   "api_calls": 0,
+   "cost_usd": 0.0,
+   "error": "",
+   "item_id": "credit:BANK000043",
+   "latency_s": 0.0,
+   "outcome": "prefilter_skip",
+   "proposal": null,
+   "transcript": ""
+  },
+  {
+   "api_calls": 1,
+   "cost_usd": 0.018034,
+   "error": "",
+   "item_id": "credit:BANK000048",
+   "latency_s": 14.504,
+   "outcome": "submitted",
+   "proposal": {
+    "bank_row_ids": [
+     "BANK000048"
+    ],
+    "deduction_evidence": "",
+    "deduction_paise": 0,
+    "reason": "Narration explicitly says \"CLUBBED PAYOUT X3\" and names UTR HDFC809246393736 (setl_jAHekFJIXn21AD). Adding the two other open settlements with created dates within 10 days (setl_OGUTYzrvRkMNNY 2,394,734 + setl_bjpr7ExDpW3sJM 4,873,861 + setl_jAHekFJIXn21AD 1,473,963) sums exactly to the credit amount 8,742,558, resolving the previously unexplained residual.",
+    "settlement_ids": [
+     "setl_jAHekFJIXn21AD",
+     "setl_OGUTYzrvRkMNNY",
+     "setl_bjpr7ExDpW3sJM"
+    ],
+    "verdict": "match"
+   },
+   "transcript": "data/agent_transcripts/resolve/1003/credit__BANK000048.jsonl"
+  },
+  {
+   "api_calls": 0,
+   "cost_usd": 0.0,
+   "error": "",
+   "item_id": "credit:BANK000059",
+   "latency_s": 0.0,
+   "outcome": "prefilter_skip",
+   "proposal": null,
+   "transcript": ""
+  },
+  {
+   "api_calls": 0,
+   "cost_usd": 0.0,
+   "error": "",
+   "item_id": "credit:BANK000065",
+   "latency_s": 0.0,
+   "outcome": "prefilter_skip",
+   "proposal": null,
+   "transcript": ""
+  },
+  {
+   "api_calls": 0,
+   "cost_usd": 0.0,
+   "error": "",
+   "item_id": "credit:BANK000078",
+   "latency_s": 0.0,
+   "outcome": "prefilter_skip",
+   "proposal": null,
+   "transcript": ""
+  },
+  {
+   "api_calls": 1,
+   "cost_usd": 0.00811,
+   "error": "",
+   "item_id": "credit:BANK000083",
+   "latency_s": 5.283,
+   "outcome": "submitted",
+   "proposal": {
+    "bank_row_ids": [
+     "BANK000083"
+    ],
+    "deduction_evidence": "INR 332.19",
+    "deduction_paise": 33219,
+    "reason": "UTR SBIN860957807484 matches exactly; settlement net 6103901 minus the stated service charge deduction (INR 332.19 = 33219 paise) equals the credited 6070682 paise exactly.",
+    "settlement_ids": [
+     "setl_mzNPhG4c5dpu2o"
+    ],
+    "verdict": "match"
+   },
+   "transcript": "data/agent_transcripts/resolve/1003/credit__BANK000083.jsonl"
+  },
+  {
+   "api_calls": 0,
+   "cost_usd": 0.0,
+   "error": "",
+   "item_id": "credit:BANK000089",
+   "latency_s": 0.0,
+   "outcome": "prefilter_skip",
+   "proposal": null,
+   "transcript": ""
+  },
+  {
+   "api_calls": 0,
+   "cost_usd": 0.0,
+   "error": "",
+   "item_id": "credit:BANK000090",
+   "latency_s": 0.0,
+   "outcome": "prefilter_skip",
+   "proposal": null,
+   "transcript": ""
+  },
+  {
+   "api_calls": 0,
+   "cost_usd": 0.0,
+   "error": "",
+   "item_id": "credit:BANK000105",
+   "latency_s": 0.0,
+   "outcome": "prefilter_skip",
+   "proposal": null,
+   "transcript": ""
+  },
+  {
+   "api_calls": 0,
+   "cost_usd": 0.0,
+   "error": "",
+   "item_id": "credit:BANK000142",
+   "latency_s": 0.0,
+   "outcome": "prefilter_skip",
+   "proposal": null,
+   "transcript": ""
+  },
+  {
+   "api_calls": 0,
+   "cost_usd": 0.0,
+   "error": "",
+   "item_id": "credit:BANK000174",
+   "latency_s": 0.0,
+   "outcome": "prefilter_skip",
+   "proposal": null,
+   "transcript": ""
+  },
+  {
+   "api_calls": 0,
+   "cost_usd": 0.0,
+   "error": "",
+   "item_id": "credit:BANK000180",
+   "latency_s": 0.0,
+   "outcome": "prefilter_skip",
+   "proposal": null,
+   "transcript": ""
+  },
+  {
+   "api_calls": 0,
+   "cost_usd": 0.0,
+   "error": "",
+   "item_id": "settlement:setl_RHT2Ffnyp096HK",
+   "latency_s": 0.0,
+   "outcome": "prefilter_skip",
+   "proposal": null,
+   "transcript": ""
+  },
+  {
+   "api_calls": 0,
+   "cost_usd": 0.0,
+   "error": "",
+   "item_id": "settlement:setl_xrFEK4ajwjYksy",
+   "latency_s": 0.0,
+   "outcome": "prefilter_skip",
+   "proposal": null,
+   "transcript": ""
+  },
+  {
+   "api_calls": 0,
+   "cost_usd": 0.0,
+   "error": "",
+   "item_id": "settlement:setl_4YX6o8Laqun79E",
+   "latency_s": 0.0,
+   "outcome": "dedupe_skip",
+   "proposal": null,
+   "transcript": ""
+  },
+  {
+   "api_calls": 0,
+   "cost_usd": 0.0,
+   "error": "",
+   "item_id": "settlement:setl_wBTQA0EGtUWlVM",
+   "latency_s": 0.0,
+   "outcome": "dedupe_skip",
+   "proposal": null,
+   "transcript": ""
+  },
+  {
+   "api_calls": 0,
+   "cost_usd": 0.0,
+   "error": "",
+   "item_id": "settlement:setl_T4Bq9wzOBxP13F",
+   "latency_s": 0.0,
+   "outcome": "dedupe_skip",
+   "proposal": null,
+   "transcript": ""
+  },
+  {
+   "api_calls": 0,
+   "cost_usd": 0.0,
+   "error": "",
+   "item_id": "settlement:setl_p4kjDzqrXgFhlI",
+   "latency_s": 0.0,
+   "outcome": "dedupe_skip",
+   "proposal": null,
+   "transcript": ""
+  },
+  {
+   "api_calls": 0,
+   "cost_usd": 0.0,
+   "error": "",
+   "item_id": "settlement:setl_FaTeNtVcxIf70L",
+   "latency_s": 0.0,
+   "outcome": "dedupe_skip",
+   "proposal": null,
+   "transcript": ""
+  },
+  {
+   "api_calls": 0,
+   "cost_usd": 0.0,
+   "error": "",
+   "item_id": "settlement:setl_q7gYwFVs1rGePb",
+   "latency_s": 0.0,
+   "outcome": "prefilter_skip",
+   "proposal": null,
+   "transcript": ""
+  },
+  {
+   "api_calls": 0,
+   "cost_usd": 0.0,
+   "error": "",
+   "item_id": "settlement:setl_tdFtdxmqlmvm2B",
+   "latency_s": 0.0,
+   "outcome": "dedupe_skip",
+   "proposal": null,
+   "transcript": ""
+  },
+  {
+   "api_calls": 0,
+   "cost_usd": 0.0,
+   "error": "",
+   "item_id": "settlement:setl_OGUTYzrvRkMNNY",
+   "latency_s": 0.0,
+   "outcome": "dedupe_skip",
+   "proposal": null,
+   "transcript": ""
+  },
+  {
+   "api_calls": 0,
+   "cost_usd": 0.0,
+   "error": "",
+   "item_id": "settlement:setl_bjpr7ExDpW3sJM",
+   "latency_s": 0.0,
+   "outcome": "dedupe_skip",
+   "proposal": null,
+   "transcript": ""
+  },
+  {
+   "api_calls": 0,
+   "cost_usd": 0.0,
+   "error": "",
+   "item_id": "settlement:setl_cr2kgaMaILX6aS",
+   "latency_s": 0.0,
+   "outcome": "prefilter_skip",
+   "proposal": null,
+   "transcript": ""
+  },
+  {
+   "api_calls": 0,
+   "cost_usd": 0.0,
+   "error": "",
+   "item_id": "settlement:setl_2YFWmm4MG0RnPw",
+   "latency_s": 0.0,
+   "outcome": "prefilter_skip",
+   "proposal": null,
+   "transcript": ""
+  },
+  {
+   "api_calls": 0,
+   "cost_usd": 0.0,
+   "error": "",
+   "item_id": "settlement:setl_LTXmD0PTvEp0hB",
+   "latency_s": 0.0,
+   "outcome": "prefilter_skip",
+   "proposal": null,
+   "transcript": ""
+  },
+  {
+   "api_calls": 0,
+   "cost_usd": 0.0,
+   "error": "",
+   "item_id": "settlement:setl_FEBOQkdEW7XMZf",
+   "latency_s": 0.0,
+   "outcome": "prefilter_skip",
+   "proposal": null,
+   "transcript": ""
+  },
+  {
+   "api_calls": 0,
+   "cost_usd": 0.0,
+   "error": "",
+   "item_id": "settlement:setl_kbQhDzEAUh3Au0",
+   "latency_s": 0.0,
+   "outcome": "prefilter_skip",
+   "proposal": null,
+   "transcript": ""
+  },
+  {
+   "api_calls": 0,
+   "cost_usd": 0.0,
+   "error": "",
+   "item_id": "settlement:setl_rBzOLMDxyIGyqK",
+   "latency_s": 0.0,
+   "outcome": "prefilter_skip",
+   "proposal": null,
+   "transcript": ""
+  },
+  {
+   "api_calls": 0,
+   "cost_usd": 0.0,
+   "error": "",
+   "item_id": "settlement:setl_P2lx7EA53fUcnG",
+   "latency_s": 0.0,
+   "outcome": "prefilter_skip",
+   "proposal": null,
+   "transcript": ""
+  },
+  {
+   "api_calls": 0,
+   "cost_usd": 0.0,
+   "error": "",
+   "item_id": "settlement:setl_cAxEGiEszkt4nW",
+   "latency_s": 0.0,
+   "outcome": "prefilter_skip",
+   "proposal": null,
+   "transcript": ""
+  }
+ ],
+ "prompt_sha256": "24e1e556cdfd79de2cf1b53d8824bd8faac2375f564ae14727167271bee6d3a6",
+ "world": "1003"
+}

@@ -1,0 +1,12 @@
+{
+ "1001/credit:BANK000022": "The line names the merchant without spaces (A/C JHAROKHADECOR). The verifier looks for 'Jharokha Decor' as written, so even the right answer fails its rival rule and the item was never sent.",
+ "1001/credit:BANK000138": "A returned outward NEFT payment (INW RETURN NEFT ... BENEFICIARY A/C CLOSED), not a settlement. The engine does not recognise this wording as non-settlement, and the resolver can only answer match, exception or abstain.",
+ "1002/credit:BANK000125": "A returned outward NEFT payment (RTN:NEFT/.../INCORRECT A/C NO), not a settlement. The engine does not recognise this wording as non-settlement, and the resolver can only answer match, exception or abstain.",
+ "1003/credit:BANK000142": "The line carries only the UTR's last 5 digits (REF ..10359). Telling equal-amount twins apart needs the settlement id, the full UTR or a 10+ character piece of it, so even the right answer fails the rival rule.",
+ "1003/settlement:setl_P2lx7EA53fUcnG": "Settlement side of the BANK000142 twin pair (UTR tail ..10359): same rule, same outcome.",
+ "1004/credit:BANK000069": "The line carries only the UTR's last 5 digits (REF ..17228). Telling equal-amount twins apart needs the settlement id, the full UTR or a 10+ character piece of it, so even the right answer fails the rival rule.",
+ "1004/settlement:setl_8VN5NtC6FFxuqn": "Settlement side of the BANK000069 twin pair (UTR tail ..17228): same rule, same outcome.",
+ "1005/credit:BANK000045": "A returned outward NEFT payment (RTN:NEFT/.../INCORRECT A/C NO), not a settlement. The engine does not recognise this wording as non-settlement, and the resolver can only answer match, exception or abstain.",
+ "1005/credit:BANK000109": "The line carries only the UTR's last 5 digits (REF ..32750). Telling equal-amount twins apart needs the settlement id, the full UTR or a 10+ character piece of it, so even the right answer fails the rival rule.",
+ "1005/settlement:setl_ZynOHw0AeKAf43": "Settlement side of the BANK000109 twin pair (UTR tail ..32750): same rule, same outcome."
+}

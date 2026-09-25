@@ -1,0 +1,3479 @@
+{
+ "aggregate": {
+  "cases": 52,
+  "engine_false_matches_by_tier": {},
+  "filler": {
+   "engine": {
+    "abstain_correct": 0,
+    "abstain_wrong": 0,
+    "auto_correct": 214,
+    "auto_wrong": 0
+   },
+   "engine_agent": {
+    "abstain_correct": 0,
+    "abstain_wrong": 0,
+    "auto_correct": 214,
+    "auto_wrong": 0
+   }
+  },
+  "per_scenario": {
+   "chargeback_netted": {
+    "engine": {
+     "abstain_correct": 0,
+     "abstain_wrong": 4,
+     "auto_correct": 0,
+     "auto_wrong": 0
+    },
+    "engine_agent": {
+     "abstain_correct": 0,
+     "abstain_wrong": 0,
+     "auto_correct": 4,
+     "auto_wrong": 0
+    },
+    "proposals": {
+     "api_calls": 2,
+     "cost_per_item_usd": 0.00866,
+     "items_sent_to_agent": 2,
+     "match_proposals": 2,
+     "median_latency_s": 9.43,
+     "rejected_by_verifier": 0,
+     "total_cost_usd": 0.0173,
+     "wrong_accepted": 0
+    }
+   },
+   "deduction_stated": {
+    "engine": {
+     "abstain_correct": 0,
+     "abstain_wrong": 12,
+     "auto_correct": 0,
+     "auto_wrong": 0
+    },
+    "engine_agent": {
+     "abstain_correct": 0,
+     "abstain_wrong": 0,
+     "auto_correct": 12,
+     "auto_wrong": 0
+    },
+    "proposals": {
+     "api_calls": 6,
+     "cost_per_item_usd": 0.00884,
+     "items_sent_to_agent": 6,
+     "match_proposals": 6,
+     "median_latency_s": 7.28,
+     "rejected_by_verifier": 0,
+     "total_cost_usd": 0.053,
+     "wrong_accepted": 0
+    }
+   },
+   "deduction_unstated": {
+    "engine": {
+     "abstain_correct": 4,
+     "abstain_wrong": 0,
+     "auto_correct": 0,
+     "auto_wrong": 0
+    },
+    "engine_agent": {
+     "abstain_correct": 4,
+     "abstain_wrong": 0,
+     "auto_correct": 0,
+     "auto_wrong": 0
+    },
+    "proposals": {
+     "api_calls": 0,
+     "cost_per_item_usd": null,
+     "items_sent_to_agent": 0,
+     "match_proposals": 0,
+     "median_latency_s": null,
+     "rejected_by_verifier": 0,
+     "total_cost_usd": 0,
+     "wrong_accepted": 0
+    }
+   },
+   "merged_3plus": {
+    "engine": {
+     "abstain_correct": 0,
+     "abstain_wrong": 17,
+     "auto_correct": 0,
+     "auto_wrong": 0
+    },
+    "engine_agent": {
+     "abstain_correct": 0,
+     "abstain_wrong": 0,
+     "auto_correct": 17,
+     "auto_wrong": 0
+    },
+    "proposals": {
+     "api_calls": 5,
+     "cost_per_item_usd": 0.01706,
+     "items_sent_to_agent": 5,
+     "match_proposals": 4,
+     "median_latency_s": 9.52,
+     "rejected_by_verifier": 0,
+     "total_cost_usd": 0.0853,
+     "wrong_accepted": 0
+    }
+   },
+   "never_paid": {
+    "engine": {
+     "abstain_correct": 4,
+     "abstain_wrong": 0,
+     "auto_correct": 0,
+     "auto_wrong": 0
+    },
+    "engine_agent": {
+     "abstain_correct": 4,
+     "abstain_wrong": 0,
+     "auto_correct": 0,
+     "auto_wrong": 0
+    },
+    "proposals": {
+     "api_calls": 0,
+     "cost_per_item_usd": null,
+     "items_sent_to_agent": 0,
+     "match_proposals": 0,
+     "median_latency_s": null,
+     "rejected_by_verifier": 0,
+     "total_cost_usd": 0,
+     "wrong_accepted": 0
+    }
+   },
+   "orphan_near_net": {
+    "engine": {
+     "abstain_correct": 4,
+     "abstain_wrong": 0,
+     "auto_correct": 0,
+     "auto_wrong": 0
+    },
+    "engine_agent": {
+     "abstain_correct": 4,
+     "abstain_wrong": 0,
+     "auto_correct": 0,
+     "auto_wrong": 0
+    },
+    "proposals": {
+     "api_calls": 0,
+     "cost_per_item_usd": null,
+     "items_sent_to_agent": 0,
+     "match_proposals": 0,
+     "median_latency_s": null,
+     "rejected_by_verifier": 0,
+     "total_cost_usd": 0,
+     "wrong_accepted": 0
+    }
+   },
+   "orphan_rzp_credit": {
+    "engine": {
+     "abstain_correct": 2,
+     "abstain_wrong": 0,
+     "auto_correct": 0,
+     "auto_wrong": 0
+    },
+    "engine_agent": {
+     "abstain_correct": 2,
+     "abstain_wrong": 0,
+     "auto_correct": 0,
+     "auto_wrong": 0
+    },
+    "proposals": {
+     "api_calls": 0,
+     "cost_per_item_usd": null,
+     "items_sent_to_agent": 0,
+     "match_proposals": 0,
+     "median_latency_s": null,
+     "rejected_by_verifier": 0,
+     "total_cost_usd": 0,
+     "wrong_accepted": 0
+    }
+   },
+   "outward_neft_return": {
+    "engine": {
+     "abstain_correct": 0,
+     "abstain_wrong": 4,
+     "auto_correct": 0,
+     "auto_wrong": 0
+    },
+    "engine_agent": {
+     "abstain_correct": 0,
+     "abstain_wrong": 4,
+     "auto_correct": 0,
+     "auto_wrong": 0
+    },
+    "proposals": {
+     "api_calls": 0,
+     "cost_per_item_usd": null,
+     "items_sent_to_agent": 0,
+     "match_proposals": 0,
+     "median_latency_s": null,
+     "rejected_by_verifier": 0,
+     "total_cost_usd": 0,
+     "wrong_accepted": 0
+    }
+   },
+   "ref_merchant_name": {
+    "engine": {
+     "abstain_correct": 0,
+     "abstain_wrong": 0,
+     "auto_correct": 4,
+     "auto_wrong": 0
+    },
+    "engine_agent": {
+     "abstain_correct": 0,
+     "abstain_wrong": 0,
+     "auto_correct": 4,
+     "auto_wrong": 0
+    },
+    "proposals": {
+     "api_calls": 0,
+     "cost_per_item_usd": null,
+     "items_sent_to_agent": 0,
+     "match_proposals": 0,
+     "median_latency_s": null,
+     "rejected_by_verifier": 0,
+     "total_cost_usd": 0,
+     "wrong_accepted": 0
+    }
+   },
+   "ref_settlement_id": {
+    "engine": {
+     "abstain_correct": 0,
+     "abstain_wrong": 0,
+     "auto_correct": 4,
+     "auto_wrong": 0
+    },
+    "engine_agent": {
+     "abstain_correct": 0,
+     "abstain_wrong": 0,
+     "auto_correct": 4,
+     "auto_wrong": 0
+    },
+    "proposals": {
+     "api_calls": 0,
+     "cost_per_item_usd": null,
+     "items_sent_to_agent": 0,
+     "match_proposals": 0,
+     "median_latency_s": null,
+     "rejected_by_verifier": 0,
+     "total_cost_usd": 0,
+     "wrong_accepted": 0
+    }
+   },
+   "refund_netted": {
+    "engine": {
+     "abstain_correct": 0,
+     "abstain_wrong": 4,
+     "auto_correct": 0,
+     "auto_wrong": 0
+    },
+    "engine_agent": {
+     "abstain_correct": 0,
+     "abstain_wrong": 0,
+     "auto_correct": 4,
+     "auto_wrong": 0
+    },
+    "proposals": {
+     "api_calls": 2,
+     "cost_per_item_usd": 0.00889,
+     "items_sent_to_agent": 2,
+     "match_proposals": 2,
+     "median_latency_s": 5.15,
+     "rejected_by_verifier": 0,
+     "total_cost_usd": 0.0178,
+     "wrong_accepted": 0
+    }
+   },
+   "twins_no_clue": {
+    "engine": {
+     "abstain_correct": 12,
+     "abstain_wrong": 0,
+     "auto_correct": 0,
+     "auto_wrong": 0
+    },
+    "engine_agent": {
+     "abstain_correct": 12,
+     "abstain_wrong": 0,
+     "auto_correct": 0,
+     "auto_wrong": 0
+    },
+    "proposals": {
+     "api_calls": 0,
+     "cost_per_item_usd": null,
+     "items_sent_to_agent": 0,
+     "match_proposals": 0,
+     "median_latency_s": null,
+     "rejected_by_verifier": 0,
+     "total_cost_usd": 0,
+     "wrong_accepted": 0
+    }
+   },
+   "twins_with_clue": {
+    "engine": {
+     "abstain_correct": 2,
+     "abstain_wrong": 12,
+     "auto_correct": 0,
+     "auto_wrong": 0
+    },
+    "engine_agent": {
+     "abstain_correct": 2,
+     "abstain_wrong": 4,
+     "auto_correct": 8,
+     "auto_wrong": 0
+    },
+    "proposals": {
+     "api_calls": 4,
+     "cost_per_item_usd": 0.00963,
+     "items_sent_to_agent": 4,
+     "match_proposals": 4,
+     "median_latency_s": 6.26,
+     "rejected_by_verifier": 0,
+     "total_cost_usd": 0.0385,
+     "wrong_accepted": 0
+    }
+   },
+   "utr_damaged_multi": {
+    "engine": {
+     "abstain_correct": 0,
+     "abstain_wrong": 0,
+     "auto_correct": 8,
+     "auto_wrong": 0
+    },
+    "engine_agent": {
+     "abstain_correct": 0,
+     "abstain_wrong": 0,
+     "auto_correct": 8,
+     "auto_wrong": 0
+    },
+    "proposals": {
+     "api_calls": 0,
+     "cost_per_item_usd": null,
+     "items_sent_to_agent": 0,
+     "match_proposals": 0,
+     "median_latency_s": null,
+     "rejected_by_verifier": 0,
+     "total_cost_usd": 0,
+     "wrong_accepted": 0
+    }
+   }
+  },
+  "rows": 97,
+  "stopped": [],
+  "total": {
+   "baselines": {
+    "naive": {
+     "abstain_correct": 18,
+     "abstain_wrong": 43,
+     "auto_correct": 20,
+     "auto_wrong": 16
+    },
+    "utr_then_amount": {
+     "abstain_correct": 18,
+     "abstain_wrong": 43,
+     "auto_correct": 16,
+     "auto_wrong": 20
+    }
+   },
+   "engine": {
+    "abstain_correct": 28,
+    "abstain_wrong": 53,
+    "auto_correct": 16,
+    "auto_wrong": 0
+   },
+   "engine_agent": {
+    "abstain_correct": 28,
+    "abstain_wrong": 8,
+    "auto_correct": 61,
+    "auto_wrong": 0
+   },
+   "engine_agent_brief_minimum": {
+    "abstain_correct": 28,
+    "abstain_wrong": 8,
+    "auto_correct": 61,
+    "auto_wrong": 0
+   },
+   "engine_agent_intervals": {
+    "auto_correct_rate": [
+     0.5295,
+     0.7184
+    ],
+    "auto_wrong_rate": [
+     0.0,
+     0.0381
+    ]
+   },
+   "engine_intervals": {
+    "auto_correct_rate": [
+     0.1042,
+     0.2513
+    ],
+    "auto_wrong_rate": [
+     0.0,
+     0.0381
+    ]
+   },
+   "engine_solver": {
+    "abstain_correct": 28,
+    "abstain_wrong": 39,
+    "auto_correct": 30,
+    "auto_wrong": 0
+   },
+   "proposals": {
+    "api_calls": 19,
+    "cost_per_item_usd": 0.01115,
+    "items_sent_to_agent": 19,
+    "match_proposals": 18,
+    "median_latency_s": 7.35,
+    "rejected_by_verifier": 0,
+    "total_cost_usd": 0.2119,
+    "wrong_accepted": 0
+   },
+   "proposals_brief_minimum": {
+    "api_calls": 19,
+    "cost_per_item_usd": 0.01115,
+    "items_sent_to_agent": 19,
+    "match_proposals": 18,
+    "median_latency_s": 7.35,
+    "rejected_by_verifier": 0,
+    "total_cost_usd": 0.2119,
+    "wrong_accepted": 0
+   }
+  }
+ },
+ "meta": {
+  "hashes": {
+   "engine.py": "aeff9cbb869c70e1a712a8cb91f98687bb964b93854c08297e31aac0e05405fc",
+   "eval_resolve.py": "70258412b26a46171c3f4897c34558a044a1f31a66471e3923c8c63739033d69",
+   "holdout.py": "a1791aa42ca459a6bb95f074617ca1353bb48df02c6f7be8d56ad7ab6b41ad69",
+   "prompt": "24e1e556cdfd79de2cf1b53d8824bd8faac2375f564ae14727167271bee6d3a6",
+   "resolve.py": "c39ef41e66acffc4080a1dc4c5412e9caadd45efa233f18e264ef69d17acd6f5",
+   "resolve_verifier.py": "75a52a0552d93c440ba94bb0ff3dbdd7e40e006c3673e2a767b61dd200f60202",
+   "solver.py": "99d061bdc7af2c13334aa72f096b4f798ea8546093f5fc9461bf32f322803994"
+  },
+  "matches_preregistration": "yes",
+  "mode": "replay",
+  "model": "claude-sonnet-5",
+  "notes": [
+   "Grading reads the golden files; the agent never does (its tools read an allowlisted copy of settlements, bank statement and merchant sidecar).",
+   "Prompt and tool work happened on the dev seeds only (family A templates); the held-out seeds use family B and were run once.",
+   "The held-out set was checked by a separate reviewer agent: answers sound; one known structural tell (merged-group settlements are all created on weekends) changes no answer. See docs/provenance/holdout_review.md.",
+   "Cost is the list price of the recorded token usage, which is what the provider billed (prompt caching included).",
+   "Pre-registration amended 2026-09-24T14:16:38Z (eval_resolve.py): Provider switched from the Gemini free tier to Claude Sonnet 5 (user decision, 2026-09-24, before any held-out run). eval_resolve.py now pins part-2 settings from the dev transcripts instead of Gemini environment variables, words the cost note by provider, and gained this amendment step. No metric, category, grading or item-selection logic changed.",
+   "Pre-registration amended 2026-09-25T12:16:01Z (eval_resolve.py, after part 2): Report-only fixes found while reading the held-out report, after the single held-out run: (1) the '10 worst failures' list counted accepted, correct proposals as missed matches (a missing condition); it now lists agent errors first, then queue items whose rows are still left for a human, with the reason; (2) the cost cell said '$0 billed, free tier' for every provider, and Anthropic runs now say 'billed'; (3) dev reports said 'held-out case rows'. No metric, category, grading, item-selection, prompt or verifier logic changed, and no item was re-run."
+  ],
+  "prompt_sha256": "24e1e556cdfd79de2cf1b53d8824bd8faac2375f564ae14727167271bee6d3a6",
+  "role": "dev",
+  "settings": {
+   "fc_mode": [
+    "auto"
+   ],
+   "model": [
+    "claude-sonnet-5"
+   ],
+   "thinking_level": [
+    "medium"
+   ]
+  },
+  "worlds": [
+   "1000",
+   "1006"
+  ]
+ },
+ "worlds": [
+  {
+   "baselines": {
+    "naive": {
+     "_filler": {
+      "abstain_wrong": 7,
+      "auto_correct": 98
+     },
+     "chargeback_netted": {
+      "abstain_wrong": 2
+     },
+     "deduction_stated": {
+      "abstain_wrong": 6
+     },
+     "deduction_unstated": {
+      "abstain_correct": 2
+     },
+     "merged_3plus": {
+      "abstain_wrong": 9
+     },
+     "never_paid": {
+      "abstain_correct": 2
+     },
+     "orphan_near_net": {
+      "abstain_correct": 2
+     },
+     "orphan_rzp_credit": {
+      "abstain_correct": 1
+     },
+     "outward_neft_return": {
+      "abstain_wrong": 2
+     },
+     "ref_merchant_name": {
+      "auto_correct": 2
+     },
+     "ref_settlement_id": {
+      "auto_correct": 2
+     },
+     "refund_netted": {
+      "abstain_wrong": 2
+     },
+     "twins_no_clue": {
+      "abstain_correct": 2,
+      "auto_wrong": 4
+     },
+     "twins_with_clue": {
+      "abstain_wrong": 1,
+      "auto_wrong": 6
+     },
+     "utr_damaged_multi": {
+      "auto_correct": 4
+     }
+    },
+    "utr_then_amount": {
+     "_filler": {
+      "abstain_wrong": 7,
+      "auto_correct": 98
+     },
+     "chargeback_netted": {
+      "abstain_wrong": 2
+     },
+     "deduction_stated": {
+      "abstain_wrong": 6
+     },
+     "deduction_unstated": {
+      "abstain_correct": 2
+     },
+     "merged_3plus": {
+      "abstain_wrong": 9
+     },
+     "never_paid": {
+      "abstain_correct": 2
+     },
+     "orphan_near_net": {
+      "abstain_correct": 2
+     },
+     "orphan_rzp_credit": {
+      "abstain_correct": 1
+     },
+     "outward_neft_return": {
+      "abstain_wrong": 2
+     },
+     "ref_merchant_name": {
+      "auto_correct": 2
+     },
+     "ref_settlement_id": {
+      "auto_correct": 2
+     },
+     "refund_netted": {
+      "abstain_wrong": 2
+     },
+     "twins_no_clue": {
+      "abstain_correct": 2,
+      "auto_wrong": 4
+     },
+     "twins_with_clue": {
+      "abstain_wrong": 1,
+      "auto_wrong": 6
+     },
+     "utr_damaged_multi": {
+      "auto_correct": 4
+     }
+    }
+   },
+   "case_rows": 49,
+   "cases": 26,
+   "engine": {
+    "_filler": {
+     "auto_correct": 105
+    },
+    "chargeback_netted": {
+     "abstain_wrong": 2
+    },
+    "deduction_stated": {
+     "abstain_wrong": 6
+    },
+    "deduction_unstated": {
+     "abstain_correct": 2
+    },
+    "merged_3plus": {
+     "abstain_wrong": 9
+    },
+    "never_paid": {
+     "abstain_correct": 2
+    },
+    "orphan_near_net": {
+     "abstain_correct": 2
+    },
+    "orphan_rzp_credit": {
+     "abstain_correct": 1
+    },
+    "outward_neft_return": {
+     "abstain_wrong": 2
+    },
+    "ref_merchant_name": {
+     "auto_correct": 2
+    },
+    "ref_settlement_id": {
+     "auto_correct": 2
+    },
+    "refund_netted": {
+     "abstain_wrong": 2
+    },
+    "twins_no_clue": {
+     "abstain_correct": 6
+    },
+    "twins_with_clue": {
+     "abstain_correct": 1,
+     "abstain_wrong": 6
+    },
+    "utr_damaged_multi": {
+     "auto_correct": 4
+    }
+   },
+   "engine_agent": {
+    "_filler": {
+     "auto_correct": 105
+    },
+    "chargeback_netted": {
+     "auto_correct": 2
+    },
+    "deduction_stated": {
+     "auto_correct": 6
+    },
+    "deduction_unstated": {
+     "abstain_correct": 2
+    },
+    "merged_3plus": {
+     "auto_correct": 9
+    },
+    "never_paid": {
+     "abstain_correct": 2
+    },
+    "orphan_near_net": {
+     "abstain_correct": 2
+    },
+    "orphan_rzp_credit": {
+     "abstain_correct": 1
+    },
+    "outward_neft_return": {
+     "abstain_wrong": 2
+    },
+    "ref_merchant_name": {
+     "auto_correct": 2
+    },
+    "ref_settlement_id": {
+     "auto_correct": 2
+    },
+    "refund_netted": {
+     "auto_correct": 2
+    },
+    "twins_no_clue": {
+     "abstain_correct": 6
+    },
+    "twins_with_clue": {
+     "abstain_correct": 1,
+     "abstain_wrong": 4,
+     "auto_correct": 2
+    },
+    "utr_damaged_multi": {
+     "auto_correct": 4
+    }
+   },
+   "engine_agent_brief_minimum": {
+    "_filler": {
+     "auto_correct": 105
+    },
+    "chargeback_netted": {
+     "auto_correct": 2
+    },
+    "deduction_stated": {
+     "auto_correct": 6
+    },
+    "deduction_unstated": {
+     "abstain_correct": 2
+    },
+    "merged_3plus": {
+     "auto_correct": 9
+    },
+    "never_paid": {
+     "abstain_correct": 2
+    },
+    "orphan_near_net": {
+     "abstain_correct": 2
+    },
+    "orphan_rzp_credit": {
+     "abstain_correct": 1
+    },
+    "outward_neft_return": {
+     "abstain_wrong": 2
+    },
+    "ref_merchant_name": {
+     "auto_correct": 2
+    },
+    "ref_settlement_id": {
+     "auto_correct": 2
+    },
+    "refund_netted": {
+     "auto_correct": 2
+    },
+    "twins_no_clue": {
+     "abstain_correct": 6
+    },
+    "twins_with_clue": {
+     "abstain_correct": 1,
+     "abstain_wrong": 4,
+     "auto_correct": 2
+    },
+    "utr_damaged_multi": {
+     "auto_correct": 4
+    }
+   },
+   "engine_false_matches_by_tier": {},
+   "engine_solver": {
+    "_filler": {
+     "auto_correct": 105
+    },
+    "chargeback_netted": {
+     "auto_correct": 2
+    },
+    "deduction_stated": {
+     "abstain_wrong": 2,
+     "auto_correct": 4
+    },
+    "deduction_unstated": {
+     "abstain_correct": 2
+    },
+    "merged_3plus": {
+     "abstain_wrong": 9
+    },
+    "never_paid": {
+     "abstain_correct": 2
+    },
+    "orphan_near_net": {
+     "abstain_correct": 2
+    },
+    "orphan_rzp_credit": {
+     "abstain_correct": 1
+    },
+    "outward_neft_return": {
+     "abstain_wrong": 2
+    },
+    "ref_merchant_name": {
+     "auto_correct": 2
+    },
+    "ref_settlement_id": {
+     "auto_correct": 2
+    },
+    "refund_netted": {
+     "auto_correct": 2
+    },
+    "twins_no_clue": {
+     "abstain_correct": 6
+    },
+    "twins_with_clue": {
+     "abstain_correct": 1,
+     "abstain_wrong": 6
+    },
+    "utr_damaged_multi": {
+     "auto_correct": 4
+    }
+   },
+   "items": [
+    {
+     "anchor_amount_paise": 1356235,
+     "api_calls": 0,
+     "cost_usd": 0.0,
+     "engine_status": "exception_missing_settlement",
+     "golden": {
+      "BANK000032": {
+       "disposition": "exception_missing_settlement",
+       "group": []
+      }
+     },
+     "item_id": "credit:BANK000032",
+     "latency_s": 0.0,
+     "outcome": "prefilter_skip",
+     "proposal": null,
+     "scenario": "orphan_near_net",
+     "transcript": "",
+     "verdict": null,
+     "verdict_brief_minimum": null,
+     "world": "1000"
+    },
+    {
+     "anchor_amount_paise": 4127435,
+     "api_calls": 1,
+     "cost_usd": 0.008388,
+     "engine_status": "needs_review",
+     "golden": {
+      "BANK000034": {
+       "disposition": "matched_with_discrepancy",
+       "group": [
+        "BANK000034",
+        "setl_ftM1GBvL0jfZAW"
+       ]
+      },
+      "setl_ftM1GBvL0jfZAW": {
+       "disposition": "matched_with_discrepancy",
+       "group": [
+        "BANK000034",
+        "setl_ftM1GBvL0jfZAW"
+       ]
+      }
+     },
+     "item_id": "credit:BANK000034",
+     "latency_s": 10.807,
+     "outcome": "submitted",
+     "proposal": {
+      "bank_row_ids": [
+       "BANK000034"
+      ],
+      "deduction_evidence": "TDS 194O 228.26",
+      "deduction_paise": 22826,
+      "reason": "UTR YESB104324517493 exactly matches settlement setl_ftM1GBvL0jfZAW; net 4150261 minus TDS 228.26 (22826 paise) stated in narration equals credit amount 4127435 exactly, with value date 1 day after settlement creation.",
+      "settlement_ids": [
+       "setl_ftM1GBvL0jfZAW"
+      ],
+      "verdict": "match"
+     },
+     "proposal_wrong": false,
+     "scenario": "deduction_stated",
+     "transcript": "data/agent_transcripts/resolve/1000/credit__BANK000034.jsonl",
+     "verdict": {
+      "accepted": true,
+      "codes": [],
+      "deduction_paise": 22826,
+      "details": [],
+      "status": "matched_with_discrepancy"
+     },
+     "verdict_brief_minimum": {
+      "accepted": true,
+      "codes": [],
+      "deduction_paise": 22826,
+      "details": [],
+      "status": "matched_with_discrepancy"
+     },
+     "world": "1000"
+    },
+    {
+     "anchor_amount_paise": 4875200,
+     "api_calls": 0,
+     "cost_usd": 0.0,
+     "engine_status": "exception_missing_settlement",
+     "golden": {
+      "BANK000035": {
+       "disposition": "non_settlement_credit",
+       "group": []
+      }
+     },
+     "item_id": "credit:BANK000035",
+     "latency_s": 0.0,
+     "outcome": "prefilter_skip",
+     "proposal": null,
+     "scenario": "outward_neft_return",
+     "transcript": "",
+     "verdict": null,
+     "verdict_brief_minimum": null,
+     "world": "1000"
+    },
+    {
+     "anchor_amount_paise": 7839153,
+     "api_calls": 1,
+     "cost_usd": 0.01054,
+     "engine_status": "needs_review",
+     "golden": {
+      "BANK000038": {
+       "disposition": "matched_merged",
+       "group": [
+        "BANK000038",
+        "setl_jRwrf0EHRSNuFz",
+        "setl_nh5uuBtxUbf1OM",
+        "setl_zIHVTb4YXjZYHN"
+       ]
+      },
+      "setl_nh5uuBtxUbf1OM": {
+       "disposition": "matched_merged",
+       "group": [
+        "BANK000038",
+        "setl_jRwrf0EHRSNuFz",
+        "setl_nh5uuBtxUbf1OM",
+        "setl_zIHVTb4YXjZYHN"
+       ]
+      }
+     },
+     "item_id": "credit:BANK000038",
+     "latency_s": 7.739,
+     "outcome": "submitted",
+     "proposal": {
+      "bank_row_ids": [
+       "BANK000038"
+      ],
+      "deduction_evidence": "",
+      "deduction_paise": 0,
+      "reason": "Credit BANK000038 (7,839,153 paise) is a bulk payout; its UTR matches setl_nh5uuBtxUbf1OM, and the remaining amount exactly equals the sum of the other two open settlements (setl_jRwrf0EHRSNuFz + setl_zIHVTb4YXjZYHN = 733833+4628813=5,362,646, matching the residual), with all created dates within 0-10 days of the credit's value date.",
+      "settlement_ids": [
+       "setl_nh5uuBtxUbf1OM",
+       "setl_jRwrf0EHRSNuFz",
+       "setl_zIHVTb4YXjZYHN"
+      ],
+      "verdict": "match"
+     },
+     "proposal_wrong": false,
+     "scenario": "merged_3plus",
+     "transcript": "data/agent_transcripts/resolve/1000/credit__BANK000038.jsonl",
+     "verdict": {
+      "accepted": true,
+      "codes": [],
+      "deduction_paise": 0,
+      "details": [],
+      "status": "matched_merged"
+     },
+     "verdict_brief_minimum": {
+      "accepted": true,
+      "codes": [],
+      "deduction_paise": 0,
+      "details": [],
+      "status": "matched_merged"
+     },
+     "world": "1000"
+    },
+    {
+     "anchor_amount_paise": 1241611,
+     "api_calls": 1,
+     "cost_usd": 0.011938,
+     "engine_status": "exception_missing_settlement",
+     "golden": {
+      "BANK000058": {
+       "disposition": "matched_with_discrepancy",
+       "group": [
+        "BANK000058",
+        "setl_6brjnM9mejU1f6"
+       ]
+      }
+     },
+     "item_id": "credit:BANK000058",
+     "latency_s": 8.597,
+     "outcome": "submitted",
+     "proposal": {
+      "bank_row_ids": [
+       "BANK000058"
+      ],
+      "deduction_evidence": "LESS CHGS 295.74",
+      "deduction_paise": 29574,
+      "reason": "Credit amount 1,241,611 plus the stated deduction of 295.74 (29574 paise) equals exactly the net of setl_6brjnM9mejU1f6 (1,271,185 paise), a Pinecone Toys settlement created 2025-04-21 with credit value date 2025-04-22 (1-day gap). No other open settlement or credit shares this amount, so despite the generic/non-matching NEFT reference, the amount and deduction uniquely identify this settlement.",
+      "settlement_ids": [
+       "setl_6brjnM9mejU1f6"
+      ],
+      "verdict": "match"
+     },
+     "proposal_wrong": false,
+     "scenario": "deduction_stated",
+     "transcript": "data/agent_transcripts/resolve/1000/credit__BANK000058.jsonl",
+     "verdict": {
+      "accepted": true,
+      "codes": [],
+      "deduction_paise": 29574,
+      "details": [],
+      "status": "matched_with_discrepancy"
+     },
+     "verdict_brief_minimum": {
+      "accepted": true,
+      "codes": [],
+      "deduction_paise": 29574,
+      "details": [],
+      "status": "matched_with_discrepancy"
+     },
+     "world": "1000"
+    },
+    {
+     "anchor_amount_paise": 3077987,
+     "api_calls": 1,
+     "cost_usd": 0.007784,
+     "engine_status": "needs_review",
+     "golden": {
+      "BANK000059": {
+       "disposition": "matched_with_discrepancy",
+       "group": [
+        "BANK000059",
+        "setl_zy8XGrRrBJKqvz"
+       ]
+      },
+      "setl_zy8XGrRrBJKqvz": {
+       "disposition": "matched_with_discrepancy",
+       "group": [
+        "BANK000059",
+        "setl_zy8XGrRrBJKqvz"
+       ]
+      }
+     },
+     "item_id": "credit:BANK000059",
+     "latency_s": 5.108,
+     "outcome": "submitted",
+     "proposal": {
+      "bank_row_ids": [
+       "BANK000059"
+      ],
+      "deduction_evidence": "LESS BANK CHGS 23.60",
+      "deduction_paise": 2360,
+      "reason": "UTR HDFC339405320252 matches settlement setl_zy8XGrRrBJKqvz exactly; net 3080347 minus stated bank charge 23.60 (2360 paise) equals credited 3077987, and value date is within 10 days of settlement creation.",
+      "settlement_ids": [
+       "setl_zy8XGrRrBJKqvz"
+      ],
+      "verdict": "match"
+     },
+     "proposal_wrong": false,
+     "scenario": "deduction_stated",
+     "transcript": "data/agent_transcripts/resolve/1000/credit__BANK000059.jsonl",
+     "verdict": {
+      "accepted": true,
+      "codes": [],
+      "deduction_paise": 2360,
+      "details": [],
+      "status": "matched_with_discrepancy"
+     },
+     "verdict_brief_minimum": {
+      "accepted": true,
+      "codes": [],
+      "deduction_paise": 2360,
+      "details": [],
+      "status": "matched_with_discrepancy"
+     },
+     "world": "1000"
+    },
+    {
+     "anchor_amount_paise": 3336828,
+     "api_calls": 0,
+     "cost_usd": 0.0,
+     "engine_status": "ambiguous_abstain",
+     "golden": {
+      "BANK000061": {
+       "disposition": "ambiguous_abstain",
+       "group": []
+      }
+     },
+     "item_id": "credit:BANK000061",
+     "latency_s": 0.0,
+     "outcome": "prefilter_skip",
+     "proposal": null,
+     "scenario": "twins_no_clue",
+     "transcript": "",
+     "verdict": null,
+     "verdict_brief_minimum": null,
+     "world": "1000"
+    },
+    {
+     "anchor_amount_paise": 3980891,
+     "api_calls": 0,
+     "cost_usd": 0.0,
+     "engine_status": "exception_missing_settlement",
+     "golden": {
+      "BANK000062": {
+       "disposition": "exception_missing_settlement",
+       "group": []
+      }
+     },
+     "item_id": "credit:BANK000062",
+     "latency_s": 0.0,
+     "outcome": "prefilter_skip",
+     "proposal": null,
+     "scenario": "orphan_rzp_credit",
+     "transcript": "",
+     "verdict": null,
+     "verdict_brief_minimum": null,
+     "world": "1000"
+    },
+    {
+     "anchor_amount_paise": 3105783,
+     "api_calls": 1,
+     "cost_usd": 0.00823,
+     "engine_status": "needs_review",
+     "golden": {
+      "BANK000083": {
+       "disposition": "matched_with_discrepancy",
+       "group": [
+        "BANK000083",
+        "setl_Yajpsb9MxHYLTq"
+       ]
+      },
+      "setl_Yajpsb9MxHYLTq": {
+       "disposition": "matched_with_discrepancy",
+       "group": [
+        "BANK000083",
+        "setl_Yajpsb9MxHYLTq"
+       ]
+      }
+     },
+     "item_id": "credit:BANK000083",
+     "latency_s": 5.107,
+     "outcome": "submitted",
+     "proposal": {
+      "bank_row_ids": [
+       "BANK000083"
+      ],
+      "deduction_evidence": "5419.43",
+      "deduction_paise": 541943,
+      "reason": "Credit's UTR (ICIC218595316565) exactly matches the settlement's UTR, and net 3647726 minus the stated chargeback recovery deduction of 5419.43 (541943 paise) equals the credit amount 3105783 exactly; value date is 1 day after settlement creation.",
+      "settlement_ids": [
+       "setl_Yajpsb9MxHYLTq"
+      ],
+      "verdict": "match"
+     },
+     "proposal_wrong": false,
+     "scenario": "chargeback_netted",
+     "transcript": "data/agent_transcripts/resolve/1000/credit__BANK000083.jsonl",
+     "verdict": {
+      "accepted": true,
+      "codes": [],
+      "deduction_paise": 541943,
+      "details": [],
+      "status": "matched_with_discrepancy"
+     },
+     "verdict_brief_minimum": {
+      "accepted": true,
+      "codes": [],
+      "deduction_paise": 541943,
+      "details": [],
+      "status": "matched_with_discrepancy"
+     },
+     "world": "1000"
+    },
+    {
+     "anchor_amount_paise": 3661180,
+     "api_calls": 0,
+     "cost_usd": 0.0,
+     "engine_status": "ambiguous_abstain",
+     "golden": {
+      "BANK000095": {
+       "disposition": "matched",
+       "group": [
+        "BANK000095",
+        "setl_wAaIUvgFjzamff"
+       ]
+      }
+     },
+     "item_id": "credit:BANK000095",
+     "latency_s": 0.0,
+     "outcome": "prefilter_skip",
+     "proposal": null,
+     "scenario": "twins_with_clue",
+     "transcript": "",
+     "verdict": null,
+     "verdict_brief_minimum": null,
+     "world": "1000"
+    },
+    {
+     "anchor_amount_paise": 3661180,
+     "api_calls": 0,
+     "cost_usd": 0.0,
+     "engine_status": "ambiguous_abstain",
+     "golden": {
+      "BANK000096": {
+       "disposition": "matched",
+       "group": [
+        "BANK000096",
+        "setl_u32U85Tu0mV29T"
+       ]
+      }
+     },
+     "item_id": "credit:BANK000096",
+     "latency_s": 0.0,
+     "outcome": "prefilter_skip",
+     "proposal": null,
+     "scenario": "twins_with_clue",
+     "transcript": "",
+     "verdict": null,
+     "verdict_brief_minimum": null,
+     "world": "1000"
+    },
+    {
+     "anchor_amount_paise": 8825866,
+     "api_calls": 1,
+     "cost_usd": 0.031206,
+     "engine_status": "exception_missing_settlement",
+     "golden": {
+      "BANK000098": {
+       "disposition": "matched_merged",
+       "group": [
+        "BANK000098",
+        "setl_EZ361Lp2IfykVZ",
+        "setl_Id0X5C5kI3DfQ4",
+        "setl_OkiTE35N7ShP4W",
+        "setl_dmwZoexRYWEy42"
+       ]
+      }
+     },
+     "item_id": "credit:BANK000098",
+     "latency_s": 33.795,
+     "outcome": "submitted",
+     "proposal": {
+      "bank_row_ids": [
+       "BANK000098"
+      ],
+      "deduction_evidence": "",
+      "deduction_paise": 0,
+      "reason": "No single open settlement or combination of 2-6 open settlements (created within 10 days of 2025-05-05) sums exactly to 8,825,866 paise, and the narration gives no UTR or settlement reference to tie it to any specific settlement; the engine's rejected candidates also don't reconcile. This is a genuine missing-settlement exception, not a match.",
+      "settlement_ids": [],
+      "verdict": "exception"
+     },
+     "scenario": "merged_3plus",
+     "transcript": "data/agent_transcripts/resolve/1000/credit__BANK000098.jsonl",
+     "verdict": {
+      "accepted": false,
+      "codes": [
+       "no_match_proposed"
+      ],
+      "deduction_paise": null,
+      "details": [],
+      "status": ""
+     },
+     "verdict_brief_minimum": {
+      "accepted": false,
+      "codes": [
+       "no_match_proposed"
+      ],
+      "deduction_paise": null,
+      "details": [],
+      "status": ""
+     },
+     "world": "1000"
+    },
+    {
+     "anchor_amount_paise": 3078797,
+     "api_calls": 1,
+     "cost_usd": 0.008614,
+     "engine_status": "needs_review",
+     "golden": {
+      "BANK000103": {
+       "disposition": "matched_with_discrepancy",
+       "group": [
+        "BANK000103",
+        "setl_aB1yjEXygXabEP"
+       ]
+      },
+      "setl_aB1yjEXygXabEP": {
+       "disposition": "matched_with_discrepancy",
+       "group": [
+        "BANK000103",
+        "setl_aB1yjEXygXabEP"
+       ]
+      }
+     },
+     "item_id": "credit:BANK000103",
+     "latency_s": 4.93,
+     "outcome": "submitted",
+     "proposal": {
+      "bank_row_ids": [
+       "BANK000103"
+      ],
+      "deduction_evidence": "LESS REFUND 1951.25",
+      "deduction_paise": 195125,
+      "reason": "UTR YESB200886800485 exactly matches setl_aB1yjEXygXabEP; net 3273922 minus stated refund deduction of 1951.25 (195125 paise) equals credit amount 3078797 exactly, and value date is within 10 days of settlement creation.",
+      "settlement_ids": [
+       "setl_aB1yjEXygXabEP"
+      ],
+      "verdict": "match"
+     },
+     "proposal_wrong": false,
+     "scenario": "refund_netted",
+     "transcript": "data/agent_transcripts/resolve/1000/credit__BANK000103.jsonl",
+     "verdict": {
+      "accepted": true,
+      "codes": [],
+      "deduction_paise": 195125,
+      "details": [],
+      "status": "matched_with_discrepancy"
+     },
+     "verdict_brief_minimum": {
+      "accepted": true,
+      "codes": [],
+      "deduction_paise": 195125,
+      "details": [],
+      "status": "matched_with_discrepancy"
+     },
+     "world": "1000"
+    },
+    {
+     "anchor_amount_paise": 1662182,
+     "api_calls": 0,
+     "cost_usd": 0.0,
+     "engine_status": "exception_missing_settlement",
+     "golden": {
+      "BANK000105": {
+       "disposition": "exception_missing_settlement",
+       "group": []
+      }
+     },
+     "item_id": "credit:BANK000105",
+     "latency_s": 0.0,
+     "outcome": "prefilter_skip",
+     "proposal": null,
+     "scenario": "orphan_near_net",
+     "transcript": "",
+     "verdict": null,
+     "verdict_brief_minimum": null,
+     "world": "1000"
+    },
+    {
+     "anchor_amount_paise": 4567347,
+     "api_calls": 0,
+     "cost_usd": 0.0,
+     "engine_status": "exception_missing_settlement",
+     "golden": {
+      "BANK000115": {
+       "disposition": "non_settlement_credit",
+       "group": []
+      }
+     },
+     "item_id": "credit:BANK000115",
+     "latency_s": 0.0,
+     "outcome": "prefilter_skip",
+     "proposal": null,
+     "scenario": "outward_neft_return",
+     "transcript": "",
+     "verdict": null,
+     "verdict_brief_minimum": null,
+     "world": "1000"
+    },
+    {
+     "anchor_amount_paise": 2537956,
+     "api_calls": 0,
+     "cost_usd": 0.0,
+     "engine_status": "ambiguous_abstain",
+     "golden": {
+      "BANK000143": {
+       "disposition": "ambiguous_abstain",
+       "group": []
+      }
+     },
+     "item_id": "credit:BANK000143",
+     "latency_s": 0.0,
+     "outcome": "prefilter_skip",
+     "proposal": null,
+     "scenario": "twins_no_clue",
+     "transcript": "",
+     "verdict": null,
+     "verdict_brief_minimum": null,
+     "world": "1000"
+    },
+    {
+     "anchor_amount_paise": 7793944,
+     "api_calls": 0,
+     "cost_usd": 0.0,
+     "engine_status": "exception_missing_settlement",
+     "golden": {
+      "BANK000149": {
+       "disposition": "exception_missing_settlement",
+       "group": []
+      }
+     },
+     "item_id": "credit:BANK000149",
+     "latency_s": 0.0,
+     "outcome": "prefilter_skip",
+     "proposal": null,
+     "scenario": "deduction_unstated",
+     "transcript": "",
+     "verdict": null,
+     "verdict_brief_minimum": null,
+     "world": "1000"
+    },
+    {
+     "anchor_amount_paise": 2799010,
+     "api_calls": 1,
+     "cost_usd": 0.006458,
+     "engine_status": "ambiguous_abstain",
+     "golden": {
+      "BANK000159": {
+       "disposition": "matched",
+       "group": [
+        "BANK000159",
+        "setl_yk1C5lsvTMkiqF"
+       ]
+      }
+     },
+     "item_id": "credit:BANK000159",
+     "latency_s": 4.556,
+     "outcome": "submitted",
+     "proposal": {
+      "bank_row_ids": [
+       "BANK000159"
+      ],
+      "deduction_evidence": "",
+      "deduction_paise": 0,
+      "reason": "Credit BANK000159 exactly matches net_paise of setl_yk1C5lsvTMkiqF and its narration explicitly names that settlement id, distinguishing it from the other same-amount settlement (setl_C7XwgvL29G3b1a) which has no such identifying evidence; value date is within window.",
+      "settlement_ids": [
+       "setl_yk1C5lsvTMkiqF"
+      ],
+      "verdict": "match"
+     },
+     "proposal_wrong": false,
+     "scenario": "twins_with_clue",
+     "transcript": "data/agent_transcripts/resolve/1000/credit__BANK000159.jsonl",
+     "verdict": {
+      "accepted": true,
+      "codes": [],
+      "deduction_paise": 0,
+      "details": [],
+      "status": "matched"
+     },
+     "verdict_brief_minimum": {
+      "accepted": true,
+      "codes": [],
+      "deduction_paise": 0,
+      "details": [],
+      "status": "matched"
+     },
+     "world": "1000"
+    },
+    {
+     "anchor_amount_paise": 733833,
+     "api_calls": 0,
+     "cost_usd": 0.0,
+     "engine_status": "exception_missing_bank",
+     "golden": {
+      "setl_jRwrf0EHRSNuFz": {
+       "disposition": "matched_merged",
+       "group": [
+        "BANK000038",
+        "setl_jRwrf0EHRSNuFz",
+        "setl_nh5uuBtxUbf1OM",
+        "setl_zIHVTb4YXjZYHN"
+       ]
+      }
+     },
+     "item_id": "settlement:setl_jRwrf0EHRSNuFz",
+     "latency_s": 0.0,
+     "outcome": "dedupe_skip",
+     "proposal": null,
+     "scenario": "merged_3plus",
+     "transcript": "",
+     "verdict": null,
+     "verdict_brief_minimum": null,
+     "world": "1000"
+    },
+    {
+     "anchor_amount_paise": 4628813,
+     "api_calls": 0,
+     "cost_usd": 0.0,
+     "engine_status": "exception_missing_bank",
+     "golden": {
+      "setl_zIHVTb4YXjZYHN": {
+       "disposition": "matched_merged",
+       "group": [
+        "BANK000038",
+        "setl_jRwrf0EHRSNuFz",
+        "setl_nh5uuBtxUbf1OM",
+        "setl_zIHVTb4YXjZYHN"
+       ]
+      }
+     },
+     "item_id": "settlement:setl_zIHVTb4YXjZYHN",
+     "latency_s": 0.0,
+     "outcome": "dedupe_skip",
+     "proposal": null,
+     "scenario": "merged_3plus",
+     "transcript": "",
+     "verdict": null,
+     "verdict_brief_minimum": null,
+     "world": "1000"
+    },
+    {
+     "anchor_amount_paise": 3336828,
+     "api_calls": 0,
+     "cost_usd": 0.0,
+     "engine_status": "ambiguous_abstain",
+     "golden": {
+      "setl_BxEPdzHPlj3qy7": {
+       "disposition": "ambiguous_abstain",
+       "group": []
+      }
+     },
+     "item_id": "settlement:setl_BxEPdzHPlj3qy7",
+     "latency_s": 0.0,
+     "outcome": "prefilter_skip",
+     "proposal": null,
+     "scenario": "twins_no_clue",
+     "transcript": "",
+     "verdict": null,
+     "verdict_brief_minimum": null,
+     "world": "1000"
+    },
+    {
+     "anchor_amount_paise": 3336828,
+     "api_calls": 0,
+     "cost_usd": 0.0,
+     "engine_status": "ambiguous_abstain",
+     "golden": {
+      "setl_E2yvffBsZ1MqIS": {
+       "disposition": "ambiguous_abstain",
+       "group": []
+      }
+     },
+     "item_id": "settlement:setl_E2yvffBsZ1MqIS",
+     "latency_s": 0.0,
+     "outcome": "prefilter_skip",
+     "proposal": null,
+     "scenario": "twins_no_clue",
+     "transcript": "",
+     "verdict": null,
+     "verdict_brief_minimum": null,
+     "world": "1000"
+    },
+    {
+     "anchor_amount_paise": 1271185,
+     "api_calls": 0,
+     "cost_usd": 0.0,
+     "engine_status": "exception_missing_bank",
+     "golden": {
+      "setl_6brjnM9mejU1f6": {
+       "disposition": "matched_with_discrepancy",
+       "group": [
+        "BANK000058",
+        "setl_6brjnM9mejU1f6"
+       ]
+      }
+     },
+     "item_id": "settlement:setl_6brjnM9mejU1f6",
+     "latency_s": 0.0,
+     "outcome": "dedupe_skip",
+     "proposal": null,
+     "scenario": "deduction_stated",
+     "transcript": "",
+     "verdict": null,
+     "verdict_brief_minimum": null,
+     "world": "1000"
+    },
+    {
+     "anchor_amount_paise": 3661180,
+     "api_calls": 0,
+     "cost_usd": 0.0,
+     "engine_status": "ambiguous_abstain",
+     "golden": {
+      "setl_u32U85Tu0mV29T": {
+       "disposition": "matched",
+       "group": [
+        "BANK000096",
+        "setl_u32U85Tu0mV29T"
+       ]
+      }
+     },
+     "item_id": "settlement:setl_u32U85Tu0mV29T",
+     "latency_s": 0.0,
+     "outcome": "prefilter_skip",
+     "proposal": null,
+     "scenario": "twins_with_clue",
+     "transcript": "",
+     "verdict": null,
+     "verdict_brief_minimum": null,
+     "world": "1000"
+    },
+    {
+     "anchor_amount_paise": 3661180,
+     "api_calls": 0,
+     "cost_usd": 0.0,
+     "engine_status": "ambiguous_abstain",
+     "golden": {
+      "setl_wAaIUvgFjzamff": {
+       "disposition": "matched",
+       "group": [
+        "BANK000095",
+        "setl_wAaIUvgFjzamff"
+       ]
+      }
+     },
+     "item_id": "settlement:setl_wAaIUvgFjzamff",
+     "latency_s": 0.0,
+     "outcome": "prefilter_skip",
+     "proposal": null,
+     "scenario": "twins_with_clue",
+     "transcript": "",
+     "verdict": null,
+     "verdict_brief_minimum": null,
+     "world": "1000"
+    },
+    {
+     "anchor_amount_paise": 2571336,
+     "api_calls": 1,
+     "cost_usd": 0.017038,
+     "engine_status": "exception_missing_bank",
+     "golden": {
+      "setl_Id0X5C5kI3DfQ4": {
+       "disposition": "matched_merged",
+       "group": [
+        "BANK000098",
+        "setl_EZ361Lp2IfykVZ",
+        "setl_Id0X5C5kI3DfQ4",
+        "setl_OkiTE35N7ShP4W",
+        "setl_dmwZoexRYWEy42"
+       ]
+      }
+     },
+     "item_id": "settlement:setl_Id0X5C5kI3DfQ4",
+     "latency_s": 15.84,
+     "outcome": "submitted",
+     "proposal": {
+      "bank_row_ids": [
+       "BANK000098"
+      ],
+      "deduction_evidence": "",
+      "deduction_paise": 0,
+      "reason": "The consolidated NEFT credit BANK000098 (8,825,866 paise) exactly equals the sum of four open settlements (setl_Id0X5C5kI3DfQ4 + setl_EZ361Lp2IfykVZ + setl_dmwZoexRYWEy42 + setl_OkiTE35N7ShP4W = 2571336+2840410+2453932+960188 = 8825866), all created 2025-05-03/04 with the credit value date 2025-05-05, matching the 'CONSOLIDATED SETL' narration for multiple merchants.",
+      "settlement_ids": [
+       "setl_Id0X5C5kI3DfQ4",
+       "setl_EZ361Lp2IfykVZ",
+       "setl_dmwZoexRYWEy42",
+       "setl_OkiTE35N7ShP4W"
+      ],
+      "verdict": "match"
+     },
+     "proposal_wrong": false,
+     "scenario": "merged_3plus",
+     "transcript": "data/agent_transcripts/resolve/1000/settlement__setl_Id0X5C5kI3DfQ4.jsonl",
+     "verdict": {
+      "accepted": true,
+      "codes": [],
+      "deduction_paise": 0,
+      "details": [],
+      "status": "matched_merged"
+     },
+     "verdict_brief_minimum": {
+      "accepted": true,
+      "codes": [],
+      "deduction_paise": 0,
+      "details": [],
+      "status": "matched_merged"
+     },
+     "world": "1000"
+    },
+    {
+     "anchor_amount_paise": 960188,
+     "api_calls": 0,
+     "cost_usd": 0.0,
+     "engine_status": "exception_missing_bank",
+     "golden": {
+      "setl_OkiTE35N7ShP4W": {
+       "disposition": "matched_merged",
+       "group": [
+        "BANK000098",
+        "setl_EZ361Lp2IfykVZ",
+        "setl_Id0X5C5kI3DfQ4",
+        "setl_OkiTE35N7ShP4W",
+        "setl_dmwZoexRYWEy42"
+       ]
+      }
+     },
+     "item_id": "settlement:setl_OkiTE35N7ShP4W",
+     "latency_s": 0.0,
+     "outcome": "dedupe_skip",
+     "proposal": null,
+     "scenario": "merged_3plus",
+     "transcript": "",
+     "verdict": null,
+     "verdict_brief_minimum": null,
+     "world": "1000"
+    },
+    {
+     "anchor_amount_paise": 2840410,
+     "api_calls": 0,
+     "cost_usd": 0.0,
+     "engine_status": "exception_missing_bank",
+     "golden": {
+      "setl_EZ361Lp2IfykVZ": {
+       "disposition": "matched_merged",
+       "group": [
+        "BANK000098",
+        "setl_EZ361Lp2IfykVZ",
+        "setl_Id0X5C5kI3DfQ4",
+        "setl_OkiTE35N7ShP4W",
+        "setl_dmwZoexRYWEy42"
+       ]
+      }
+     },
+     "item_id": "settlement:setl_EZ361Lp2IfykVZ",
+     "latency_s": 0.0,
+     "outcome": "dedupe_skip",
+     "proposal": null,
+     "scenario": "merged_3plus",
+     "transcript": "",
+     "verdict": null,
+     "verdict_brief_minimum": null,
+     "world": "1000"
+    },
+    {
+     "anchor_amount_paise": 2453932,
+     "api_calls": 0,
+     "cost_usd": 0.0,
+     "engine_status": "exception_missing_bank",
+     "golden": {
+      "setl_dmwZoexRYWEy42": {
+       "disposition": "matched_merged",
+       "group": [
+        "BANK000098",
+        "setl_EZ361Lp2IfykVZ",
+        "setl_Id0X5C5kI3DfQ4",
+        "setl_OkiTE35N7ShP4W",
+        "setl_dmwZoexRYWEy42"
+       ]
+      }
+     },
+     "item_id": "settlement:setl_dmwZoexRYWEy42",
+     "latency_s": 0.0,
+     "outcome": "dedupe_skip",
+     "proposal": null,
+     "scenario": "merged_3plus",
+     "transcript": "",
+     "verdict": null,
+     "verdict_brief_minimum": null,
+     "world": "1000"
+    },
+    {
+     "anchor_amount_paise": 1662771,
+     "api_calls": 0,
+     "cost_usd": 0.0,
+     "engine_status": "exception_missing_bank",
+     "golden": {
+      "setl_6SCzmCAnF1eywV": {
+       "disposition": "exception_missing_bank",
+       "group": []
+      }
+     },
+     "item_id": "settlement:setl_6SCzmCAnF1eywV",
+     "latency_s": 0.0,
+     "outcome": "prefilter_skip",
+     "proposal": null,
+     "scenario": "never_paid",
+     "transcript": "",
+     "verdict": null,
+     "verdict_brief_minimum": null,
+     "world": "1000"
+    },
+    {
+     "anchor_amount_paise": 5134814,
+     "api_calls": 0,
+     "cost_usd": 0.0,
+     "engine_status": "exception_missing_bank",
+     "golden": {
+      "setl_hJ1BMUi1GVKL8P": {
+       "disposition": "exception_missing_bank",
+       "group": []
+      }
+     },
+     "item_id": "settlement:setl_hJ1BMUi1GVKL8P",
+     "latency_s": 0.0,
+     "outcome": "prefilter_skip",
+     "proposal": null,
+     "scenario": "never_paid",
+     "transcript": "",
+     "verdict": null,
+     "verdict_brief_minimum": null,
+     "world": "1000"
+    },
+    {
+     "anchor_amount_paise": 2537956,
+     "api_calls": 0,
+     "cost_usd": 0.0,
+     "engine_status": "ambiguous_abstain",
+     "golden": {
+      "setl_eSAylMcGa1vnUq": {
+       "disposition": "ambiguous_abstain",
+       "group": []
+      }
+     },
+     "item_id": "settlement:setl_eSAylMcGa1vnUq",
+     "latency_s": 0.0,
+     "outcome": "prefilter_skip",
+     "proposal": null,
+     "scenario": "twins_no_clue",
+     "transcript": "",
+     "verdict": null,
+     "verdict_brief_minimum": null,
+     "world": "1000"
+    },
+    {
+     "anchor_amount_paise": 2537956,
+     "api_calls": 0,
+     "cost_usd": 0.0,
+     "engine_status": "ambiguous_abstain",
+     "golden": {
+      "setl_tVmRHBlTneTepC": {
+       "disposition": "ambiguous_abstain",
+       "group": []
+      }
+     },
+     "item_id": "settlement:setl_tVmRHBlTneTepC",
+     "latency_s": 0.0,
+     "outcome": "prefilter_skip",
+     "proposal": null,
+     "scenario": "twins_no_clue",
+     "transcript": "",
+     "verdict": null,
+     "verdict_brief_minimum": null,
+     "world": "1000"
+    },
+    {
+     "anchor_amount_paise": 7801746,
+     "api_calls": 0,
+     "cost_usd": 0.0,
+     "engine_status": "exception_missing_bank",
+     "golden": {
+      "setl_9f95obnPTFSuJx": {
+       "disposition": "exception_missing_bank",
+       "group": []
+      }
+     },
+     "item_id": "settlement:setl_9f95obnPTFSuJx",
+     "latency_s": 0.0,
+     "outcome": "prefilter_skip",
+     "proposal": null,
+     "scenario": "deduction_unstated",
+     "transcript": "",
+     "verdict": null,
+     "verdict_brief_minimum": null,
+     "world": "1000"
+    },
+    {
+     "anchor_amount_paise": 2799010,
+     "api_calls": 0,
+     "cost_usd": 0.0,
+     "engine_status": "ambiguous_abstain",
+     "golden": {
+      "setl_C7XwgvL29G3b1a": {
+       "disposition": "exception_missing_bank",
+       "group": []
+      }
+     },
+     "item_id": "settlement:setl_C7XwgvL29G3b1a",
+     "latency_s": 0.0,
+     "outcome": "prefilter_skip",
+     "proposal": null,
+     "scenario": "twins_with_clue",
+     "transcript": "",
+     "verdict": null,
+     "verdict_brief_minimum": null,
+     "world": "1000"
+    },
+    {
+     "anchor_amount_paise": 2799010,
+     "api_calls": 0,
+     "cost_usd": 0.0,
+     "engine_status": "ambiguous_abstain",
+     "golden": {
+      "setl_yk1C5lsvTMkiqF": {
+       "disposition": "matched",
+       "group": [
+        "BANK000159",
+        "setl_yk1C5lsvTMkiqF"
+       ]
+      }
+     },
+     "item_id": "settlement:setl_yk1C5lsvTMkiqF",
+     "latency_s": 0.0,
+     "outcome": "dedupe_skip",
+     "proposal": null,
+     "scenario": "twins_with_clue",
+     "transcript": "",
+     "verdict": null,
+     "verdict_brief_minimum": null,
+     "world": "1000"
+    }
+   ],
+   "left_for_human": [
+    {
+     "amount_paise": 3661180,
+     "expected": "matched",
+     "item_id": "settlement:setl_u32U85Tu0mV29T",
+     "item_outcome": "prefilter_skip",
+     "record_id": "setl_u32U85Tu0mV29T",
+     "scenario": "twins_with_clue",
+     "transcript": "",
+     "world": "1000"
+    },
+    {
+     "amount_paise": 3661180,
+     "expected": "matched",
+     "item_id": "settlement:setl_wAaIUvgFjzamff",
+     "item_outcome": "prefilter_skip",
+     "record_id": "setl_wAaIUvgFjzamff",
+     "scenario": "twins_with_clue",
+     "transcript": "",
+     "world": "1000"
+    },
+    {
+     "amount_paise": 4875200,
+     "expected": "non_settlement_credit",
+     "item_id": "credit:BANK000035",
+     "item_outcome": "prefilter_skip",
+     "record_id": "BANK000035",
+     "scenario": "outward_neft_return",
+     "transcript": "",
+     "world": "1000"
+    },
+    {
+     "amount_paise": 3661180,
+     "expected": "matched",
+     "item_id": "credit:BANK000095",
+     "item_outcome": "prefilter_skip",
+     "record_id": "BANK000095",
+     "scenario": "twins_with_clue",
+     "transcript": "",
+     "world": "1000"
+    },
+    {
+     "amount_paise": 3661180,
+     "expected": "matched",
+     "item_id": "credit:BANK000096",
+     "item_outcome": "prefilter_skip",
+     "record_id": "BANK000096",
+     "scenario": "twins_with_clue",
+     "transcript": "",
+     "world": "1000"
+    },
+    {
+     "amount_paise": 4567347,
+     "expected": "non_settlement_credit",
+     "item_id": "credit:BANK000115",
+     "item_outcome": "prefilter_skip",
+     "record_id": "BANK000115",
+     "scenario": "outward_neft_return",
+     "transcript": "",
+     "world": "1000"
+    }
+   ],
+   "rows": 154,
+   "stopped": "",
+   "world": "1000"
+  },
+  {
+   "baselines": {
+    "naive": {
+     "_filler": {
+      "abstain_wrong": 9,
+      "auto_correct": 100
+     },
+     "chargeback_netted": {
+      "abstain_wrong": 2
+     },
+     "deduction_stated": {
+      "abstain_wrong": 6
+     },
+     "deduction_unstated": {
+      "abstain_correct": 2
+     },
+     "merged_3plus": {
+      "abstain_wrong": 8
+     },
+     "never_paid": {
+      "abstain_correct": 2
+     },
+     "orphan_near_net": {
+      "abstain_correct": 2
+     },
+     "orphan_rzp_credit": {
+      "abstain_correct": 1
+     },
+     "outward_neft_return": {
+      "abstain_wrong": 2
+     },
+     "ref_merchant_name": {
+      "auto_correct": 2
+     },
+     "ref_settlement_id": {
+      "auto_correct": 2
+     },
+     "refund_netted": {
+      "abstain_wrong": 2
+     },
+     "twins_no_clue": {
+      "abstain_correct": 2,
+      "auto_wrong": 4
+     },
+     "twins_with_clue": {
+      "abstain_wrong": 1,
+      "auto_correct": 4,
+      "auto_wrong": 2
+     },
+     "utr_damaged_multi": {
+      "auto_correct": 4
+     }
+    },
+    "utr_then_amount": {
+     "_filler": {
+      "abstain_wrong": 7,
+      "auto_correct": 102
+     },
+     "chargeback_netted": {
+      "abstain_wrong": 2
+     },
+     "deduction_stated": {
+      "abstain_wrong": 6
+     },
+     "deduction_unstated": {
+      "abstain_correct": 2
+     },
+     "merged_3plus": {
+      "abstain_wrong": 8
+     },
+     "never_paid": {
+      "abstain_correct": 2
+     },
+     "orphan_near_net": {
+      "abstain_correct": 2
+     },
+     "orphan_rzp_credit": {
+      "abstain_correct": 1
+     },
+     "outward_neft_return": {
+      "abstain_wrong": 2
+     },
+     "ref_merchant_name": {
+      "auto_correct": 2
+     },
+     "ref_settlement_id": {
+      "auto_correct": 2
+     },
+     "refund_netted": {
+      "abstain_wrong": 2
+     },
+     "twins_no_clue": {
+      "abstain_correct": 2,
+      "auto_wrong": 4
+     },
+     "twins_with_clue": {
+      "abstain_wrong": 1,
+      "auto_wrong": 6
+     },
+     "utr_damaged_multi": {
+      "auto_correct": 4
+     }
+    }
+   },
+   "case_rows": 48,
+   "cases": 26,
+   "engine": {
+    "_filler": {
+     "auto_correct": 109
+    },
+    "chargeback_netted": {
+     "abstain_wrong": 2
+    },
+    "deduction_stated": {
+     "abstain_wrong": 6
+    },
+    "deduction_unstated": {
+     "abstain_correct": 2
+    },
+    "merged_3plus": {
+     "abstain_wrong": 8
+    },
+    "never_paid": {
+     "abstain_correct": 2
+    },
+    "orphan_near_net": {
+     "abstain_correct": 2
+    },
+    "orphan_rzp_credit": {
+     "abstain_correct": 1
+    },
+    "outward_neft_return": {
+     "abstain_wrong": 2
+    },
+    "ref_merchant_name": {
+     "auto_correct": 2
+    },
+    "ref_settlement_id": {
+     "auto_correct": 2
+    },
+    "refund_netted": {
+     "abstain_wrong": 2
+    },
+    "twins_no_clue": {
+     "abstain_correct": 6
+    },
+    "twins_with_clue": {
+     "abstain_correct": 1,
+     "abstain_wrong": 6
+    },
+    "utr_damaged_multi": {
+     "auto_correct": 4
+    }
+   },
+   "engine_agent": {
+    "_filler": {
+     "auto_correct": 109
+    },
+    "chargeback_netted": {
+     "auto_correct": 2
+    },
+    "deduction_stated": {
+     "auto_correct": 6
+    },
+    "deduction_unstated": {
+     "abstain_correct": 2
+    },
+    "merged_3plus": {
+     "auto_correct": 8
+    },
+    "never_paid": {
+     "abstain_correct": 2
+    },
+    "orphan_near_net": {
+     "abstain_correct": 2
+    },
+    "orphan_rzp_credit": {
+     "abstain_correct": 1
+    },
+    "outward_neft_return": {
+     "abstain_wrong": 2
+    },
+    "ref_merchant_name": {
+     "auto_correct": 2
+    },
+    "ref_settlement_id": {
+     "auto_correct": 2
+    },
+    "refund_netted": {
+     "auto_correct": 2
+    },
+    "twins_no_clue": {
+     "abstain_correct": 6
+    },
+    "twins_with_clue": {
+     "abstain_correct": 1,
+     "auto_correct": 6
+    },
+    "utr_damaged_multi": {
+     "auto_correct": 4
+    }
+   },
+   "engine_agent_brief_minimum": {
+    "_filler": {
+     "auto_correct": 109
+    },
+    "chargeback_netted": {
+     "auto_correct": 2
+    },
+    "deduction_stated": {
+     "auto_correct": 6
+    },
+    "deduction_unstated": {
+     "abstain_correct": 2
+    },
+    "merged_3plus": {
+     "auto_correct": 8
+    },
+    "never_paid": {
+     "abstain_correct": 2
+    },
+    "orphan_near_net": {
+     "abstain_correct": 2
+    },
+    "orphan_rzp_credit": {
+     "abstain_correct": 1
+    },
+    "outward_neft_return": {
+     "abstain_wrong": 2
+    },
+    "ref_merchant_name": {
+     "auto_correct": 2
+    },
+    "ref_settlement_id": {
+     "auto_correct": 2
+    },
+    "refund_netted": {
+     "auto_correct": 2
+    },
+    "twins_no_clue": {
+     "abstain_correct": 6
+    },
+    "twins_with_clue": {
+     "abstain_correct": 1,
+     "auto_correct": 6
+    },
+    "utr_damaged_multi": {
+     "auto_correct": 4
+    }
+   },
+   "engine_false_matches_by_tier": {},
+   "engine_solver": {
+    "_filler": {
+     "auto_correct": 109
+    },
+    "chargeback_netted": {
+     "auto_correct": 2
+    },
+    "deduction_stated": {
+     "abstain_wrong": 4,
+     "auto_correct": 2
+    },
+    "deduction_unstated": {
+     "abstain_correct": 2
+    },
+    "merged_3plus": {
+     "abstain_wrong": 8
+    },
+    "never_paid": {
+     "abstain_correct": 2
+    },
+    "orphan_near_net": {
+     "abstain_correct": 2
+    },
+    "orphan_rzp_credit": {
+     "abstain_correct": 1
+    },
+    "outward_neft_return": {
+     "abstain_wrong": 2
+    },
+    "ref_merchant_name": {
+     "auto_correct": 2
+    },
+    "ref_settlement_id": {
+     "auto_correct": 2
+    },
+    "refund_netted": {
+     "auto_correct": 2
+    },
+    "twins_no_clue": {
+     "abstain_correct": 6
+    },
+    "twins_with_clue": {
+     "abstain_correct": 1,
+     "abstain_wrong": 6
+    },
+    "utr_damaged_multi": {
+     "auto_correct": 4
+    }
+   },
+   "items": [
+    {
+     "anchor_amount_paise": 737278,
+     "api_calls": 0,
+     "cost_usd": 0.0,
+     "engine_status": "exception_missing_settlement",
+     "golden": {
+      "BANK000030": {
+       "disposition": "non_settlement_credit",
+       "group": []
+      }
+     },
+     "item_id": "credit:BANK000030",
+     "latency_s": 0.0,
+     "outcome": "prefilter_skip",
+     "proposal": null,
+     "scenario": "outward_neft_return",
+     "transcript": "",
+     "verdict": null,
+     "verdict_brief_minimum": null,
+     "world": "1006"
+    },
+    {
+     "anchor_amount_paise": 1760485,
+     "api_calls": 0,
+     "cost_usd": 0.0,
+     "engine_status": "exception_missing_settlement",
+     "golden": {
+      "BANK000040": {
+       "disposition": "exception_missing_settlement",
+       "group": []
+      }
+     },
+     "item_id": "credit:BANK000040",
+     "latency_s": 0.0,
+     "outcome": "prefilter_skip",
+     "proposal": null,
+     "scenario": "orphan_rzp_credit",
+     "transcript": "",
+     "verdict": null,
+     "verdict_brief_minimum": null,
+     "world": "1006"
+    },
+    {
+     "anchor_amount_paise": 12607039,
+     "api_calls": 1,
+     "cost_usd": 0.012688,
+     "engine_status": "needs_review",
+     "golden": {
+      "BANK000041": {
+       "disposition": "matched_merged",
+       "group": [
+        "BANK000041",
+        "setl_K46sxgYOwrMyzj",
+        "setl_jorR7qHMyfDo8S",
+        "setl_oVPqhXMY2jMFgS"
+       ]
+      },
+      "setl_oVPqhXMY2jMFgS": {
+       "disposition": "matched_merged",
+       "group": [
+        "BANK000041",
+        "setl_K46sxgYOwrMyzj",
+        "setl_jorR7qHMyfDo8S",
+        "setl_oVPqhXMY2jMFgS"
+       ]
+      }
+     },
+     "item_id": "credit:BANK000041",
+     "latency_s": 7.352,
+     "outcome": "submitted",
+     "proposal": {
+      "bank_row_ids": [
+       "BANK000041"
+      ],
+      "deduction_evidence": "",
+      "deduction_paise": 0,
+      "reason": "Narration explicitly states \"3 SETL CONSOLIDATED\" and names UTR ICIC601921475622 (setl_oVPqhXMY2jMFgS, 5010820). The residual 7596219 paise exactly equals the sum of two other open settlements created within the window (setl_K46sxgYOwrMyzj 6157810 + setl_jorR7qHMyfDo8S 1438409 = 7596219), matching the \"3 settlements\" count and value date within 1-2 days of creation.",
+      "settlement_ids": [
+       "setl_oVPqhXMY2jMFgS",
+       "setl_K46sxgYOwrMyzj",
+       "setl_jorR7qHMyfDo8S"
+      ],
+      "verdict": "match"
+     },
+     "proposal_wrong": false,
+     "scenario": "merged_3plus",
+     "transcript": "data/agent_transcripts/resolve/1006/credit__BANK000041.jsonl",
+     "verdict": {
+      "accepted": true,
+      "codes": [],
+      "deduction_paise": 0,
+      "details": [],
+      "status": "matched_merged"
+     },
+     "verdict_brief_minimum": {
+      "accepted": true,
+      "codes": [],
+      "deduction_paise": 0,
+      "details": [],
+      "status": "matched_merged"
+     },
+     "world": "1006"
+    },
+    {
+     "anchor_amount_paise": 4369062,
+     "api_calls": 0,
+     "cost_usd": 0.0,
+     "engine_status": "exception_missing_settlement",
+     "golden": {
+      "BANK000044": {
+       "disposition": "exception_missing_settlement",
+       "group": []
+      }
+     },
+     "item_id": "credit:BANK000044",
+     "latency_s": 0.0,
+     "outcome": "prefilter_skip",
+     "proposal": null,
+     "scenario": "orphan_near_net",
+     "transcript": "",
+     "verdict": null,
+     "verdict_brief_minimum": null,
+     "world": "1006"
+    },
+    {
+     "anchor_amount_paise": 3253300,
+     "api_calls": 0,
+     "cost_usd": 0.0,
+     "engine_status": "exception_missing_settlement",
+     "golden": {
+      "BANK000050": {
+       "disposition": "non_settlement_credit",
+       "group": []
+      }
+     },
+     "item_id": "credit:BANK000050",
+     "latency_s": 0.0,
+     "outcome": "prefilter_skip",
+     "proposal": null,
+     "scenario": "outward_neft_return",
+     "transcript": "",
+     "verdict": null,
+     "verdict_brief_minimum": null,
+     "world": "1006"
+    },
+    {
+     "anchor_amount_paise": 2649884,
+     "api_calls": 1,
+     "cost_usd": 0.013116,
+     "engine_status": "ambiguous_abstain",
+     "golden": {
+      "BANK000057": {
+       "disposition": "matched",
+       "group": [
+        "BANK000057",
+        "setl_Y4AIBQIhI6qsbh"
+       ]
+      }
+     },
+     "item_id": "credit:BANK000057",
+     "latency_s": 10.266,
+     "outcome": "submitted",
+     "proposal": {
+      "bank_row_ids": [
+       "BANK000057"
+      ],
+      "deduction_evidence": "",
+      "deduction_paise": 0,
+      "reason": "Narration explicitly names \"KORA HOME\", matching setl_Y4AIBQIhI6qsbh (Kora Home merchant) and distinguishing it from the other same-amount settlement (Bodhi Wellness), which is separately claimed by BANK000065's \"BODHI WELLNESS\" narration. Amount matches exactly and credit date (4/19) is 1 day after settlement creation (4/18).",
+      "settlement_ids": [
+       "setl_Y4AIBQIhI6qsbh"
+      ],
+      "verdict": "match"
+     },
+     "proposal_wrong": false,
+     "scenario": "twins_with_clue",
+     "transcript": "data/agent_transcripts/resolve/1006/credit__BANK000057.jsonl",
+     "verdict": {
+      "accepted": true,
+      "codes": [],
+      "deduction_paise": 0,
+      "details": [],
+      "status": "matched"
+     },
+     "verdict_brief_minimum": {
+      "accepted": true,
+      "codes": [],
+      "deduction_paise": 0,
+      "details": [],
+      "status": "matched"
+     },
+     "world": "1006"
+    },
+    {
+     "anchor_amount_paise": 10046152,
+     "api_calls": 1,
+     "cost_usd": 0.01044,
+     "engine_status": "exception_missing_settlement",
+     "golden": {
+      "BANK000060": {
+       "disposition": "matched_with_discrepancy",
+       "group": [
+        "BANK000060",
+        "setl_eoW490GALr2CPU"
+       ]
+      }
+     },
+     "item_id": "credit:BANK000060",
+     "latency_s": 14.823,
+     "outcome": "submitted",
+     "proposal": {
+      "bank_row_ids": [
+       "BANK000060"
+      ],
+      "deduction_evidence": "CHGS 262.58",
+      "deduction_paise": 26258,
+      "reason": "Credit 10046152 + stated deduction of 262.58 (26258 paise) = 10072410, exactly matching setl_eoW490GALr2CPU's net; value date (Apr 21) is 1 day after settlement created date (Apr 20), and no other open settlement matches this net amount.",
+      "settlement_ids": [
+       "setl_eoW490GALr2CPU"
+      ],
+      "verdict": "match"
+     },
+     "proposal_wrong": false,
+     "scenario": "deduction_stated",
+     "transcript": "data/agent_transcripts/resolve/1006/credit__BANK000060.jsonl",
+     "verdict": {
+      "accepted": true,
+      "codes": [],
+      "deduction_paise": 26258,
+      "details": [],
+      "status": "matched_with_discrepancy"
+     },
+     "verdict_brief_minimum": {
+      "accepted": true,
+      "codes": [],
+      "deduction_paise": 26258,
+      "details": [],
+      "status": "matched_with_discrepancy"
+     },
+     "world": "1006"
+    },
+    {
+     "anchor_amount_paise": 2649884,
+     "api_calls": 1,
+     "cost_usd": 0.008876,
+     "engine_status": "ambiguous_abstain",
+     "golden": {
+      "BANK000065": {
+       "disposition": "matched",
+       "group": [
+        "BANK000065",
+        "setl_2X2W1Mg1etFyMa"
+       ]
+      }
+     },
+     "item_id": "credit:BANK000065",
+     "latency_s": 5.683,
+     "outcome": "submitted",
+     "proposal": {
+      "bank_row_ids": [
+       "BANK000065"
+      ],
+      "deduction_evidence": "",
+      "deduction_paise": 0,
+      "reason": "Narration explicitly names \"BODHI WELLNESS\", distinguishing it from the other same-amount settlement (Kora Home, which is separately matched by BANK000057's narration); amount matches exactly and date gap (4/18\u21924/22) is within window.",
+      "settlement_ids": [
+       "setl_2X2W1Mg1etFyMa"
+      ],
+      "verdict": "match"
+     },
+     "proposal_wrong": false,
+     "scenario": "twins_with_clue",
+     "transcript": "data/agent_transcripts/resolve/1006/credit__BANK000065.jsonl",
+     "verdict": {
+      "accepted": true,
+      "codes": [],
+      "deduction_paise": 0,
+      "details": [],
+      "status": "matched"
+     },
+     "verdict_brief_minimum": {
+      "accepted": true,
+      "codes": [],
+      "deduction_paise": 0,
+      "details": [],
+      "status": "matched"
+     },
+     "world": "1006"
+    },
+    {
+     "anchor_amount_paise": 157021,
+     "api_calls": 0,
+     "cost_usd": 0.0,
+     "engine_status": "exception_missing_settlement",
+     "golden": {
+      "BANK000079": {
+       "disposition": "exception_missing_settlement",
+       "group": []
+      }
+     },
+     "item_id": "credit:BANK000079",
+     "latency_s": 0.0,
+     "outcome": "prefilter_skip",
+     "proposal": null,
+     "scenario": "orphan_near_net",
+     "transcript": "",
+     "verdict": null,
+     "verdict_brief_minimum": null,
+     "world": "1006"
+    },
+    {
+     "anchor_amount_paise": 1579987,
+     "api_calls": 0,
+     "cost_usd": 0.0,
+     "engine_status": "ambiguous_abstain",
+     "golden": {
+      "BANK000088": {
+       "disposition": "ambiguous_abstain",
+       "group": []
+      }
+     },
+     "item_id": "credit:BANK000088",
+     "latency_s": 0.0,
+     "outcome": "prefilter_skip",
+     "proposal": null,
+     "scenario": "twins_no_clue",
+     "transcript": "",
+     "verdict": null,
+     "verdict_brief_minimum": null,
+     "world": "1006"
+    },
+    {
+     "anchor_amount_paise": 10513527,
+     "api_calls": 0,
+     "cost_usd": 0.0,
+     "engine_status": "ambiguous_abstain",
+     "golden": {
+      "BANK000092": {
+       "disposition": "ambiguous_abstain",
+       "group": []
+      }
+     },
+     "item_id": "credit:BANK000092",
+     "latency_s": 0.0,
+     "outcome": "prefilter_skip",
+     "proposal": null,
+     "scenario": "twins_no_clue",
+     "transcript": "",
+     "verdict": null,
+     "verdict_brief_minimum": null,
+     "world": "1006"
+    },
+    {
+     "anchor_amount_paise": 2211937,
+     "api_calls": 1,
+     "cost_usd": 0.00916,
+     "engine_status": "needs_review",
+     "golden": {
+      "BANK000102": {
+       "disposition": "matched_with_discrepancy",
+       "group": [
+        "BANK000102",
+        "setl_YsEJzyYtl4AMAj"
+       ]
+      },
+      "setl_YsEJzyYtl4AMAj": {
+       "disposition": "matched_with_discrepancy",
+       "group": [
+        "BANK000102",
+        "setl_YsEJzyYtl4AMAj"
+       ]
+      }
+     },
+     "item_id": "credit:BANK000102",
+     "latency_s": 5.363,
+     "outcome": "submitted",
+     "proposal": {
+      "bank_row_ids": [
+       "BANK000102"
+      ],
+      "deduction_evidence": "REFUND ADJ 5391.00",
+      "deduction_paise": 539100,
+      "reason": "UTR HDFC348541711352 uniquely matches setl_YsEJzyYtl4AMAj; net 2751037 minus stated refund adjustment of 5391.00 (539100 paise) equals credit amount 2211937 exactly, and value date is within 3 days of settlement creation.",
+      "settlement_ids": [
+       "setl_YsEJzyYtl4AMAj"
+      ],
+      "verdict": "match"
+     },
+     "proposal_wrong": false,
+     "scenario": "refund_netted",
+     "transcript": "data/agent_transcripts/resolve/1006/credit__BANK000102.jsonl",
+     "verdict": {
+      "accepted": true,
+      "codes": [],
+      "deduction_paise": 539100,
+      "details": [],
+      "status": "matched_with_discrepancy"
+     },
+     "verdict_brief_minimum": {
+      "accepted": true,
+      "codes": [],
+      "deduction_paise": 539100,
+      "details": [],
+      "status": "matched_with_discrepancy"
+     },
+     "world": "1006"
+    },
+    {
+     "anchor_amount_paise": 11208810,
+     "api_calls": 1,
+     "cost_usd": 0.013804,
+     "engine_status": "exception_missing_settlement",
+     "golden": {
+      "BANK000106": {
+       "disposition": "matched_merged",
+       "group": [
+        "BANK000106",
+        "setl_3z1Ebb5hkoV3UD",
+        "setl_PJ29XeOPPTFFNl",
+        "setl_dkoAnJGkTFsNIr"
+       ]
+      }
+     },
+     "item_id": "credit:BANK000106",
+     "latency_s": 9.521,
+     "outcome": "submitted",
+     "proposal": {
+      "bank_row_ids": [
+       "BANK000106"
+      ],
+      "deduction_evidence": "",
+      "deduction_paise": 0,
+      "reason": "Credit narration says \"BULK SETTLEMENT 3 BATCHES\"; the three open settlements 2647143+3321308+5240359 sum exactly to 11208810, all created within 10 days before the 2025-05-05 credit date, with no other open settlements of matching amounts to create ambiguity.",
+      "settlement_ids": [
+       "setl_PJ29XeOPPTFFNl",
+       "setl_3z1Ebb5hkoV3UD",
+       "setl_dkoAnJGkTFsNIr"
+      ],
+      "verdict": "match"
+     },
+     "proposal_wrong": false,
+     "scenario": "merged_3plus",
+     "transcript": "data/agent_transcripts/resolve/1006/credit__BANK000106.jsonl",
+     "verdict": {
+      "accepted": true,
+      "codes": [],
+      "deduction_paise": 0,
+      "details": [],
+      "status": "matched_merged"
+     },
+     "verdict_brief_minimum": {
+      "accepted": true,
+      "codes": [],
+      "deduction_paise": 0,
+      "details": [],
+      "status": "matched_merged"
+     },
+     "world": "1006"
+    },
+    {
+     "anchor_amount_paise": 8325237,
+     "api_calls": 0,
+     "cost_usd": 0.0,
+     "engine_status": "exception_missing_settlement",
+     "golden": {
+      "BANK000118": {
+       "disposition": "exception_missing_settlement",
+       "group": []
+      }
+     },
+     "item_id": "credit:BANK000118",
+     "latency_s": 0.0,
+     "outcome": "prefilter_skip",
+     "proposal": null,
+     "scenario": "deduction_unstated",
+     "transcript": "",
+     "verdict": null,
+     "verdict_brief_minimum": null,
+     "world": "1006"
+    },
+    {
+     "anchor_amount_paise": 5524692,
+     "api_calls": 1,
+     "cost_usd": 0.006286,
+     "engine_status": "needs_review",
+     "golden": {
+      "BANK000151": {
+       "disposition": "matched_with_discrepancy",
+       "group": [
+        "BANK000151",
+        "setl_5GlfoqoNHKnRkw"
+       ]
+      },
+      "setl_5GlfoqoNHKnRkw": {
+       "disposition": "matched_with_discrepancy",
+       "group": [
+        "BANK000151",
+        "setl_5GlfoqoNHKnRkw"
+       ]
+      }
+     },
+     "item_id": "credit:BANK000151",
+     "latency_s": 4.049,
+     "outcome": "submitted",
+     "proposal": {
+      "bank_row_ids": [
+       "BANK000151"
+      ],
+      "deduction_evidence": "LESS BANK CHGS 341.36",
+      "deduction_paise": 34136,
+      "reason": "UTR IDFB034559750416 matches exactly; net 5558828 minus bank charges 341.36 (34136 paise) equals credit amount 5524692 exactly, and value date is within 10 days of settlement creation.",
+      "settlement_ids": [
+       "setl_5GlfoqoNHKnRkw"
+      ],
+      "verdict": "match"
+     },
+     "proposal_wrong": false,
+     "scenario": "deduction_stated",
+     "transcript": "data/agent_transcripts/resolve/1006/credit__BANK000151.jsonl",
+     "verdict": {
+      "accepted": true,
+      "codes": [],
+      "deduction_paise": 34136,
+      "details": [],
+      "status": "matched_with_discrepancy"
+     },
+     "verdict_brief_minimum": {
+      "accepted": true,
+      "codes": [],
+      "deduction_paise": 34136,
+      "details": [],
+      "status": "matched_with_discrepancy"
+     },
+     "world": "1006"
+    },
+    {
+     "anchor_amount_paise": 5560139,
+     "api_calls": 1,
+     "cost_usd": 0.010074,
+     "engine_status": "ambiguous_abstain",
+     "golden": {
+      "BANK000160": {
+       "disposition": "matched",
+       "group": [
+        "BANK000160",
+        "setl_ZG2oHcWRebM1J2"
+       ]
+      }
+     },
+     "item_id": "credit:BANK000160",
+     "latency_s": 6.844,
+     "outcome": "submitted",
+     "proposal": {
+      "bank_row_ids": [
+       "BANK000160"
+      ],
+      "deduction_evidence": "",
+      "deduction_paise": 0,
+      "reason": "Credit narration explicitly names \"KESAR KITCHEN\", which matches the merchant of setl_ZG2oHcWRebM1J2 (Kesar Kitchen) but not setl_oWVTRSFZFNyU40 (Kora Home); amount matches exactly (5560139) and value date (05-26) is within 0-10 days of settlement created date (05-25), so the merchant name resolves the tie.",
+      "settlement_ids": [
+       "setl_ZG2oHcWRebM1J2"
+      ],
+      "verdict": "match"
+     },
+     "proposal_wrong": false,
+     "scenario": "twins_with_clue",
+     "transcript": "data/agent_transcripts/resolve/1006/credit__BANK000160.jsonl",
+     "verdict": {
+      "accepted": true,
+      "codes": [],
+      "deduction_paise": 0,
+      "details": [],
+      "status": "matched"
+     },
+     "verdict_brief_minimum": {
+      "accepted": true,
+      "codes": [],
+      "deduction_paise": 0,
+      "details": [],
+      "status": "matched"
+     },
+     "world": "1006"
+    },
+    {
+     "anchor_amount_paise": 1358748,
+     "api_calls": 1,
+     "cost_usd": 0.009082,
+     "engine_status": "needs_review",
+     "golden": {
+      "BANK000168": {
+       "disposition": "matched_with_discrepancy",
+       "group": [
+        "BANK000168",
+        "setl_7QykPqeXIYd2iJ"
+       ]
+      },
+      "setl_7QykPqeXIYd2iJ": {
+       "disposition": "matched_with_discrepancy",
+       "group": [
+        "BANK000168",
+        "setl_7QykPqeXIYd2iJ"
+       ]
+      }
+     },
+     "item_id": "credit:BANK000168",
+     "latency_s": 13.754,
+     "outcome": "submitted",
+     "proposal": {
+      "bank_row_ids": [
+       "BANK000168"
+      ],
+      "deduction_evidence": "2784.49",
+      "deduction_paise": 278449,
+      "reason": "UTR ICIC558148385969 in narration matches setl_7QykPqeXIYd2iJ; net 1637197 minus CB RECOVERY 2784.49 (278449 paise) equals credit amount 1358748 exactly, and value date is within 1 day of settlement creation.",
+      "settlement_ids": [
+       "setl_7QykPqeXIYd2iJ"
+      ],
+      "verdict": "match"
+     },
+     "proposal_wrong": false,
+     "scenario": "chargeback_netted",
+     "transcript": "data/agent_transcripts/resolve/1006/credit__BANK000168.jsonl",
+     "verdict": {
+      "accepted": true,
+      "codes": [],
+      "deduction_paise": 278449,
+      "details": [],
+      "status": "matched_with_discrepancy"
+     },
+     "verdict_brief_minimum": {
+      "accepted": true,
+      "codes": [],
+      "deduction_paise": 278449,
+      "details": [],
+      "status": "matched_with_discrepancy"
+     },
+     "world": "1006"
+    },
+    {
+     "anchor_amount_paise": 6923160,
+     "api_calls": 1,
+     "cost_usd": 0.008188,
+     "engine_status": "exception_missing_settlement",
+     "golden": {
+      "BANK000172": {
+       "disposition": "matched_with_discrepancy",
+       "group": [
+        "BANK000172",
+        "setl_UCVGyiiRPhUM4o"
+       ]
+      }
+     },
+     "item_id": "credit:BANK000172",
+     "latency_s": 5.97,
+     "outcome": "submitted",
+     "proposal": {
+      "bank_row_ids": [
+       "BANK000172"
+      ],
+      "deduction_evidence": "TDS 194O 173.51",
+      "deduction_paise": 17351,
+      "reason": "Net 6940511 minus TDS 173.51 (17351 paise) stated in narration equals credit amount 6923160 exactly; value date is within 1 day of settlement creation, and no other open settlement/credit fits this amount after the stated deduction.",
+      "settlement_ids": [
+       "setl_UCVGyiiRPhUM4o"
+      ],
+      "verdict": "match"
+     },
+     "proposal_wrong": false,
+     "scenario": "deduction_stated",
+     "transcript": "data/agent_transcripts/resolve/1006/credit__BANK000172.jsonl",
+     "verdict": {
+      "accepted": true,
+      "codes": [],
+      "deduction_paise": 17351,
+      "details": [],
+      "status": "matched_with_discrepancy"
+     },
+     "verdict_brief_minimum": {
+      "accepted": true,
+      "codes": [],
+      "deduction_paise": 17351,
+      "details": [],
+      "status": "matched_with_discrepancy"
+     },
+     "world": "1006"
+    },
+    {
+     "anchor_amount_paise": 4486487,
+     "api_calls": 0,
+     "cost_usd": 0.0,
+     "engine_status": "exception_missing_bank",
+     "golden": {
+      "setl_xpbkZwrGPv2MIH": {
+       "disposition": "exception_missing_bank",
+       "group": []
+      }
+     },
+     "item_id": "settlement:setl_xpbkZwrGPv2MIH",
+     "latency_s": 0.0,
+     "outcome": "prefilter_skip",
+     "proposal": null,
+     "scenario": "never_paid",
+     "transcript": "",
+     "verdict": null,
+     "verdict_brief_minimum": null,
+     "world": "1006"
+    },
+    {
+     "anchor_amount_paise": 6157810,
+     "api_calls": 0,
+     "cost_usd": 0.0,
+     "engine_status": "exception_missing_bank",
+     "golden": {
+      "setl_K46sxgYOwrMyzj": {
+       "disposition": "matched_merged",
+       "group": [
+        "BANK000041",
+        "setl_K46sxgYOwrMyzj",
+        "setl_jorR7qHMyfDo8S",
+        "setl_oVPqhXMY2jMFgS"
+       ]
+      }
+     },
+     "item_id": "settlement:setl_K46sxgYOwrMyzj",
+     "latency_s": 0.0,
+     "outcome": "dedupe_skip",
+     "proposal": null,
+     "scenario": "merged_3plus",
+     "transcript": "",
+     "verdict": null,
+     "verdict_brief_minimum": null,
+     "world": "1006"
+    },
+    {
+     "anchor_amount_paise": 1438409,
+     "api_calls": 0,
+     "cost_usd": 0.0,
+     "engine_status": "exception_missing_bank",
+     "golden": {
+      "setl_jorR7qHMyfDo8S": {
+       "disposition": "matched_merged",
+       "group": [
+        "BANK000041",
+        "setl_K46sxgYOwrMyzj",
+        "setl_jorR7qHMyfDo8S",
+        "setl_oVPqhXMY2jMFgS"
+       ]
+      }
+     },
+     "item_id": "settlement:setl_jorR7qHMyfDo8S",
+     "latency_s": 0.0,
+     "outcome": "dedupe_skip",
+     "proposal": null,
+     "scenario": "merged_3plus",
+     "transcript": "",
+     "verdict": null,
+     "verdict_brief_minimum": null,
+     "world": "1006"
+    },
+    {
+     "anchor_amount_paise": 4373435,
+     "api_calls": 0,
+     "cost_usd": 0.0,
+     "engine_status": "exception_missing_bank",
+     "golden": {
+      "setl_nMZUBLxMvl6rpG": {
+       "disposition": "exception_missing_bank",
+       "group": []
+      }
+     },
+     "item_id": "settlement:setl_nMZUBLxMvl6rpG",
+     "latency_s": 0.0,
+     "outcome": "prefilter_skip",
+     "proposal": null,
+     "scenario": "never_paid",
+     "transcript": "",
+     "verdict": null,
+     "verdict_brief_minimum": null,
+     "world": "1006"
+    },
+    {
+     "anchor_amount_paise": 2649884,
+     "api_calls": 0,
+     "cost_usd": 0.0,
+     "engine_status": "ambiguous_abstain",
+     "golden": {
+      "setl_2X2W1Mg1etFyMa": {
+       "disposition": "matched",
+       "group": [
+        "BANK000065",
+        "setl_2X2W1Mg1etFyMa"
+       ]
+      }
+     },
+     "item_id": "settlement:setl_2X2W1Mg1etFyMa",
+     "latency_s": 0.0,
+     "outcome": "dedupe_skip",
+     "proposal": null,
+     "scenario": "twins_with_clue",
+     "transcript": "",
+     "verdict": null,
+     "verdict_brief_minimum": null,
+     "world": "1006"
+    },
+    {
+     "anchor_amount_paise": 2649884,
+     "api_calls": 0,
+     "cost_usd": 0.0,
+     "engine_status": "ambiguous_abstain",
+     "golden": {
+      "setl_Y4AIBQIhI6qsbh": {
+       "disposition": "matched",
+       "group": [
+        "BANK000057",
+        "setl_Y4AIBQIhI6qsbh"
+       ]
+      }
+     },
+     "item_id": "settlement:setl_Y4AIBQIhI6qsbh",
+     "latency_s": 0.0,
+     "outcome": "dedupe_skip",
+     "proposal": null,
+     "scenario": "twins_with_clue",
+     "transcript": "",
+     "verdict": null,
+     "verdict_brief_minimum": null,
+     "world": "1006"
+    },
+    {
+     "anchor_amount_paise": 10072410,
+     "api_calls": 0,
+     "cost_usd": 0.0,
+     "engine_status": "exception_missing_bank",
+     "golden": {
+      "setl_eoW490GALr2CPU": {
+       "disposition": "matched_with_discrepancy",
+       "group": [
+        "BANK000060",
+        "setl_eoW490GALr2CPU"
+       ]
+      }
+     },
+     "item_id": "settlement:setl_eoW490GALr2CPU",
+     "latency_s": 0.0,
+     "outcome": "dedupe_skip",
+     "proposal": null,
+     "scenario": "deduction_stated",
+     "transcript": "",
+     "verdict": null,
+     "verdict_brief_minimum": null,
+     "world": "1006"
+    },
+    {
+     "anchor_amount_paise": 10513527,
+     "api_calls": 0,
+     "cost_usd": 0.0,
+     "engine_status": "ambiguous_abstain",
+     "golden": {
+      "setl_DFKHnTcHcVRdmL": {
+       "disposition": "ambiguous_abstain",
+       "group": []
+      }
+     },
+     "item_id": "settlement:setl_DFKHnTcHcVRdmL",
+     "latency_s": 0.0,
+     "outcome": "prefilter_skip",
+     "proposal": null,
+     "scenario": "twins_no_clue",
+     "transcript": "",
+     "verdict": null,
+     "verdict_brief_minimum": null,
+     "world": "1006"
+    },
+    {
+     "anchor_amount_paise": 10513527,
+     "api_calls": 0,
+     "cost_usd": 0.0,
+     "engine_status": "ambiguous_abstain",
+     "golden": {
+      "setl_W43inYQZal0Zhu": {
+       "disposition": "ambiguous_abstain",
+       "group": []
+      }
+     },
+     "item_id": "settlement:setl_W43inYQZal0Zhu",
+     "latency_s": 0.0,
+     "outcome": "prefilter_skip",
+     "proposal": null,
+     "scenario": "twins_no_clue",
+     "transcript": "",
+     "verdict": null,
+     "verdict_brief_minimum": null,
+     "world": "1006"
+    },
+    {
+     "anchor_amount_paise": 1579987,
+     "api_calls": 0,
+     "cost_usd": 0.0,
+     "engine_status": "ambiguous_abstain",
+     "golden": {
+      "setl_O9tw0udUYKmBG7": {
+       "disposition": "ambiguous_abstain",
+       "group": []
+      }
+     },
+     "item_id": "settlement:setl_O9tw0udUYKmBG7",
+     "latency_s": 0.0,
+     "outcome": "prefilter_skip",
+     "proposal": null,
+     "scenario": "twins_no_clue",
+     "transcript": "",
+     "verdict": null,
+     "verdict_brief_minimum": null,
+     "world": "1006"
+    },
+    {
+     "anchor_amount_paise": 1579987,
+     "api_calls": 0,
+     "cost_usd": 0.0,
+     "engine_status": "ambiguous_abstain",
+     "golden": {
+      "setl_ivZHmoXTL8KOOI": {
+       "disposition": "ambiguous_abstain",
+       "group": []
+      }
+     },
+     "item_id": "settlement:setl_ivZHmoXTL8KOOI",
+     "latency_s": 0.0,
+     "outcome": "prefilter_skip",
+     "proposal": null,
+     "scenario": "twins_no_clue",
+     "transcript": "",
+     "verdict": null,
+     "verdict_brief_minimum": null,
+     "world": "1006"
+    },
+    {
+     "anchor_amount_paise": 3321308,
+     "api_calls": 0,
+     "cost_usd": 0.0,
+     "engine_status": "exception_missing_bank",
+     "golden": {
+      "setl_3z1Ebb5hkoV3UD": {
+       "disposition": "matched_merged",
+       "group": [
+        "BANK000106",
+        "setl_3z1Ebb5hkoV3UD",
+        "setl_PJ29XeOPPTFFNl",
+        "setl_dkoAnJGkTFsNIr"
+       ]
+      }
+     },
+     "item_id": "settlement:setl_3z1Ebb5hkoV3UD",
+     "latency_s": 0.0,
+     "outcome": "dedupe_skip",
+     "proposal": null,
+     "scenario": "merged_3plus",
+     "transcript": "",
+     "verdict": null,
+     "verdict_brief_minimum": null,
+     "world": "1006"
+    },
+    {
+     "anchor_amount_paise": 5240359,
+     "api_calls": 0,
+     "cost_usd": 0.0,
+     "engine_status": "exception_missing_bank",
+     "golden": {
+      "setl_dkoAnJGkTFsNIr": {
+       "disposition": "matched_merged",
+       "group": [
+        "BANK000106",
+        "setl_3z1Ebb5hkoV3UD",
+        "setl_PJ29XeOPPTFFNl",
+        "setl_dkoAnJGkTFsNIr"
+       ]
+      }
+     },
+     "item_id": "settlement:setl_dkoAnJGkTFsNIr",
+     "latency_s": 0.0,
+     "outcome": "dedupe_skip",
+     "proposal": null,
+     "scenario": "merged_3plus",
+     "transcript": "",
+     "verdict": null,
+     "verdict_brief_minimum": null,
+     "world": "1006"
+    },
+    {
+     "anchor_amount_paise": 2647143,
+     "api_calls": 0,
+     "cost_usd": 0.0,
+     "engine_status": "exception_missing_bank",
+     "golden": {
+      "setl_PJ29XeOPPTFFNl": {
+       "disposition": "matched_merged",
+       "group": [
+        "BANK000106",
+        "setl_3z1Ebb5hkoV3UD",
+        "setl_PJ29XeOPPTFFNl",
+        "setl_dkoAnJGkTFsNIr"
+       ]
+      }
+     },
+     "item_id": "settlement:setl_PJ29XeOPPTFFNl",
+     "latency_s": 0.0,
+     "outcome": "dedupe_skip",
+     "proposal": null,
+     "scenario": "merged_3plus",
+     "transcript": "",
+     "verdict": null,
+     "verdict_brief_minimum": null,
+     "world": "1006"
+    },
+    {
+     "anchor_amount_paise": 8333571,
+     "api_calls": 0,
+     "cost_usd": 0.0,
+     "engine_status": "exception_missing_bank",
+     "golden": {
+      "setl_NN8ZlFcNOlBLwy": {
+       "disposition": "exception_missing_bank",
+       "group": []
+      }
+     },
+     "item_id": "settlement:setl_NN8ZlFcNOlBLwy",
+     "latency_s": 0.0,
+     "outcome": "prefilter_skip",
+     "proposal": null,
+     "scenario": "deduction_unstated",
+     "transcript": "",
+     "verdict": null,
+     "verdict_brief_minimum": null,
+     "world": "1006"
+    },
+    {
+     "anchor_amount_paise": 5560139,
+     "api_calls": 0,
+     "cost_usd": 0.0,
+     "engine_status": "ambiguous_abstain",
+     "golden": {
+      "setl_oWVTRSFZFNyU40": {
+       "disposition": "exception_missing_bank",
+       "group": []
+      }
+     },
+     "item_id": "settlement:setl_oWVTRSFZFNyU40",
+     "latency_s": 0.0,
+     "outcome": "prefilter_skip",
+     "proposal": null,
+     "scenario": "twins_with_clue",
+     "transcript": "",
+     "verdict": null,
+     "verdict_brief_minimum": null,
+     "world": "1006"
+    },
+    {
+     "anchor_amount_paise": 5560139,
+     "api_calls": 0,
+     "cost_usd": 0.0,
+     "engine_status": "ambiguous_abstain",
+     "golden": {
+      "setl_ZG2oHcWRebM1J2": {
+       "disposition": "matched",
+       "group": [
+        "BANK000160",
+        "setl_ZG2oHcWRebM1J2"
+       ]
+      }
+     },
+     "item_id": "settlement:setl_ZG2oHcWRebM1J2",
+     "latency_s": 0.0,
+     "outcome": "dedupe_skip",
+     "proposal": null,
+     "scenario": "twins_with_clue",
+     "transcript": "",
+     "verdict": null,
+     "verdict_brief_minimum": null,
+     "world": "1006"
+    },
+    {
+     "anchor_amount_paise": 6940511,
+     "api_calls": 0,
+     "cost_usd": 0.0,
+     "engine_status": "exception_missing_bank",
+     "golden": {
+      "setl_UCVGyiiRPhUM4o": {
+       "disposition": "matched_with_discrepancy",
+       "group": [
+        "BANK000172",
+        "setl_UCVGyiiRPhUM4o"
+       ]
+      }
+     },
+     "item_id": "settlement:setl_UCVGyiiRPhUM4o",
+     "latency_s": 0.0,
+     "outcome": "dedupe_skip",
+     "proposal": null,
+     "scenario": "deduction_stated",
+     "transcript": "",
+     "verdict": null,
+     "verdict_brief_minimum": null,
+     "world": "1006"
+    }
+   ],
+   "left_for_human": [
+    {
+     "amount_paise": 737278,
+     "expected": "non_settlement_credit",
+     "item_id": "credit:BANK000030",
+     "item_outcome": "prefilter_skip",
+     "record_id": "BANK000030",
+     "scenario": "outward_neft_return",
+     "transcript": "",
+     "world": "1006"
+    },
+    {
+     "amount_paise": 3253300,
+     "expected": "non_settlement_credit",
+     "item_id": "credit:BANK000050",
+     "item_outcome": "prefilter_skip",
+     "record_id": "BANK000050",
+     "scenario": "outward_neft_return",
+     "transcript": "",
+     "world": "1006"
+    }
+   ],
+   "rows": 157,
+   "stopped": "",
+   "world": "1006"
+  }
+ ],
+ "worst_failures": [
+  {
+   "amount_paise": 8825866,
+   "analyst_note": "",
+   "item_id": "credit:BANK000098",
+   "kind": "missed_match",
+   "scenario": "merged_3plus",
+   "severity": 4,
+   "transcript": "data/agent_transcripts/resolve/1000/credit__BANK000098.jsonl",
+   "why": "golden answer is a match; the agent returned exception",
+   "world": "1000"
+  },
+  {
+   "amount_paise": 4875200,
+   "analyst_note": "",
+   "item_id": "credit:BANK000035",
+   "kind": "left_for_human",
+   "scenario": "outward_neft_return",
+   "severity": 5,
+   "transcript": "-",
+   "why": "never sent to the agent: the enumerator found no explanation the verifier could accept",
+   "world": "1000"
+  },
+  {
+   "amount_paise": 4567347,
+   "analyst_note": "",
+   "item_id": "credit:BANK000115",
+   "kind": "left_for_human",
+   "scenario": "outward_neft_return",
+   "severity": 5,
+   "transcript": "-",
+   "why": "never sent to the agent: the enumerator found no explanation the verifier could accept",
+   "world": "1000"
+  },
+  {
+   "amount_paise": 3661180,
+   "analyst_note": "",
+   "item_id": "credit:BANK000095",
+   "kind": "left_for_human",
+   "scenario": "twins_with_clue",
+   "severity": 5,
+   "transcript": "-",
+   "why": "never sent to the agent: the enumerator found no explanation the verifier could accept",
+   "world": "1000"
+  },
+  {
+   "amount_paise": 3661180,
+   "analyst_note": "",
+   "item_id": "credit:BANK000096",
+   "kind": "left_for_human",
+   "scenario": "twins_with_clue",
+   "severity": 5,
+   "transcript": "-",
+   "why": "never sent to the agent: the enumerator found no explanation the verifier could accept",
+   "world": "1000"
+  },
+  {
+   "amount_paise": 3661180,
+   "analyst_note": "",
+   "item_id": "settlement:setl_u32U85Tu0mV29T",
+   "kind": "left_for_human",
+   "scenario": "twins_with_clue",
+   "severity": 5,
+   "transcript": "-",
+   "why": "never sent to the agent: the enumerator found no explanation the verifier could accept",
+   "world": "1000"
+  },
+  {
+   "amount_paise": 3661180,
+   "analyst_note": "",
+   "item_id": "settlement:setl_wAaIUvgFjzamff",
+   "kind": "left_for_human",
+   "scenario": "twins_with_clue",
+   "severity": 5,
+   "transcript": "-",
+   "why": "never sent to the agent: the enumerator found no explanation the verifier could accept",
+   "world": "1000"
+  },
+  {
+   "amount_paise": 3253300,
+   "analyst_note": "",
+   "item_id": "credit:BANK000050",
+   "kind": "left_for_human",
+   "scenario": "outward_neft_return",
+   "severity": 5,
+   "transcript": "-",
+   "why": "never sent to the agent: the enumerator found no explanation the verifier could accept",
+   "world": "1006"
+  },
+  {
+   "amount_paise": 737278,
+   "analyst_note": "",
+   "item_id": "credit:BANK000030",
+   "kind": "left_for_human",
+   "scenario": "outward_neft_return",
+   "severity": 5,
+   "transcript": "-",
+   "why": "never sent to the agent: the enumerator found no explanation the verifier could accept",
+   "world": "1006"
+  }
+ ]
+}
