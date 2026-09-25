@@ -19,19 +19,14 @@ Design rules:
   - Bank narrations never embed generator-internal identifiers. The UTR is the
     only legitimate join key, present only where the scenario says so.
 
-Stage 2 additions: the world has forecastable STRUCTURE — weekday/trend/
-month-end payment volume and scheduled recurring obligations (payroll, rent,
-GST, TDS, AWS, insurance, telecom) whose true schedule is minted into
-golden_obligations.csv at generation time. The post-cutoff statement rows ARE
-the forecast ground truth; the obligations golden exists only to grade
-recurring-schedule DETECTION, never to feed a forecaster.
-
-Stage 3 additions: the world has a TAX side — gstr2b.csv (what vendors filed,
-with injected filing defects), form26as.csv (what the 194-O deductor filed,
-from the TDS branch of the discrepancy scenario), two GST compliance defects
-(one short-paid month, one late month sized inside Stage 2's detection
-gates), and golden_tax.csv recording the expected disposition of every
-purchase, 2B line, TDS event, 26AS entry and statutory payment period.
+Scheduled debits: besides random spend, the statement carries recurring
+business debits (payroll, rent, AWS, telecom, insurance, GST and TDS
+payments, two of the GST payments perturbed). They are out of scope for
+leg A (debits are never reconciled) and exist so the statement reads like
+a real current account. They are kept draw-for-draw identical to the
+generator the benchmark numbers were produced with, so committed worlds
+keep their bytes. (The forecast and tax loops that once graded them were
+cut from this repo; they live on the `full-scope` branch.)
 
 CLI:
     python -m recon.generate --seed 42 [--days 180] [--out DIR] [--verify-determinism]
@@ -54,9 +49,6 @@ from recon import schemas as S
 from recon.normalize import (
     bank_date_str, gst_on_fee, roll_off_sunday, rupee_str_from_paise,
 )
-from tax import registry as TR
-from tax import rules as TX
-from tax import schemas as TS
 
 GENERATOR_VERSION = "3.0.0"
 
@@ -689,8 +681,7 @@ def _build_bank_credits(seed: int, ids: Ids, plan: ScenarioPlan,
         setl.scenario = SC_DISCREPANCY
         setl.disposition = S.MATCHED_WITH_DISCREPANCY
         # Alternate deterministically so every world carries BOTH deduction
-        # kinds — the TDS half also feeds Stage 3's Form 26AS loop, which
-        # needs a guaranteed minimum of observed deductions per world.
+        # kinds.
         if i % 2 == 0:
             deduction = BANK_CHARGE_PAISE
             why = "bank NEFT/RTGS charge deducted at credit"
@@ -772,8 +763,7 @@ def _build_bank_credits(seed: int, ids: Ids, plan: ScenarioPlan,
 
 
 # One-off/variable spend only. A narration template is either scheduled (see
-# _SCHEDULED_OBLIGATIONS) or random noise — NEVER both, or the recurring-
-# detection ground truth would be poisoned.
+# _build_obligations) or random noise, never both.
 _NOISE_DEBITS = [
     ("UPI-SWIGGY INSTAMART-{n}@ybl", (20_000, 250_000)),
     ("POS 4287XXXXXX INDIAN OIL-{n}", (150_000, 700_000)),
@@ -785,10 +775,28 @@ _NOISE_DEBITS = [
     ("UPI-BLUEDART EXPRESS-{n}@paytm", (25_000, 200_000)),
 ]
 
-# --- Scheduled recurring obligations (Stage 2 forecastable structure) ---------
-# Emitted by _build_obligations from the ":obligations" RNG stream; every
-# posted row is recorded in golden_obligations.csv at mint time. Amount rules
-# reference world state deterministically (prev-month gross, payroll base).
+# --- Scheduled recurring debits ------------------------------------------------
+# Emitted by _build_obligations from the ":obligations" RNG stream. Amount
+# rules reference world state deterministically (prev-month gross, payroll
+# base). The three helpers below are verbatim copies of the arithmetic the
+# removed tax package used, so every debit keeps its exact amount.
+
+_GST_LIABILITY_RATE_PCT = 3            # of prev-month gross captured
+_TDS_DEPOSIT_RATE_PCT = 10             # of prev-month posted payroll
+
+
+def _gst_liability(prev_month_gross_paise: int) -> int:
+    """3% of the previous month's gross captured payments, floored to Rs 10."""
+    return (prev_month_gross_paise * _GST_LIABILITY_RATE_PCT // 100) // 1_000 * 1_000
+
+
+def _tds_deposit(prev_month_payroll_paise: int) -> int:
+    """10% of the previous month's actual posted payroll, floored to Rs 1."""
+    return (prev_month_payroll_paise // _TDS_DEPOSIT_RATE_PCT) // 100 * 100
+
+
+def _period_of(d: date) -> str:
+    return f"{d.year:04d}-{d.month:02d}"
 
 PAYROLL_BASE_PAISE = 42_000_000        # month 0; grows +Rs 5,000/month
 PAYROLL_GROWTH_PAISE = 500_000
@@ -818,8 +826,7 @@ def _months_in_world(days: int) -> list[tuple[int, int, int]]:
 def _gst_gross_inputs(payments: list[GenPayment]) -> tuple[dict[int, int], int]:
     """Gross captured amount per month index, plus the days-0..29 gross that
     stands in for the missing month before the world (the documented GST
-    month-0 fallback). Shared by the obligation schedule and the tax goldens
-    so the two can never drift."""
+    month-0 fallback)."""
     gross_by_month: dict[int, int] = {}
     first30 = 0
     for p in payments:
@@ -883,7 +890,7 @@ def _build_obligations(seed: int, payments: list[GenPayment], days: int
         tds_base = (_payroll_base(0) if m_idx == 0
                     else payroll_actual[m_idx - 1])
         emit("tds", f"TDS PAYMENT-CBDT-{n()}", date(year, month, 7),
-             TX.tds_deposit(tds_base))
+             _tds_deposit(tds_base))
         emit("telecom", f"UPI-BHARTI AIRTEL-{n()}@icici", date(year, month, 12),
              TELECOM_PAISE)
         if month in (4, 7, 10, 1):
@@ -891,7 +898,7 @@ def _build_obligations(seed: int, payments: list[GenPayment], days: int
                  LIC_PREMIUM_PAISE)
         prev_gross = gross_by_month.get(m_idx - 1, first30)
         emit("gst", f"GST PAYMENT-CBIC-{n()}", date(year, month, 20),
-             TX.gst_liability(prev_gross))
+             _gst_liability(prev_gross))
 
     return debits
 
@@ -952,59 +959,22 @@ def _build_noise(seed: int, settlements: list[GenSettlement], days: int
     return credits, debits
 
 
-# --- Stage 3: tax world (GSTR-2B, Form 26AS, obligation compliance) -----------
-# Everything here runs on NEW RNG streams (":tax:*") so the Stage 1/2 record
-# streams keep their draw order. Intended world-byte changes are confined to
-# the TDS-deposit amounts (months >= 1, now 10% of the actual posted payroll)
-# and the two injected GST compliance defects.
-
-_TAX_SC_CLEAN = "tax_clean"
-_TAX_SC_FEE = "tax_fee_invoice"
-_TAX_SC_MISMATCH = "tax_amount_mismatch"
-_TAX_SC_HEAD = "tax_wrong_head"
-_TAX_SC_TYPO = "tax_invoice_typo"
-_TAX_SC_LATE = "tax_filed_late"
-_TAX_SC_DUP = "tax_duplicate_2b"
-_TAX_SC_MISSING = "tax_missing_2b"
-_TAX_SC_UNKNOWN = "tax_unknown_2b"
-_TAX_SC_BLOCKED = "tax_blocked_credit"
-_TAX_SC_NO_ITC = "tax_no_itc"
-_TAX_SC_26AS_CLEAN = "tax_26as_clean"
-_TAX_SC_26AS_MISSING = "tax_26as_missing"
-_TAX_SC_26AS_MISMATCH = "tax_26as_amount_mismatch"
-_TAX_SC_26AS_QUARTER = "tax_26as_wrong_quarter"
-_TAX_SC_26AS_DUP = "tax_26as_duplicate"
-_TAX_SC_OBL_CLEAN = "tax_obligation_clean"
-_TAX_SC_OBL_SHORT = "tax_obligation_short_paid"
-_TAX_SC_OBL_LATE = "tax_obligation_late_paid"
-_TAX_SC_OBL_MISSING = "tax_obligation_missing"
-_TAX_SC_OBL_UNVERIFIABLE = "tax_obligation_unverifiable"
-
-# Vendors whose spends are scheduled obligations; unknown-invoice defects are
-# minted only against one-off vendors so the singleton-per-period structure of
-# scheduled vendors (which the tax engine may pair on) is never polluted.
-_SCHEDULED_VENDOR_KEYS = frozenset({"aws", "airtel", "landlord", "lic"})
-
+# --- Perturbed GST payments -----------------------------------------------------
+# Two GST payment debits are perturbed on their own RNG stream (one short-paid,
+# one posted two days late). Kept only so the statement stays byte-identical.
 
 def _month_idx(d: date) -> int:
     return (d.year - START_DATE.year) * 12 + d.month - START_DATE.month
-
-
-def _hamming(a: str, b: str) -> int:
-    if len(a) != len(b):
-        return 99
-    return sum(x != y for x, y in zip(a, b))
 
 
 def _inject_obligation_defects(seed: int, obligations: list[GenDebit],
                                days: int) -> dict:
     """Mutate the GST payment debits in place: one month short-paid (~4%,
     re-floored to Rs 10) and one month posted 2 days late. Months >= 1 only,
-    so the documented month-0 fallback case stays clean. The late month must
-    keep Stage 2's recurring-detection gates (every gap within +-4 of the
-    median gap, >= 80% of day-of-month anchors within +-3 of the median) —
-    checked here at build time, deterministically advancing to the next
-    eligible month if a candidate would sit outside the gates."""
+    so the documented month-0 fallback case stays clean. The late month is
+    chosen so the GST series keeps a regular monthly rhythm (gates below),
+    deterministically advancing to the next eligible month otherwise. The
+    selection logic is kept exactly as it was so worlds keep their bytes."""
     rng = Random(f"{seed}:tax:obligations")
     world_end = START_DATE + timedelta(days=days - 1)
     gst = sorted((d for d in obligations if d.obligation_key == "gst"),
@@ -1012,10 +982,8 @@ def _inject_obligation_defects(seed: int, obligations: list[GenDebit],
     eligible = [d for d in gst if _month_idx(d.due_date) >= 1]
 
     def _one_prefix_ok(dates: list[date]) -> bool:
-        # Exact replica of forecast.recurring's monthly gates (median gap in
-        # [27, 34], every gap within +-4 of the true median, >=80% of days
-        # within +-3 of the median anchor) — a test runs the real detector on
-        # the mutated world at every backtest cutoff to pin the two together.
+        # Monthly-rhythm gates: median gap in [27, 34], every gap within +-4
+        # of the median, >=80% of days within +-3 of the median anchor.
         gaps = [(b - a).days for a, b in zip(dates, dates[1:])]
         med = statistics.median(gaps)
         if not (27 <= med <= 34 and all(abs(g - med) <= 4 for g in gaps)):
@@ -1026,8 +994,8 @@ def _inject_obligation_defects(seed: int, obligations: list[GenDebit],
         return near >= 0.8 * len(dates)
 
     def gates_ok(dates: list[date]) -> bool:
-        # Detection runs at rolling cutoffs, so every PREFIX of the series
-        # must clear the gates, not just the full world.
+        # Every PREFIX of the series must clear the gates, not just the
+        # full world.
         return all(_one_prefix_ok(dates[:k])
                    for k in range(3, len(dates) + 1))
 
@@ -1035,7 +1003,7 @@ def _inject_obligation_defects(seed: int, obligations: list[GenDebit],
     order = list(eligible)
     rng.shuffle(order)
 
-    # The late defect has the harder constraint (detection gates), so it
+    # The late defect has the harder constraint (the gates), so it
     # chooses its month first; the short defect takes any other month.
     late = None
     for cand in order:
@@ -1047,7 +1015,7 @@ def _inject_obligation_defects(seed: int, obligations: list[GenDebit],
             continue
         cand.value_date = new_date
         late = cand
-        defects["gst_late"] = {"period": TX.period_of(cand.due_date)}
+        defects["gst_late"] = {"period": _period_of(cand.due_date)}
         break
     assert late is not None or len(eligible) < 2, \
         "no GST month can be delayed within the detection gates"
@@ -1057,477 +1025,11 @@ def _inject_obligation_defects(seed: int, obligations: list[GenDebit],
     if short is not None:
         new_amount = short.amount_paise * 96 // 100 // 1_000 * 1_000
         defects["gst_short"] = {
-            "period": TX.period_of(short.due_date),
+            "period": _period_of(short.due_date),
             "shortfall_paise": new_amount - short.amount_paise,
         }
         short.amount_paise = new_amount
     return defects
-
-
-def _mint_gstr2b(seed: int, debits: list[GenDebit],
-                 settlements: list[GenSettlement]
-                 ) -> tuple[list[dict], list[dict], dict[str, int]]:
-    """The vendor-filed side of loop 1. Returns (gstr2b rows, golden rows for
-    purchases and 2B lines, scenario counts). The books-side purchase universe
-    built here is world truth; `tax/books.py` re-derives the same set blind,
-    from the CSVs and the vendor registry alone."""
-    rng = Random(f"{seed}:tax:gstr2b")
-
-    purchases: list[dict] = []
-    for d in debits:
-        v = TR.classify_debit(d.narration)
-        if v is None:
-            continue
-        purchases.append({
-            "purchase_id": d.txn_id, "vendor": v,
-            "period": TX.period_of(d.value_date), "invoice_date": d.value_date,
-            "ref": TX.invoice_ref(d.narration),
-            "taxable": TX.taxable_from_inclusive(d.amount_paise),
-            "gst": TX.gst_from_inclusive(d.amount_paise),
-        })
-
-    monthly: dict[str, dict[str, int]] = {}
-    for s in settlements:
-        agg = monthly.setdefault(TX.period_of(s.created_at.date()),
-                                 {"fees": 0, "tax": 0})
-        agg["fees"] += s.fees_paise
-        agg["tax"] += s.tax_paise
-    for period in sorted(monthly):
-        y, m = int(period[:4]), int(period[5:7])
-        month_end = ((date(y, m, 28) + timedelta(days=4)).replace(day=1)
-                     - timedelta(days=1))
-        purchases.append({
-            "purchase_id": TX.fee_purchase_id(period), "vendor": TR.RAZORPAY,
-            "period": period, "invoice_date": month_end, "ref": None,
-            "taxable": monthly[period]["fees"], "gst": monthly[period]["tax"],
-        })
-
-    # Refs per vendor, for the collision audits. Natural (vendor, ref)
-    # collisions are allowed in the world — the engine must corroborate by
-    # amount — but colliding purchases never receive defect fates, and equal
-    # (vendor, ref, gst) triples would be genuinely undecidable, so they fail
-    # the build loudly instead of silently corrupting the ground truth.
-    vendor_refs: dict[str, set[str]] = {}
-    by_vendor_ref: dict[tuple[str, str], list[dict]] = {}
-    for p in purchases:
-        if p["ref"] is None:
-            continue
-        vendor_refs.setdefault(p["vendor"].key, set()).add(p["ref"])
-        by_vendor_ref.setdefault((p["vendor"].key, p["ref"]), []).append(p)
-    colliding_pids: set[str] = set()
-    for group in by_vendor_ref.values():
-        if len(group) > 1:
-            amounts = [g["gst"] for g in group]
-            assert len(set(amounts)) == len(amounts), \
-                "identical (vendor, ref, gst) purchases are undecidable"
-            colliding_pids.update(g["purchase_id"] for g in group)
-
-    claimable = [p for p in purchases
-                 if p["vendor"].files_2b and p["vendor"].itc_eligible
-                 and p["ref"] is not None]
-    last_period = max(p["period"] for p in purchases)
-
-    def quota(pct: int, floor: int = 2) -> int:
-        return max(floor, len(claimable) * pct // 100)
-
-    buckets: list[list] = [   # [scenario, remaining, eligibility]
-        [_TAX_SC_MISMATCH, quota(4), None],
-        [_TAX_SC_MISSING, quota(4), None],
-        [_TAX_SC_LATE, quota(3), lambda p: p["period"] < last_period],
-        [_TAX_SC_DUP, quota(2), None],
-        [_TAX_SC_HEAD, quota(2), None],
-        [_TAX_SC_TYPO, quota(3), None],
-    ]
-    pool = [p for p in claimable if p["purchase_id"] not in colliding_pids]
-    rng.shuffle(pool)
-    fate: dict[str, str] = {}
-    for p in pool:
-        for bucket in buckets:
-            if bucket[1] > 0 and (bucket[2] is None or bucket[2](p)):
-                fate[p["purchase_id"]] = bucket[0]
-                bucket[1] -= 1
-                break
-
-    def typo_ref(vendor_key: str, ref: str) -> str:
-        """One-digit corruption that stays >= 2 away from every OTHER ref of
-        the vendor, so fuzzy matching can never point at two purchases."""
-        others = vendor_refs[vendor_key] - {ref}
-        start_pos, start_digit = rng.randrange(len(ref)), rng.randrange(10)
-        for dp in range(len(ref)):
-            pos = (start_pos + dp) % len(ref)
-            for dd in range(10):
-                new = str((start_digit + dd) % 10)
-                if new == ref[pos]:
-                    continue
-                cand = ref[:pos] + new + ref[pos + 1:]
-                if all(_hamming(cand, o) >= 2 for o in others):
-                    vendor_refs[vendor_key].add(cand)
-                    return cand
-        raise AssertionError(f"no safe typo mutation for {vendor_key}/{ref}")
-
-    lines: list[dict] = []
-
-    def add_line(vendor: TR.Vendor, period: str, invoice_no: str,
-                 invoice_date: date, taxable: int, gst: int, head: str,
-                 pid: str | None, sc: str, disc: int = 0,
-                 disposition: str = "") -> dict:
-        line = {
-            "period": period, "gstin": vendor.gstin,
-            "vendor_name": vendor.display_name, "invoice_no": invoice_no,
-            "invoice_date": invoice_date.isoformat(),
-            "taxable_value_paise": taxable, "gst_paise": gst, "tax_head": head,
-            "_pid": pid, "_sc": sc, "_disc": disc, "_disp": disposition,
-            "_idx": len(lines),
-        }
-        lines.append(line)
-        return line
-
-    purchase_golden: dict[str, dict] = {}   # purchase_id -> partial golden row
-
-    def set_purchase(p: dict, disposition: str, sc: str, disc: int = 0,
-                     notes: str = "") -> None:
-        purchase_golden[p["purchase_id"]] = {
-            "disposition": disposition, "scenario": sc, "disc": disc,
-            "notes": notes, "lines": [],
-        }
-
-    for p in purchases:
-        v = p["vendor"]
-        head = TX.head_for(v.state) if v.files_2b else ""
-        if not v.files_2b:
-            set_purchase(p, TS.NO_ITC_APPLICABLE, _TAX_SC_NO_ITC,
-                         notes=v.no_itc_reason)
-            continue
-        if v.key == "razorpay":
-            inv_no = f"RZP/{p['period'][:4]}{p['period'][5:]}"
-            set_purchase(p, TS.ITC_MATCHED, _TAX_SC_FEE,
-                         notes="monthly consolidated PSP fee invoice")
-            add_line(v, p["period"], inv_no, p["invoice_date"], p["taxable"],
-                     p["gst"], head, p["purchase_id"], _TAX_SC_FEE,
-                     disposition=TS.ITC_MATCHED)
-            continue
-        inv_no = f"{v.inv_prefix}/{p['ref']}"
-        if not v.itc_eligible:   # Sec 17(5) blocked: filed, must not be claimed
-            set_purchase(p, TS.BLOCKED_CREDIT_NO_ITC, _TAX_SC_BLOCKED,
-                         notes=v.no_itc_reason)
-            add_line(v, p["period"], inv_no, p["invoice_date"], p["taxable"],
-                     p["gst"], head, p["purchase_id"], _TAX_SC_BLOCKED,
-                     disposition=TS.BLOCKED_CREDIT_NO_ITC)
-            continue
-        sc = fate.get(p["purchase_id"], _TAX_SC_CLEAN)
-        if sc == _TAX_SC_MISSING:
-            set_purchase(p, TS.ITC_MISSING_IN_2B, sc, disc=-p["gst"],
-                         notes="vendor never filed; input credit at risk")
-        elif sc == _TAX_SC_MISMATCH:
-            delta = rng.choice((-1, 1)) * rng.randint(3, 40) * 100
-            if p["gst"] + delta <= 0:
-                delta = abs(delta)
-            set_purchase(p, TS.ITC_AMOUNT_MISMATCH, sc, disc=delta)
-            add_line(v, p["period"], inv_no, p["invoice_date"], p["taxable"],
-                     p["gst"] + delta, head, p["purchase_id"], sc, disc=delta,
-                     disposition=TS.ITC_AMOUNT_MISMATCH)
-        elif sc == _TAX_SC_HEAD:
-            wrong = (TX.HEAD_IGST if head == TX.HEAD_CGST_SGST
-                     else TX.HEAD_CGST_SGST)
-            set_purchase(p, TS.ITC_HEAD_MISMATCH, sc)
-            add_line(v, p["period"], inv_no, p["invoice_date"], p["taxable"],
-                     p["gst"], wrong, p["purchase_id"], sc,
-                     disposition=TS.ITC_HEAD_MISMATCH)
-        elif sc == _TAX_SC_TYPO:
-            mutated = f"{v.inv_prefix}/{typo_ref(v.key, p['ref'])}"
-            set_purchase(p, TS.ITC_MATCHED, sc)
-            add_line(v, p["period"], mutated, p["invoice_date"], p["taxable"],
-                     p["gst"], head, p["purchase_id"], sc,
-                     disposition=TS.ITC_MATCHED)
-        elif sc == _TAX_SC_LATE:
-            set_purchase(p, TS.ITC_DEFERRED_NEXT_PERIOD, sc,
-                         notes="vendor filed in the following period")
-            add_line(v, TX.next_period(p["period"]), inv_no, p["invoice_date"],
-                     p["taxable"], p["gst"], head, p["purchase_id"], sc,
-                     disposition=TS.ITC_DEFERRED_NEXT_PERIOD)
-        elif sc == _TAX_SC_DUP:
-            set_purchase(p, TS.ITC_MATCHED, sc)
-            add_line(v, p["period"], inv_no, p["invoice_date"], p["taxable"],
-                     p["gst"], head, p["purchase_id"], sc,
-                     disposition=TS.ITC_MATCHED)
-            add_line(v, p["period"], inv_no, p["invoice_date"], p["taxable"],
-                     p["gst"], head, p["purchase_id"], sc,
-                     disposition=TS.DUPLICATE_2B_LINE)
-        else:
-            set_purchase(p, TS.ITC_MATCHED, _TAX_SC_CLEAN)
-            add_line(v, p["period"], inv_no, p["invoice_date"], p["taxable"],
-                     p["gst"], head, p["purchase_id"], _TAX_SC_CLEAN,
-                     disposition=TS.ITC_MATCHED)
-
-    # Unknown invoices: filed lines with no purchase behind them. One-off
-    # vendors only; refs >= 2 away from every real ref of the vendor; amounts
-    # >= MIN_SEPARATION from every same-vendor-period purchase, so no honest
-    # pass can be tricked into pairing them.
-    oneoff = [v for v in TR.DEBIT_VENDORS
-              if v.files_2b and v.itc_eligible
-              and v.key not in _SCHEDULED_VENDOR_KEYS]
-    periods = sorted({p["period"] for p in purchases})
-    for _ in range(max(3, len(claimable) * 3 // 100)):
-        v = oneoff[rng.randrange(len(oneoff))]
-        period = periods[rng.randrange(len(periods))]
-        for _attempt in range(500):
-            ref = "".join(rng.choice("0123456789") for _ in range(5))
-            if all(_hamming(ref, o) >= 2
-                   for o in vendor_refs.get(v.key, set())):
-                break
-        else:
-            raise AssertionError("could not mint a non-colliding unknown ref")
-        vendor_refs.setdefault(v.key, set()).add(ref)
-        near = [p["gst"] for p in purchases
-                if p["vendor"].key == v.key and p["period"] == period]
-        near += [ln["gst_paise"] for ln in lines
-                 if ln["_sc"] == _TAX_SC_UNKNOWN and ln["gstin"] == v.gstin
-                 and ln["period"] == period]
-        for _attempt in range(500):
-            total = rng.randint(30_000, 600_000)
-            gst = TX.gst_from_inclusive(total)
-            if all(abs(gst - x) >= MIN_SEPARATION_PAISE for x in near):
-                break
-        else:
-            raise AssertionError("could not separate an unknown-line amount")
-        y, m = int(period[:4]), int(period[5:7])
-        add_line(v, period, f"{v.inv_prefix}/{ref}",
-                 date(y, m, rng.randint(1, 28)),
-                 TX.taxable_from_inclusive(total), gst, TX.head_for(v.state),
-                 None, _TAX_SC_UNKNOWN, disposition=TS.UNKNOWN_INVOICE_IN_2B)
-
-    # Assign line ids in a canonical order; wire matched line ids back onto
-    # the purchase golden rows (duplicates link the purchase to the FIRST
-    # line only, mirroring the recon duplicate-credit convention).
-    lines.sort(key=lambda ln: (ln["period"], ln["gstin"], ln["invoice_no"],
-                               ln["_idx"]))
-    for i, ln in enumerate(lines, start=1):
-        ln["line_id"] = f"2B{i:06d}"
-        if ln["_pid"] is not None and ln["_disp"] != TS.DUPLICATE_2B_LINE:
-            purchase_golden[ln["_pid"]]["lines"].append(ln["line_id"])
-
-    golden: list[dict] = []
-    counts: dict[str, int] = {}
-
-    def count(sc: str) -> None:
-        counts[sc] = counts.get(sc, 0) + 1
-
-    for p in purchases:
-        g = purchase_golden[p["purchase_id"]]
-        golden.append({
-            "record_type": TS.RT_PURCHASE, "record_id": p["purchase_id"],
-            "expected_disposition": g["disposition"],
-            "counterparty_ids": S.COUNTERPARTY_SEP.join(g["lines"]),
-            "scenario_tag": g["scenario"],
-            "expected_discrepancy_paise": g["disc"], "notes": g["notes"],
-        })
-        count(g["scenario"])
-    for ln in lines:
-        golden.append({
-            "record_type": TS.RT_2B_LINE, "record_id": ln["line_id"],
-            "expected_disposition": ln["_disp"],
-            "counterparty_ids": ln["_pid"] or "",
-            "scenario_tag": ln["_sc"],
-            "expected_discrepancy_paise": ln["_disc"], "notes": "",
-        })
-        if ln["_pid"] is None:      # unknown lines have no purchase to count
-            count(ln["_sc"])
-
-    rows = [{k: ln[k] for k in TS.GSTR2B_COLUMNS} for ln in lines]
-    return rows, golden, counts
-
-
-def _mint_form26as(seed: int, settlements: list[GenSettlement], days: int
-                   ) -> tuple[list[dict], list[dict], dict[str, int]]:
-    """The deductor-filed side of loop 2, sourced from the settlements whose
-    discrepancy scenario chose the 1%-TDS branch."""
-    rng = Random(f"{seed}:tax:26as")
-    events: list[dict] = []
-    for s in settlements:
-        if s.tds_deducted_paise <= 0 or not s.counterparties:
-            continue
-        credit = s.counterparties[0]
-        events.append({
-            "settlement_id": s.settlement_id, "date": credit.value_date,
-            "amount_paid": s.amount_paise, "tds": s.tds_deducted_paise,
-        })
-    events.sort(key=lambda e: (e["date"], e["settlement_id"]))
-
-    world_end = START_DATE + timedelta(days=days - 1)
-    multi_quarter = TX.fy_quarter(START_DATE) != TX.fy_quarter(world_end)
-    order = list(range(len(events)))
-    rng.shuffle(order)
-    defect_of: dict[int, str] = {}
-    slots = iter(order)
-    # Thresholds keep a clean majority on small worlds: a lone event is never
-    # defected, and each further defect kind needs one more event in hand.
-    for sc, cond in ((_TAX_SC_26AS_MISSING, len(events) >= 2),
-                     (_TAX_SC_26AS_MISMATCH, len(events) >= 3),
-                     (_TAX_SC_26AS_QUARTER, multi_quarter and len(events) >= 4),
-                     (_TAX_SC_26AS_DUP, len(events) >= 5)):
-        if not cond:
-            continue
-        try:
-            defect_of[next(slots)] = sc
-        except StopIteration:
-            break
-
-    entries: list[dict] = []
-    golden: list[dict] = []
-    counts: dict[str, int] = {}
-
-    def add_entry(e: dict, tds: int, quarter: str, disposition: str,
-                  sc: str, disc: int = 0) -> dict:
-        entry = {
-            "tan": TR.DEDUCTOR_TAN, "deductor_name": TR.DEDUCTOR_NAME,
-            "section": TR.TDS_SECTION, "fy_quarter": quarter,
-            "credit_date": e["date"].isoformat(),
-            "amount_paid_paise": e["amount_paid"], "tds_paise": tds,
-            "_sid": e["settlement_id"], "_disp": disposition, "_sc": sc,
-            "_disc": disc, "_idx": len(entries),
-        }
-        entries.append(entry)
-        return entry
-
-    def event_row(e: dict, disposition: str, sc: str, entry_ids: list[str],
-                  disc: int = 0, notes: str = "") -> dict:
-        return {
-            "record_type": TS.RT_TDS_EVENT, "record_id": e["settlement_id"],
-            "expected_disposition": disposition,
-            "counterparty_ids": S.COUNTERPARTY_SEP.join(entry_ids),
-            "scenario_tag": sc, "expected_discrepancy_paise": disc,
-            "notes": notes, "_entries": entry_ids,
-        }
-
-    event_goldens: list[tuple[dict, list[dict]]] = []  # (event row, its entries)
-    for i, e in enumerate(events):
-        sc = defect_of.get(i, _TAX_SC_26AS_CLEAN)
-        counts[sc] = counts.get(sc, 0) + 1
-        quarter = TX.fy_quarter(e["date"])
-        if sc == _TAX_SC_26AS_MISSING:
-            event_goldens.append((event_row(
-                e, TS.TDS_MISSING_IN_26AS, sc, [], disc=-e["tds"],
-                notes="deduction observed at credit but never filed"), []))
-        elif sc == _TAX_SC_26AS_MISMATCH:
-            delta = rng.choice((-1, 1)) * rng.randint(1, 9) * 100
-            if e["tds"] + delta <= 0:
-                delta = abs(delta)
-            entry = add_entry(e, e["tds"] + delta, quarter,
-                              TS.TDS_AMOUNT_MISMATCH, sc, disc=delta)
-            event_goldens.append((event_row(
-                e, TS.TDS_AMOUNT_MISMATCH, sc, [], disc=delta), [entry]))
-        elif sc == _TAX_SC_26AS_QUARTER:
-            wrong_q = TX.fy_quarter(e["date"] + timedelta(days=92))
-            assert wrong_q != quarter
-            entry = add_entry(e, e["tds"], wrong_q, TS.TDS_WRONG_QUARTER, sc)
-            event_goldens.append((event_row(
-                e, TS.TDS_WRONG_QUARTER, sc, []), [entry]))
-        elif sc == _TAX_SC_26AS_DUP:
-            first = add_entry(e, e["tds"], quarter, TS.TDS_CREDIT_MATCHED, sc)
-            add_entry(e, e["tds"], quarter, TS.TDS_DUPLICATE_26AS, sc)
-            event_goldens.append((event_row(
-                e, TS.TDS_CREDIT_MATCHED, sc, []), [first]))
-        else:
-            entry = add_entry(e, e["tds"], quarter, TS.TDS_CREDIT_MATCHED, sc)
-            event_goldens.append((event_row(
-                e, TS.TDS_CREDIT_MATCHED, sc, []), [entry]))
-
-    entries.sort(key=lambda en: (en["credit_date"], en["_idx"]))
-    for i, en in enumerate(entries, start=1):
-        en["entry_id"] = f"26AS{i:03d}"
-    for row, matched_entries in event_goldens:
-        ids = [en["entry_id"] for en in matched_entries]
-        row["counterparty_ids"] = S.COUNTERPARTY_SEP.join(ids)
-        row.pop("_entries", None)
-        golden.append(row)
-    for en in entries:
-        golden.append({
-            "record_type": TS.RT_26AS_ENTRY, "record_id": en["entry_id"],
-            "expected_disposition": en["_disp"],
-            "counterparty_ids": en["_sid"], "scenario_tag": en["_sc"],
-            "expected_discrepancy_paise": en["_disc"], "notes": "",
-        })
-
-    rows = [{k: en[k] for k in TS.FORM26AS_COLUMNS} for en in entries]
-    return rows, golden, counts
-
-
-def _golden_tax_periods(payments: list[GenPayment], debits: list[GenDebit],
-                        obligations: list[GenDebit], days: int
-                        ) -> list[dict]:
-    """Loop-3 ground truth: for every gradeable month, what the GST and TDS
-    compliance verdicts should be, derived from the same published rules the
-    engine recomputes with. No RNG — pure rule application. A period is
-    gradeable only when its statutory deadline lies within the observed
-    debit horizon (same rule the engine applies), so straggler credits past
-    world end never create phantom not-yet-due periods."""
-    gross_by_month, first30 = _gst_gross_inputs(payments)
-    horizon = max(d.value_date for d in debits)
-    by_key_month: dict[tuple[str, int], GenDebit] = {}
-    for d in obligations:
-        by_key_month[(d.obligation_key, _month_idx(d.due_date))] = d
-
-    def row(kind: str, period: str, disposition: str, sc: str,
-            txn_ids: list[str], disc: int, notes: str = "") -> dict:
-        return {
-            "record_type": TS.RT_OBLIGATION_PERIOD,
-            "record_id": f"{kind}:{period}",
-            "expected_disposition": disposition,
-            "counterparty_ids": S.COUNTERPARTY_SEP.join(txn_ids),
-            "scenario_tag": sc, "expected_discrepancy_paise": disc,
-            "notes": notes,
-        }
-
-    golden: list[dict] = []
-    for m_idx, year, month in _months_in_world(days):
-        period = f"{year:04d}-{month:02d}"
-        gst_due = TX.statutory_deadline(date(year, month, TX.GST_DUE_DAY))
-        tds_due = TX.statutory_deadline(date(year, month, TX.TDS_DUE_DAY))
-
-        liability = TX.gst_liability(first30 if m_idx == 0
-                                     else gross_by_month.get(m_idx - 1, 0))
-        d = by_key_month.get(("gst", m_idx))
-        if gst_due > horizon:
-            pass                          # not yet due inside the window
-        elif d is None:
-            golden.append(row("gst", period, TS.NOT_PAID, _TAX_SC_OBL_MISSING,
-                              [], -liability))
-        elif d.amount_paise != liability:
-            golden.append(row("gst", period, TS.PAID_SHORT, _TAX_SC_OBL_SHORT,
-                              [d.txn_id], d.amount_paise - liability))
-        elif d.value_date > TX.statutory_deadline(d.due_date):
-            golden.append(row("gst", period, TS.PAID_LATE, _TAX_SC_OBL_LATE,
-                              [d.txn_id], 0,
-                              notes=f"posted {d.value_date.isoformat()}, due "
-                                    f"{d.due_date.isoformat()}"))
-        else:
-            golden.append(row("gst", period, TS.PAID_ON_TIME,
-                              _TAX_SC_OBL_CLEAN, [d.txn_id], 0))
-
-        d = by_key_month.get(("tds", m_idx))
-        payroll_prev = by_key_month.get(("payroll", m_idx - 1))
-        if tds_due > horizon:
-            continue                      # not yet due inside the window
-        if m_idx == 0 or payroll_prev is None:
-            golden.append(row("tds", period, TS.UNVERIFIABLE_PRIOR_PERIOD,
-                              _TAX_SC_OBL_UNVERIFIABLE,
-                              [d.txn_id] if d else [], 0,
-                              notes="basis month precedes the statement"))
-            continue
-        expected = TX.tds_deposit(payroll_prev.amount_paise)
-        if d is None:
-            golden.append(row("tds", period, TS.NOT_PAID, _TAX_SC_OBL_MISSING,
-                              [], -expected))
-        elif d.amount_paise != expected:
-            golden.append(row("tds", period, TS.PAID_SHORT, _TAX_SC_OBL_SHORT,
-                              [d.txn_id], d.amount_paise - expected))
-        elif d.value_date > TX.statutory_deadline(d.due_date):
-            golden.append(row("tds", period, TS.PAID_LATE, _TAX_SC_OBL_LATE,
-                              [d.txn_id], 0))
-        else:
-            golden.append(row("tds", period, TS.PAID_ON_TIME,
-                              _TAX_SC_OBL_CLEAN, [d.txn_id], 0))
-    return golden
 
 
 # --- Assembly, goldens, writers -----------------------------------------------
@@ -1570,30 +1072,9 @@ def build_world(seed: int, days: int = DAYS) -> dict:
     noise_credits, debits = _build_noise(seed, settlements, days)
     credits.extend(noise_credits)
     obligations = _build_obligations(seed, payments, days)
-    tax_defects = _inject_obligation_defects(seed, obligations, days)
+    _inject_obligation_defects(seed, obligations, days)
     debits.extend(obligations)
     statement = _assemble_statement(credits, debits)
-
-    # Tax minting runs after assembly: purchase ids are bank txn_ids.
-    gstr2b_rows, golden_tax_itc, tax_counts = _mint_gstr2b(
-        seed, debits, settlements)
-    form26as_rows, golden_tax_26as, counts_26as = _mint_form26as(
-        seed, settlements, days)
-    golden_periods = _golden_tax_periods(payments, debits, obligations, days)
-    golden_tax = golden_tax_itc + golden_tax_26as + golden_periods
-    for sc, n_sc in counts_26as.items():
-        tax_counts[sc] = tax_counts.get(sc, 0) + n_sc
-    for g in golden_periods:
-        tax_counts[g["scenario_tag"]] = tax_counts.get(g["scenario_tag"], 0) + 1
-
-    golden_obligations = [{
-        "obligation_key": d.obligation_key,
-        "due_date": d.due_date.isoformat(),
-        "posted_date": d.value_date.isoformat(),
-        "amount_paise": d.amount_paise,
-        "txn_id": d.txn_id,
-        "narration": d.narration,
-    } for d in obligations]
 
     golden_a: list[dict] = []
     for s in settlements:
@@ -1657,45 +1138,22 @@ def build_world(seed: int, days: int = DAYS) -> dict:
             "bank_rows": len(statement),
             "bank_credits": len(credits),
             "bank_debits": len(debits),
-            "scheduled_obligations": len(obligations),
+            "scheduled_debits": len(obligations),
             "golden_leg_a_rows": len(golden_a),
             "golden_leg_b_rows": len(golden_b),
-            "gstr2b_lines": len(gstr2b_rows),
-            "form26as_entries": len(form26as_rows),
-            "golden_tax_rows": len(golden_tax),
         },
         "settlement_scenarios": dict(sorted(scenario_counts.items())),
         "bank_credit_scenarios": dict(sorted(credit_scenarios.items())),
-        "forecast_structure": {
-            "volume_model": "weekday x trend x month-end multipliers (x1000 ints), +-2 count noise",
-            "weekday_x1000": _WEEKDAY_X1000,
-            "trend": "1000 + 5*day_idx//3 (x1000)",
-            "month_end_x1000": _MONTH_END_X1000,
-            "scheduled_obligation_keys": sorted({d.obligation_key for d in obligations}),
-            "gst_month0_fallback": "no in-world previous month; uses gross of days 0-29",
-        },
         "conventions": {
             "amounts": "integer paise in PSP/order files; rupee decimal strings in bank statement",
             "gst_on_fee": "18%, per-payment integer round-half-up, summed per batch",
             "min_amount_separation_paise": MIN_SEPARATION_PAISE,
-        },
-        "tax_scenarios": dict(sorted(tax_counts.items())),
-        "tax_defects": tax_defects,
-        "tax_conventions": {
-            "merchant_gstin": TX.MERCHANT_GSTIN,
-            "inclusive_split": "taxable = (total*100+59)//118; gst = total - taxable (pair rule)",
-            "fee_invoice": "one consolidated 2B line per month; taxable/gst = settlement fee/tax sums by created_at month",
-            "invoice_ref": "last run of >=5 consecutive digits in the narration",
-            "gst_liability": "3% of prev-month gross captured, floored to Rs 10; month 0 uses gross of days 0-29",
-            "tds_deposit": "10% of prev-month ACTUAL posted payroll, floored to Rs 1; month 0 unverifiable in-world",
         },
     }
 
     return {
         "orders": orders, "payments": payments, "settlements": settlements,
         "statement": statement, "golden_a": golden_a, "golden_b": golden_b,
-        "golden_obligations": golden_obligations, "gstr2b": gstr2b_rows,
-        "form26as": form26as_rows, "golden_tax": golden_tax,
         "manifest": manifest,
     }
 
@@ -1705,7 +1163,7 @@ def write_world(world: dict, out_dir: str) -> None:
 
     def write_csv(name: str, columns: list[str], rows: list[dict]) -> None:
         with open(os.path.join(out_dir, name), "w", encoding="utf-8", newline="") as f:
-            w = csv.DictWriter(f, fieldnames=columns)
+            w = csv.DictWriter(f, fieldnames=columns, lineterminator="\n")
             w.writeheader()
             w.writerows(rows)
 
@@ -1733,25 +1191,17 @@ def write_world(world: dict, out_dir: str) -> None:
         "created_at": o.created_at.strftime("%Y-%m-%dT%H:%M:%S"),
     } for o in world["orders"] if o.order_id])
 
-    write_csv("gstr2b.csv", TS.GSTR2B_COLUMNS, world["gstr2b"])
-    write_csv("form26as.csv", TS.FORM26AS_COLUMNS, world["form26as"])
-
     write_csv("golden_leg_a.csv", S.GOLDEN_COLUMNS, world["golden_a"])
     write_csv("golden_leg_b.csv", S.GOLDEN_COLUMNS, world["golden_b"])
-    write_csv("golden_tax.csv", S.GOLDEN_COLUMNS, world["golden_tax"])
-    write_csv("golden_obligations.csv",
-              ["obligation_key", "due_date", "posted_date", "amount_paise",
-               "txn_id", "narration"],
-              world["golden_obligations"])
 
-    with open(os.path.join(out_dir, "golden_manifest.json"), "w", encoding="utf-8") as f:
+    with open(os.path.join(out_dir, "golden_manifest.json"), "w", encoding="utf-8",
+              newline="\n") as f:
         json.dump(world["manifest"], f, indent=2)
 
 
 def seed_dir(seed: int, days: int = DAYS) -> str:
     """Canonical on-disk location for a generated world. 90-day worlds keep
-    the original layout; other lengths get a d<days> suffix so recon and
-    forecast worlds coexist."""
+    the original layout; other lengths get a d<days> suffix."""
     name = str(seed) if days == DAYS else f"{seed}d{days}"
     return os.path.join("data", "seeds", name)
 

@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "finance-controller"
 version = "0.1.0"
-description = "AI Finance Controller (Razorpay Buildathon Track 04): one daily close - settlement reconciliation, 14-day cash forecast, Indian tax matching - folded into one honest, actionable exception queue"
+description = "AI Finance Controller (Razorpay Buildathon Track 04): settlement reconciliation for a Razorpay merchant, folded into one honest, actionable exception queue"
 readme = "README.md"
 requires-python = ">=3.11"
 license = "MIT"
@@ -15,7 +15,6 @@ license-files = ["LICENSE"]
 dependencies = [
     "pandas==3.0.1",
     "streamlit==1.62.0",
-    "altair==6.2.2",
     "python-dotenv==1.2.2",
     "anthropic==1.2.0",
     "openpyxl==3.1.5",

@@ -5,9 +5,9 @@ rerun, so one uncaught exception blanks every tab below it. The strongest
 cheap invariant is therefore "a full run raises nothing", checked on both
 world classes: the generated seed world (the full demo, which must not
 degrade) and the bank-only real-statement world (header-only payments /
-settlements / order_book, no golden_manifest.json, no gstr2b.csv — the
-shape every agent.intake onboarding produces). The second test is the
-exact repro of the Journey KeyError / Forecast FileNotFoundError crashes.
+settlements / order_book, no golden files — the shape every agent.intake
+onboarding produces). The second test is the exact repro of the Journey
+KeyError crash.
 """
 
 import os
@@ -37,6 +37,6 @@ def test_bank_only_world_degrades_gracefully():
     assert not at.exception, at.exception[0].value
     guards = [i for i in at.info if GUARD in i.value]
     # One guard per dependent section: Overview match-confidence, Matches,
-    # Journey, Forecast, Tax. The exact count IS the spec — adding or
-    # removing a guarded section must update this deliberately.
-    assert len(guards) == 5
+    # Journey. The exact count IS the spec — adding or removing a guarded
+    # section must update this deliberately.
+    assert len(guards) == 3

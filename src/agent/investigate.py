@@ -5,7 +5,7 @@
 
 For one exception-queue item, an agent with READ-ONLY tools over the
 precomputed close (the queue item, the decisions that mention its records,
-the bank statement around a date, the cash/forecast headline) drafts an
+the bank statement around a date, the cash headline) drafts an
 investigation note with a recommended next step. The note lands in the
 operator workflow state via `queue_state.append_action(action="note",
 by="agent:investigator")` — advisory text on an already-final item. The
@@ -60,8 +60,7 @@ def build_tools(data_dir: str, close: dict, view: list[dict]):
     by_id = {v["item_id"]: v for v in view}
     bank_rows = io_load.load_bank_rows(data_dir)
     decision_pools = [("leg_a", close["decisions_a"]),
-                      ("leg_b", close["decisions_b"]),
-                      ("tax", close["tax_decisions"] or [])]
+                      ("leg_b", close["decisions_b"])]
 
     def get_queue_item(inp):
         item = by_id.get(inp["item_id"])
@@ -99,7 +98,6 @@ def build_tools(data_dir: str, close: dict, view: list[dict]):
 
     def cash_headline(_inp):
         return {"close_date": close["close_date"], "cash": close["cash"],
-                "min_balance": close["forecast"].get("min_balance"),
                 "queue_counts": close["counts"]}
 
     schemas = [
@@ -114,6 +112,10 @@ def build_tools(data_dir: str, close: dict, view: list[dict]):
                       {"date_iso": {"type": "string"},
                        "days_before": {"type": "integer"},
                        "days_after": {"type": "integer"}}),
+        # The description still names the retired forecast: tool schemas are
+        # part of every recorded request, so changing this text would break
+        # the hash-checked replay of the committed investigator transcript.
+        # The tool now returns close date, cash position and queue counts.
         T.strict_tool("cash_headline", "Close date, cash position, forecast "
                       "minimum balance and queue counts.",
                       {}),

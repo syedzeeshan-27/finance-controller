@@ -12,12 +12,9 @@
     "bank_rows": 265,
     "bank_credits": 120,
     "bank_debits": 145,
-    "scheduled_obligations": 19,
+    "scheduled_debits": 19,
     "golden_leg_a_rows": 229,
-    "golden_leg_b_rows": 1830,
-    "gstr2b_lines": 113,
-    "form26as_entries": 2,
-    "golden_tax_rows": 263
+    "golden_leg_b_rows": 1830
   },
   "settlement_scenarios": {
     "ambiguous_twins": 4,
@@ -50,70 +47,9 @@
     "utr_mangled_typo": 4,
     "utr_truncated": 9
   },
-  "forecast_structure": {
-    "volume_model": "weekday x trend x month-end multipliers (x1000 ints), +-2 count noise",
-    "weekday_x1000": [
-      950,
-      900,
-      950,
-      1000,
-      1150,
-      1350,
-      700
-    ],
-    "trend": "1000 + 5*day_idx//3 (x1000)",
-    "month_end_x1000": 1250,
-    "scheduled_obligation_keys": [
-      "aws",
-      "gst",
-      "insurance",
-      "payroll",
-      "rent",
-      "tds",
-      "telecom"
-    ],
-    "gst_month0_fallback": "no in-world previous month; uses gross of days 0-29"
-  },
   "conventions": {
     "amounts": "integer paise in PSP/order files; rupee decimal strings in bank statement",
     "gst_on_fee": "18%, per-payment integer round-half-up, summed per batch",
     "min_amount_separation_paise": 1000
-  },
-  "tax_scenarios": {
-    "tax_26as_amount_mismatch": 1,
-    "tax_26as_clean": 1,
-    "tax_26as_missing": 1,
-    "tax_amount_mismatch": 3,
-    "tax_blocked_credit": 33,
-    "tax_clean": 61,
-    "tax_duplicate_2b": 2,
-    "tax_fee_invoice": 3,
-    "tax_filed_late": 2,
-    "tax_invoice_typo": 2,
-    "tax_missing_2b": 3,
-    "tax_no_itc": 28,
-    "tax_obligation_clean": 3,
-    "tax_obligation_late_paid": 1,
-    "tax_obligation_short_paid": 1,
-    "tax_obligation_unverifiable": 1,
-    "tax_unknown_2b": 3,
-    "tax_wrong_head": 2
-  },
-  "tax_defects": {
-    "gst_short": {
-      "period": "2025-05",
-      "shortfall_paise": -167000
-    },
-    "gst_late": {
-      "period": "2025-06"
-    }
-  },
-  "tax_conventions": {
-    "merchant_gstin": "29AAHCM8815R1ZK",
-    "inclusive_split": "taxable = (total*100+59)//118; gst = total - taxable (pair rule)",
-    "fee_invoice": "one consolidated 2B line per month; taxable/gst = settlement fee/tax sums by created_at month",
-    "invoice_ref": "last run of >=5 consecutive digits in the narration",
-    "gst_liability": "3% of prev-month gross captured, floored to Rs 10; month 0 uses gross of days 0-29",
-    "tds_deposit": "10% of prev-month ACTUAL posted payroll, floored to Rs 1; month 0 unverifiable in-world"
   }
 }

@@ -88,7 +88,7 @@ def test_gone_items_split_operator_vs_data(state_root):
 
 
 def test_merchants_rollup_covers_registry(capfd):
-    _merchants_rollup(os.path.join("data", "merchants.json"), horizon=14)
+    _merchants_rollup(os.path.join("data", "merchants.json"))
     out = capfd.readouterr().out
     assert "Meridian Craftworks" in out
     assert "Statement A" in out

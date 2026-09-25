@@ -2,7 +2,7 @@
 
 Design contract (enforced by tests/test_agent_intake.py's quarantine tests):
 
-- No decision module (recon/tax/forecast/controller) imports this package.
+- No decision module (recon/controller) imports this package.
 - The agent's only influence on the pipeline is through artifacts that
   deterministic validators prove correct arithmetically (e.g. a statement
   mapping whose running-balance chain must reproduce to the paisa) or

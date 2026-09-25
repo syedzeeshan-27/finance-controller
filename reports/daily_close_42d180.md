@@ -1,8 +1,8 @@
 # Daily close — 2025-09-29 · world 42d180
 
-| Cash in bank | Min balance (next 14d) | ITC claimable now | Queue | Verifier violations |
-|---|---|---|---|---|
-| ₹64,24,102.29 | ₹59,14,616.70 on 2025-10-01 | ₹1,12,488.04 | 27 S1 · 69 S2 · 98 S3 | leg A 0 · tax 0 · forecast 0 |
+| Cash in bank | Auto-reconciled | Queue | Verifier violations |
+|---|---|---|---|
+| ₹64,24,102.29 | 202 of 238 (84.9%) | 25 S1 · 56 S2 · 88 S3 | leg A 0 |
 
 ## What needs a human today
 
@@ -24,8 +24,6 @@
   Raise with the PSP/bank: settlement processed but no credit arrived. Share the UTR and expected amount.
 - **[S1] Settlement never hit the bank** — `setl_qMCYDreGL1sKlW` · ₹41,431.79 · 58d overdue
   Raise with the PSP/bank: settlement processed but no credit arrived. Share the UTR and expected amount.
-- **[S1] Statutory payment made late** — `gst:2025-05;BANK000158` · ₹41,260.00
-  Paid after the statutory deadline — compute and deposit interest for the delay.
 - **[S1] Settlement never hit the bank** — `setl_XcaKh0okWLYTQc` · ₹39,416.09 · 66d overdue
   Raise with the PSP/bank: settlement processed but no credit arrived. Share the UTR and expected amount.
 - **[S1] Settlement never hit the bank** — `setl_f4xtvdmwcmFq3k` · ₹38,232.93 · 21d overdue
@@ -54,8 +52,6 @@
   Ask the bank to reverse the duplicate posting; park the amount in a suspense account meanwhile.
 - **[S1] Settlement never hit the bank** — `setl_AeG6RydXoQ0F59` · ₹2,207.53 · 74d overdue
   Raise with the PSP/bank: settlement processed but no credit arrived. Share the UTR and expected amount.
-- **[S1] Statutory payment differs from liability** — `gst:2025-07;BANK000334` · ₹1,770.00
-  Paid amount differs from the computed liability — pay the shortfall (or reclaim the excess) with the next return.
 - **[S1] Settlement never hit the bank** — `setl_L8Y3EQnKKfq0kv` · ₹1,577.07 · 39d overdue
   Raise with the PSP/bank: settlement processed but no credit arrived. Share the UTR and expected amount.
 - **[S1] Settlement never hit the bank** — `setl_Svf2FHsiDIfnqI` · ₹1,362.29 · 86d overdue
@@ -116,8 +112,6 @@
   Two captures against one order — refund the duplicate payment.
 - **[S2] Payment and order amounts differ** — `order_z9d9MJBzZmOn8Y;pay_c8EUEjS0ss6WUr` · ₹2,765.40
   Captured amount differs from the order — confirm the intended price with the customer/ops and refund or collect the difference.
-- **[S2] ITC at risk — vendor has not filed** — `BANK000015` · ₹2,638.66
-  Vendor has not filed this invoice — chase them before the filing deadline; do not claim the credit yet.
 - **[S2] Payment and order amounts differ** — `order_XcB0uL9VKIRW0w;pay_NS2An6EY6Wdf8H` · ₹2,050.23
   Captured amount differs from the order — confirm the intended price with the customer/ops and refund or collect the difference.
 - **[S2] Duplicate payment on one order** — `pay_tTSpZkwObF2gmb;order_yvhY6FFXuRxSGV` · ₹1,752.00
@@ -134,22 +128,14 @@
   Two captures against one order — refund the duplicate payment.
 - **[S2] Payment and order amounts differ** — `order_3Cti7bavDr2uEz;pay_CpQ9JMGYiWXXm9` · ₹659.09
   Captured amount differs from the order — confirm the intended price with the customer/ops and refund or collect the difference.
-- **[S2] Unknown invoice filed against you** — `2B000060` · ₹602.42
-  A credit is filed against you with no purchase behind it — do NOT claim; query the vendor/GSTIN.
-- **[S2] TDS deducted but missing from 26AS** — `setl_ldgZ5m1ekcdjiu` · ₹542.74
-  Tax was deducted but never showed up in 26AS — chase the deductor for the certificate/deposit.
 - **[S2] Duplicate payment on one order** — `pay_KESZEttHylZVg7;order_M1LGVHU978NpDL` · ₹520.00
   Two captures against one order — refund the duplicate payment.
 - **[S2] Duplicate payment on one order** — `pay_k2NZMwXwWvqbUF;order_u8RAvQUtc7469e` · ₹511.00
   Two captures against one order — refund the duplicate payment.
 - **[S2] Payment and order amounts differ** — `order_V3jbuyvaude39U;pay_Pf0QgTe6TnXFP0` · ₹467.28
   Captured amount differs from the order — confirm the intended price with the customer/ops and refund or collect the difference.
-- **[S2] ITC at risk — vendor has not filed** — `BANK000343` · ₹416.20
-  Vendor has not filed this invoice — chase them before the filing deadline; do not claim the credit yet.
 - **[S2] Duplicate payment on one order** — `pay_CLRCzsMMKbmSdI;order_06arvfMeVxkGhy` · ₹279.00
   Two captures against one order — refund the duplicate payment.
-- **[S2] Unknown invoice filed against you** — `2B000071` · ₹271.62
-  A credit is filed against you with no purchase behind it — do NOT claim; query the vendor/GSTIN.
 - **[S2] Payment and order amounts differ** — `order_ieZ4fcnwOC0ABO;pay_wkbSzEfnDEEKgE` · ₹261.00
   Captured amount differs from the order — confirm the intended price with the customer/ops and refund or collect the difference.
 - **[S2] Payment and order amounts differ** — `order_w6DkVRwNksO3BS;pay_7sov1t0etATSFK` · ₹242.88
@@ -158,8 +144,6 @@
   Captured amount differs from the order — confirm the intended price with the customer/ops and refund or collect the difference.
 - **[S2] Duplicate payment on one order** — `pay_cEnWnNgeWt4Org;order_XUNBWcZxEWkikY` · ₹208.00
   Two captures against one order — refund the duplicate payment.
-- **[S2] ITC at risk — vendor has not filed** — `BANK000002` · ₹201.35
-  Vendor has not filed this invoice — chase them before the filing deadline; do not claim the credit yet.
 - **[S2] Payment and order amounts differ** — `order_yJylcltKSCNvIU;pay_YMAxffWkp2jibC` · ₹176.46
   Captured amount differs from the order — confirm the intended price with the customer/ops and refund or collect the difference.
 - **[S2] Duplicate payment on one order** — `pay_2AaJxqXG5uZJTn;order_vofkAhCMuxVVfG` · ₹164.00
@@ -170,22 +154,10 @@
   Captured amount differs from the order — confirm the intended price with the customer/ops and refund or collect the difference.
 - **[S2] Duplicate payment on one order** — `pay_bMFWcPort02qnZ;order_3YnvEOujVooHae` · ₹139.00
   Two captures against one order — refund the duplicate payment.
-- **[S2] Invoice filed twice in GSTR-2B** — `BANK000038;2B000008` · ₹136.03
-  Same invoice filed twice — claim once, ask the vendor to amend the duplicate line.
-- **[S2] Invoice filed twice in GSTR-2B** — `BANK000069;2B000014` · ₹130.34
-  Same invoice filed twice — claim once, ask the vendor to amend the duplicate line.
-- **[S2] Unknown invoice filed against you** — `2B000193` · ₹117.50
-  A credit is filed against you with no purchase behind it — do NOT claim; query the vendor/GSTIN.
-- **[S2] ITC at risk — vendor has not filed** — `BANK000054` · ₹89.14
-  Vendor has not filed this invoice — chase them before the filing deadline; do not claim the credit yet.
 - **[S2] Payment and order amounts differ** — `order_db0mrmZRuf2Irj;pay_OaozfUhmn0btt6` · ₹82.50
   Captured amount differs from the order — confirm the intended price with the customer/ops and refund or collect the difference.
-- **[S2] ITC at risk — vendor has not filed** — `BANK000527` · ₹72.93
-  Vendor has not filed this invoice — chase them before the filing deadline; do not claim the credit yet.
 - **[S2] Payment and order amounts differ** — `order_OXaNKJwApGtN3l;pay_qcP447X6OAktcP` · ₹69.90
   Captured amount differs from the order — confirm the intended price with the customer/ops and refund or collect the difference.
-- **[S2] Unknown invoice filed against you** — `2B000156` · ₹65.65
-  A credit is filed against you with no purchase behind it — do NOT claim; query the vendor/GSTIN.
 - **[S2] Payment and order amounts differ** — `order_qHVsBKV0MkNUOY;pay_Pwz8hCjHPM5wmx` · ₹42.42
   Captured amount differs from the order — confirm the intended price with the customer/ops and refund or collect the difference.
 - **[S2] Payment and order amounts differ** — `order_VE4cNipsVtal3I;pay_41fXjVmGWPpqdI` · ₹42.24
@@ -196,30 +168,19 @@
   Captured amount differs from the order — confirm the intended price with the customer/ops and refund or collect the difference.
 - **[S2] Payment and order amounts differ** — `order_0oJhg0sv2gVQcd;pay_F6jpEbEvGtZNCd` · ₹21.48
   Captured amount differs from the order — confirm the intended price with the customer/ops and refund or collect the difference.
-- **[S2] TDS reported twice in 26AS** — `setl_jCftGy7RzxuhuQ;26AS006` · ₹2.71
-  Deduction reported twice in 26AS — reconcile with the deductor before returns are filed.
 
-### 98 review items (S3), grouped
+### 88 review items (S3), grouped
 
 | status | source | items | money |
 |---|---|---|---|
 | exception_payment_no_order | recon_b | 12 | ₹21,721.00 |
 | exception_unpaid_order | recon_b | 76 | ₹3,82,048.67 |
-| itc_amount_mismatch | tax_itc | 5 | ₹110.00 |
-| itc_head_mismatch | tax_itc | 2 | ₹0.00 |
-| tds_amount_mismatch | tax_tds | 1 | ₹8.00 |
-| tds_wrong_quarter | tax_tds | 1 | ₹0.00 |
-| unverifiable_prior_period | tax_obligation | 1 | ₹42,000.00 |
 
-## Cash and the next 14 days
+## Cash
 
 - Closing balance: **₹64,24,102.29** over 537 statement rows since 2025-04-01
-- Projected minimum: **₹59,14,616.70** on 2025-10-01 (80% band ₹58,63,667.35 … ₹59,83,974.58)
-- First day below threshold: —
-- Known in-flight inflows: ₹0.00 across 0 settlements/batches
-- Upcoming recurring obligations: ₹5,67,771.98 across 5 due dates
 
-## Three loops, one pass
+## Reconciliation, one pass
 
 - **Match rate**: 202 of 238 in-scope records auto-reconciled (84.9%); 36 could not be resolved automatically → queue (ambiguous_abstain 6, duplicate_credit 9, exception_missing_bank 16, exception_missing_settlement 5)
 - **Settlements ↔ bank**: 545 decisions, ₹83,79,029.87 matched
@@ -244,12 +205,10 @@
   - payment_applied: 1789
   - payment_failed: 101
   - payment_refunded: 44
-- **Tax loops**: ITC claimable now ₹1,12,488.04 · deferred ₹1,377.79 · at risk ₹3,418.28 · blocked (do not claim) ₹23,839.06 · TDS credits 3/6 · obligations on time 9/12
-  - claimable by head (books-side split): IGST ₹28,107.18 · CGST ₹42,195.22 · SGST ₹42,195.64
 
 ## Why you can trust this page
 
-- Stage verifiers on this exact output: leg A 0 violation(s) · tax 0 · forecast 0. The verifiers share no code with the engines.
-- One pass: the full-world settlement reconciliation ran exactly once and was injected into the tax and forecast surfaces (band calibration re-runs historical slices by design).
+- Leg A verifier on this exact output: 0 violation(s). The verifier shares no code with the engine.
+- One pass: the full-world settlement reconciliation ran exactly once; leg B and the journeys reuse its decisions.
 - Deterministic: same world in, byte-identical close out. No wall-clock, no randomness, integer paise throughout.
 - Measured, not asserted: queue recall/precision vs minted ground truth is frozen in `reports/close_audit.md`.

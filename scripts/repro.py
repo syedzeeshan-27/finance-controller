@@ -2,7 +2,7 @@
 
 Usage (from anywhere; the script pins its own working directory):
     python scripts/repro.py            # all steps
-    python scripts/repro.py --steps 2-7
+    python scripts/repro.py --steps 2-5
     python scripts/repro.py --skip-install
 
 Cross-platform single source of truth — scripts/repro.ps1 and
@@ -46,25 +46,14 @@ def step_4_recon_benchmark() -> None:
     run("recon.benchmark", "--seeds", "42,43,44,45,46")
 
 
-def step_5_forecast_backtest() -> None:
-    # Ten seeds, not five: threshold-crossing events are rare by construction,
-    # so the alert sample is doubled to 70 held-out origins (worlds are
-    # generated on the fly; only seed 42 is committed).
-    run("forecast.backtest", "--seeds", "42,43,44,45,46,47,48,49,50,51")
-
-
-def step_6_tax_benchmark() -> None:
-    run("tax.benchmark", "--seeds", "42,43,44,45,46", "--days", "180")
-
-
-def step_7_close() -> None:
+def step_5_close() -> None:
     run("controller.audit", "--seeds", "42,43,44,45,46", "--days", "180")
     run("controller.close", "data/seeds/42d180", "--report", "--json")
     run("controller.verify_close", "data/seeds/42d180",
         "reports/daily_close_42d180.json")
 
 
-def step_8_real_intake() -> None:
+def step_6_real_intake() -> None:
     # Offline: replays the committed LIVE agent recording (request hashes
     # checked — any harness drift fails loudly), re-proves the mapping with
     # the deterministic validator, and regenerates the real-data report.
@@ -76,14 +65,14 @@ def step_8_real_intake() -> None:
         "--report")
 
 
-def step_9_ingest() -> None:
+def step_7_ingest() -> None:
     run("ingest.razorpay_files", "data/fixtures/razorpay", "out/rzp_ingest")
     run("ingest.pull", "--out", "out/rzp_ingest_live_shape")
     run("ingest.webhook_inbox", "data/fixtures/razorpay/webhooks",
         "out/rzp_webhooks", "--secret", "rzp_demo_webhook_secret")
 
 
-def step_10_investigate() -> None:
+def step_8_investigate() -> None:
     # Offline: replays the committed LIVE investigator recording (request
     # hashes checked) on a fresh copy of the seed-42 world, so the advisory
     # note lands in that copy's workflow state and data/state/42 stays yours.
@@ -105,18 +94,14 @@ STEPS: list[tuple[int, str, object]] = [
      step_3_determinism),
     (4, "reconciliation benchmark (5 seeds, independently verified)",
      step_4_recon_benchmark),
-    (5, "forecast backtest (10 seeds x 7 origins x 14-day horizon)",
-     step_5_forecast_backtest),
-    (6, "tax benchmark (5 seeds x 180-day worlds, independently verified)",
-     step_6_tax_benchmark),
-    (7, "unified daily close: audit vs minted truth + the close itself, "
-        "re-verified from its own JSON", step_7_close),
-    (8, "real bank statement intake: recorded agent replay, proven by the "
-        "validator + real-data report", step_8_real_intake),
-    (9, "Razorpay ingestion: official-schema fixtures + signed webhook "
-        "inbox (offline)", step_9_ingest),
-    (10, "investigator agent: recorded replay on one queue item (offline, "
-         "request-hash checked)", step_10_investigate),
+    (5, "daily close: audit vs minted truth + the close itself, "
+        "re-verified from its own JSON", step_5_close),
+    (6, "real bank statement intake: recorded agent replay, proven by the "
+        "validator + real-data report", step_6_real_intake),
+    (7, "Razorpay ingestion: official-schema fixtures + signed webhook "
+        "inbox (offline)", step_7_ingest),
+    (8, "investigator agent: recorded replay on one queue item (offline, "
+        "request-hash checked)", step_8_investigate),
 ]
 
 
@@ -136,7 +121,7 @@ def main() -> None:
     ap = argparse.ArgumentParser(
         description="Reproduce every committed benchmark artifact.")
     ap.add_argument("--steps", default=None, metavar="SPEC",
-                    help="which steps to run, e.g. '2-7' or '1,3,7' "
+                    help="which steps to run, e.g. '2-5' or '1,3,5' "
                          "(default: all)")
     ap.add_argument("--skip-install", action="store_true",
                     help="skip step 1 (pip install)")
@@ -159,10 +144,6 @@ def main() -> None:
     print()
     print("Done. Reconciliation: reports/benchmark_results.json / "
           "benchmark_report.md")
-    print("Forecasting:          reports/forecast_backtest.json / "
-          "forecast_backtest.md")
-    print("Tax matching:         reports/tax_benchmark.json / "
-          "tax_benchmark.md")
     print("Daily close:          reports/close_audit.json / close_audit.md / "
           "daily_close_42d180.md / daily_close_42d180.json")
     print("Dashboard:            streamlit run src/app.py")

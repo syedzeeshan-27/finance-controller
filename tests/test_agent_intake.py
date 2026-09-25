@@ -175,7 +175,7 @@ def test_committed_world_matches_committed_mapping(tmp_path):
 
 # --- quarantine: the agent proposes, it never decides ------------------------
 
-_DECISION_PACKAGES = ("recon", "tax", "forecast", "controller")
+_DECISION_PACKAGES = ("recon", "controller")
 
 
 def test_no_decision_module_imports_agent():

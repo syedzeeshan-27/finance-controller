@@ -34,7 +34,7 @@ def test_item_id_stable_and_status_independent():
     assert a == b                                   # status excluded, by design
     assert QS.item_id(_item(records=("BANK1", "setl_A"))) == a   # order-free
     assert QS.item_id(_item(records=("setl_B", "BANK1"))) != a
-    assert QS.item_id(_item(source="tax_itc")) != a
+    assert QS.item_id(_item(source="recon_b")) != a
 
 
 def test_world_name_disambiguates_generic_dirs():
