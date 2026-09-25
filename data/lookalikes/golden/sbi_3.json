@@ -1,0 +1,67 @@
+{
+  "file": "sbi_3.csv",
+  "bank": "State Bank of India",
+  "layout_notes": "CSV export, dd-mm-yyyy dates, plain amounts, no Cr/Dr suffix, serial numbers, closing balance only in footer summary",
+  "header_row": 5,
+  "columns": {
+    "date": 1,
+    "narration": 2,
+    "chq_ref": null,
+    "value_date": null,
+    "debit": 3,
+    "credit": 4,
+    "balance": 5,
+    "drcr_indicator": null,
+    "amount": null
+  },
+  "date_format": "%d-%m-%Y",
+  "periods": [
+    {
+      "opening_balance_paise": 99547214,
+      "opening_row": 6,
+      "closing_balance_paise": 95369642,
+      "closing_row": null,
+      "transaction_rows": [
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32
+      ]
+    }
+  ],
+  "repeated_header_rows": [],
+  "noise_rows": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    33,
+    34
+  ],
+  "transactions": 26,
+  "credits_paise": 106942731,
+  "debits_paise": 111120303
+}

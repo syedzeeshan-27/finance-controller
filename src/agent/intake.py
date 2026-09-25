@@ -3,6 +3,8 @@
     python -m agent.intake <raw.xlsx|raw.csv> --out DIR
         (--record TRANSCRIPT | --replay TRANSCRIPT | --mapping MAPPING.json)
         [--report [PATH]]
+    python -m agent.intake --batch data/real/ [--synthetic DIR] [--report [PATH]]
+        (batch evaluation: see agent.intake_batch)
 
 Three ways to obtain the StatementMapping:
 - --record   live agent run (needs ANTHROPIC_API_KEY); records a transcript
@@ -31,7 +33,7 @@ from agent import report as report_mod
 from agent import tools as T
 from agent.loop import run_loop
 from agent.mapping import MAPPING_SCHEMA, StatementMapping
-from agent.provider import AgentError, LiveTransport, ReplayTransport
+from agent.provider import AgentError, ReplayTransport, RunStop, make_live_transport
 from agent.rawgrid import load_grid
 from agent.validator import ValidationReport, validate_mapping
 from agent.apply import apply_mapping, write_world
@@ -101,9 +103,15 @@ def _preview(grid: list[list[str]]) -> str:
          "first_rows": head}, ensure_ascii=False)
 
 
-def _agent_mapping(grid, transport) -> tuple[StatementMapping,
-                                             ValidationReport]:
+def _agent_mapping(grid, transport, max_rejections: int = MAX_REJECTIONS,
+                   stats: dict | None = None) -> tuple[StatementMapping,
+                                                       ValidationReport]:
+    """`max_rejections` bounds the submit attempts (the batch evaluation uses
+    3); the default keeps the committed single-file transcript's tool results
+    byte-identical. `stats`, when given, receives the attempt count."""
     state: dict = {"accepted": None, "rejections": 0, "last": None}
+    stats = stats if stats is not None else {}
+    stats["attempts"] = 0
 
     def peek_rows(inp):
         start = max(0, inp["start"])
@@ -119,6 +127,7 @@ def _agent_mapping(grid, transport) -> tuple[StatementMapping,
         return {"matches": hits[:20], "truncated": len(hits) > 20}
 
     def submit_mapping(inp):
+        stats["attempts"] += 1
         mapping = StatementMapping.from_dict(inp["mapping"])
         rep = validate_mapping(grid, mapping)
         state["last"] = rep
@@ -130,11 +139,11 @@ def _agent_mapping(grid, transport) -> tuple[StatementMapping,
         return {"accepted": False,
                 "errors": rep.errors[:_MAX_ERRORS_FED_BACK],
                 "errors_total": len(rep.errors),
-                "rejections_left": MAX_REJECTIONS - state["rejections"]}
+                "rejections_left": max_rejections - state["rejections"]}
 
     def done() -> bool:
         return (state["accepted"] is not None
-                or state["rejections"] >= MAX_REJECTIONS)
+                or state["rejections"] >= max_rejections)
 
     try:
         run_loop(transport, system=_SYSTEM, tools=TOOLS,
@@ -142,6 +151,8 @@ def _agent_mapping(grid, transport) -> tuple[StatementMapping,
                         "submit_mapping": submit_mapping},
                  user_content=_preview(grid), max_calls=MAX_CALLS,
                  stop_when=done)
+    except RunStop:
+        raise
     except AgentError as exc:
         if state["accepted"] is None:
             raise IntakeError(f"agent run failed: {exc}", state["last"])
@@ -202,9 +213,17 @@ def intake(raw_path: str, out_dir: str, *, transport=None,
 def main() -> None:
     ap = argparse.ArgumentParser(
         description="Agentic statement intake with deterministic proof.")
-    ap.add_argument("raw", help="messy bank export (.xlsx or .csv)")
-    ap.add_argument("--out", required=True, help="canonical world directory")
-    src = ap.add_mutually_exclusive_group(required=True)
+    ap.add_argument("raw", nargs="?", help="messy bank export (.xlsx or .csv)")
+    ap.add_argument("--out", help="canonical world directory")
+    ap.add_argument("--batch", action="append", metavar="DIR",
+                    help="evaluate every export in DIR (repeatable); writes "
+                         "reports/intake_eval.md with --report")
+    ap.add_argument("--synthetic", action="append", metavar="DIR",
+                    help="with --batch: a folder of synthetic look-alikes, "
+                         "reported in its own table")
+    ap.add_argument("--offline", action="store_true",
+                    help="with --batch: replay only, never call the API")
+    src = ap.add_mutually_exclusive_group()
     src.add_argument("--record", metavar="TRANSCRIPT",
                      help="live agent run; records the transcript here")
     src.add_argument("--replay", metavar="TRANSCRIPT",
@@ -217,11 +236,20 @@ def main() -> None:
                          "reports/real_data_report.md)")
     args = ap.parse_args()
 
+    if args.batch:
+        from agent import intake_batch
+        intake_batch.main(args)
+        return
+    if not args.raw or not args.out or not (args.record or args.replay
+                                            or args.mapping):
+        ap.error("single-file mode needs RAW, --out and one of "
+                 "--record/--replay/--mapping (or use --batch DIR)")
+
     transport = None
     if args.record:
         if os.path.exists(args.record):
             os.remove(args.record)
-        transport = LiveTransport(args.record, task="statement_intake")
+        transport = make_live_transport(args.record, task="statement_intake")
         mode = "live(recorded)"
     elif args.replay:
         transport = ReplayTransport(args.replay)
