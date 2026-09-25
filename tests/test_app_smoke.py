@@ -31,6 +31,22 @@ def test_seed_world_renders_all_tabs_clean():
     assert not [i for i in at.info if GUARD in i.value]
 
 
+def test_agent_tab_opens_on_a_proposal_with_its_verdict():
+    """The Agent resolutions tab replays the committed held-out report and
+    opens its inspector on an item the agent answered, not a skipped one."""
+    at = _run_app()
+    assert not at.exception, at.exception[0].value
+    pick = at.selectbox(key="agent_pick")
+    assert pick.value is not None
+    shown = " ".join(m.value for m in at.markdown)
+    assert "**Agent proposal**" in shown and "**Outcome:** match" in shown
+    assert [s for s in at.success if s.value.startswith("Verifier: accepted")]
+    # a stated deduction: the quoted evidence is highlighted in the narration
+    deduction = next(o for o in pick.options if "BANK000051" in o)
+    at.selectbox(key="agent_pick").select(deduction).run()
+    assert "<mark>" in " ".join(m.value for m in at.markdown)
+
+
 def test_bank_only_world_degrades_gracefully():
     at = _run_app()
     at.sidebar.selectbox[0].select("Statement A (real bank data)").run()

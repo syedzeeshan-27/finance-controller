@@ -21,12 +21,9 @@
         "bank_rows": 265,
         "bank_credits": 120,
         "bank_debits": 145,
-        "scheduled_obligations": 19,
+        "scheduled_debits": 19,
         "golden_leg_a_rows": 229,
-        "golden_leg_b_rows": 1830,
-        "gstr2b_lines": 113,
-        "form26as_entries": 2,
-        "golden_tax_rows": 263
+        "golden_leg_b_rows": 1830
       },
       "settlement_scenarios": {
         "ambiguous_twins": 4,
@@ -59,71 +56,10 @@
         "utr_mangled_typo": 4,
         "utr_truncated": 9
       },
-      "forecast_structure": {
-        "volume_model": "weekday x trend x month-end multipliers (x1000 ints), +-2 count noise",
-        "weekday_x1000": [
-          950,
-          900,
-          950,
-          1000,
-          1150,
-          1350,
-          700
-        ],
-        "trend": "1000 + 5*day_idx//3 (x1000)",
-        "month_end_x1000": 1250,
-        "scheduled_obligation_keys": [
-          "aws",
-          "gst",
-          "insurance",
-          "payroll",
-          "rent",
-          "tds",
-          "telecom"
-        ],
-        "gst_month0_fallback": "no in-world previous month; uses gross of days 0-29"
-      },
       "conventions": {
         "amounts": "integer paise in PSP/order files; rupee decimal strings in bank statement",
         "gst_on_fee": "18%, per-payment integer round-half-up, summed per batch",
         "min_amount_separation_paise": 1000
-      },
-      "tax_scenarios": {
-        "tax_26as_amount_mismatch": 1,
-        "tax_26as_clean": 1,
-        "tax_26as_missing": 1,
-        "tax_amount_mismatch": 3,
-        "tax_blocked_credit": 33,
-        "tax_clean": 61,
-        "tax_duplicate_2b": 2,
-        "tax_fee_invoice": 3,
-        "tax_filed_late": 2,
-        "tax_invoice_typo": 2,
-        "tax_missing_2b": 3,
-        "tax_no_itc": 28,
-        "tax_obligation_clean": 3,
-        "tax_obligation_late_paid": 1,
-        "tax_obligation_short_paid": 1,
-        "tax_obligation_unverifiable": 1,
-        "tax_unknown_2b": 3,
-        "tax_wrong_head": 2
-      },
-      "tax_defects": {
-        "gst_short": {
-          "period": "2025-05",
-          "shortfall_paise": -167000
-        },
-        "gst_late": {
-          "period": "2025-06"
-        }
-      },
-      "tax_conventions": {
-        "merchant_gstin": "29AAHCM8815R1ZK",
-        "inclusive_split": "taxable = (total*100+59)//118; gst = total - taxable (pair rule)",
-        "fee_invoice": "one consolidated 2B line per month; taxable/gst = settlement fee/tax sums by created_at month",
-        "invoice_ref": "last run of >=5 consecutive digits in the narration",
-        "gst_liability": "3% of prev-month gross captured, floored to Rs 10; month 0 uses gross of days 0-29",
-        "tds_deposit": "10% of prev-month ACTUAL posted payroll, floored to Rs 1; month 0 unverifiable in-world"
       }
     },
     "43": {
@@ -140,12 +76,9 @@
         "bank_rows": 252,
         "bank_credits": 127,
         "bank_debits": 125,
-        "scheduled_obligations": 19,
+        "scheduled_debits": 19,
         "golden_leg_a_rows": 240,
-        "golden_leg_b_rows": 1896,
-        "gstr2b_lines": 98,
-        "form26as_entries": 2,
-        "golden_tax_rows": 228
+        "golden_leg_b_rows": 1896
       },
       "settlement_scenarios": {
         "ambiguous_twins": 4,
@@ -178,71 +111,10 @@
         "utr_mangled_typo": 5,
         "utr_truncated": 9
       },
-      "forecast_structure": {
-        "volume_model": "weekday x trend x month-end multipliers (x1000 ints), +-2 count noise",
-        "weekday_x1000": [
-          950,
-          900,
-          950,
-          1000,
-          1150,
-          1350,
-          700
-        ],
-        "trend": "1000 + 5*day_idx//3 (x1000)",
-        "month_end_x1000": 1250,
-        "scheduled_obligation_keys": [
-          "aws",
-          "gst",
-          "insurance",
-          "payroll",
-          "rent",
-          "tds",
-          "telecom"
-        ],
-        "gst_month0_fallback": "no in-world previous month; uses gross of days 0-29"
-      },
       "conventions": {
         "amounts": "integer paise in PSP/order files; rupee decimal strings in bank statement",
         "gst_on_fee": "18%, per-payment integer round-half-up, summed per batch",
         "min_amount_separation_paise": 1000
-      },
-      "tax_scenarios": {
-        "tax_26as_amount_mismatch": 1,
-        "tax_26as_clean": 1,
-        "tax_26as_missing": 1,
-        "tax_amount_mismatch": 2,
-        "tax_blocked_credit": 32,
-        "tax_clean": 48,
-        "tax_duplicate_2b": 2,
-        "tax_fee_invoice": 3,
-        "tax_filed_late": 2,
-        "tax_invoice_typo": 2,
-        "tax_missing_2b": 2,
-        "tax_no_itc": 24,
-        "tax_obligation_clean": 3,
-        "tax_obligation_late_paid": 1,
-        "tax_obligation_short_paid": 1,
-        "tax_obligation_unverifiable": 1,
-        "tax_unknown_2b": 3,
-        "tax_wrong_head": 2
-      },
-      "tax_defects": {
-        "gst_short": {
-          "period": "2025-06",
-          "shortfall_paise": -176000
-        },
-        "gst_late": {
-          "period": "2025-05"
-        }
-      },
-      "tax_conventions": {
-        "merchant_gstin": "29AAHCM8815R1ZK",
-        "inclusive_split": "taxable = (total*100+59)//118; gst = total - taxable (pair rule)",
-        "fee_invoice": "one consolidated 2B line per month; taxable/gst = settlement fee/tax sums by created_at month",
-        "invoice_ref": "last run of >=5 consecutive digits in the narration",
-        "gst_liability": "3% of prev-month gross captured, floored to Rs 10; month 0 uses gross of days 0-29",
-        "tds_deposit": "10% of prev-month ACTUAL posted payroll, floored to Rs 1; month 0 unverifiable in-world"
       }
     },
     "44": {
@@ -259,12 +131,9 @@
         "bank_rows": 263,
         "bank_credits": 136,
         "bank_debits": 127,
-        "scheduled_obligations": 19,
+        "scheduled_debits": 19,
         "golden_leg_a_rows": 257,
-        "golden_leg_b_rows": 1876,
-        "gstr2b_lines": 96,
-        "form26as_entries": 2,
-        "golden_tax_rows": 228
+        "golden_leg_b_rows": 1876
       },
       "settlement_scenarios": {
         "ambiguous_twins": 4,
@@ -297,71 +166,10 @@
         "utr_mangled_typo": 5,
         "utr_truncated": 10
       },
-      "forecast_structure": {
-        "volume_model": "weekday x trend x month-end multipliers (x1000 ints), +-2 count noise",
-        "weekday_x1000": [
-          950,
-          900,
-          950,
-          1000,
-          1150,
-          1350,
-          700
-        ],
-        "trend": "1000 + 5*day_idx//3 (x1000)",
-        "month_end_x1000": 1250,
-        "scheduled_obligation_keys": [
-          "aws",
-          "gst",
-          "insurance",
-          "payroll",
-          "rent",
-          "tds",
-          "telecom"
-        ],
-        "gst_month0_fallback": "no in-world previous month; uses gross of days 0-29"
-      },
       "conventions": {
         "amounts": "integer paise in PSP/order files; rupee decimal strings in bank statement",
         "gst_on_fee": "18%, per-payment integer round-half-up, summed per batch",
         "min_amount_separation_paise": 1000
-      },
-      "tax_scenarios": {
-        "tax_26as_amount_mismatch": 1,
-        "tax_26as_clean": 1,
-        "tax_26as_missing": 1,
-        "tax_amount_mismatch": 2,
-        "tax_blocked_credit": 28,
-        "tax_clean": 50,
-        "tax_duplicate_2b": 2,
-        "tax_fee_invoice": 3,
-        "tax_filed_late": 2,
-        "tax_invoice_typo": 2,
-        "tax_missing_2b": 2,
-        "tax_no_itc": 28,
-        "tax_obligation_clean": 3,
-        "tax_obligation_late_paid": 1,
-        "tax_obligation_short_paid": 1,
-        "tax_obligation_unverifiable": 1,
-        "tax_unknown_2b": 3,
-        "tax_wrong_head": 2
-      },
-      "tax_defects": {
-        "gst_short": {
-          "period": "2025-05",
-          "shortfall_paise": -178000
-        },
-        "gst_late": {
-          "period": "2025-06"
-        }
-      },
-      "tax_conventions": {
-        "merchant_gstin": "29AAHCM8815R1ZK",
-        "inclusive_split": "taxable = (total*100+59)//118; gst = total - taxable (pair rule)",
-        "fee_invoice": "one consolidated 2B line per month; taxable/gst = settlement fee/tax sums by created_at month",
-        "invoice_ref": "last run of >=5 consecutive digits in the narration",
-        "gst_liability": "3% of prev-month gross captured, floored to Rs 10; month 0 uses gross of days 0-29",
-        "tds_deposit": "10% of prev-month ACTUAL posted payroll, floored to Rs 1; month 0 unverifiable in-world"
       }
     },
     "45": {
@@ -378,12 +186,9 @@
         "bank_rows": 269,
         "bank_credits": 133,
         "bank_debits": 136,
-        "scheduled_obligations": 19,
+        "scheduled_debits": 19,
         "golden_leg_a_rows": 252,
-        "golden_leg_b_rows": 1895,
-        "gstr2b_lines": 103,
-        "form26as_entries": 2,
-        "golden_tax_rows": 244
+        "golden_leg_b_rows": 1895
       },
       "settlement_scenarios": {
         "ambiguous_twins": 4,
@@ -416,71 +221,10 @@
         "utr_mangled_typo": 5,
         "utr_truncated": 10
       },
-      "forecast_structure": {
-        "volume_model": "weekday x trend x month-end multipliers (x1000 ints), +-2 count noise",
-        "weekday_x1000": [
-          950,
-          900,
-          950,
-          1000,
-          1150,
-          1350,
-          700
-        ],
-        "trend": "1000 + 5*day_idx//3 (x1000)",
-        "month_end_x1000": 1250,
-        "scheduled_obligation_keys": [
-          "aws",
-          "gst",
-          "insurance",
-          "payroll",
-          "rent",
-          "tds",
-          "telecom"
-        ],
-        "gst_month0_fallback": "no in-world previous month; uses gross of days 0-29"
-      },
       "conventions": {
         "amounts": "integer paise in PSP/order files; rupee decimal strings in bank statement",
         "gst_on_fee": "18%, per-payment integer round-half-up, summed per batch",
         "min_amount_separation_paise": 1000
-      },
-      "tax_scenarios": {
-        "tax_26as_amount_mismatch": 1,
-        "tax_26as_clean": 1,
-        "tax_26as_missing": 1,
-        "tax_amount_mismatch": 2,
-        "tax_blocked_credit": 24,
-        "tax_clean": 61,
-        "tax_duplicate_2b": 2,
-        "tax_fee_invoice": 3,
-        "tax_filed_late": 2,
-        "tax_invoice_typo": 2,
-        "tax_missing_2b": 2,
-        "tax_no_itc": 30,
-        "tax_obligation_clean": 3,
-        "tax_obligation_late_paid": 1,
-        "tax_obligation_short_paid": 1,
-        "tax_obligation_unverifiable": 1,
-        "tax_unknown_2b": 3,
-        "tax_wrong_head": 2
-      },
-      "tax_defects": {
-        "gst_short": {
-          "period": "2025-06",
-          "shortfall_paise": -155000
-        },
-        "gst_late": {
-          "period": "2025-05"
-        }
-      },
-      "tax_conventions": {
-        "merchant_gstin": "29AAHCM8815R1ZK",
-        "inclusive_split": "taxable = (total*100+59)//118; gst = total - taxable (pair rule)",
-        "fee_invoice": "one consolidated 2B line per month; taxable/gst = settlement fee/tax sums by created_at month",
-        "invoice_ref": "last run of >=5 consecutive digits in the narration",
-        "gst_liability": "3% of prev-month gross captured, floored to Rs 10; month 0 uses gross of days 0-29",
-        "tds_deposit": "10% of prev-month ACTUAL posted payroll, floored to Rs 1; month 0 unverifiable in-world"
       }
     },
     "46": {
@@ -497,12 +241,9 @@
         "bank_rows": 279,
         "bank_credits": 141,
         "bank_debits": 138,
-        "scheduled_obligations": 19,
+        "scheduled_debits": 19,
         "golden_leg_a_rows": 269,
-        "golden_leg_b_rows": 1876,
-        "gstr2b_lines": 111,
-        "form26as_entries": 3,
-        "golden_tax_rows": 256
+        "golden_leg_b_rows": 1876
       },
       "settlement_scenarios": {
         "ambiguous_twins": 4,
@@ -535,71 +276,10 @@
         "utr_mangled_typo": 5,
         "utr_truncated": 10
       },
-      "forecast_structure": {
-        "volume_model": "weekday x trend x month-end multipliers (x1000 ints), +-2 count noise",
-        "weekday_x1000": [
-          950,
-          900,
-          950,
-          1000,
-          1150,
-          1350,
-          700
-        ],
-        "trend": "1000 + 5*day_idx//3 (x1000)",
-        "month_end_x1000": 1250,
-        "scheduled_obligation_keys": [
-          "aws",
-          "gst",
-          "insurance",
-          "payroll",
-          "rent",
-          "tds",
-          "telecom"
-        ],
-        "gst_month0_fallback": "no in-world previous month; uses gross of days 0-29"
-      },
       "conventions": {
         "amounts": "integer paise in PSP/order files; rupee decimal strings in bank statement",
         "gst_on_fee": "18%, per-payment integer round-half-up, summed per batch",
         "min_amount_separation_paise": 1000
-      },
-      "tax_scenarios": {
-        "tax_26as_amount_mismatch": 1,
-        "tax_26as_clean": 2,
-        "tax_26as_missing": 1,
-        "tax_amount_mismatch": 3,
-        "tax_blocked_credit": 28,
-        "tax_clean": 64,
-        "tax_duplicate_2b": 2,
-        "tax_fee_invoice": 3,
-        "tax_filed_late": 2,
-        "tax_invoice_typo": 2,
-        "tax_missing_2b": 3,
-        "tax_no_itc": 23,
-        "tax_obligation_clean": 3,
-        "tax_obligation_late_paid": 1,
-        "tax_obligation_short_paid": 1,
-        "tax_obligation_unverifiable": 1,
-        "tax_unknown_2b": 3,
-        "tax_wrong_head": 2
-      },
-      "tax_defects": {
-        "gst_short": {
-          "period": "2025-06",
-          "shortfall_paise": -162000
-        },
-        "gst_late": {
-          "period": "2025-05"
-        }
-      },
-      "tax_conventions": {
-        "merchant_gstin": "29AAHCM8815R1ZK",
-        "inclusive_split": "taxable = (total*100+59)//118; gst = total - taxable (pair rule)",
-        "fee_invoice": "one consolidated 2B line per month; taxable/gst = settlement fee/tax sums by created_at month",
-        "invoice_ref": "last run of >=5 consecutive digits in the narration",
-        "gst_liability": "3% of prev-month gross captured, floored to Rs 10; month 0 uses gross of days 0-29",
-        "tds_deposit": "10% of prev-month ACTUAL posted payroll, floored to Rs 1; month 0 unverifiable in-world"
       }
     }
   },
@@ -725,8 +405,8 @@
             }
           },
           "records_processed": 374,
-          "elapsed_seconds": 0.0621,
-          "throughput_records_per_sec": 6023.6,
+          "elapsed_seconds": 0.0715,
+          "throughput_records_per_sec": 5230.8,
           "verify_violations": [],
           "verify_violation_count": 0
         },
@@ -849,8 +529,8 @@
             }
           },
           "records_processed": 365,
-          "elapsed_seconds": 0.0588,
-          "throughput_records_per_sec": 6210.7,
+          "elapsed_seconds": 0.0491,
+          "throughput_records_per_sec": 7431.3,
           "verify_violations": [],
           "verify_violation_count": 0
         },
@@ -973,8 +653,8 @@
             }
           },
           "records_processed": 384,
-          "elapsed_seconds": 0.1498,
-          "throughput_records_per_sec": 2563.7,
+          "elapsed_seconds": 0.0541,
+          "throughput_records_per_sec": 7099.7,
           "verify_violations": [],
           "verify_violation_count": 0
         },
@@ -1097,8 +777,8 @@
             }
           },
           "records_processed": 388,
-          "elapsed_seconds": 0.1464,
-          "throughput_records_per_sec": 2650.2,
+          "elapsed_seconds": 0.0558,
+          "throughput_records_per_sec": 6952.1,
           "verify_violations": [],
           "verify_violation_count": 0
         },
@@ -1221,8 +901,8 @@
             }
           },
           "records_processed": 407,
-          "elapsed_seconds": 0.0643,
-          "throughput_records_per_sec": 6327.0,
+          "elapsed_seconds": 0.0458,
+          "throughput_records_per_sec": 8884.8,
           "verify_violations": [],
           "verify_violation_count": 0
         }
@@ -3094,9 +2774,2505 @@
           "max": 0.7286
         },
         "throughput_records_per_sec": {
-          "mean": 4755.04,
-          "min": 2563.7,
-          "max": 6327.0
+          "mean": 7119.74,
+          "min": 5230.8,
+          "max": 8884.8
+        }
+      }
+    },
+    "utr_then_amount": {
+      "per_seed": {
+        "42": {
+          "golden_rows": 229,
+          "matchable_rows": 197,
+          "true_positives": 176,
+          "false_positives": 18,
+          "false_negatives": 21,
+          "precision": 0.9072,
+          "recall": 0.8934,
+          "f1": 0.9003,
+          "false_match_rate": 0.0928,
+          "disposition_accuracy": 0.8253,
+          "ambiguous_total": 6,
+          "ambiguous_correctly_abstained": 0,
+          "auto_resolution_rate": 0.7249,
+          "exception_accuracy_by_class": {
+            "ambiguous_abstain": {
+              "correct": 0,
+              "total": 6,
+              "accuracy": 0.0
+            },
+            "duplicate_credit": {
+              "correct": 0,
+              "total": 4,
+              "accuracy": 0.0
+            },
+            "exception_missing_bank": {
+              "correct": 8,
+              "total": 8,
+              "accuracy": 1.0
+            },
+            "exception_missing_settlement": {
+              "correct": 5,
+              "total": 5,
+              "accuracy": 1.0
+            },
+            "non_settlement_credit": {
+              "correct": 0,
+              "total": 9,
+              "accuracy": 0.0
+            }
+          },
+          "per_scenario": {
+            "ambiguous_twins": {
+              "correct": 0,
+              "total": 6,
+              "accuracy": 0.0
+            },
+            "clean_exact_utr": {
+              "correct": 84,
+              "total": 84,
+              "accuracy": 1.0
+            },
+            "delayed_settlement": {
+              "correct": 8,
+              "total": 8,
+              "accuracy": 1.0
+            },
+            "duplicate_bank_credit": {
+              "correct": 8,
+              "total": 12,
+              "accuracy": 0.6667
+            },
+            "matched_with_discrepancy": {
+              "correct": 14,
+              "total": 14,
+              "accuracy": 1.0
+            },
+            "merged_credits": {
+              "correct": 0,
+              "total": 6,
+              "accuracy": 0.0
+            },
+            "missing_bank_credit": {
+              "correct": 8,
+              "total": 8,
+              "accuracy": 1.0
+            },
+            "near_collision": {
+              "correct": 12,
+              "total": 12,
+              "accuracy": 1.0
+            },
+            "noise_credit": {
+              "correct": 0,
+              "total": 9,
+              "accuracy": 0.0
+            },
+            "orphan_bank_credit": {
+              "correct": 5,
+              "total": 5,
+              "accuracy": 1.0
+            },
+            "split_settlement": {
+              "correct": 0,
+              "total": 15,
+              "accuracy": 0.0
+            },
+            "utr_absent_amount_unique": {
+              "correct": 16,
+              "total": 16,
+              "accuracy": 1.0
+            },
+            "utr_mangled_separators": {
+              "correct": 8,
+              "total": 8,
+              "accuracy": 1.0
+            },
+            "utr_mangled_typo": {
+              "correct": 8,
+              "total": 8,
+              "accuracy": 1.0
+            },
+            "utr_truncated": {
+              "correct": 18,
+              "total": 18,
+              "accuracy": 1.0
+            }
+          },
+          "records_processed": 374,
+          "elapsed_seconds": 0.0087,
+          "throughput_records_per_sec": 43143.7,
+          "verify_violations": [],
+          "verify_violation_count": 0
+        },
+        "43": {
+          "golden_rows": 240,
+          "matchable_rows": 207,
+          "true_positives": 182,
+          "false_positives": 20,
+          "false_negatives": 25,
+          "precision": 0.901,
+          "recall": 0.8792,
+          "f1": 0.89,
+          "false_match_rate": 0.099,
+          "disposition_accuracy": 0.8125,
+          "ambiguous_total": 6,
+          "ambiguous_correctly_abstained": 0,
+          "auto_resolution_rate": 0.7167,
+          "exception_accuracy_by_class": {
+            "ambiguous_abstain": {
+              "correct": 0,
+              "total": 6,
+              "accuracy": 0.0
+            },
+            "duplicate_credit": {
+              "correct": 0,
+              "total": 5,
+              "accuracy": 0.0
+            },
+            "exception_missing_bank": {
+              "correct": 8,
+              "total": 8,
+              "accuracy": 1.0
+            },
+            "exception_missing_settlement": {
+              "correct": 5,
+              "total": 5,
+              "accuracy": 1.0
+            },
+            "non_settlement_credit": {
+              "correct": 0,
+              "total": 9,
+              "accuracy": 0.0
+            }
+          },
+          "per_scenario": {
+            "ambiguous_twins": {
+              "correct": 0,
+              "total": 6,
+              "accuracy": 0.0
+            },
+            "clean_exact_utr": {
+              "correct": 82,
+              "total": 82,
+              "accuracy": 1.0
+            },
+            "delayed_settlement": {
+              "correct": 10,
+              "total": 10,
+              "accuracy": 1.0
+            },
+            "duplicate_bank_credit": {
+              "correct": 10,
+              "total": 15,
+              "accuracy": 0.6667
+            },
+            "matched_with_discrepancy": {
+              "correct": 14,
+              "total": 14,
+              "accuracy": 1.0
+            },
+            "merged_credits": {
+              "correct": 0,
+              "total": 6,
+              "accuracy": 0.0
+            },
+            "missing_bank_credit": {
+              "correct": 8,
+              "total": 8,
+              "accuracy": 1.0
+            },
+            "near_collision": {
+              "correct": 12,
+              "total": 12,
+              "accuracy": 1.0
+            },
+            "noise_credit": {
+              "correct": 0,
+              "total": 9,
+              "accuracy": 0.0
+            },
+            "orphan_bank_credit": {
+              "correct": 5,
+              "total": 5,
+              "accuracy": 1.0
+            },
+            "split_settlement": {
+              "correct": 0,
+              "total": 19,
+              "accuracy": 0.0
+            },
+            "utr_absent_amount_unique": {
+              "correct": 16,
+              "total": 16,
+              "accuracy": 1.0
+            },
+            "utr_mangled_separators": {
+              "correct": 10,
+              "total": 10,
+              "accuracy": 1.0
+            },
+            "utr_mangled_typo": {
+              "correct": 10,
+              "total": 10,
+              "accuracy": 1.0
+            },
+            "utr_truncated": {
+              "correct": 18,
+              "total": 18,
+              "accuracy": 1.0
+            }
+          },
+          "records_processed": 365,
+          "elapsed_seconds": 0.0076,
+          "throughput_records_per_sec": 47807.4,
+          "verify_violations": [],
+          "verify_violation_count": 0
+        },
+        "44": {
+          "golden_rows": 257,
+          "matchable_rows": 224,
+          "true_positives": 198,
+          "false_positives": 20,
+          "false_negatives": 26,
+          "precision": 0.9083,
+          "recall": 0.8839,
+          "f1": 0.8959,
+          "false_match_rate": 0.0917,
+          "disposition_accuracy": 0.821,
+          "ambiguous_total": 6,
+          "ambiguous_correctly_abstained": 0,
+          "auto_resolution_rate": 0.7315,
+          "exception_accuracy_by_class": {
+            "ambiguous_abstain": {
+              "correct": 0,
+              "total": 6,
+              "accuracy": 0.0
+            },
+            "duplicate_credit": {
+              "correct": 0,
+              "total": 5,
+              "accuracy": 0.0
+            },
+            "exception_missing_bank": {
+              "correct": 8,
+              "total": 8,
+              "accuracy": 1.0
+            },
+            "exception_missing_settlement": {
+              "correct": 5,
+              "total": 5,
+              "accuracy": 1.0
+            },
+            "non_settlement_credit": {
+              "correct": 0,
+              "total": 9,
+              "accuracy": 0.0
+            }
+          },
+          "per_scenario": {
+            "ambiguous_twins": {
+              "correct": 0,
+              "total": 6,
+              "accuracy": 0.0
+            },
+            "clean_exact_utr": {
+              "correct": 96,
+              "total": 96,
+              "accuracy": 1.0
+            },
+            "delayed_settlement": {
+              "correct": 10,
+              "total": 10,
+              "accuracy": 1.0
+            },
+            "duplicate_bank_credit": {
+              "correct": 10,
+              "total": 15,
+              "accuracy": 0.6667
+            },
+            "matched_with_discrepancy": {
+              "correct": 14,
+              "total": 14,
+              "accuracy": 1.0
+            },
+            "merged_credits": {
+              "correct": 0,
+              "total": 6,
+              "accuracy": 0.0
+            },
+            "missing_bank_credit": {
+              "correct": 8,
+              "total": 8,
+              "accuracy": 1.0
+            },
+            "near_collision": {
+              "correct": 12,
+              "total": 12,
+              "accuracy": 1.0
+            },
+            "noise_credit": {
+              "correct": 0,
+              "total": 9,
+              "accuracy": 0.0
+            },
+            "orphan_bank_credit": {
+              "correct": 5,
+              "total": 5,
+              "accuracy": 1.0
+            },
+            "split_settlement": {
+              "correct": 0,
+              "total": 20,
+              "accuracy": 0.0
+            },
+            "utr_absent_amount_unique": {
+              "correct": 16,
+              "total": 16,
+              "accuracy": 1.0
+            },
+            "utr_mangled_separators": {
+              "correct": 10,
+              "total": 10,
+              "accuracy": 1.0
+            },
+            "utr_mangled_typo": {
+              "correct": 10,
+              "total": 10,
+              "accuracy": 1.0
+            },
+            "utr_truncated": {
+              "correct": 20,
+              "total": 20,
+              "accuracy": 1.0
+            }
+          },
+          "records_processed": 384,
+          "elapsed_seconds": 0.0076,
+          "throughput_records_per_sec": 50259.1,
+          "verify_violations": [],
+          "verify_violation_count": 0
+        },
+        "45": {
+          "golden_rows": 252,
+          "matchable_rows": 219,
+          "true_positives": 194,
+          "false_positives": 20,
+          "false_negatives": 25,
+          "precision": 0.9065,
+          "recall": 0.8858,
+          "f1": 0.8961,
+          "false_match_rate": 0.0935,
+          "disposition_accuracy": 0.8214,
+          "ambiguous_total": 6,
+          "ambiguous_correctly_abstained": 0,
+          "auto_resolution_rate": 0.7302,
+          "exception_accuracy_by_class": {
+            "ambiguous_abstain": {
+              "correct": 0,
+              "total": 6,
+              "accuracy": 0.0
+            },
+            "duplicate_credit": {
+              "correct": 0,
+              "total": 5,
+              "accuracy": 0.0
+            },
+            "exception_missing_bank": {
+              "correct": 8,
+              "total": 8,
+              "accuracy": 1.0
+            },
+            "exception_missing_settlement": {
+              "correct": 5,
+              "total": 5,
+              "accuracy": 1.0
+            },
+            "non_settlement_credit": {
+              "correct": 0,
+              "total": 9,
+              "accuracy": 0.0
+            }
+          },
+          "per_scenario": {
+            "ambiguous_twins": {
+              "correct": 0,
+              "total": 6,
+              "accuracy": 0.0
+            },
+            "clean_exact_utr": {
+              "correct": 92,
+              "total": 92,
+              "accuracy": 1.0
+            },
+            "delayed_settlement": {
+              "correct": 10,
+              "total": 10,
+              "accuracy": 1.0
+            },
+            "duplicate_bank_credit": {
+              "correct": 10,
+              "total": 15,
+              "accuracy": 0.6667
+            },
+            "matched_with_discrepancy": {
+              "correct": 14,
+              "total": 14,
+              "accuracy": 1.0
+            },
+            "merged_credits": {
+              "correct": 0,
+              "total": 6,
+              "accuracy": 0.0
+            },
+            "missing_bank_credit": {
+              "correct": 8,
+              "total": 8,
+              "accuracy": 1.0
+            },
+            "near_collision": {
+              "correct": 12,
+              "total": 12,
+              "accuracy": 1.0
+            },
+            "noise_credit": {
+              "correct": 0,
+              "total": 9,
+              "accuracy": 0.0
+            },
+            "orphan_bank_credit": {
+              "correct": 5,
+              "total": 5,
+              "accuracy": 1.0
+            },
+            "split_settlement": {
+              "correct": 0,
+              "total": 19,
+              "accuracy": 0.0
+            },
+            "utr_absent_amount_unique": {
+              "correct": 16,
+              "total": 16,
+              "accuracy": 1.0
+            },
+            "utr_mangled_separators": {
+              "correct": 10,
+              "total": 10,
+              "accuracy": 1.0
+            },
+            "utr_mangled_typo": {
+              "correct": 10,
+              "total": 10,
+              "accuracy": 1.0
+            },
+            "utr_truncated": {
+              "correct": 20,
+              "total": 20,
+              "accuracy": 1.0
+            }
+          },
+          "records_processed": 388,
+          "elapsed_seconds": 0.0102,
+          "throughput_records_per_sec": 37987.1,
+          "verify_violations": [],
+          "verify_violation_count": 0
+        },
+        "46": {
+          "golden_rows": 269,
+          "matchable_rows": 235,
+          "true_positives": 210,
+          "false_positives": 20,
+          "false_negatives": 25,
+          "precision": 0.913,
+          "recall": 0.8936,
+          "f1": 0.9032,
+          "false_match_rate": 0.087,
+          "disposition_accuracy": 0.8327,
+          "ambiguous_total": 6,
+          "ambiguous_correctly_abstained": 0,
+          "auto_resolution_rate": 0.7361,
+          "exception_accuracy_by_class": {
+            "ambiguous_abstain": {
+              "correct": 0,
+              "total": 6,
+              "accuracy": 0.0
+            },
+            "duplicate_credit": {
+              "correct": 0,
+              "total": 5,
+              "accuracy": 0.0
+            },
+            "exception_missing_bank": {
+              "correct": 9,
+              "total": 9,
+              "accuracy": 1.0
+            },
+            "exception_missing_settlement": {
+              "correct": 5,
+              "total": 5,
+              "accuracy": 1.0
+            },
+            "non_settlement_credit": {
+              "correct": 0,
+              "total": 9,
+              "accuracy": 0.0
+            }
+          },
+          "per_scenario": {
+            "ambiguous_twins": {
+              "correct": 0,
+              "total": 6,
+              "accuracy": 0.0
+            },
+            "clean_exact_utr": {
+              "correct": 104,
+              "total": 104,
+              "accuracy": 1.0
+            },
+            "delayed_settlement": {
+              "correct": 10,
+              "total": 10,
+              "accuracy": 1.0
+            },
+            "duplicate_bank_credit": {
+              "correct": 10,
+              "total": 15,
+              "accuracy": 0.6667
+            },
+            "matched_with_discrepancy": {
+              "correct": 16,
+              "total": 16,
+              "accuracy": 1.0
+            },
+            "merged_credits": {
+              "correct": 0,
+              "total": 6,
+              "accuracy": 0.0
+            },
+            "missing_bank_credit": {
+              "correct": 9,
+              "total": 9,
+              "accuracy": 1.0
+            },
+            "near_collision": {
+              "correct": 12,
+              "total": 12,
+              "accuracy": 1.0
+            },
+            "noise_credit": {
+              "correct": 0,
+              "total": 9,
+              "accuracy": 0.0
+            },
+            "orphan_bank_credit": {
+              "correct": 5,
+              "total": 5,
+              "accuracy": 1.0
+            },
+            "split_settlement": {
+              "correct": 0,
+              "total": 19,
+              "accuracy": 0.0
+            },
+            "utr_absent_amount_unique": {
+              "correct": 18,
+              "total": 18,
+              "accuracy": 1.0
+            },
+            "utr_mangled_separators": {
+              "correct": 10,
+              "total": 10,
+              "accuracy": 1.0
+            },
+            "utr_mangled_typo": {
+              "correct": 10,
+              "total": 10,
+              "accuracy": 1.0
+            },
+            "utr_truncated": {
+              "correct": 20,
+              "total": 20,
+              "accuracy": 1.0
+            }
+          },
+          "records_processed": 407,
+          "elapsed_seconds": 0.0084,
+          "throughput_records_per_sec": 48305.2,
+          "verify_violations": [],
+          "verify_violation_count": 0
+        }
+      },
+      "row_details_seed": "42",
+      "row_details": [
+        {
+          "record_type": "settlement",
+          "record_id": "setl_eaJX1ElpqQvKTV",
+          "scenario": "clean_exact_utr",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_0D7QcT3kWC3yLr",
+          "scenario": "clean_exact_utr",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_PzzFBAStBu7hGu",
+          "scenario": "delayed_settlement",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_fhWQo4Um9MuZJm",
+          "scenario": "delayed_settlement",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_SnClBzlpG4fOCM",
+          "scenario": "matched_with_discrepancy",
+          "expected": "matched_with_discrepancy",
+          "got": "matched_with_discrepancy",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_f19thxprFFRmtn",
+          "scenario": "clean_exact_utr",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_QjRZnyUYkHJoNG",
+          "scenario": "utr_mangled_typo",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_HMcYAO4VYp3Xeo",
+          "scenario": "clean_exact_utr",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_XIfdcDLQk8EPyh",
+          "scenario": "merged_credits",
+          "expected": "matched_merged",
+          "got": "matched_with_discrepancy",
+          "correct": false
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_7cDJyw1X4e2DeI",
+          "scenario": "merged_credits",
+          "expected": "matched_merged",
+          "got": "exception_missing_bank",
+          "correct": false
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_kewZKQthcYxyI6",
+          "scenario": "missing_bank_credit",
+          "expected": "exception_missing_bank",
+          "got": "exception_missing_bank",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_wYvH3Rg3TtnxHa",
+          "scenario": "utr_truncated",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_rmZRuf2IrjOaoz",
+          "scenario": "clean_exact_utr",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_j8vhr5uiipN1Cp",
+          "scenario": "clean_exact_utr",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_0FBE9u5sltsNRb",
+          "scenario": "clean_exact_utr",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_36QtCtfIMZ5L59",
+          "scenario": "clean_exact_utr",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_utH7TUeG0gEJ1L",
+          "scenario": "utr_absent_amount_unique",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_Dk5U8rfriBjFJ6",
+          "scenario": "utr_mangled_typo",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_DtMhpTeCpqat4j",
+          "scenario": "clean_exact_utr",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_GUsll3DsbB1Rs0",
+          "scenario": "utr_truncated",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_5T86fXM2jkT4SW",
+          "scenario": "clean_exact_utr",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_8pP0jsNW2pzlVX",
+          "scenario": "clean_exact_utr",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_wT4swNh5Fhe3UG",
+          "scenario": "utr_absent_amount_unique",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_4OpHP9sP7QT5bE",
+          "scenario": "missing_bank_credit",
+          "expected": "exception_missing_bank",
+          "got": "exception_missing_bank",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_KLPbndxwBDidoL",
+          "scenario": "utr_truncated",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_xBGj7NdtKtOoK4",
+          "scenario": "ambiguous_twins",
+          "expected": "ambiguous_abstain",
+          "got": "matched",
+          "correct": false
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_W1QZjz3Po0gX4V",
+          "scenario": "ambiguous_twins",
+          "expected": "ambiguous_abstain",
+          "got": "exception_missing_bank",
+          "correct": false
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_i2jJO1ygcvVWvZ",
+          "scenario": "clean_exact_utr",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_ontzoU8WpuFjRt",
+          "scenario": "missing_bank_credit",
+          "expected": "exception_missing_bank",
+          "got": "exception_missing_bank",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_nNwThKhckXgz8u",
+          "scenario": "clean_exact_utr",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_1f23Yen8hgkCov",
+          "scenario": "split_settlement",
+          "expected": "matched_split",
+          "got": "matched_with_discrepancy",
+          "correct": false
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_9rTwvyzmXXtm8t",
+          "scenario": "matched_with_discrepancy",
+          "expected": "matched_with_discrepancy",
+          "got": "matched_with_discrepancy",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_CcgYmCeGu8h0BR",
+          "scenario": "matched_with_discrepancy",
+          "expected": "matched_with_discrepancy",
+          "got": "matched_with_discrepancy",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_YEBakP0dwN8WK2",
+          "scenario": "clean_exact_utr",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_i8EOtwFwW7b8Be",
+          "scenario": "duplicate_bank_credit",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_4fOocqaMZIsq56",
+          "scenario": "clean_exact_utr",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_zrJfKzzaLI3tky",
+          "scenario": "clean_exact_utr",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_4OPLkcty0yP3sl",
+          "scenario": "split_settlement",
+          "expected": "matched_split",
+          "got": "matched_with_discrepancy",
+          "correct": false
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_x9ijwcAgRMjZQE",
+          "scenario": "clean_exact_utr",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_2ixuLqPtFyOavH",
+          "scenario": "utr_absent_amount_unique",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_0EvTXMGTYLPm9A",
+          "scenario": "clean_exact_utr",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_Iiz7qUkZpBO86U",
+          "scenario": "utr_truncated",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_qC7NqtX01SMe19",
+          "scenario": "clean_exact_utr",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_IfgnJoxOf8Cf4H",
+          "scenario": "matched_with_discrepancy",
+          "expected": "matched_with_discrepancy",
+          "got": "matched_with_discrepancy",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_wsY0KlmQgrWOI7",
+          "scenario": "split_settlement",
+          "expected": "matched_split",
+          "got": "matched_with_discrepancy",
+          "correct": false
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_yFwrDVhiy3f9pV",
+          "scenario": "clean_exact_utr",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_e1AYtbDLvu1EEG",
+          "scenario": "clean_exact_utr",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_rBg4shLOpllZl4",
+          "scenario": "matched_with_discrepancy",
+          "expected": "matched_with_discrepancy",
+          "got": "matched_with_discrepancy",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_GvnmnVOVu1xzDl",
+          "scenario": "clean_exact_utr",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_IHxDfqTYA8mSCY",
+          "scenario": "clean_exact_utr",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_cJzpAwRPB7eNu7",
+          "scenario": "delayed_settlement",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_9zFkPplN9yMkFJ",
+          "scenario": "missing_bank_credit",
+          "expected": "exception_missing_bank",
+          "got": "exception_missing_bank",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_j0hINPkbJOPZMm",
+          "scenario": "utr_absent_amount_unique",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_iQSPBi0CTt8zGA",
+          "scenario": "utr_truncated",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_pjBjCtsXlrgYOg",
+          "scenario": "clean_exact_utr",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_Oz2WqDG2eWumM0",
+          "scenario": "duplicate_bank_credit",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_bXkglEtN1VDZc0",
+          "scenario": "split_settlement",
+          "expected": "matched_split",
+          "got": "matched_with_discrepancy",
+          "correct": false
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_XTSXES6E6pNBwN",
+          "scenario": "clean_exact_utr",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_uq9Ql0HeACZEp5",
+          "scenario": "clean_exact_utr",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_4DCGIBvlxPvyQX",
+          "scenario": "duplicate_bank_credit",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_8NHxZwfT3sxzmG",
+          "scenario": "near_collision",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_w8jDzUTqhPXwVB",
+          "scenario": "near_collision",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_PCpqGCg7BTt1n7",
+          "scenario": "utr_mangled_separators",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_zkGYMq2dt30OrN",
+          "scenario": "clean_exact_utr",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_0Letj9yrokVRIP",
+          "scenario": "clean_exact_utr",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_ThfRnt3B1d0VhM",
+          "scenario": "clean_exact_utr",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_J2PMBkXBpQ0QcT",
+          "scenario": "near_collision",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_71LwpeWkyrPT0d",
+          "scenario": "clean_exact_utr",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_ciyVqcLWrN0Hl8",
+          "scenario": "utr_absent_amount_unique",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_pkUKsD3gdPcVxQ",
+          "scenario": "near_collision",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_haAaQMnAH8n7pq",
+          "scenario": "delayed_settlement",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_FSGyHOANDrzj2U",
+          "scenario": "utr_mangled_separators",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_jnuri38fo7sMjC",
+          "scenario": "clean_exact_utr",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_hVLunKHzRsIHI9",
+          "scenario": "split_settlement",
+          "expected": "matched_split",
+          "got": "matched_with_discrepancy",
+          "correct": false
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_H3UnuOiQ3c6KS1",
+          "scenario": "duplicate_bank_credit",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_NbJ2qTME2hCE3K",
+          "scenario": "utr_absent_amount_unique",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_16hUKEDHfsQSsm",
+          "scenario": "clean_exact_utr",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_VhZu6f6hBfBhRT",
+          "scenario": "ambiguous_twins",
+          "expected": "ambiguous_abstain",
+          "got": "exception_missing_bank",
+          "correct": false
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_6yPrPteGeQj9DL",
+          "scenario": "ambiguous_twins",
+          "expected": "ambiguous_abstain",
+          "got": "matched",
+          "correct": false
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_qHcqVMuQWx4XE1",
+          "scenario": "clean_exact_utr",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_FczN44pxVM3pX2",
+          "scenario": "utr_truncated",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_u4CgUHArCowcE2",
+          "scenario": "clean_exact_utr",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_qnO6kHYqPI6nl8",
+          "scenario": "clean_exact_utr",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_LXBmnUFBXfpRvE",
+          "scenario": "utr_mangled_typo",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_tAYBt2FClX2ZwW",
+          "scenario": "utr_truncated",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_jYa24Xwphe0kKk",
+          "scenario": "utr_mangled_typo",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_dWbQToZOUi7Noa",
+          "scenario": "missing_bank_credit",
+          "expected": "exception_missing_bank",
+          "got": "exception_missing_bank",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_4DgekV8B8S4QL7",
+          "scenario": "matched_with_discrepancy",
+          "expected": "matched_with_discrepancy",
+          "got": "matched_with_discrepancy",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_FsCFcmzGiiWfGB",
+          "scenario": "utr_truncated",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_hMyIeRaHel90mo",
+          "scenario": "utr_mangled_separators",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_9IfyGWU1TujH72",
+          "scenario": "clean_exact_utr",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_GrTHucmE7oLIlp",
+          "scenario": "clean_exact_utr",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_gU7RuvzFOWt5IV",
+          "scenario": "matched_with_discrepancy",
+          "expected": "matched_with_discrepancy",
+          "got": "matched_with_discrepancy",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_0WHC9wBot0QsSr",
+          "scenario": "clean_exact_utr",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_YnMH0wZDC0CHrv",
+          "scenario": "utr_absent_amount_unique",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_V4RrnQMdLLCfmw",
+          "scenario": "clean_exact_utr",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_kzv3xveqLomx9h",
+          "scenario": "utr_absent_amount_unique",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_R1Txn5yzZueCwN",
+          "scenario": "utr_truncated",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_1jpkSgpmNN3NZH",
+          "scenario": "utr_mangled_separators",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_D4tLAimhY1OQvM",
+          "scenario": "clean_exact_utr",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_Nu1pnrC96XiS4a",
+          "scenario": "merged_credits",
+          "expected": "matched_merged",
+          "got": "matched_with_discrepancy",
+          "correct": false
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_BSbaZYgI6qQ34M",
+          "scenario": "merged_credits",
+          "expected": "matched_merged",
+          "got": "exception_missing_bank",
+          "correct": false
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_50xLBJWxlxTGaL",
+          "scenario": "missing_bank_credit",
+          "expected": "exception_missing_bank",
+          "got": "exception_missing_bank",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_pvRHq7tiUmlCkj",
+          "scenario": "near_collision",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_nlvFRTtSJmctDW",
+          "scenario": "near_collision",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_FSUSiBrVDTHkay",
+          "scenario": "missing_bank_credit",
+          "expected": "exception_missing_bank",
+          "got": "exception_missing_bank",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_6GfMbyomxhPKty",
+          "scenario": "missing_bank_credit",
+          "expected": "exception_missing_bank",
+          "got": "exception_missing_bank",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_CfKBXkefjeU4aB",
+          "scenario": "clean_exact_utr",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "settlement",
+          "record_id": "setl_DNuuVtS7W3FATE",
+          "scenario": "clean_exact_utr",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000129",
+          "scenario": "clean_exact_utr",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000035",
+          "scenario": "clean_exact_utr",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000239",
+          "scenario": "clean_exact_utr",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000090",
+          "scenario": "clean_exact_utr",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000117",
+          "scenario": "clean_exact_utr",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000235",
+          "scenario": "clean_exact_utr",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000067",
+          "scenario": "clean_exact_utr",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000049",
+          "scenario": "clean_exact_utr",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000250",
+          "scenario": "clean_exact_utr",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000037",
+          "scenario": "clean_exact_utr",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000264",
+          "scenario": "clean_exact_utr",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000169",
+          "scenario": "clean_exact_utr",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000164",
+          "scenario": "clean_exact_utr",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000097",
+          "scenario": "clean_exact_utr",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000212",
+          "scenario": "clean_exact_utr",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000030",
+          "scenario": "clean_exact_utr",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000007",
+          "scenario": "clean_exact_utr",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000077",
+          "scenario": "clean_exact_utr",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000265",
+          "scenario": "clean_exact_utr",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000196",
+          "scenario": "clean_exact_utr",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000100",
+          "scenario": "clean_exact_utr",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000116",
+          "scenario": "clean_exact_utr",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000053",
+          "scenario": "clean_exact_utr",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000006",
+          "scenario": "clean_exact_utr",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000057",
+          "scenario": "clean_exact_utr",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000170",
+          "scenario": "clean_exact_utr",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000160",
+          "scenario": "clean_exact_utr",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000014",
+          "scenario": "clean_exact_utr",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000144",
+          "scenario": "clean_exact_utr",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000186",
+          "scenario": "clean_exact_utr",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000036",
+          "scenario": "clean_exact_utr",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000070",
+          "scenario": "clean_exact_utr",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000120",
+          "scenario": "clean_exact_utr",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000230",
+          "scenario": "clean_exact_utr",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000086",
+          "scenario": "clean_exact_utr",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000232",
+          "scenario": "clean_exact_utr",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000209",
+          "scenario": "clean_exact_utr",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000143",
+          "scenario": "clean_exact_utr",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000204",
+          "scenario": "clean_exact_utr",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000020",
+          "scenario": "clean_exact_utr",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000119",
+          "scenario": "clean_exact_utr",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000109",
+          "scenario": "clean_exact_utr",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000126",
+          "scenario": "utr_truncated",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000243",
+          "scenario": "utr_truncated",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000205",
+          "scenario": "utr_truncated",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000061",
+          "scenario": "utr_truncated",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000029",
+          "scenario": "utr_truncated",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000052",
+          "scenario": "utr_truncated",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000104",
+          "scenario": "utr_truncated",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000217",
+          "scenario": "utr_truncated",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000227",
+          "scenario": "utr_truncated",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000247",
+          "scenario": "utr_mangled_separators",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000182",
+          "scenario": "utr_mangled_separators",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000229",
+          "scenario": "utr_mangled_separators",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000158",
+          "scenario": "utr_mangled_separators",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000017",
+          "scenario": "utr_mangled_typo",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000219",
+          "scenario": "utr_mangled_typo",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000216",
+          "scenario": "utr_mangled_typo",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000046",
+          "scenario": "utr_mangled_typo",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000174",
+          "scenario": "utr_absent_amount_unique",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000237",
+          "scenario": "utr_absent_amount_unique",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000125",
+          "scenario": "utr_absent_amount_unique",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000056",
+          "scenario": "utr_absent_amount_unique",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000099",
+          "scenario": "utr_absent_amount_unique",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000197",
+          "scenario": "utr_absent_amount_unique",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000042",
+          "scenario": "utr_absent_amount_unique",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000241",
+          "scenario": "utr_absent_amount_unique",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000132",
+          "scenario": "duplicate_bank_credit",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000137",
+          "scenario": "duplicate_bank_credit",
+          "expected": "duplicate_credit",
+          "got": "exception_missing_settlement",
+          "correct": false
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000145",
+          "scenario": "duplicate_bank_credit",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000150",
+          "scenario": "duplicate_bank_credit",
+          "expected": "duplicate_credit",
+          "got": "exception_missing_settlement",
+          "correct": false
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000082",
+          "scenario": "duplicate_bank_credit",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000085",
+          "scenario": "duplicate_bank_credit",
+          "expected": "duplicate_credit",
+          "got": "exception_missing_settlement",
+          "correct": false
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000192",
+          "scenario": "duplicate_bank_credit",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000198",
+          "scenario": "duplicate_bank_credit",
+          "expected": "duplicate_credit",
+          "got": "exception_missing_settlement",
+          "correct": false
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000113",
+          "scenario": "split_settlement",
+          "expected": "matched_split",
+          "got": "matched_with_discrepancy",
+          "correct": false
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000114",
+          "scenario": "split_settlement",
+          "expected": "matched_split",
+          "got": "exception_missing_settlement",
+          "correct": false
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000188",
+          "scenario": "split_settlement",
+          "expected": "matched_split",
+          "got": "exception_missing_settlement",
+          "correct": false
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000187",
+          "scenario": "split_settlement",
+          "expected": "matched_split",
+          "got": "matched_with_discrepancy",
+          "correct": false
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000075",
+          "scenario": "split_settlement",
+          "expected": "matched_split",
+          "got": "exception_missing_settlement",
+          "correct": false
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000074",
+          "scenario": "split_settlement",
+          "expected": "matched_split",
+          "got": "matched_with_discrepancy",
+          "correct": false
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000094",
+          "scenario": "split_settlement",
+          "expected": "matched_split",
+          "got": "matched_with_discrepancy",
+          "correct": false
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000095",
+          "scenario": "split_settlement",
+          "expected": "matched_split",
+          "got": "exception_missing_settlement",
+          "correct": false
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000135",
+          "scenario": "split_settlement",
+          "expected": "matched_split",
+          "got": "matched_with_discrepancy",
+          "correct": false
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000138",
+          "scenario": "split_settlement",
+          "expected": "matched_split",
+          "got": "exception_missing_settlement",
+          "correct": false
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000016",
+          "scenario": "matched_with_discrepancy",
+          "expected": "matched_with_discrepancy",
+          "got": "matched_with_discrepancy",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000121",
+          "scenario": "matched_with_discrepancy",
+          "expected": "matched_with_discrepancy",
+          "got": "matched_with_discrepancy",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000222",
+          "scenario": "matched_with_discrepancy",
+          "expected": "matched_with_discrepancy",
+          "got": "matched_with_discrepancy",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000111",
+          "scenario": "matched_with_discrepancy",
+          "expected": "matched_with_discrepancy",
+          "got": "matched_with_discrepancy",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000076",
+          "scenario": "matched_with_discrepancy",
+          "expected": "matched_with_discrepancy",
+          "got": "matched_with_discrepancy",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000231",
+          "scenario": "matched_with_discrepancy",
+          "expected": "matched_with_discrepancy",
+          "got": "matched_with_discrepancy",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000078",
+          "scenario": "matched_with_discrepancy",
+          "expected": "matched_with_discrepancy",
+          "got": "matched_with_discrepancy",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000018",
+          "scenario": "delayed_settlement",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000195",
+          "scenario": "delayed_settlement",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000136",
+          "scenario": "delayed_settlement",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000022",
+          "scenario": "delayed_settlement",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000064",
+          "scenario": "ambiguous_twins",
+          "expected": "ambiguous_abstain",
+          "got": "matched",
+          "correct": false
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000203",
+          "scenario": "ambiguous_twins",
+          "expected": "ambiguous_abstain",
+          "got": "matched",
+          "correct": false
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000257",
+          "scenario": "near_collision",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000261",
+          "scenario": "near_collision",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000168",
+          "scenario": "near_collision",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000178",
+          "scenario": "near_collision",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000149",
+          "scenario": "near_collision",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000154",
+          "scenario": "near_collision",
+          "expected": "matched",
+          "got": "matched",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000023",
+          "scenario": "merged_credits",
+          "expected": "matched_merged",
+          "got": "matched_with_discrepancy",
+          "correct": false
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000254",
+          "scenario": "merged_credits",
+          "expected": "matched_merged",
+          "got": "matched_with_discrepancy",
+          "correct": false
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000139",
+          "scenario": "orphan_bank_credit",
+          "expected": "exception_missing_settlement",
+          "got": "exception_missing_settlement",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000041",
+          "scenario": "orphan_bank_credit",
+          "expected": "exception_missing_settlement",
+          "got": "exception_missing_settlement",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000238",
+          "scenario": "orphan_bank_credit",
+          "expected": "exception_missing_settlement",
+          "got": "exception_missing_settlement",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000096",
+          "scenario": "orphan_bank_credit",
+          "expected": "exception_missing_settlement",
+          "got": "exception_missing_settlement",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000122",
+          "scenario": "orphan_bank_credit",
+          "expected": "exception_missing_settlement",
+          "got": "exception_missing_settlement",
+          "correct": true
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000098",
+          "scenario": "noise_credit",
+          "expected": "non_settlement_credit",
+          "got": "exception_missing_settlement",
+          "correct": false
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000108",
+          "scenario": "noise_credit",
+          "expected": "non_settlement_credit",
+          "got": "exception_missing_settlement",
+          "correct": false
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000118",
+          "scenario": "noise_credit",
+          "expected": "non_settlement_credit",
+          "got": "exception_missing_settlement",
+          "correct": false
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000089",
+          "scenario": "noise_credit",
+          "expected": "non_settlement_credit",
+          "got": "exception_missing_settlement",
+          "correct": false
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000015",
+          "scenario": "noise_credit",
+          "expected": "non_settlement_credit",
+          "got": "exception_missing_settlement",
+          "correct": false
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000155",
+          "scenario": "noise_credit",
+          "expected": "non_settlement_credit",
+          "got": "exception_missing_settlement",
+          "correct": false
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000060",
+          "scenario": "noise_credit",
+          "expected": "non_settlement_credit",
+          "got": "exception_missing_settlement",
+          "correct": false
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000084",
+          "scenario": "noise_credit",
+          "expected": "non_settlement_credit",
+          "got": "exception_missing_settlement",
+          "correct": false
+        },
+        {
+          "record_type": "bank_credit",
+          "record_id": "BANK000159",
+          "scenario": "noise_credit",
+          "expected": "non_settlement_credit",
+          "got": "exception_missing_settlement",
+          "correct": false
+        }
+      ],
+      "aggregate": {
+        "precision": {
+          "mean": 0.9072,
+          "min": 0.901,
+          "max": 0.913
+        },
+        "recall": {
+          "mean": 0.8872,
+          "min": 0.8792,
+          "max": 0.8936
+        },
+        "f1": {
+          "mean": 0.8971,
+          "min": 0.89,
+          "max": 0.9032
+        },
+        "false_match_rate": {
+          "mean": 0.0928,
+          "min": 0.087,
+          "max": 0.099
+        },
+        "disposition_accuracy": {
+          "mean": 0.8226,
+          "min": 0.8125,
+          "max": 0.8327
+        },
+        "auto_resolution_rate": {
+          "mean": 0.7279,
+          "min": 0.7167,
+          "max": 0.7361
+        },
+        "throughput_records_per_sec": {
+          "mean": 45500.5,
+          "min": 37987.1,
+          "max": 50259.1
         }
       }
     },
@@ -3221,8 +5397,8 @@
             }
           },
           "records_processed": 374,
-          "elapsed_seconds": 0.0097,
-          "throughput_records_per_sec": 38557.1,
+          "elapsed_seconds": 0.0153,
+          "throughput_records_per_sec": 24458.5,
           "verify_violations": [],
           "verify_violation_count": 0
         },
@@ -3345,8 +5521,8 @@
             }
           },
           "records_processed": 365,
-          "elapsed_seconds": 0.0101,
-          "throughput_records_per_sec": 36115.4,
+          "elapsed_seconds": 0.0145,
+          "throughput_records_per_sec": 25112.0,
           "verify_violations": [],
           "verify_violation_count": 0
         },
@@ -3469,8 +5645,8 @@
             }
           },
           "records_processed": 384,
-          "elapsed_seconds": 0.0106,
-          "throughput_records_per_sec": 36088.9,
+          "elapsed_seconds": 0.0168,
+          "throughput_records_per_sec": 22814.6,
           "verify_violations": [],
           "verify_violation_count": 0
         },
@@ -3593,8 +5769,8 @@
             }
           },
           "records_processed": 388,
-          "elapsed_seconds": 0.0104,
-          "throughput_records_per_sec": 37166.5,
+          "elapsed_seconds": 0.0162,
+          "throughput_records_per_sec": 23878.8,
           "verify_violations": [],
           "verify_violation_count": 0
         },
@@ -3717,8 +5893,8 @@
             }
           },
           "records_processed": 407,
-          "elapsed_seconds": 0.0115,
-          "throughput_records_per_sec": 35465.9,
+          "elapsed_seconds": 0.018,
+          "throughput_records_per_sec": 22579.8,
           "verify_violations": [],
           "verify_violation_count": 0
         }
@@ -5590,9 +7766,9 @@
           "max": 0.9071
         },
         "throughput_records_per_sec": {
-          "mean": 36678.76,
-          "min": 35465.9,
-          "max": 38557.1
+          "mean": 23768.74,
+          "min": 22579.8,
+          "max": 25112.0
         }
       }
     }
@@ -5667,8 +7843,8 @@
           }
         },
         "records_processed": 1830,
-        "elapsed_seconds": 0.0734,
-        "throughput_records_per_sec": 24938.2
+        "elapsed_seconds": 0.0585,
+        "throughput_records_per_sec": 31307.0
       },
       "43": {
         "golden_rows": 1896,
@@ -5738,8 +7914,8 @@
           }
         },
         "records_processed": 1896,
-        "elapsed_seconds": 0.0694,
-        "throughput_records_per_sec": 27303.9
+        "elapsed_seconds": 0.0573,
+        "throughput_records_per_sec": 33116.3
       },
       "44": {
         "golden_rows": 1876,
@@ -5809,8 +7985,8 @@
           }
         },
         "records_processed": 1876,
-        "elapsed_seconds": 0.0793,
-        "throughput_records_per_sec": 23653.4
+        "elapsed_seconds": 0.0534,
+        "throughput_records_per_sec": 35155.6
       },
       "45": {
         "golden_rows": 1895,
@@ -5880,8 +8056,8 @@
           }
         },
         "records_processed": 1895,
-        "elapsed_seconds": 0.0741,
-        "throughput_records_per_sec": 25583.0
+        "elapsed_seconds": 0.0541,
+        "throughput_records_per_sec": 35051.5
       },
       "46": {
         "golden_rows": 1876,
@@ -5951,8 +8127,8 @@
           }
         },
         "records_processed": 1876,
-        "elapsed_seconds": 0.1873,
-        "throughput_records_per_sec": 10013.6
+        "elapsed_seconds": 0.0543,
+        "throughput_records_per_sec": 34542.0
       }
     },
     "aggregate": {
@@ -5962,16 +8138,16 @@
         "max": 1.0
       },
       "throughput_records_per_sec": {
-        "mean": 22298.42,
-        "min": 10013.6,
-        "max": 27303.9
+        "mean": 33834.48,
+        "min": 31307.0,
+        "max": 35155.6
       }
     }
   },
-  "llm_mode": "claude-sonnet-5",
+  "llm_mode": "none (deterministic template explanations; no model is called)",
   "notes": [
     "Ground truth is generated deterministically at data-generation time; no LLM grades anything anywhere in this benchmark.",
-    "The matching decisions themselves are fully deterministic; the LLM (when configured) only rephrases display-only explanations.",
+    "The matching decisions themselves are fully deterministic, and the benchmark calls no model at all.",
     "A wrong match counts as both a false positive and a missed match.",
     "Timing covers CSV parse + matching, excludes grading/report writing.",
     "Baseline `naive` = amount within Rs 1, value date within 3 days of the expected settlement date, greedy best-gap, one settlement per credit, no references/UTRs - the first script anyone writes. It shares the engine's parsers, so parsing is never the differentiator."

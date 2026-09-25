@@ -168,9 +168,9 @@ st.caption(
     "every decision below carries its evidence; nothing is force-matched.")
 
 (tab_close, tab_overview, tab_matches, tab_exceptions, tab_journey,
- tab_benchmark) = st.tabs(
+ tab_agent, tab_benchmark) = st.tabs(
     ["🏦 Daily Close", "📊 Overview", "🔗 Matches", "🚩 Exceptions",
-     "🧭 Journey", "📏 Benchmark"])
+     "🧭 Journey", "🤖 Agent resolutions", "📏 Benchmark"])
 
 
 # --- Daily close ---------------------------------------------------------------
@@ -192,7 +192,9 @@ with tab_close:
     cash_paise = close["cash"]["balance_paise"]
     at_risk = sum(i["money_at_risk_paise"] for i in queue)
     rs = close["recon_summary"]
-    k1, k2, k3, k4 = st.columns(4)
+    # two rows of two: headline metrics truncate at laptop width
+    k1, k2 = st.columns(2)
+    k3, k4 = st.columns(2)
     k1.metric("Cash in bank", inr_whole(cash_paise),
               help=f"{inr(cash_paise)} · close date {close['close_date']} · "
                    f"{close['cash']['statement_rows']} statement rows")
@@ -508,6 +510,140 @@ with tab_journey:
         st.caption("order → payment → settlement → bank credit; `first_break` "
                    "names the first stage where the money trail stops.")
         st.dataframe(view, width="stretch", height=480)
+
+
+# --- Agent resolutions ---------------------------------------------------------
+
+_AGENT_REPORTS = {
+    "Held-out worlds (the result)": os.path.join(REPORTS_DIR, "agent_eval.json"),
+    "Dev worlds (prompt work)": os.path.join(REPORTS_DIR, "agent_eval_dev.json"),
+}
+HOLDOUT_DIR = os.path.join(ROOT, "data", "holdout")
+
+
+@st.cache_data(show_spinner=False)
+def _load_agent_report(path: str, stamp: float) -> dict:
+    with open(path, encoding="utf-8") as f:
+        return json.load(f)
+
+
+@st.cache_data(show_spinner=False)
+def _world_credits(world: str) -> dict[str, dict]:
+    d = os.path.join(HOLDOUT_DIR, world)
+    if not os.path.isfile(os.path.join(d, "bank_statement.csv")):
+        return {}
+    return {r.txn_id: {"narration": r.narration, "ref_no": r.ref_no,
+                       "amount_paise": r.credit_paise, "value_date": r.value_date}
+            for r in io_load.load_bank_rows(d) if r.credit_paise > 0}
+
+
+def _highlight(text: str, span: str) -> str:
+    import html
+    esc = html.escape(text)
+    q = " ".join((span or "").split())
+    flat = " ".join(text.split())
+    if q and q in flat:
+        esc = html.escape(flat).replace(
+            html.escape(q), f"<mark>{html.escape(q)}</mark>", 1)
+    return esc
+
+
+def _item_outcome(i: dict) -> str:
+    p, v = i.get("proposal"), i.get("verdict") or {}
+    if i["outcome"] in ("prefilter_skip", "dedupe_skip"):
+        return "not sent to the agent"
+    if not p:
+        return i["outcome"].replace("_", " ")
+    if p.get("verdict") != "match":
+        return f"agent: {p.get('verdict')}"
+    return "match accepted" if v.get("accepted") else "match rejected"
+
+
+with tab_agent:
+    st.caption(
+        "The LLM resolver in the decision path: an item the frozen engine left for "
+        "a human goes to the agent when some explanation could pass the verifier "
+        "(otherwise it stays with a human). The agent proposes one resolution and "
+        "a deterministic verifier (no shared code) accepts or rejects it. "
+        "Everything here is replayed from recorded transcripts — no API key, no "
+        "live calls.")
+    available = {k: p for k, p in _AGENT_REPORTS.items() if os.path.exists(p)}
+    if not available:
+        st.info("No agent evaluation has been recorded yet. Run "
+                "`python -m agent.eval_resolve --seeds 1000,1006 --record` (dev) "
+                "and then `--seeds 1001-1005 --record` (held-out) with an "
+                "`ANTHROPIC_API_KEY` in `.env` and `AGENT_PROVIDER=anthropic`.")
+    else:
+        choice = st.radio("Evaluation", list(available), horizontal=True,
+                          key="agent_eval_choice")
+        path = available[choice]
+        rep = _load_agent_report(path, os.path.getmtime(path))
+        tot = rep["aggregate"]["total"]
+        e, a, pr = tot["engine"], tot["engine_agent"], tot["proposals"]
+        st.markdown(
+            "| Metric | Engine only | Engine + agent |\n|---|---|---|\n"
+            f"| Auto-resolved correctly | {e['auto_correct']} | {a['auto_correct']} |\n"
+            f"| Auto-resolved wrongly | {e['auto_wrong']} | {a['auto_wrong']} |\n"
+            f"| Correctly abstained | {e['abstain_correct']} | {a['abstain_correct']} |\n"
+            f"| Wrongly abstained (left for human) | {e['abstain_wrong']} | "
+            f"{a['abstain_wrong']} |\n"
+            f"| Agent proposals rejected by verifier | n/a | {pr['rejected_by_verifier']} |\n"
+            f"| **Wrong proposals the verifier accepted** | n/a | "
+            f"**{pr['wrong_accepted']}** |")
+        st.caption(f"Model `{rep['meta']['model']}` · worlds "
+                   f"{', '.join(rep['meta']['worlds'])} · matches pre-registration: "
+                   f"{rep['meta']['matches_preregistration']}")
+
+        items = [i for w in rep["worlds"] for i in w["items"]]
+        c1, c2, c3 = st.columns(3)
+        worlds_sel = c1.multiselect("World", sorted({i["world"] for i in items}),
+                                    key="agent_world")
+        outcome_sel = c2.multiselect("Outcome", sorted({_item_outcome(i) for i in items}),
+                                     key="agent_outcome")
+        scen_sel = c3.multiselect("Scenario", sorted({i["scenario"] for i in items}),
+                                  key="agent_scenario")
+        view = [i for i in items
+                if (not worlds_sel or i["world"] in worlds_sel)
+                and (not outcome_sel or _item_outcome(i) in outcome_sel)
+                and (not scen_sel or i["scenario"] in scen_sel)]
+        table = pd.DataFrame([{
+            "world": i["world"], "item": i["item_id"], "scenario": i["scenario"],
+            "engine": i.get("engine_status", "").replace("_", " "),
+            "outcome": _item_outcome(i),
+            "correct?": ("wrong" if i.get("proposal_wrong") else "right")
+            if (i.get("proposal") or {}).get("verdict") == "match" else "",
+            "verifier": ", ".join((i.get("verdict") or {}).get("codes", [])),
+            "calls": i["api_calls"],
+        } for i in view])
+        st.subheader(f"{len(view)} of {len(items)} queue items")
+        st.dataframe(table, width="stretch", height=320)
+
+        labels = [f"{i['world']} · {i['item_id']}" for i in view]
+        if labels:
+            # open on the first item the agent actually answered
+            first = next((k for k, i in enumerate(view) if i.get("proposal")), 0)
+            pick = st.selectbox("Inspect an item", labels, index=first, key="agent_pick")
+            i = view[labels.index(pick)]
+            p = i.get("proposal")
+            st.markdown(f"**Outcome:** {_item_outcome(i)} · **scenario:** "
+                        f"`{i['scenario']}` · **transcript:** `{i['transcript'] or '—'}`")
+            if p:
+                st.markdown("**Agent proposal**")
+                st.json(p)
+                credits = _world_credits(i["world"])
+                for tid in p.get("bank_row_ids", []):
+                    c = credits.get(tid)
+                    if c:
+                        st.markdown(
+                            f"`{tid}` · {c['value_date']} · {inr(c['amount_paise'])}"
+                            "<br>" + _highlight(c["narration"], p.get("deduction_evidence", "")),
+                            unsafe_allow_html=True)
+                v = i.get("verdict") or {}
+                (st.success if v.get("accepted") else st.error)(
+                    "Verifier: " + ("accepted" if v.get("accepted") else "rejected")
+                    + (" — " + "; ".join(v.get("details", [])) if v.get("details") else ""))
+            st.markdown("**Golden answer (grading only; the agent never sees it)**")
+            st.json(i.get("golden", {}))
 
 
 # --- Benchmark ----------------------------------------------------------------

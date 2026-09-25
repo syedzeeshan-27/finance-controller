@@ -31,7 +31,6 @@ from recon import schemas as S
 from recon import io_load
 from recon.baselines import STRATEGIES as BASELINES
 from recon.engine import reconcile_leg_a
-from recon.explain import llm_mode
 from recon.generate import generate
 from recon.leg_b import reconcile_leg_b
 from recon.verify import verify_leg_a
@@ -290,12 +289,14 @@ def run_benchmark(seeds: list[int], strategies: list[str] | None = None,
                     "throughput_records_per_sec"),
             },
         },
-        "llm_mode": llm_mode(),
+        # a fixed label: this benchmark never asks a model to rephrase anything,
+        # so the report must not change with whether an API key happens to be set
+        "llm_mode": "none (deterministic template explanations; no model is called)",
         "notes": [
             "Ground truth is generated deterministically at data-generation time; "
             "no LLM grades anything anywhere in this benchmark.",
-            "The matching decisions themselves are fully deterministic; the LLM "
-            "(when configured) only rephrases display-only explanations.",
+            "The matching decisions themselves are fully deterministic, and the "
+            "benchmark calls no model at all.",
             "A wrong match counts as both a false positive and a missed match.",
             "Timing covers CSV parse + matching, excludes grading/report writing.",
             "Baseline `naive` = amount within Rs 1, value date within 3 days of "
@@ -401,7 +402,7 @@ def main() -> None:
 
     os.makedirs(args.report_dir, exist_ok=True)
     out_path = os.path.join(args.report_dir, "benchmark_results.json")
-    with open(out_path, "w", encoding="utf-8") as f:
+    with open(out_path, "w", encoding="utf-8", newline="\n") as f:
         json.dump(results, f, indent=2)
     report_path = os.path.join(args.report_dir, "benchmark_report.md")
     write_markdown_report(results, report_path)
