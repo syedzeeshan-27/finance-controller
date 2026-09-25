@@ -1,0 +1,78 @@
+{
+  "holdout_version": "1.1.0",
+  "base_generator_version": "3.0.0",
+  "seed": 1000,
+  "family": "A",
+  "role": "dev",
+  "period": {
+    "start": "2025-04-01",
+    "days": 60,
+    "statement_days": 74
+  },
+  "counts": {
+    "orders": 607,
+    "payments": 615,
+    "settlements": 76,
+    "bank_rows": 180,
+    "bank_credits": 78,
+    "bank_debits": 102,
+    "golden_leg_a_rows": 154,
+    "golden_leg_b_rows": 1222,
+    "case_rows": 49,
+    "merchants": 3
+  },
+  "settlement_scenarios": {
+    "chargeback_netted": 1,
+    "clean_exact_utr": 49,
+    "deduction_stated": 3,
+    "deduction_unstated": 1,
+    "merged_3plus": 7,
+    "never_paid": 2,
+    "ref_merchant_name": 1,
+    "ref_settlement_id": 1,
+    "refund_netted": 1,
+    "twins_no_clue": 4,
+    "twins_with_clue": 4,
+    "utr_damaged_multi": 2
+  },
+  "bank_credit_scenarios": {
+    "chargeback_netted": 1,
+    "clean_exact_utr": 49,
+    "deduction_stated": 3,
+    "deduction_unstated": 1,
+    "merged_3plus": 2,
+    "noise_credit": 7,
+    "orphan_near_net": 2,
+    "orphan_rzp_credit": 1,
+    "outward_neft_return": 2,
+    "ref_merchant_name": 1,
+    "ref_settlement_id": 1,
+    "refund_netted": 1,
+    "twins_no_clue": 2,
+    "twins_with_clue": 3,
+    "utr_damaged_multi": 2
+  },
+  "case_row_scenarios": {
+    "chargeback_netted": 2,
+    "deduction_stated": 6,
+    "deduction_unstated": 2,
+    "merged_3plus": 9,
+    "never_paid": 2,
+    "orphan_near_net": 2,
+    "orphan_rzp_credit": 1,
+    "outward_neft_return": 2,
+    "ref_merchant_name": 2,
+    "ref_settlement_id": 2,
+    "refund_netted": 2,
+    "twins_no_clue": 6,
+    "twins_with_clue": 7,
+    "utr_damaged_multi": 4
+  },
+  "conventions": {
+    "filler_tag": "clean_exact_utr",
+    "noise_tag": "noise_credit",
+    "match_window_days": 10,
+    "min_amount_separation_paise": 1000,
+    "discrepancy": "received - expected, paise; stated verbatim in the narration"
+  }
+}

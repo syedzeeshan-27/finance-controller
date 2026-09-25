@@ -1,0 +1,162 @@
+record_type,record_id,expected_disposition,counterparty_ids,scenario_tag,expected_discrepancy_paise,notes
+settlement,setl_KK4DQxEnGcpC2p,matched,BANK000003,clean_exact_utr,0,
+settlement,setl_THYzPjzfw0cT4Y,matched,BANK000007,clean_exact_utr,0,
+settlement,setl_AKvLJf0UXDP1Z9,matched,BANK000009,clean_exact_utr,0,
+settlement,setl_ha6t6kdYHdwPQk,matched,BANK000016,clean_exact_utr,0,
+settlement,setl_4p9M85JbP6Vk6X,matched,BANK000028,clean_exact_utr,0,
+settlement,setl_0Aq19Lk6DQwBSa,matched,BANK000015,clean_exact_utr,0,
+settlement,setl_ogysB6ztacUsm4,matched,BANK000017,clean_exact_utr,0,
+settlement,setl_5x2cd95trO56mK,matched,BANK000022,twins_with_clue,0,equal-net twin of setl_repFFLtUK452uu; the narration's merchant clue names this settlement
+settlement,setl_repFFLtUK452uu,matched,BANK000023,twins_with_clue,0,equal-net twin of setl_5x2cd95trO56mK; the narration's merchant clue names this settlement
+settlement,setl_keFQWPi79kuSoJ,matched,BANK000024,clean_exact_utr,0,
+settlement,setl_BF2FRFZpizTdcG,matched,BANK000029,clean_exact_utr,0,
+settlement,setl_zxECncjlNqpNw6,matched,BANK000033,utr_damaged_multi,0,UTR printed as SBIN06471910OG61 (edit distance 2); amount exact
+settlement,setl_3AuMudAq34ZWA8,matched,BANK000036,clean_exact_utr,0,
+settlement,setl_xQfUXP0NAFMgaP,matched,BANK000037,clean_exact_utr,0,
+settlement,setl_DEhAvCpAPXdSWv,matched,BANK000045,clean_exact_utr,0,
+settlement,setl_vsruh55f4HsQb9,ambiguous_abstain,BANK000041,twins_no_clue,0,indistinguishable equal-net twin; truth: paid by BANK000041
+settlement,setl_RHktZQLHAxpxQj,ambiguous_abstain,BANK000041,twins_no_clue,0,indistinguishable equal-net twin; truth: never paid
+settlement,setl_q0eA2shxgmi8Wa,matched,BANK000043,clean_exact_utr,0,
+settlement,setl_63SpJ5S0eH7mkz,matched,BANK000042,clean_exact_utr,0,
+settlement,setl_jXzGPJxO3achzR,matched,BANK000049,ref_settlement_id,0,no UTR; narration names the settlement id
+settlement,setl_um0BA0rk4fViqL,matched,BANK000056,clean_exact_utr,0,
+settlement,setl_2nMb75H9ukEWfi,matched,BANK000048,clean_exact_utr,0,
+settlement,setl_MInnbhWtpt1HH5,matched_with_discrepancy,BANK000051,deduction_stated,-13402,comm deduction of 13402 paise netted off the credit; figure stated in the narration
+settlement,setl_dSK45T81ucDMdM,matched,BANK000058,clean_exact_utr,0,
+settlement,setl_nJWVFLzdcVqePX,matched,BANK000057,clean_exact_utr,0,
+settlement,setl_VRr58lIqbJeREB,matched,BANK000055,clean_exact_utr,0,
+settlement,setl_EKDYcNxHDT2h7N,matched,BANK000059,clean_exact_utr,0,
+settlement,setl_VYDixtgPpnN9eu,exception_missing_bank,,deduction_unstated,0,"no defensible credit; truth: paid by BANK000076 short by 14750 paise, deduction never stated"
+settlement,setl_M4jPjW5KELWfjz,matched,BANK000078,clean_exact_utr,0,
+settlement,setl_4MWc53dCHODBiG,matched,BANK000069,clean_exact_utr,0,
+settlement,setl_fHjXF2wf3oKKQT,matched,BANK000070,clean_exact_utr,0,
+settlement,setl_vjeOKF6tG435dM,matched,BANK000080,clean_exact_utr,0,
+settlement,setl_eCgI5CkueNhUvF,matched,BANK000074,clean_exact_utr,0,
+settlement,setl_zGcy1TzXnFhg3U,matched,BANK000079,clean_exact_utr,0,
+settlement,setl_aMszcvPDEr2B58,ambiguous_abstain,BANK000082,twins_no_clue,0,indistinguishable equal-net twin; truth: paid by BANK000082
+settlement,setl_Lha4JEwa3XT1g5,ambiguous_abstain,BANK000082,twins_no_clue,0,indistinguishable equal-net twin; truth: never paid
+settlement,setl_EAYMx1M2KYxTul,matched,BANK000087,clean_exact_utr,0,
+settlement,setl_waVUKJmASDyNFy,matched,BANK000088,clean_exact_utr,0,
+settlement,setl_BchidkHiXkcIHl,matched,BANK000089,clean_exact_utr,0,
+settlement,setl_OGJMRdedCbbB62,matched,BANK000097,clean_exact_utr,0,
+settlement,setl_K7rTsckNDpFNkQ,matched,BANK000094,clean_exact_utr,0,
+settlement,setl_BaWULYs9K8mTyS,matched,BANK000096,twins_with_clue,0,equal-net twin of setl_XEztYyLxyZVuKL; the narration's utr_tail clue names this settlement
+settlement,setl_XEztYyLxyZVuKL,exception_missing_bank,,twins_with_clue,0,"equal-net twin of setl_BaWULYs9K8mTyS, whose credit names setl_BaWULYs9K8mTyS; no credit ever arrived for this one"
+settlement,setl_59VGMf6nUMQqD8,matched_merged,BANK000107,merged_3plus,0,3 settlements paid as one consolidated credit; narration carries only the UTR of setl_SDTmiSe3QuCBql
+settlement,setl_YPFF99sC4NOPmS,matched_merged,BANK000107,merged_3plus,0,3 settlements paid as one consolidated credit; narration carries only the UTR of setl_SDTmiSe3QuCBql
+settlement,setl_SDTmiSe3QuCBql,matched_merged,BANK000107,merged_3plus,0,3 settlements paid as one consolidated credit; narration carries only the UTR of setl_SDTmiSe3QuCBql
+settlement,setl_oDR3rnnZaBRC42,matched,BANK000109,clean_exact_utr,0,
+settlement,setl_KbJtmYIdhBX24L,matched,BANK000106,clean_exact_utr,0,
+settlement,setl_hLeBOP431L2Cx5,matched,BANK000117,clean_exact_utr,0,
+settlement,setl_Sf7s2QH4axJN3G,matched,BANK000112,clean_exact_utr,0,
+settlement,setl_MrKbs3lQazssRl,matched,BANK000115,clean_exact_utr,0,
+settlement,setl_a8YBiEurzVjOSZ,matched,BANK000118,clean_exact_utr,0,
+settlement,setl_71rJaIbbavlzV1,matched,BANK000116,clean_exact_utr,0,
+settlement,setl_jhCO0jZ56cldug,matched,BANK000121,clean_exact_utr,0,
+settlement,setl_7LV2dd1fk9QnoS,matched_with_discrepancy,BANK000123,deduction_stated,-51189,tds deduction of 51189 paise netted off the credit; figure stated in the narration
+settlement,setl_udtwXNQKcW4Fwx,matched,BANK000127,clean_exact_utr,0,
+settlement,setl_OD8JS5M78r529P,matched,BANK000128,clean_exact_utr,0,
+settlement,setl_Lc0M1lW9VhLojE,matched_with_discrepancy,BANK000131,deduction_stated,-5900,charge deduction of 5900 paise netted off the credit; figure stated in the narration
+settlement,setl_oTGcMze5uBrp9X,matched,BANK000132,clean_exact_utr,0,
+settlement,setl_sW9H4bZZyZlXqx,matched,BANK000134,clean_exact_utr,0,
+settlement,setl_lyLijwMAtg3As5,matched_with_discrepancy,BANK000135,chargeback_netted,-245303,chargeback recovery of 245303 paise netted off the credit; figure stated in the narration
+settlement,setl_ut9MWDf4Rn1Qbb,matched,BANK000136,clean_exact_utr,0,
+settlement,setl_F3ttnPDaXwY45l,matched,BANK000139,utr_damaged_multi,0,UTR printed as SBIN0990251037 (edit distance 2); amount exact
+settlement,setl_2EEbIMpJctNohw,matched,BANK000146,clean_exact_utr,0,
+settlement,setl_OXGeLmtDtsPIAX,exception_missing_bank,,never_paid,0,settlement processed by the PSP but no credit ever reached the bank
+settlement,setl_iAoFjTZ7m6vVjk,matched,BANK000147,clean_exact_utr,0,
+settlement,setl_0zYhppGCtkNanN,matched,BANK000150,clean_exact_utr,0,
+settlement,setl_opmDlGpPxqyrBA,matched,BANK000158,clean_exact_utr,0,
+settlement,setl_JEicYJOU2Sdvsx,matched,BANK000154,clean_exact_utr,0,
+settlement,setl_TAFi2MniLzQ25T,matched_merged,BANK000159,merged_3plus,0,3 settlements paid as one consolidated credit; no UTR; only the exact sum ties the members together
+settlement,setl_27IkRR8yasIySu,matched_merged,BANK000159,merged_3plus,0,3 settlements paid as one consolidated credit; no UTR; only the exact sum ties the members together
+settlement,setl_s8tmfeXFwDtPtT,matched_merged,BANK000159,merged_3plus,0,3 settlements paid as one consolidated credit; no UTR; only the exact sum ties the members together
+settlement,setl_UjRQggYEa5yBRC,matched,BANK000168,ref_merchant_name,0,no UTR; narration names merchant 'Jharokha Decor'; amount exact and unique
+settlement,setl_8OAqcoNKVBcc2S,matched,BANK000164,clean_exact_utr,0,
+settlement,setl_Pq1oVLk9EsTmQu,exception_missing_bank,,never_paid,0,settlement processed by the PSP but no credit ever reached the bank
+settlement,setl_mPxFZDnXufYOTw,matched,BANK000169,clean_exact_utr,0,
+settlement,setl_um7fOImwKROf7D,matched,BANK000171,clean_exact_utr,0,
+settlement,setl_drDJAhCxXIhybK,matched_with_discrepancy,BANK000172,refund_netted,-305300,customer refund of 305300 paise netted off the credit; figure stated in the narration
+settlement,setl_8gLAcUZuqPGvL9,matched,BANK000176,clean_exact_utr,0,
+bank_credit,BANK000003,matched,setl_KK4DQxEnGcpC2p,clean_exact_utr,0,
+bank_credit,BANK000007,matched,setl_THYzPjzfw0cT4Y,clean_exact_utr,0,
+bank_credit,BANK000008,non_settlement_credit,,noise_credit,0,unrelated inflow; must not be claimed by reconciliation
+bank_credit,BANK000009,matched,setl_AKvLJf0UXDP1Z9,clean_exact_utr,0,
+bank_credit,BANK000014,non_settlement_credit,,noise_credit,0,unrelated inflow; must not be claimed by reconciliation
+bank_credit,BANK000015,matched,setl_0Aq19Lk6DQwBSa,clean_exact_utr,0,
+bank_credit,BANK000016,matched,setl_ha6t6kdYHdwPQk,clean_exact_utr,0,
+bank_credit,BANK000017,matched,setl_ogysB6ztacUsm4,clean_exact_utr,0,
+bank_credit,BANK000022,matched,setl_5x2cd95trO56mK,twins_with_clue,0,equal-net twin of setl_repFFLtUK452uu; the narration's merchant clue names this settlement
+bank_credit,BANK000023,matched,setl_repFFLtUK452uu,twins_with_clue,0,equal-net twin of setl_5x2cd95trO56mK; the narration's merchant clue names this settlement
+bank_credit,BANK000024,matched,setl_keFQWPi79kuSoJ,clean_exact_utr,0,
+bank_credit,BANK000027,non_settlement_credit,,noise_credit,0,unrelated inflow; must not be claimed by reconciliation
+bank_credit,BANK000028,matched,setl_4p9M85JbP6Vk6X,clean_exact_utr,0,
+bank_credit,BANK000029,matched,setl_BF2FRFZpizTdcG,clean_exact_utr,0,
+bank_credit,BANK000033,matched,setl_zxECncjlNqpNw6,utr_damaged_multi,0,UTR printed as SBIN06471910OG61 (edit distance 2); amount exact
+bank_credit,BANK000036,matched,setl_3AuMudAq34ZWA8,clean_exact_utr,0,
+bank_credit,BANK000037,matched,setl_xQfUXP0NAFMgaP,clean_exact_utr,0,
+bank_credit,BANK000041,ambiguous_abstain,setl_RHktZQLHAxpxQj;setl_vsruh55f4HsQb9,twins_no_clue,0,twins setl_RHktZQLHAxpxQj/setl_vsruh55f4HsQb9 share this amount and window; nothing observable separates them; truth: pays setl_vsruh55f4HsQb9
+bank_credit,BANK000042,matched,setl_63SpJ5S0eH7mkz,clean_exact_utr,0,
+bank_credit,BANK000043,matched,setl_q0eA2shxgmi8Wa,clean_exact_utr,0,
+bank_credit,BANK000045,matched,setl_DEhAvCpAPXdSWv,clean_exact_utr,0,
+bank_credit,BANK000048,matched,setl_2nMb75H9ukEWfi,clean_exact_utr,0,
+bank_credit,BANK000049,matched,setl_jXzGPJxO3achzR,ref_settlement_id,0,no UTR; narration names the settlement id
+bank_credit,BANK000050,exception_missing_settlement,,orphan_rzp_credit,0,UTR matches no settlement; no settlement nets to it
+bank_credit,BANK000051,matched_with_discrepancy,setl_MInnbhWtpt1HH5,deduction_stated,-13402,comm deduction of 13402 paise netted off the credit; figure stated in the narration
+bank_credit,BANK000055,matched,setl_VRr58lIqbJeREB,clean_exact_utr,0,
+bank_credit,BANK000056,matched,setl_um0BA0rk4fViqL,clean_exact_utr,0,
+bank_credit,BANK000057,matched,setl_nJWVFLzdcVqePX,clean_exact_utr,0,
+bank_credit,BANK000058,matched,setl_dSK45T81ucDMdM,clean_exact_utr,0,
+bank_credit,BANK000059,matched,setl_EKDYcNxHDT2h7N,clean_exact_utr,0,
+bank_credit,BANK000064,non_settlement_credit,,noise_credit,0,unrelated inflow; must not be claimed by reconciliation
+bank_credit,BANK000069,matched,setl_4MWc53dCHODBiG,clean_exact_utr,0,
+bank_credit,BANK000070,matched,setl_fHjXF2wf3oKKQT,clean_exact_utr,0,
+bank_credit,BANK000074,matched,setl_eCgI5CkueNhUvF,clean_exact_utr,0,
+bank_credit,BANK000075,non_settlement_credit,,noise_credit,0,unrelated inflow; must not be claimed by reconciliation
+bank_credit,BANK000076,exception_missing_settlement,,deduction_unstated,0,amount differs from the nearest net and no figure/UTR explains it; truth: pays setl_VYDixtgPpnN9eu short by 14750 paise (unstated deduction)
+bank_credit,BANK000078,matched,setl_M4jPjW5KELWfjz,clean_exact_utr,0,
+bank_credit,BANK000079,matched,setl_zGcy1TzXnFhg3U,clean_exact_utr,0,
+bank_credit,BANK000080,matched,setl_vjeOKF6tG435dM,clean_exact_utr,0,
+bank_credit,BANK000082,ambiguous_abstain,setl_aMszcvPDEr2B58;setl_Lha4JEwa3XT1g5,twins_no_clue,0,twins setl_aMszcvPDEr2B58/setl_Lha4JEwa3XT1g5 share this amount and window; nothing observable separates them; truth: pays setl_aMszcvPDEr2B58
+bank_credit,BANK000086,non_settlement_credit,,noise_credit,0,unrelated inflow; must not be claimed by reconciliation
+bank_credit,BANK000087,matched,setl_EAYMx1M2KYxTul,clean_exact_utr,0,
+bank_credit,BANK000088,matched,setl_waVUKJmASDyNFy,clean_exact_utr,0,
+bank_credit,BANK000089,matched,setl_BchidkHiXkcIHl,clean_exact_utr,0,
+bank_credit,BANK000094,matched,setl_K7rTsckNDpFNkQ,clean_exact_utr,0,
+bank_credit,BANK000095,non_settlement_credit,,noise_credit,0,unrelated inflow; must not be claimed by reconciliation
+bank_credit,BANK000096,matched,setl_BaWULYs9K8mTyS,twins_with_clue,0,equal-net twin of setl_XEztYyLxyZVuKL; the narration's utr_tail clue names this settlement
+bank_credit,BANK000097,matched,setl_OGJMRdedCbbB62,clean_exact_utr,0,
+bank_credit,BANK000106,matched,setl_KbJtmYIdhBX24L,clean_exact_utr,0,
+bank_credit,BANK000107,matched_merged,setl_59VGMf6nUMQqD8;setl_SDTmiSe3QuCBql;setl_YPFF99sC4NOPmS,merged_3plus,0,3 settlements paid as one consolidated credit; narration carries only the UTR of setl_SDTmiSe3QuCBql
+bank_credit,BANK000109,matched,setl_oDR3rnnZaBRC42,clean_exact_utr,0,
+bank_credit,BANK000112,matched,setl_Sf7s2QH4axJN3G,clean_exact_utr,0,
+bank_credit,BANK000115,matched,setl_MrKbs3lQazssRl,clean_exact_utr,0,
+bank_credit,BANK000116,matched,setl_71rJaIbbavlzV1,clean_exact_utr,0,
+bank_credit,BANK000117,matched,setl_hLeBOP431L2Cx5,clean_exact_utr,0,
+bank_credit,BANK000118,matched,setl_a8YBiEurzVjOSZ,clean_exact_utr,0,
+bank_credit,BANK000121,matched,setl_jhCO0jZ56cldug,clean_exact_utr,0,
+bank_credit,BANK000123,matched_with_discrepancy,setl_7LV2dd1fk9QnoS,deduction_stated,-51189,tds deduction of 51189 paise netted off the credit; figure stated in the narration
+bank_credit,BANK000127,matched,setl_udtwXNQKcW4Fwx,clean_exact_utr,0,
+bank_credit,BANK000128,matched,setl_OD8JS5M78r529P,clean_exact_utr,0,
+bank_credit,BANK000131,matched_with_discrepancy,setl_Lc0M1lW9VhLojE,deduction_stated,-5900,charge deduction of 5900 paise netted off the credit; figure stated in the narration
+bank_credit,BANK000132,matched,setl_oTGcMze5uBrp9X,clean_exact_utr,0,
+bank_credit,BANK000134,matched,setl_sW9H4bZZyZlXqx,clean_exact_utr,0,
+bank_credit,BANK000135,matched_with_discrepancy,setl_lyLijwMAtg3As5,chargeback_netted,-245303,chargeback recovery of 245303 paise netted off the credit; figure stated in the narration
+bank_credit,BANK000136,matched,setl_ut9MWDf4Rn1Qbb,clean_exact_utr,0,
+bank_credit,BANK000138,non_settlement_credit,,outward_neft_return,0,return of the outward NEFT UTIB654270171143 to MAHALAXMI ROADWAYS debited on 2025-05-19; not settlement money
+bank_credit,BANK000139,matched,setl_F3ttnPDaXwY45l,utr_damaged_multi,0,UTR printed as SBIN0990251037 (edit distance 2); amount exact
+bank_credit,BANK000146,matched,setl_2EEbIMpJctNohw,clean_exact_utr,0,
+bank_credit,BANK000147,matched,setl_iAoFjTZ7m6vVjk,clean_exact_utr,0,
+bank_credit,BANK000150,matched,setl_0zYhppGCtkNanN,clean_exact_utr,0,
+bank_credit,BANK000154,matched,setl_JEicYJOU2Sdvsx,clean_exact_utr,0,
+bank_credit,BANK000157,non_settlement_credit,,outward_neft_return,0,return of the outward NEFT UTIB052423397527 to VARDHMAN CARTONS debited on 2025-05-23; not settlement money
+bank_credit,BANK000158,matched,setl_opmDlGpPxqyrBA,clean_exact_utr,0,
+bank_credit,BANK000159,matched_merged,setl_TAFi2MniLzQ25T;setl_27IkRR8yasIySu;setl_s8tmfeXFwDtPtT,merged_3plus,0,3 settlements paid as one consolidated credit; no UTR; only the exact sum ties the members together
+bank_credit,BANK000164,matched,setl_8OAqcoNKVBcc2S,clean_exact_utr,0,
+bank_credit,BANK000167,exception_missing_settlement,,orphan_near_net,0,decoy within Rs 1-9 of the net of setl_8OAqcoNKVBcc2S (paid by its own UTR credit); belongs to no settlement
+bank_credit,BANK000168,matched,setl_UjRQggYEa5yBRC,ref_merchant_name,0,no UTR; narration names merchant 'Jharokha Decor'; amount exact and unique
+bank_credit,BANK000169,matched,setl_mPxFZDnXufYOTw,clean_exact_utr,0,
+bank_credit,BANK000171,matched,setl_um7fOImwKROf7D,clean_exact_utr,0,
+bank_credit,BANK000172,matched_with_discrepancy,setl_drDJAhCxXIhybK,refund_netted,-305300,customer refund of 305300 paise netted off the credit; figure stated in the narration
+bank_credit,BANK000175,exception_missing_settlement,,orphan_near_net,0,decoy within Rs 1-9 of the net of setl_Pq1oVLk9EsTmQu (never paid); belongs to no settlement
+bank_credit,BANK000176,matched,setl_8gLAcUZuqPGvL9,clean_exact_utr,0,
