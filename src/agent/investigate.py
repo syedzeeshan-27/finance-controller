@@ -24,7 +24,7 @@ from recon.normalize import parse_bank_date
 
 from agent import tools as T
 from agent.loop import run_loop
-from agent.provider import LiveTransport, ReplayTransport
+from agent.provider import ReplayTransport, make_live_transport
 from controller import queue_state as QS
 
 MAX_CALLS = 8
@@ -167,7 +167,7 @@ def main() -> None:
     if args.record:
         if os.path.exists(args.record):
             os.remove(args.record)
-        transport = LiveTransport(args.record, task="investigate")
+        transport = make_live_transport(args.record, task="investigate")
     else:
         transport = ReplayTransport(args.replay)
 

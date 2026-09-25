@@ -51,9 +51,12 @@ def run_loop(transport: Transport, *, system: str, tools: list[dict],
              impls: dict[str, Callable[[dict], object]],
              user_content: str, max_tokens: int = 8000,
              max_calls: int = 12,
-             stop_when: Callable[[], bool] | None = None) -> LoopResult:
+             stop_when: Callable[[], bool] | None = None,
+             final_tool: str | None = None) -> LoopResult:
     """Drive one agent task to completion. Returns the full message history
-    for transcripting/inspection; raises AgentError on any abnormal stop."""
+    for transcripting/inspection; raises AgentError on any abnormal stop.
+    `final_tool` forces that tool on the last allowed call, so a task that
+    must end in a submission cannot run out of calls without one."""
     messages: list = [{"role": "user", "content": user_content}]
     model_name = transport_model(transport)
 
@@ -62,6 +65,8 @@ def run_loop(transport: Transport, *, system: str, tools: list[dict],
         request = {"model": model_name, "max_tokens": max_tokens,
                    "system": system, "tools": tools,
                    "messages": list(messages)}
+        if final_tool and call == max_calls - 1:
+            request["tool_choice"] = {"type": "tool", "name": final_tool}
         resp = transport.create(request)
         stop = resp.get("stop_reason")
         content = resp.get("content", [])

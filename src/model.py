@@ -46,7 +46,7 @@ def client():
                            "(no ANTHROPIC_API_KEY, or APP_USE_MOCK=1)")
     if _client is None:
         from anthropic import Anthropic
-        _client = Anthropic()
+        _client = Anthropic(max_retries=6)   # rate limits and overload back off, then retry
     return _client
 
 
