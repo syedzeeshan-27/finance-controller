@@ -1,28 +1,33 @@
 # AI Finance Controller
 
-Reconciles Razorpay settlements against the bank statement. A frozen rules engine matches what it can prove, a Claude agent proposes answers for the exceptions the engine leaves, and an independent arithmetic verifier accepts a proposal only if the money adds up to the paisa.
+Matches Razorpay settlements to the credits on a bank statement, so an accountant does not have to.
 
-**Live demo:** _link coming after deployment_ (the app needs no API key: it replays the recorded agent runs).
+Three parts, in order:
 
-**60-second demo GIF:** _coming_. Until then, a still of the Agent resolutions tab:
+1. **A rules engine** matches everything it can prove (same UTR, same amount, and a few known patterns). It never guesses. Anything unclear goes to a queue for a human.
+2. **A Claude agent** looks at each queued item and proposes an answer, using read-only search tools over the same files.
+3. **A verifier**, plain Python with no model in it, accepts a proposal only if the money adds up to the paisa and the bank line actually points at the settlements named. Anything it rejects stays with the human.
+
+The engine is frozen and the agent is measured, not trusted: the whole point is that the verifier, not the model, decides what gets booked.
 
 ![Agent resolutions tab: each proposal, the narration with the evidence highlighted, and the verifier's verdict](docs/agent_resolutions.png)
 
-## Results on an independent held-out set
+## Results
 
-241 case rows (one per settlement and per bank credit) across five worlds, written by a separate agent that never saw the engine, the agent or the verifier. The engine was frozen, and the prompt, model and settings were [pre-registered](reports/preregistration.md) before this set was run, once.
+Measured on a held-out test set: 241 rows across five synthetic businesses, written by a separate agent that never saw the engine, the agent or the verifier. The engine, prompt, model and settings were [pinned in advance](reports/preregistration.md), and the set was run once.
 
-| Metric | Engine only | Engine + agent |
+| Out of 241 rows | Engine alone | Engine + agent |
 |---|---|---|
-| Auto-resolved correctly | 40 | 131 |
-| Auto-resolved wrongly | 0 | 0 |
-| Correctly abstained | 70 | 70 |
-| Wrongly abstained (left for human) | 131 | 40 |
-| Agent proposals rejected by verifier | n/a | 0 |
-| **Wrong proposals the verifier accepted** | n/a | **0** |
-| Cost per item (USD), median latency (s) | n/a | $0.0101 billed · 6.82 s |
+| Resolved automatically, and correctly | 40 | 131 |
+| Resolved automatically, but wrongly | 0 | 0 |
+| Left for a human, rightly (no safe answer exists) | 70 | 70 |
+| Left for a human, though an answer existed | 131 | 40 |
 
-Claude Sonnet 5 (effort medium) was sent 35 queue items and proposed 35 matches, and the verifier accepted all 35. It closed every stated deduction (30 rows), chargeback (10), refund (10) and multi-settlement merge (41). Every never-paid settlement, orphan credit, unstated deduction and clue-less twin stayed with a human, as the answer key says it should. The whole held-out run cost $0.35. For comparison, the engine plus a deterministic solver behind the same verifier, with no LLM, resolves 74 rows correctly. A naive amount matcher gets 56 right and 32 wrong, and exact-UTR-then-amount gets 62 right and 28 wrong. The per-scenario tables, ablations and the 10 worst failures are in [reports/agent_eval.md](reports/agent_eval.md).
+The agent (Claude Sonnet 5) was sent 35 queue items, proposed 35 matches, and the verifier accepted all 35. None was wrong. It cleared every deduction stated on the bank line, every netted refund and chargeback, and every credit that paid three or more settlements at once. Every settlement that never reached the bank, every credit with no settlement behind it, and every pair of look-alike settlements with nothing to tell them apart stayed with a human, which is what the answer key says should happen.
+
+Cost: $0.35 for the whole run, about a cent per item, median 7 seconds per item.
+
+Two things to keep in mind when reading that table. "0 wrong" is 0 out of 35 proposals, so the true error rate could still be a few percent; the [full report](reports/agent_eval.md) gives the confidence intervals and a per-scenario breakdown. And about half of the agent's gain is arithmetic rather than judgement: a plain search that tries every combination the verifier would accept, with no model at all, gets 74 of the 131. The model adds the other 57.
 
 ## Run it
 
@@ -30,14 +35,14 @@ Claude Sonnet 5 (effort medium) was sent 35 queue items and proposed 35 matches,
 pip install -r requirements.txt -e . && streamlit run src/app.py
 ```
 
-Opens at http://localhost:8501. Every number above regenerates from the recorded transcripts with `python scripts/repro.py`, with no API key. Its first step pip-installs the pinned requirements, including pytest; after that, `python scripts/repro.py --skip-install` needs no network. Measured speeds (records per second) differ from run to run; nothing else does.
+Opens at http://localhost:8501. No API key is needed: the dashboard replays the recorded agent runs. Every number in this README regenerates offline with `python scripts/repro.py` (its first step pip-installs the pinned requirements; `--skip-install` after that). Only the records-per-second figures differ between runs.
 
 ## Limits
 
-- **The data is synthetic.** Every reconciliation number comes from generated worlds. The held-out worlds were written independently, but they are still synthetic. A reviewer found one known tell: every merged-group settlement, and 16 of the 28 clue-less twins, is created on a weekend, against 20% of the other settlements. It changes no answer. The engine has never run on real Razorpay settlements, because Razorpay test mode cannot produce them.
-- **40 held-out rows that have an answer still go to a human.** 30 involve equal-amount twin settlements whose bank lines name the right one in a form the verifier does not accept: a merchant name without spaces, or only the UTR's last five digits. Even the correct answer fails it. The other 10 are returned outward NEFT payments; the engine does not recognise their wording, and the resolver can only answer match, exception or abstain. The rules were frozen before this showed up, so it is reported rather than patched.
-- **The agent is measured, not yet wired into the daily close.** Accepted answers are applied in the evaluation and shown in the dashboard's Agent resolutions tab. The daily close and its queue still show only the engine's decisions.
-- **Much of the gain is arithmetic, and it was measured once.** The engine plus the deterministic solver reaches 74 of the 131, so the LLM's own margin is the other 57 rows. That comes from one run of one model, with no rerun variance.
-- **Statement intake is barely tested on real files.** It was run on one real statement, which passed on the second attempt. On 15 synthetic bank-format look-alikes, 4 pass. 9 cannot pass at all, because the mapping schema has no single Amount + Dr/Cr column and no summary-line balances ([reports/intake_eval.md](reports/intake_eval.md)).
+- **All the data is synthetic.** The held-out set was written independently, but it is still generated. A reviewer found one pattern in it that could hint at the answer type (settlements paid together are all created on weekends); it changes no answer. The engine has never run on real Razorpay settlements, because Razorpay test mode cannot produce them. On the project's own generated worlds the engine scores 100%, but the same author wrote both the engine and the generator, so that number means little ([benchmark report](reports/benchmark_report.md)).
+- **40 rows with a known answer still go to a human.** 30 are look-alike settlements where the bank line does name the right one, but in a form the verifier does not accept (a merchant name with the spaces removed, or only the last five digits of the UTR). The other 10 are returned outward payments the engine does not recognise. The rules were frozen before this showed up, so it is reported, not patched.
+- **The agent is measured, not yet wired into the daily close.** Accepted answers show up in the dashboard's Agent resolutions tab. The daily close and its queue still use the engine's decisions only.
+- **One model, one run.** No rerun variance was measured.
+- **Reading bank statements is barely tested on real files.** Statement intake (an agent maps a raw export to columns, and a balance check proves the mapping) passed on the one real statement available. On 15 synthetic bank-format look-alikes, 4 pass; 9 use layouts the mapping schema cannot express yet ([intake report](reports/intake_eval.md)).
 
-Design and pass order: [ARCHITECTURE.md](ARCHITECTURE.md). The engine alone, on this project's own generated worlds: [reports/benchmark_report.md](reports/benchmark_report.md). MIT licensed.
+How it works: [ARCHITECTURE.md](ARCHITECTURE.md). MIT licensed.

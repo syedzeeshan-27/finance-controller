@@ -261,6 +261,30 @@ def validate_mapping(grid: list[list[str]],
                  f"rows {a} and {b} do not share a reference with equal "
                  f"and opposite amounts")
 
+    # --- V8 a balance row is a balance row ----------------------------------
+    # No debit or credit of its own, and it brackets the period's
+    # transactions. Otherwise a real first or last transaction could be
+    # renamed "opening" or "closing" and drop out of the chain while the
+    # chain still closes. Runs last, only on an otherwise clean mapping, so
+    # the error text fed back to the agent on earlier failures is unchanged
+    # (the recorded transcripts replay byte for byte).
+    if not errors:
+        for k, p in enumerate(mapping.periods):
+            for label, row in (("opening", p.opening_row),
+                               ("closing", p.closing_row)):
+                if (_cell(grid, row, cols.get("debit")).strip()
+                        or _cell(grid, row, cols.get("credit")).strip()):
+                    _err(errors, "E_BALANCE_ROW_HAS_AMOUNT", row,
+                         f"period {k}: {label} row carries a debit or "
+                         f"credit; a balance row has neither")
+            if p.transaction_rows:
+                lo, hi = min(p.transaction_rows), max(p.transaction_rows)
+                if not (p.opening_row < lo and hi < p.closing_row):
+                    _err(errors, "E_PERIOD_ORDER", p.opening_row,
+                         f"period {k}: opening row {p.opening_row} and "
+                         f"closing row {p.closing_row} must bracket the "
+                         f"transaction rows {lo}..{hi}")
+
     stats = {
         "rows": n_rows,
         "periods": period_stats,

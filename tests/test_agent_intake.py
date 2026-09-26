@@ -91,6 +91,19 @@ def test_validator_rejects_hidden_transaction_row():
     assert "E_TRANSACTION_LIKE_NOISE" in _codes(report)
 
 
+def test_validator_rejects_first_transaction_renamed_as_opening():
+    # Mark the real opening-balance row as noise and promote the first
+    # transaction to "opening": the chain still closes, but a real
+    # transaction would vanish from the output.
+    d = _mapping_dict()
+    period = d["periods"][0]
+    d["noise_rows"].append(period["opening_row"])
+    period["opening_row"] = period["transaction_rows"].pop(0)
+    report = validate_mapping(_grid(), StatementMapping.from_dict(d))
+    assert not report.accepted
+    assert "E_BALANCE_ROW_HAS_AMOUNT" in _codes(report)
+
+
 def test_validator_rejects_unclassified_and_double_classified_rows():
     d = _mapping_dict()
     dropped = d["noise_rows"].pop()

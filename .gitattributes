@@ -1,3 +1,8 @@
+# Source, docs and generated worlds are compared byte for byte by the tests:
+# check them out with LF everywhere, whatever core.autocrlf says.
+# (Listed first: later, more specific lines below override it.)
+* text=auto eol=lf
+
 # Webhook fixture bytes are signed (HMAC over the exact file content):
 # never let EOL conversion rewrite them on checkout.
 data/fixtures/razorpay/webhooks/** -text
